@@ -12,7 +12,8 @@ use App\Models\User;
 
 class ScoringSheetController extends Controller
 {
-    public function index($id) {
+    public function index($id)
+    {
 
         $subjects = Subject::find($id)->criteria;
         $applicants = Subject::find($id)->applicant;
@@ -20,7 +21,7 @@ class ScoringSheetController extends Controller
         //$dd = Subject::with(['criteria.score', 'applicant.score', 'score'])->where("id",$id)->get();
 
         $scores_array = array(
-            1,2,3,4,5
+            1, 2, 3, 4, 5
         );
 
         //$subjects = Subject::with('criteria')->where("id","=",$id)->get();
@@ -32,7 +33,8 @@ class ScoringSheetController extends Controller
         return view("scores.index", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         //Validation
 
@@ -53,7 +55,6 @@ class ScoringSheetController extends Controller
         $score->save();
 
         return back()
-            ->with('msg','Score has been successfully added.');
-
+            ->with('msg', 'Score has been successfully added.');
     }
 }
