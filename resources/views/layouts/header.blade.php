@@ -50,7 +50,7 @@
                       <li><a class="dropdown-item" href="#">Criteria</a></li>
                       <li><a class="dropdown-item" href="#">Scoring</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Logout</a></li>
+                      <li><a class="dropdown-item" href="/signout">Logout</a></li>
                     </ul>
                   </li>
 
