@@ -96,6 +96,7 @@ button:focus,
 }
 .btn {
     border-radius: 0px !important;
+
 }
 .btn-dark {
     background-color: #414141 !important;
@@ -139,3 +140,19 @@ button:focus,
 .applicants {
     width: 100%;
 }
+label:hover {
+    color: #000 !important;
+}
+label.btn.score-priority {
+    margin-bottom: 5px;
+}
+tr.noBorder td {
+    border: 0;
+  }
+
+
+  @media only screen and (min-width: 320px) and (max-width: 800px) {
+      .btn {
+          margin: 5px;
+      }
+  }

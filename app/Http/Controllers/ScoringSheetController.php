@@ -47,6 +47,7 @@ class ScoringSheetController extends Controller
 
         $score = new Score;
 
+        $score->user_id = 1; // session loggedin user id
         $score->subject_id = $request->sub;
         $score->applicant_id = $request->appl;
         $score->criteria_id = $request->crit_id;
@@ -56,5 +57,26 @@ class ScoringSheetController extends Controller
 
         return back()
             ->with('msg', 'Score has been successfully added.');
+    }
+
+    public function scoring($id)
+    {
+
+        $subjects = Subject::find($id)->criteria;
+        $applicants = Subject::find($id)->applicant;
+
+        //$dd = Subject::with(['criteria.score', 'applicant.score', 'score'])->where("id",$id)->get();
+
+        $scores_array = array(
+            1, 2, 3, 4, 5
+        );
+
+        //$subjects = Subject::with('criteria')->where("id","=",$id)->get();
+
+        //$subjects = Subject::find($id)->criteria;
+
+        //dd($subjects);
+
+        return view("scores.scoring_page", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array]);
     }
 }

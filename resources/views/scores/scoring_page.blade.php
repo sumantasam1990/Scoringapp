@@ -1,6 +1,6 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-6">
+<div class="container-fluid mt-6">
 
     @include('layouts.alert')
 
@@ -8,11 +8,21 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div class="">
-            <h2 class="display-4 text-center heading_txt">Create Scoring Sheet</h2>
-            <h5 style="margin-top: -5px;" class="display-7 text-center heading_txt">{{ $subjects[0]->subject->subject_name }}</h5>
+            <h2 class="display-4 text-left heading_txt">{{ $subjects[0]->subject->subject_name }}</h2>
+            <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Scoring Page</h5>
 
-            <div class="mt-6">
+            <div class="mt-4">
+
+                <div class="text-left">
                 <a href="/create-applicant" class="btn btn-success btn-sm">Add Applicant</a>
+                <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a>
+                <a href="/create-applicant" class="btn btn-success btn-sm">Delete Page</a>
+                <a href="/create-applicant" class="btn btn-success btn-sm">Finalist Page</a>
+                <a href="/create-applicant" class="btn btn-success btn-sm">Bulk Email List</a>
+                <a href="/create-applicant" class="btn btn-success btn-sm">Add Team Member</a>
+                <a href="/create-applicant" class="btn btn-success btn-sm">Message Room</a>
+                </div>
+
                 <div class="devider"></div>
 
                 {{-- Applicants & Criteria Loop --}}
@@ -23,7 +33,7 @@
                                 <thead>
                                     <tr>
                                         <th>&nbsp;</th>
-
+                                        <th>&nbsp;</th>
                                         @foreach ($subjects as $data)
                                         <th>
                                             <p>{{ $data->title }}</p>
@@ -60,13 +70,22 @@
                                     <tr>
                                         <td colspan="@php echo count($subjects) + 1; @endphp">
                                             <p class="fw-bold">{{ $applicant->name }} (Applicant)</p>
+                                            @php
+                                            // getting users from subject id
+                                            $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.id=teams.user_id) WHERE teams.subject_id = ?", [$subjects[0]->subject->id]);
 
+                                        @endphp
 
-
+                                            @foreach ($users as $user)
                                             <tr class="noBorder">
+                                                <td> <p>{{ $user->name }} </p></td>
+                                                <td>
+                                                    @php
+                                                        $total_sum = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE user_id = ? AND applicant_id = ? AND subject_id = ?", [$user->id,$applicant->id,$subjects[0]->subject->id]);
 
-                                                <td>&nbsp;</td>
-
+                                                    @endphp
+                                                    <span class="fw-bold" style="font-size: 28px;">{{ $total_sum[0]->total }}</span>
+                                                </td>
                                                 @foreach ($subjects as $data)
                                                     <td>
 
@@ -76,13 +95,13 @@
                                                                 LEFT JOIN subjects ON (scores.subject_id=subjects.id)
                                                                 LEFT JOIN criterias ON (scores.criteria_id=criterias.id)
                                                                 LEFT JOIN applicants ON (scores.applicant_id=applicants.id)
-                                                                WHERE subjects.id = ? AND applicants.id = ? AND criterias.id = ? AND scores.user_id = ?", [$subjects[0]->subject->id,$applicant->id,$data->id,1]);
+                                                                WHERE subjects.id = ? AND applicants.id = ? AND criterias.id = ? AND scores.user_id = ?", [$subjects[0]->subject->id,$applicant->id,$data->id,$user->id]);
 
                                                             @endphp
 
-                                                            @if (count($results) == 0)
+                                                            {{-- @if (count($results) == 0)
                                                                 <a onclick="openModalCreateScore('{{$subjects[0]->subject->id}}', '{{$applicant->id}}', '{{$data->title}}', '{{$subjects[0]->subject->subject_name}}', '{{$applicant->name}}', '{{$data->id}}')" class="btn btn-link text-center" style="color: #138D07; font-weight: bold; font-size: 20px; text-decoration: none;" href="#"><i class="fas fa-plus"></i></a>
-                                                            @endif
+                                                            @endif --}}
 
                                                             @foreach ($results as $result)
 
@@ -115,7 +134,7 @@
                                                     </td>
                                                 @endforeach
                                             </tr>
-
+                                            @endforeach
                                         </td>
 
                                     </tr>

@@ -26,6 +26,7 @@ Route::get('/create-subject', [SubjectController::class, 'index'])->name('create
 Route::get('/create-applicant', [ApplicantController::class, 'index']);
 Route::get('/create-criteria', [CriteriaController::class, 'index']);
 Route::get('/create-scoring-sheet/{id}', [ScoringSheetController::class, 'index']);
+Route::get('/scoring-sheet/{id}', [ScoringSheetController::class, 'scoring']);
 
 
 
