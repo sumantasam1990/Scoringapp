@@ -13,19 +13,37 @@
 
             <div class="mt-3">
                 <a class="btn btn-success btn-sm" href="/create-subject">Add Subject</a>
-                <a class="btn btn-success btn-sm" href="/create-criteria">Add Criteria</a>
-                <a class="btn btn-success btn-sm" href="/create-applicant">Add Applicant</a>
+                {{-- <a class="btn btn-success btn-sm" href="/create-criteria">Add Criteria</a>
+                <a class="btn btn-success btn-sm" href="/create-applicant">Add Applicant</a> --}}
             </div>
 
+            {{-- <div class="row mt-6">
+                <h4>My Subjects</h4>
+                @if(count($mysubjects) > 0)
+                    @foreach ($mysubjects as $subject)
+                        <div class="col-4 mt-3">
+                            <div class="card text-dark border-success" style="border: 6px solid green !important;">
+                                <div class="card-body text-center">
+                                <h5 class="card-title fw-bold mb-4 text-success" style="font-size: 22px;">{{ $subject->subject_name }}</h5>
+                                <a href="/create-scoring-sheet/{{$subject->id}}" class="btn btn-success btn-sm">Create Score Page</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p class="fw-bold">You don't have any subject.</p>
+                @endif
+            </div> --}}
+
             <div class="row mt-6">
-                <h4>Subjects</h4>
-                @foreach ($subjects as $subject)
+                <h4>Invited Subjects</h4>
+                @foreach ($invited as $inv)
                     <div class="col-4 mt-3">
-                        <div class="card text-dark border-success" style="border: 6px solid #000 !important;">
+                        <div class="card text-dark border-success" style="border: 6px solid green !important;">
                             <div class="card-body text-center">
-                              <h5 class="card-title fw-bold mb-4" style="font-size: 22px;">{{ $subject->subject_name }}</h5>
+                              <h5 class="card-title fw-bold mb-4 text-success" style="font-size: 22px;">{{ $inv->subject_name }}</h5>
                               {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-                              <a href="/create-scoring-sheet/{{$subject->id}}" class="btn btn-dark btn-sm">Create Score Page</a>
+                              <a href="/create-scoring-sheet/{{$inv->id}}" class="btn btn-success btn-sm">Create Score Page</a>
                             </div>
                           </div>
                     </div>

@@ -9,12 +9,15 @@
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div class="">
             <h2 class="display-4 text-center heading_txt">Create Scoring Sheet</h2>
-            <h5 style="margin-top: -5px;" class="display-7 text-center heading_txt">{{ $subjects[0]->subject->subject_name }}</h5>
+            <h5 style="margin-top: -5px;" class="display-7 text-center heading_txt">{{ $subjs->subject_name ?? 'not' }}</h5>
+            <p class="text-center"><a href="/scoring-sheet/{{$subjs->id ?? ''}}" class="btn btn-success btn-sm">Open Scoring Sheet</a></p>
 
 
             <div class="mt-6">
+                <a href="/create-criteria" class="btn btn-success btn-sm">Add Criteria</a>
                 <a href="/create-applicant" class="btn btn-success btn-sm">Add Applicant</a>
-                <a href="/scoring-sheet/{{$subjects[0]->subject->id}}" class="btn btn-success btn-sm">Open Scoring Sheet</a>
+                <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member</a>
+
                 <div class="devider"></div>
 
                 {{-- Applicants & Criteria Loop --}}

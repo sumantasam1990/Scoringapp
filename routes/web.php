@@ -7,6 +7,7 @@ use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ScoringSheetController;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +31,15 @@ Route::get('/create-scoring-sheet/{id}', [ScoringSheetController::class, 'index'
 Route::get('/scoring-sheet/{id}', [ScoringSheetController::class, 'scoring']);
 Route::get('dashboard', [LoginController::class, 'dashboard']);
 Route::get('/delete/score/{id}', [ScoringSheetController::class, 'delete']);
+Route::get('/add-team-member/{id}', [TeamController::class, 'index']);
+
 
 Route::post('store/subject', [SubjectController::class, 'store'])->name('subject.store');
 Route::post('store/applicant', [ApplicantController::class, 'store'])->name('applicant.store');
 Route::post('store/criteria', [CriteriaController::class, 'store'])->name('criteria.store');
 Route::post('store/score', [ScoringSheetController::class, 'store'])->name('score.store');
 Route::any('edit/score', [ScoringSheetController::class, 'edit'])->name('score.edit');
+Route::post('store/team', [TeamController::class, 'store'])->name('team.store');
 
 
 

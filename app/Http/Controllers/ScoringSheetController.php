@@ -15,6 +15,7 @@ class ScoringSheetController extends Controller
 {
     public function index($id)
     {
+        $subjs = Subject::where("id", $id)->first();
         $subjects = Subject::find($id)->criteria;
         $applicants = Subject::find($id)->applicant;
 
@@ -30,7 +31,7 @@ class ScoringSheetController extends Controller
 
         //dd($subjects);
 
-        return view("scores.index", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array]);
+        return view("scores.index", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs]);
     }
 
     public function store(Request $request)
@@ -78,6 +79,7 @@ class ScoringSheetController extends Controller
     public function scoring($id)
     {
 
+        $subjs = Subject::where("id", $id)->first();
         $subjects = Subject::find($id)->criteria;
         $applicants = Subject::find($id)->applicant;
 
@@ -93,7 +95,7 @@ class ScoringSheetController extends Controller
 
         //dd($subjects);
 
-        return view("scores.scoring_page", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array]);
+        return view("scores.scoring_page", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs]);
     }
 
     public function edit(Request $request) {

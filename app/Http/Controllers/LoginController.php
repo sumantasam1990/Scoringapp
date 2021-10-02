@@ -64,7 +64,7 @@ class LoginController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect("login")->msg('You have successfully registered.');
+        return redirect("login")->with('msg', 'You have successfully registered.');
     }
 
     public function create(array $data)
@@ -80,8 +80,10 @@ class LoginController extends Controller
     {
         if(Auth::check()){
             $user = Auth::user();
-            $subjects = DB::select('select subjects.subject_name, subjects.id from subjects left join teams on (teams.subject_id=subjects.id) where teams.user_id = ?', [$user->id]);
-            return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "subjects" => $subjects]);
+            $mysubjects = User::find($user->id)->subject;
+            //dd($mysubjects);
+            $invited = DB::select('select subjects.subject_name, subjects.id from subjects left join teams on (teams.subject_id=subjects.id) where teams.user_id = ?', [$user->id]);
+            return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "invited" => $invited, "mysubjects" => $mysubjects]);
         }
 
         return redirect("registration")->with('err', 'You are not allowed to access');

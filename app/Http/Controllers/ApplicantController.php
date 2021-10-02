@@ -20,7 +20,7 @@ class ApplicantController extends Controller
     public function store(Request $request) {
 
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $imageName = 'sca_' . uniqid() . time().'.'.$request->image->extension();
