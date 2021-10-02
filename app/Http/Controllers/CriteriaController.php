@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Criteria;
 use App\Models\Subject;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class CriteriaController extends Controller
 {
@@ -14,7 +15,9 @@ class CriteriaController extends Controller
         //$subject = Criteria::find(1)->subject;
         //$subjects = Subject::with('criteria')->get();
 
-        $subjects = User::find(1)->subject;
+        $user = Auth::user();
+
+        $subjects = User::find($user->id)->subject;
 
         // Create an array for priority
         $priorites_array = array(

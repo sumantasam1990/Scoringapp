@@ -36,18 +36,22 @@
             </div> --}}
 
             <div class="row mt-6">
-                <h4>Invited Subjects</h4>
-                @foreach ($invited as $inv)
-                    <div class="col-4 mt-3">
-                        <div class="card text-dark border-success" style="border: 6px solid green !important;">
-                            <div class="card-body text-center">
-                              <h5 class="card-title fw-bold mb-4 text-success" style="font-size: 22px;">{{ $inv->subject_name }}</h5>
-                              {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-                              <a href="/create-scoring-sheet/{{$inv->id}}" class="btn btn-success btn-sm">Create Score Page</a>
+                <h4> Subjects</h4>
+                @if(count($invited) > 0)
+                    @foreach ($invited as $inv)
+                        <div class="col-4 mt-3">
+                            <div class="card text-dark border-success" style="border: 6px solid green !important;">
+                                <div class="card-body text-center">
+                                <h5 class="card-title fw-bold mb-4 text-success" style="font-size: 22px;">{{ $inv->subject_name }}</h5>
+                                {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+                                <a href="/create-scoring-sheet/{{$inv->id}}" class="btn btn-success btn-sm">Create Score Page</a>
+                                </div>
                             </div>
-                          </div>
-                    </div>
-                @endforeach
+                        </div>
+                    @endforeach
+                @else
+                    <p class="fw-bold">You don't have any subject.</p>
+                @endif
             </div>
 
 

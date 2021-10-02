@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
-        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
+        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 mb-4">
             <h2 class="display-4 text-left heading_txt">Invite Team Members</h2>
             <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $subject->subject_name }}</h5>
             <h2 class="display-4 text-left heading_txt mt-4">Team Members</h2>
@@ -63,7 +63,7 @@
 
 
 
-
+            <p>&nbsp;</p>
 
         </div>
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>

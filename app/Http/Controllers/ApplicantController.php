@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\Subject;
 use App\Models\User;
 use App\Models\Applicant;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicantController extends Controller
 {
     public function index() {
 
-        $subject = User::find(1)->subject;
+        $user = Auth::user();
+
+        $subject = User::find($user->id)->subject;
         //$subject = User::with('subject')->get();
 
         return view("applicant.index", ["title" => "Applicant", "subjects" => $subject]);
