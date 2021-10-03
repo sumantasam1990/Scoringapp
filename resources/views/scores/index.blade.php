@@ -14,8 +14,9 @@
 
 
             <div class="mt-6">
-                <a href="/create-criteria" class="btn btn-success btn-sm">Add Criteria</a>
-                <a href="/create-applicant" class="btn btn-success btn-sm">Add Applicant</a>
+                <a href="/create-criteria/{{$subjs->id}}" class="btn btn-success btn-sm">Add Criteria</a>
+                <a href="/create-applicant/{{$subjs->id}}" class="btn btn-success btn-sm">Add Applicant</a>
+                {{-- <a href="/create-applicant/{{$subjs->id}}" class="btn btn-success btn-sm">Remove Applicant</a> --}}
                 <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member</a>
 
                 <div class="devider"></div>

@@ -10,17 +10,26 @@ use Illuminate\Support\Facades\Auth;
 
 class CriteriaController extends Controller
 {
-    public function index() {
+    public function index($id) {
 
         //$subject = Criteria::find(1)->subject;
         //$subjects = Subject::with('criteria')->get();
 
         $user = Auth::user();
 
-        $subjects = User::find($user->id)->subject;
+        //checking if it is main user who created the criteria or not
+        $chk_main = Subject::select("id")
+                            ->where("id", $id)
+                            ->where("user_id", $user->id)
+                            ->first();
 
-        // Create an array for priority
-        $priorites_array = array(
+        if( !empty($chk_main->id) ) {
+
+            $subjects = Subject::where("id", $id)
+            ->first();
+
+            // Create an array for priority
+            $priorites_array = array(
             'Green'                      =>     '138D07',
             'Light Green or Green'       =>     '40F328,138D07',
             'Yellow and Light Green'     =>     'FCD40A,40F328',
@@ -29,9 +38,14 @@ class CriteriaController extends Controller
             'Yellow and Orange'          =>     'FCD40A,F56A21',
             'Orange and Red'             =>     'F56A21,FC0A0A',
             'Red'                        =>     'FC0A0A',
-        );
+            );
 
-        return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array]);
+            return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array]);
+
+        } else {
+            return back()->with("err", "You don't have access the \"Add Criteria\" Page.");
+        }
+
     }
 
     public function store(Request $request) {

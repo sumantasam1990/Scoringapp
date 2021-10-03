@@ -9,16 +9,21 @@
         <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
             <div class="">
             <h2 class="display-4 text-center heading_txt">Create A Criteria</h2>
+            <h5 style="margin-top: -5px;" class="display-7 text-center heading_txt">{{ $subjects->subject_name }}</h5>
+
 
             <div class="box mt-6">
                 <form action="{{ route('criteria.store') }}" method="post">
                     @csrf
                     <div class="form-group mb-4">
-                        <select class="form-control @error('subject') is-invalid @enderror" name="subject">
+                        {{-- <select class="form-control @error('subject') is-invalid @enderror" name="subject">
                             <option selected value="" disabled>Which Subject Are You Adding This Criteria To?</option>
                             @foreach ($subjects as $subject)
                                 <option value="{{ $subject->id }}" {{ (old("subject") == $subject->id ? "selected" : "") }}>{{ $subject->subject_name }}</option>
                             @endforeach
+                        </select> --}}
+                        <select class="form-control @error('subject') is-invalid @enderror" name="subject" style="font-weight: bold;">
+                            <option value="{{ $subjects->id }}" {{ (old("subject") == $subjects->id ? "selected" : "") }}>{{ $subjects->subject_name }}</option>
                         </select>
                         @error('subject')
                             <div class="alert alert-danger">{{ $message }}</div>

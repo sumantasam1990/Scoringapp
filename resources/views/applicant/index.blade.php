@@ -10,15 +10,19 @@
             <div class="">
             <h2 class="display-4 text-center heading_txt">Create An Applicant</h2>
             <h6 style="margin-top: -5px;" class="display-7 text-center heading_txt">Add simple things like the name, photo, email and phone number.</h6>
+            <p style="margin-top: -1px;" class="display-7 text-center heading_txt">{{$subjects->subject_name}}</p>
             <div class="box mt-6">
                 <form action="{{ route('applicant.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mb-4">
-                        <select class="form-control" name="sub_id">
+                        {{-- <select class="form-control" name="sub_id">
                             <option selected value="" disabled>Which Subject Are You Adding The Applicant To?</option>
                             @foreach ($subjects as $sub)
                                 <option value="{{ $sub->id  }}">{{ $sub->subject_name }}</option>
                             @endforeach
+                        </select> --}}
+                        <select class="form-control" name="sub_id" style="font-weight: bold;">
+                            <option value="{{ $subjects->id  }}">{{ $subjects->subject_name }}</option>
                         </select>
                     </div>
                     <div class="form-group mb-4">

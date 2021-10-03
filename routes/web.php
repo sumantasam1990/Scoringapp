@@ -25,13 +25,17 @@ use App\Http\Controllers\TeamController;
 // });
 
 Route::get('/create-subject', [SubjectController::class, 'index'])->name('create.subject');
-Route::get('/create-applicant', [ApplicantController::class, 'index']);
-Route::get('/create-criteria', [CriteriaController::class, 'index']);
+Route::get('/create-applicant/{id}', [ApplicantController::class, 'index']);
+Route::get('/create-criteria/{id}', [CriteriaController::class, 'index']);
 Route::get('/create-scoring-sheet/{id}', [ScoringSheetController::class, 'index']);
 Route::get('/scoring-sheet/{id}', [ScoringSheetController::class, 'scoring']);
 Route::get('dashboard', [LoginController::class, 'dashboard']);
 Route::get('/delete/score/{id}', [ScoringSheetController::class, 'delete']);
 Route::get('/add-team-member/{id}', [TeamController::class, 'index']);
+Route::get('remove/note/{id}', [ScoringSheetController::class, 'remove_note']);
+Route::get('remove/file/{id}', [ScoringSheetController::class, 'remove_file']);
+Route::get('finalists/{id}', [ScoringSheetController::class, 'finalists']);
+
 
 
 Route::post('store/subject', [SubjectController::class, 'store'])->name('subject.store');

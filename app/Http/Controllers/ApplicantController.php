@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplicantController extends Controller
 {
-    public function index() {
+    public function index($id) {
 
         $user = Auth::user();
 
-        $subject = User::find($user->id)->subject;
+        $subject = Subject::where("id", $id)->first();
         //$subject = User::with('subject')->get();
 
         return view("applicant.index", ["title" => "Applicant", "subjects" => $subject]);
