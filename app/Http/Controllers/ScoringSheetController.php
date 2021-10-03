@@ -88,14 +88,21 @@ class ScoringSheetController extends Controller
     {
 
         $subjs = Subject::where("id", $id)->first();
-        $subjects = Subject::find($id)->criteria;
+        $subjects = Criteria::where("subject_id", $id)->get();
 
         //getting who created this subject
-        $subj_user = Subject::select("user_id")
-                            ->where("id", $id)
-                            ->first();
+        // $subj_user = Subject::select("user_id")
+        //                     ->where("id", $id)
+        //                     ->first();
 
-        $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subj_user->user_id, $id, $id]);
+        $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
+
+        //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, criterias.`title` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
+
+        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total
+        FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`)
+        LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ?
+        AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id, $id]);
 
 
         $scores_array = array(
@@ -103,7 +110,7 @@ class ScoringSheetController extends Controller
         );
 
 
-        return view("scores.scoring_page", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs]);
+        return view("scores.scoring_page", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, "sid" => $id]);
     }
 
     public function edit(Request $request) {
@@ -201,14 +208,17 @@ class ScoringSheetController extends Controller
     public function finalists($id) {
 
         $subjs = Subject::where("id", $id)->first();
-        $subjects = Subject::find($id)->criteria;
+        $subjects = Criteria::where("subject_id", $id)->get();
 
-        //getting who created this subject
-        $subj_user = Subject::select("user_id")
-                            ->where("id", $id)
-                            ->first();
 
-        $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subj_user->user_id, $id, $id]);
+        $applicants = DB::select('SELECT d.id,d.name, finalists.`applicant_id`, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d RIGHT JOIN finalists ON (d.`id`=finalists.`applicant_id`) WHERE d.`subject_id` = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
+
+
+        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total
+        FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`)
+        LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ?
+        AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id, $id]);
+
 
 
         $scores_array = array(
@@ -216,7 +226,7 @@ class ScoringSheetController extends Controller
         );
 
 
-        return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs]);
+        return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias]);
 
     }
 }
