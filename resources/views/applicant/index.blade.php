@@ -21,18 +21,18 @@
                                 <option value="{{ $sub->id  }}">{{ $sub->subject_name }}</option>
                             @endforeach
                         </select> --}}
-                        <select class="form-control" name="sub_id" style="font-weight: bold;">
-                            <option value="{{ $subjects->id  }}">{{ $subjects->subject_name }}</option>
+                        <select class="form-control @error('sub_id') is-invalid @enderror" name="sub_id" style="font-weight: bold;">
+                            <option value="{{ $subjects->id  }}" {{ (old("sub_id") == $subjects->id ? "selected" : "") }}>{{ $subjects->subject_name }}</option>
                         </select>
                     </div>
                     <div class="form-group mb-4">
-                        <input required type="text" name="name" class="form-control" placeholder="Applicant's Name" autocomplete="off">
+                        <input required type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Applicant's Name" autocomplete="off">
                     </div>
                     <div class="form-group mb-4">
-                        <input required type="email" name="email" class="form-control" placeholder="Applicant's Email ID" autocomplete="offf">
+                        <input required type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Applicant's Email ID" autocomplete="offf">
                     </div>
                     <div class="form-group mb-4">
-                        <input required type="number" name="phone" class="form-control" placeholder="Applicant's Phone/Mobile" autocomplete="offff">
+                        <input required type="number" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" placeholder="Applicant's Phone/Mobile" autocomplete="offff">
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                         <button onclick="selectPhoto()" type="button" class="btn btn-dark btn-md" id="add_photo">Add Photo</button>

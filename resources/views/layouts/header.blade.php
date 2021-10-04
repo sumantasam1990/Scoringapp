@@ -41,18 +41,28 @@
                   <li class="nav-item">
                     <a class="nav-link" href="#">Contact US</a>
                   </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="{{ asset('images/IMG_9646_JPG.webp') }}">
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Subject</a></li>
-                      <li><a class="dropdown-item" href="#">Criteria</a></li>
-                      <li><a class="dropdown-item" href="#">Scoring</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="/signout">Logout</a></li>
-                    </ul>
-                  </li>
+
+                  @if (Auth::check())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset('images/IMG_9646_JPG.webp') }}">
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/signout">Logout</a></li>
+                        </ul>
+                    </li>
+                    @else
+                        <li class="nav-item" style="margin-right: 5px;">
+                            <a class="btn btn-dark btn-lg" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-dark btn-lg" href="/registration">Sign Up</a>
+                        </li>
+                  @endif
+
+
 
                 </ul>
                 {{-- <form class="d-flex">

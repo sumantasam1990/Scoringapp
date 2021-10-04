@@ -76,13 +76,13 @@ button:focus,
 .navbar {
     box-shadow: 0px 2px 3px 0px #dbdbdb;
 }
-.navbar-nav li a {
+.nav-link {
     color: #414141 !important;
     font-weight: bold;
     font-size: 18px;
 }
 .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active {
-    color: rgba(0, 0, 0, 0.9) !important;
+    // color: rgba(0, 0, 0, 0.9);
 }
 .nav-item {
     margin-top: 5px;
@@ -102,11 +102,12 @@ button:focus,
     background-color: #414141 !important;
     border: 3px solid #414141;
     font-weight: bold;
+    color: #fff !important;
 }
 .btn-dark:hover {
     border: 3px solid #414141;
     background-color: transparent !important;
-    color: #414141;
+    color: #414141 !important;
 }
 .btn-success {
     background-color: #138D07 !important;
@@ -117,6 +118,18 @@ button:focus,
     border: 3px solid #138D07;
     background-color: transparent !important;
     color: #FC0A0A;
+}
+.btn-info {
+    transition: all 0.2s ease, visibility 0s;
+    background: #F908CC;
+    border: 3px solid #F908CC;
+    font-weight: bold;
+    color: #fff !important;
+}
+.btn-info:hover {
+    border: 3px solid #F908CC;
+    background-color: transparent !important;
+    color: #FC0A0A !important;
 }
 .box {
     padding: 30px;
