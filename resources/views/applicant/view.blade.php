@@ -1,12 +1,12 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-6">
+<div class="container-fluid mt-6">
 
     @include('layouts.alert')
 
     <div class="row">
-        <div class="col-xxl-3 col-xl-3 col-lg-2 col-md-2"></div>
-        <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
+        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div class="">
             <h2 class="display-4 text-center heading_txt">Applicant Page</h2>
 
@@ -236,7 +236,7 @@
 
             </div>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-2 col-md-2"></div>
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
     </div>
 </div>
 

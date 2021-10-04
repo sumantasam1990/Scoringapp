@@ -17,9 +17,17 @@ class ScoringSheetController extends Controller
     public function index($id)
     {
 
+        $authUser = Auth::user();
+
         $subjs = Subject::where("id", $id)->first();
-        $subjects = Subject::find($id)->criteria;
+
+        //$subjects = Subject::find($id)->criteria;
+
+        $subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
+
         $applicants = Subject::find($id)->applicant;
+
+        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
 
         //$dd = Subject::with(['criteria.score', 'applicant.score', 'score'])->where("id",$id)->get();
 
@@ -33,7 +41,7 @@ class ScoringSheetController extends Controller
 
         //dd($subjects);
 
-        return view("scores.index", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs]);
+        return view("scores.index", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, "sid" => $id, "authUser" => $authUser]);
     }
 
     public function store(Request $request)
@@ -88,7 +96,7 @@ class ScoringSheetController extends Controller
     {
 
         $subjs = Subject::where("id", $id)->first();
-        $subjects = Criteria::where("subject_id", $id)->get();
+        $subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 
         //getting who created this subject
         // $subj_user = Subject::select("user_id")
@@ -97,12 +105,11 @@ class ScoringSheetController extends Controller
 
         $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
 
-        //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, criterias.`title` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
+        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
 
-        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total
-        FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`)
-        LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ?
-        AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id, $id]);
+        //ddd($maincriterias_data);
+
+        //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias `maincriteria_id`) LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ? AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id, $id]);
 
 
         $scores_array = array(
@@ -208,16 +215,14 @@ class ScoringSheetController extends Controller
     public function finalists($id) {
 
         $subjs = Subject::where("id", $id)->first();
-        $subjects = Criteria::where("subject_id", $id)->get();
+        $subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 
 
         $applicants = DB::select('SELECT d.id,d.name, finalists.`applicant_id`, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d RIGHT JOIN finalists ON (d.`id`=finalists.`applicant_id`) WHERE d.`subject_id` = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
 
+        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
 
-        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total
-        FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`)
-        LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ?
-        AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id, $id]);
+        //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ? AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id, $id]);
 
 
 

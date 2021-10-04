@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mainsubject;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Team;
@@ -39,10 +40,14 @@ class TeamController extends Controller
 
             if(count($chkTeamExist) == 0) {
 
+                $sub = Subject::select("mainsubject_id")->where("id", $request->hd_sub)->first();
+                $mainsubID = Mainsubject::select("id")->where("id", $sub->mainsubject_id)->first();
+
                 $team = new Team;
 
                 $team->user_id = $user[0]->id;
                 $team->subject_id = $request->hd_sub;
+                $team->mainsubject_id = $mainsubID->id;
 
                 $team->save();
 

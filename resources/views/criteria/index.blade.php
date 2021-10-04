@@ -10,11 +10,13 @@
             <div class="">
             <h2 class="display-4 text-center heading_txt">Create A Criteria</h2>
             <h5 style="margin-top: -5px;" class="display-7 text-center heading_txt">{{ $subjects->subject_name }}</h5>
+            <p class="text-center"><a class="btn btn-info btn-sm" href="#" onclick="openMainSubjectModal()">Add Main Criteria</a></p>
 
 
             <div class="box mt-6">
                 <form action="{{ route('criteria.store') }}" method="post">
                     @csrf
+
                     <div class="form-group mb-4">
                         {{-- <select class="form-control @error('subject') is-invalid @enderror" name="subject">
                             <option selected value="" disabled>Which Subject Are You Adding This Criteria To?</option>
@@ -28,6 +30,14 @@
                         @error('subject')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <select name="main" class="form-control @error('main') is-invalid @enderror">
+                            <option selected disabled value="">Choose The Main Criteria</option>
+                            @foreach ($maincriterias as $main)
+                               <option {{ (old("main") == $main->id ? "selected" : "") }} value="{{$main->id}}">{{$main->criteria_name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group mb-4">
                         <input type="text" name="criteria" class="form-control @error('criteria') is-invalid @enderror" placeholder="Create Part Of Criteria (i.e. Employment History, etc)" value="{{ old('criteria') }}">
@@ -78,6 +88,42 @@
 
 
 @include('layouts.footer')
+
+<div class="modal fade" id="main_criteria_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="display-6 text-center heading_txt" id="edit_score_heading">Add Main Criteria</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{{ route('maincriteria.store') }}" method="post">
+                @csrf
+                <input type="hidden" name="hd_sub_id" value="{{$sid}}">
+                <div class="box">
+                    <div class="form-group">
+                        <input type="text" class="form-control" required name="main_sub" placeholder="Create a Main Criteria">
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                    </div>
+
+                </div>
+            </form>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    function openMainSubjectModal() {
+        $("#main_criteria_modal").modal("show");
+    }
+</script>
 
 <script>
 function selectedColorBox(e,f) {

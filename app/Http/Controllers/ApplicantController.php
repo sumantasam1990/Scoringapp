@@ -59,7 +59,7 @@ class ApplicantController extends Controller
     public function viewApplicant($id, $subid) {
 
         $subjs = Subject::where("id", $subid)->first();
-        $subjects = Criteria::where("subject_id", $subid)->get();
+        $subjects = Criteria::where("subject_id", $subid)->orderBy("maincriteria_id", "ASC")->get();
 
 
         $applicants = DB::select('SELECT d.id,d.name,d.email,d.phone,d.photo, (SELECT SUM(scores.score_number)
@@ -67,10 +67,9 @@ class ApplicantController extends Controller
         FROM applicants AS d WHERE d.`subject_id` = ? AND d.id = ? ORDER BY total DESC', [$subid, $id, $subid, $id]);
 
 
-        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total
-        FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`)
-        LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ?
-        AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$subid, $subid]);
+        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$subid]);
+
+        //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ? AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$subid, $subid]);
 
 
         return view("applicant.view", ["title" => "Applicant Details", "applicants" => $applicants, "subjects" => $subjects, "maincriterias" => $maincriterias, "subjs" => $subjs]);
@@ -90,7 +89,7 @@ class ApplicantController extends Controller
 
         $finalist->save();
 
-        return back()
+        return redirect('/finalists/' . $request->subid)
             ->with('msg','Successfully added to the finalist page.');
 
     }

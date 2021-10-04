@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mainsubject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Session;
@@ -80,10 +81,12 @@ class LoginController extends Controller
     {
         if(Auth::check()){
             $user = Auth::user();
-            $mysubjects = User::find($user->id)->subject;
-            //dd($mysubjects);
-            $invited = DB::select('select subjects.subject_name, subjects.id from subjects left join teams on (teams.subject_id=subjects.id) where teams.user_id = ?', [$user->id]);
-            return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "invited" => $invited, "mysubjects" => $mysubjects]);
+
+            $mysubjects = DB::select('SELECT DISTINCT(mainsubjects.main_subject_name), mainsubjects.id FROM mainsubjects RIGHT JOIN teams ON (teams.mainsubject_id=mainsubjects.id) WHERE teams.user_id = ?', [$user->id]);
+
+
+
+            return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "mysubjects" => $mysubjects]);
         }
 
         return redirect("registration")->with('err', 'You are not allowed to access');

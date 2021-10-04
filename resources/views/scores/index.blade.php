@@ -27,11 +27,34 @@
                         <div class="table-responsive">
                             <table class="table mt-6">
                                 <thead>
+                                    <tr style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
+                                        @foreach ($maincriterias as $main)
+                                        @php
+
+                                        $colspan_main = DB::select("SELECT COUNT(id) AS total FROM
+                                        criterias WHERE maincriteria_id = ? ", [$main->id]);
+
+                                        //get total main criteria number
+                                        $total_main = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE subject_id = ? AND scores.`criteria_id` IN (SELECT id FROM criterias WHERE maincriteria_id = ?)", [$sid, $main->id])
+
+                                        @endphp
+                                        <th colspan="{{ $colspan_main[0]->total }}" style="text-align: center; border-left: 2px solid #000;">
+                                            <h4 class="fw-bold">{{ $main->criteria_name }}</h4>
+                                            <p style="font-size: 34px;" class="fw-bold">
+                                                {{ $total_main[0]->total }}
+                                            </p>
+
+                                        </th>
+                                        @endforeach
+                                    </tr>
                                     <tr>
                                         <th>&nbsp;</th>
-
+                                        <th>&nbsp;</th>
+                                        {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
                                         @foreach ($subjects as $data)
-                                        <th>
+                                        <th style="text-align: center; border-left: 2px solid #000; ">
                                             <p>{{ $data->title }}</p>
                                             @php
                                                 $exp = explode(",", $data->priority);
@@ -59,31 +82,48 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
+                                    {{-- <tr>
                                         <td colspan="3" style="height: 60px; border: none;"></td>
-                                    </tr>
+                                    </tr> --}}
                                     @foreach ( $applicants as $applicant )
                                     <tr>
-                                        <td colspan="@php echo count($subjects) + 1; @endphp">
-                                            <p class="fw-bold">{{ $applicant->name }} (Applicant)</p>
+                                        <td style="border-bottom: 2px solid #000 !important; border-top: 2px solid #000 !important; padding: 20px;" colspan="@php echo count($subjects) + 2; @endphp"> {{-- @php echo count($subjects) + 2; @endphp --}}
 
+                                            <p style="font-size: 18px;" class="fw-bold"><a style="color: #000; text-decoration: none;" href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }} (Applicant) </a></p>
+                                            @php
+                                            // getting users from subject id
+                                            $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.id=teams.user_id) WHERE teams.subject_id = ? AND teams.user_id = ?", [$subjs->id, $authUser->id]);
 
+                                        @endphp
 
+                                            @foreach ($users as $user)
                                             <tr class="noBorder">
+                                                <td> <p>{{ $user->name }} </p></td>
+                                                <td>
+                                                    @php
+                                                        $total_sum = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE user_id = ? AND applicant_id = ? AND subject_id = ?", [$user->id,$applicant->id,$subjs->id]);
 
-                                                <td>&nbsp;</td>
+                                                    @endphp
+                                                    <p class="fw-bold" style="font-size: 42px; margin-top: -15px;">{{ $total_sum[0]->total }}</p>
+                                                </td>
+                                                {{-- <td style="border-left: 2px solid #000;">
+                                                    @php
 
+                                                    $query = DB::select("select id from criterias where maincriteria_id = ?", [1]);
+                                                    @endphp
+                                                    <span class="fw-bold" style="font-size: 24px;">{{ $total_sum[0]->total }}</span>
+                                                </td> --}}
                                                 @foreach ($subjects as $data)
-                                                    <td>
+
+                                                    <td style="border-left: 2px solid #000;">
 
                                                         <div class="text-left">
                                                             @php
-                                                            $user_auth = Auth::user();
                                                                 $results = DB::select("SELECT scores.id,scores.score_number,subjects.subject_name,criterias.title,applicants.name FROM scores
                                                                 LEFT JOIN subjects ON (scores.subject_id=subjects.id)
                                                                 LEFT JOIN criterias ON (scores.criteria_id=criterias.id)
                                                                 LEFT JOIN applicants ON (scores.applicant_id=applicants.id)
-                                                                WHERE subjects.id = ? AND applicants.id = ? AND criterias.id = ? AND scores.user_id = ?", [$subjects[0]->subject->id,$applicant->id,$data->id,$user_auth->id]);
+                                                                WHERE subjects.id = ? AND applicants.id = ? AND criterias.id = ? AND scores.user_id = ?", [$subjs->id,$applicant->id,$data->id,$user->id]);
 
                                                             @endphp
 
@@ -122,7 +162,7 @@
                                                     </td>
                                                 @endforeach
                                             </tr>
-
+                                            @endforeach
                                         </td>
 
                                     </tr>

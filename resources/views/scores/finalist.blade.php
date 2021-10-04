@@ -93,7 +93,7 @@
                                     <tr>
                                         <td style="border-bottom: 2px solid #000 !important; border-top: 2px solid #000 !important;" colspan="@php echo count($subjects) + 2; @endphp"> {{-- @php echo count($subjects) + 2; @endphp --}}
 
-                                            <p class="fw-bold">{{ $applicant->name }} (Applicant)</p>
+                                            <p style="font-size: 18px;" class="fw-bold"><a style="color: #000; text-decoration: none;" href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }} (Applicant) </a></p>
                                             @php
                                             // getting users from subject id
                                             $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.id=teams.user_id) WHERE teams.subject_id = ?", [$subjs->id]);

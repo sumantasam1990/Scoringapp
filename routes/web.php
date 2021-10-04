@@ -40,8 +40,10 @@ Route::get('applicant/{id}/{subid}', [ApplicantController::class, 'viewApplicant
 
 
 
+Route::post('store/mainsubject', [SubjectController::class, 'mainstore'])->name('mainsubject.store')->middleware('auth');
 Route::post('store/subject', [SubjectController::class, 'store'])->name('subject.store')->middleware('auth');
 Route::post('store/applicant', [ApplicantController::class, 'store'])->name('applicant.store')->middleware('auth');
+Route::post('store/maincriteria', [CriteriaController::class, 'mainstore'])->name('maincriteria.store')->middleware('auth');
 Route::post('store/criteria', [CriteriaController::class, 'store'])->name('criteria.store')->middleware('auth');
 Route::post('store/score', [ScoringSheetController::class, 'store'])->name('score.store')->middleware('auth');
 Route::any('edit/score', [ScoringSheetController::class, 'edit'])->name('score.edit')->middleware('auth');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Criteria;
+use App\Models\Maincriteria;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,8 @@ class CriteriaController extends Controller
         //$subjects = Subject::with('criteria')->get();
 
         $user = Auth::user();
+
+        $maincriterias = Maincriteria::where("user_id", $user->id)->where("subject_id", $id)->get();
 
         //checking if it is main user who created the criteria or not
         $chk_main = Subject::select("id")
@@ -40,7 +43,7 @@ class CriteriaController extends Controller
             'Red'                        =>     'FC0A0A',
             );
 
-            return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array]);
+            return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array, "maincriterias" => $maincriterias, "sid" => $id]);
 
         } else {
             return back()->with("err", "You don't have access the \"Add Criteria\" Page.");
@@ -55,7 +58,8 @@ class CriteriaController extends Controller
         $request->validate([
             'criteria' => 'required',
             'priority' => 'required',
-            'subject'  => 'required'
+            'subject'  => 'required',
+            'main'     => 'required'
         ]);
 
         $criteria = new Criteria;
@@ -63,11 +67,31 @@ class CriteriaController extends Controller
         $criteria->subject_id = $request->subject;
         $criteria->title = $request->criteria;
         $criteria->priority = $request->priority;
+        $criteria->maincriteria_id = $request->main;
 
         $criteria->save();
 
         return redirect('/create-scoring-sheet/' .  $request->subject)
             ->with('msg','Criteria has been successfully added.');
 
+    }
+
+    public function mainstore(Request $request) {
+        $request->validate([
+            'main_sub' => 'required',
+            'hd_sub_id' => 'required'
+        ]);
+
+        $user = Auth::user();
+
+        $maincriteria = new Maincriteria;
+
+        $maincriteria->criteria_name = $request->main_sub;
+        $maincriteria->user_id = $user->id;
+        $maincriteria->subject_id = $request->hd_sub_id;
+
+        $maincriteria->save();
+
+        return back()->with("msg", "Your main criteria has been successfully added.");
     }
 }
