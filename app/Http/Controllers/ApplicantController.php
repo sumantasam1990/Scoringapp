@@ -15,8 +15,6 @@ class ApplicantController extends Controller
 {
     public function index($id) {
 
-        $user = Auth::user();
-
         $subject = Subject::where("id", $id)->first();
         //$subject = User::with('subject')->get();
 

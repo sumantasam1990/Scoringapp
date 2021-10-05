@@ -8,7 +8,7 @@
         <div class="col-xxl-3 col-xl-3 col-lg-2 col-md-2"></div>
         <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
             <div class="">
-            <h2 class="display-4 text-center heading_txt">Create An Applicant</h2>
+            <h2 class="display-4 text-center heading_txt">Create An Applicantt</h2>
             <h6 style="margin-top: -5px;" class="display-7 text-center heading_txt">Add simple things like the name, photo, email and phone number.</h6>
             <p style="margin-top: -1px;" class="display-7 text-center heading_txt">{{$subjects->subject_name}}</p>
             <div class="box mt-6">
