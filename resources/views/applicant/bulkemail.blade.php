@@ -41,9 +41,9 @@
                         @foreach($applicants as $applicant)
                         <tr>
                             <td>
-                                <form action="" method="post">
+                                <form action="{{ route('remove.bulk') }}" method="post" onsubmit="return confirm('Are you sure?')">
                                     @csrf
-                                    <input type="hidden" name="" value="">
+                                    <input required type="hidden" name="hd_sub_id" value="{{ $applicant->id }}">
                                     <button type="submit" @class('btn btn-outline-danger btn-sm')><i class="far fa-trash-alt"></i></button>
                                 </form>
                             </td>

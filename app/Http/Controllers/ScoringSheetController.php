@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Finalist;
+use App\Models\Maincriteria;
 use Illuminate\Support\Facades\DB;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
@@ -233,5 +235,43 @@ class ScoringSheetController extends Controller
 
         return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias]);
 
+    }
+
+    public function deletePage(Request $request) {
+        try {
+            $user = Auth::user();
+            //checking if it is main user who created the score page/subject or not
+            $chk_main = Subject::select("id")
+                ->where("id",$request->subject_id)
+                ->where("user_id", $user->id)
+                ->first();
+
+            if( !empty($chk_main->id) ) {
+                Score::where("subject_id", "=", $request->subject_id)
+                    ->delete();
+
+                Finalist::where("subject_id", "=", $request->subject_id)
+                    ->delete();
+
+                Criteria::where("subject_id", "=", $request->subject_id)
+                    ->delete();
+
+                Maincriteria::where("subject_id", "=", $request->subject_id)
+                    ->delete();
+
+                Applicant::where("subject_id", "=", $request->subject_id)
+                    ->delete();
+
+                return redirect('dashboard')
+                    ->with("msg", "Your score page has been successfully deleted.");
+
+            } else {
+                return back()->with("err", "You don't have access to \"delete this score\" Page.");
+
+            }
+
+        } catch (\Exception $ex) {
+            return "Error! " . $ex->getMessage();
+        }
     }
 }

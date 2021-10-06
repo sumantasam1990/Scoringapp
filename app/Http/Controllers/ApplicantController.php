@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Applicant;
+use App\Models\Bulkemail;
 use App\Models\Criteria;
 use App\Models\Finalist;
+use App\Models\Score;
 use App\Models\Subject;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -98,6 +101,40 @@ class ApplicantController extends Controller
 
     }
 
+    public function addEmailList(Request $request)
+    {
+        $request->validate([
+            'subject_id' => 'required',
+            'applicant_id' => 'required'
+        ]);
+
+        try {
+            // if applicant already added on the same subject
+
+            $chk = Bulkemail::where("subject_id", "=", $request->subject_id)
+                ->where("applicant_id", "=", $request->applicant_id)
+                ->select("id")
+                ->first();
+
+            if (empty($chk->id)) {
+                $bulkemaillist = new Bulkemail;
+                $bulkemaillist->subject_id = $request->subject_id;
+                $bulkemaillist->applicant_id = $request->applicant_id;
+                $bulkemaillist->save();
+
+                return redirect('/bulkemaillist/' . $request->subject_id)->with("msg", "Applicant successfully added to the email list.");
+
+            } else {
+                return redirect('/bulkemaillist/' . $request->subject_id)->with("err", "Applicant already added on this subject.");
+
+            }
+
+        } catch (Exception $ex) {
+            return "Error! " . $ex->getMessage();
+        }
+
+    }
+
     public function bulkEmails($id)
     {
         $mainsubjectname = DB::table("mainsubjects")
@@ -108,7 +145,7 @@ class ApplicantController extends Controller
 
         $applicants = DB::table("applicants")
             ->join("bulkemails", "applicants.id", "=", "bulkemails.applicant_id")
-            ->select("name", "email")
+            ->select("applicants.name", "applicants.email", "bulkemails.id")
             ->where("bulkemails.subject_id", "=", $id)
             ->get();
 
@@ -143,5 +180,36 @@ class ApplicantController extends Controller
         };
 
         return response()->stream($callback, 200, $headers);
+    }
+
+    public function removeBulkEmail(Request $request)
+    {
+        try {
+            Bulkemail::destroy([$request->hd_sub_id]);
+            return back()->with("msg", "Applicants removed from the email list");
+        } catch (Exception $ex) {
+            return "Error! Please try again." . $ex->getMessage();
+        }
+
+    }
+
+    public function removeApplicant(Request $request)
+    {
+        try {
+
+            Applicant::destroy($request->applicant_id);
+            Bulkemail::where("applicant_id", "=", $request->applicant_id)
+                ->delete();
+            Finalist::where("applicant_id", "=", $request->applicant_id)
+                ->delete();
+            Score::where("applicant_id", "=", $request->applicant_id)
+                ->delete();
+
+            return redirect('scoring-sheet/' . $request->subject_id)
+                ->with("msg", "Applicant has been successfully removed.");
+
+        } catch (Exception $ex) {
+            return "Error! " . $ex->getMessage();
+        }
     }
 }

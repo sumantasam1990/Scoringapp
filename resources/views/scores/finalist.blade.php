@@ -18,7 +18,7 @@
                     {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
                     {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Page</a> --}}
                     <a href="/scoring-sheet/{{$subjs->id}}" class="btn btn-success btn-sm">Score Page</a>
-                    <a href="/create-applicant" class="btn btn-success btn-sm">Bulk Email List</a>
+                    <a href="/bulkemaillist/{{ $subjs->id }}" class="btn btn-success btn-sm">Bulk Email List</a>
                    {{-- <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member</a>
                     <a href="/create-applicant" class="btn btn-success btn-sm">Message Room</a> --}}
                     </div>

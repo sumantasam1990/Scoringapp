@@ -31,7 +31,7 @@
                                 <div class="card-body text-center">
                                 <h4 class="card-title fw-bold mb-4 text-success" style="font-size: 22px;">{{ $in->subject_name }}</h4>
                                 {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-                                <a href="/create-scoring-sheet/{{$in->id}}" class="btn btn-success btn-sm">Create/Add Score</a>
+                                <a href="/scoring-sheet/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>
                                 </div>
                             </div>
                         </div>

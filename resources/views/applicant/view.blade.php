@@ -52,13 +52,27 @@
             </div>
 
             <div class="row mt-6">
-                <div class="col-6">
+                <div class="col-4">
                     <h4 class="fw-bold">Scoring Sheets</h4>
                 </div>
-                <div class="col-6">
+                <div class="col-8">
                     <div class="text-right" style="float: right;">
                     <a class="btn btn-success btn-sm" href="/scoring-sheet/{{ $subjs->id }}">Scoring Sheet</a>
-                    @php
+                        <form action="{{ route('add-emaillist') }}" method="post" @class('d-inline')>
+                            @csrf
+                            <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
+                            <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>
+                            <button type="submit" @class('btn btn-success btn-sm')>Add To Bulkemail List</button>
+                        </form>
+
+                        <form action="{{ route('remove-applicant') }}" method="post" @class('d-inline') onsubmit="return confirm('Are you sure?')">
+                            @csrf
+                            <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
+                            <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>
+                            <button type="submit" @class('btn btn-success btn-sm')>Remove Applicant</button>
+                        </form>
+
+                        @php
                         $chkfinalist = DB::select("select count(*) as total from finalists where subject_id = ? and applicant_id = ?", [$subjs->id, $applicants[0]->id]);
                     @endphp
                     @if ($chkfinalist[0]->total == 0)

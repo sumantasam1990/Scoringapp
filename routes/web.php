@@ -21,9 +21,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', [LoginController::class, 'dashboard'])->middleware('auth');
+
 
 Route::get('/create-subject', [SubjectController::class, 'index'])->name('create.subject')->middleware('auth');
 Route::get('/create-applicant/{id}', [ApplicantController::class, 'index'])->middleware('auth');
@@ -51,6 +50,11 @@ Route::any('edit/score', [ScoringSheetController::class, 'edit'])->name('score.e
 Route::post('store/team', [TeamController::class, 'store'])->name('team.store')->middleware('auth');
 Route::post('store/finalist', [ApplicantController::class, 'add_finalist'])->name('finalist.store')->middleware('auth');
 Route::post('export-emails', [ApplicantController::class, 'downloadEmailListAsCSV'])->name('export-emails')->middleware('auth');
+Route::post('remove/bulkemail', [ApplicantController::class, 'removeBulkEmail'])->name('remove.bulk')->middleware('auth');
+Route::post('add/emaillist', [ApplicantController::class, 'addEmailList'])->name('add-emaillist')->middleware('auth');
+Route::post('remove/applicant', [ApplicantController::class, 'removeApplicant'])->name('remove-applicant')->middleware('auth');
+Route::post('remove/page', [ScoringSheetController::class, 'deletePage'])->name('remove-page')->middleware('auth');
+
 
 
 

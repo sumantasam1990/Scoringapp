@@ -1,5 +1,5 @@
     <div class="box mt-3">
-        @if ($v == "view")
+        @if ($v != auth()->user()->id)
             <h4>Score: <span>{{ $data[0]->score_number }}</span></h4>
             <p class="fw-bold">Note(s): </p>
             @foreach ($data as $note)
