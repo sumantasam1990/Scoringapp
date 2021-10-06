@@ -200,15 +200,15 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
-                        <p class="fw-bold">Subject Name</p>
+                        <span class="fw-bold">Subject Name</span>
                         <input style="border: none;" readonly type="text" id="sub_name">
                     </div>
                     <div class="col">
-                        <p class="fw-bold">Applicant Name</p>
+                        <span class="fw-bold">Applicant Name</span>
                         <input style="border: none;" readonly type="text" id="appli_name">
                     </div>
                     <div class="col">
-                        <p class="fw-bold">Criteria Name</p>
+                        <span class="fw-bold">Criteria Name</span>
                         <input style="border: none;" readonly type="text" id="crit">
                     </div>
                 </div>
@@ -218,7 +218,7 @@
 
 
 
-          <div class="box mt-6">
+          <div class="box mt-4">
             <form action="{{ route('score.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group mb-3">

@@ -8,13 +8,17 @@ use App\Models\Maincriteria;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CriteriaController extends Controller
 {
     public function index($id) {
 
-        //$subject = Criteria::find(1)->subject;
-        //$subjects = Subject::with('criteria')->get();
+        //get main subject name from subject ID
+        $mainsubjectname = DB::table("mainsubjects")
+            ->join("subjects", "mainsubjects.id", "=", "subjects.mainsubject_id")
+            ->select("main_subject_name")
+            ->where("subjects.id", "=", $id)->first();
 
         $user = Auth::user();
 
@@ -43,7 +47,7 @@ class CriteriaController extends Controller
             'Red'                        =>     'FC0A0A',
             );
 
-            return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array, "maincriterias" => $maincriterias, "sid" => $id]);
+            return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array, "maincriterias" => $maincriterias, "sid" => $id, "mainsubjectname" => $mainsubjectname]);
 
         } else {
             return back()->with("err", "You don't have access the \"Add Criteria\" Page.");

@@ -37,6 +37,7 @@ Route::get('remove/note/{id}', [ScoringSheetController::class, 'remove_note'])->
 Route::get('remove/file/{id}', [ScoringSheetController::class, 'remove_file'])->middleware('auth');
 Route::get('finalists/{id}', [ScoringSheetController::class, 'finalists'])->middleware('auth');
 Route::get('applicant/{id}/{subid}', [ApplicantController::class, 'viewApplicant'])->middleware('auth');
+Route::get('/bulkemaillist/{id}', [ApplicantController::class, 'bulkEmails'])->middleware('auth');
 
 
 
@@ -49,6 +50,7 @@ Route::post('store/score', [ScoringSheetController::class, 'store'])->name('scor
 Route::any('edit/score', [ScoringSheetController::class, 'edit'])->name('score.edit')->middleware('auth');
 Route::post('store/team', [TeamController::class, 'store'])->name('team.store')->middleware('auth');
 Route::post('store/finalist', [ApplicantController::class, 'add_finalist'])->name('finalist.store')->middleware('auth');
+Route::post('export-emails', [ApplicantController::class, 'downloadEmailListAsCSV'])->name('export-emails')->middleware('auth');
 
 
 

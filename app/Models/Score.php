@@ -5,6 +5,37 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Score
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int|null $subject_id
+ * @property int|null $applicant_id
+ * @property int|null $criteria_id
+ * @property int|null $score_number
+ * @property string|null $notes
+ * @property string|null $score_files
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Applicant|null $applicant
+ * @property-read \App\Models\Criteria|null $criteria
+ * @property-read \App\Models\Subject|null $subject
+ * @method static \Illuminate\Database\Eloquent\Builder|Score newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Score newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Score query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereApplicantId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereCriteriaId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereNotes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereScoreFiles($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereScoreNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereSubjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Score extends Model
 {
     use HasFactory;
