@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\Reply;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+// for mail send
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMessage;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class MessageController extends Controller
 {
@@ -29,30 +36,73 @@ class MessageController extends Controller
             ->join("users", "users.id", "=", "messages.user_id")
             ->where("messages.subject_id", "=", $id)
             ->select('messages.message_txt', 'messages.id', 'messages.user_id', 'messages.created_at', 'users.name')
+            ->orderBy('messages.id', 'desc')
             ->get();
 
-        // writing algorithm for reply messsage
-
-        foreach ($messages as $msg) {
-            DB::table('replies')
-                ->join('messages', 'replies.message_id', '=', 'messages.id')
-                ->join('users', 'users.id', '=', 'replies.user_id')
-                ->where('replies.subject_id', '=', $id)
-                ->where()
-                ->get();
-        }
 
         return view('message.index', ['title' => 'Message Room', 'subject' => $subject, 'teams' => $teams, 'messages' => $messages]);
+    }
+
+    public function reply(Request $request) {
+        $request->validate([
+            'msg_id' => 'required',
+            'sub_id' => 'required',
+            'reply_msg' => 'required'
+        ]);
+
+        $user = Auth::user();
+
+        $reply = new Reply;
+
+        $reply->message_id = $request->msg_id;
+        $reply->subject_id = $request->sub_id;
+        $reply->reply_txt = $request->reply_msg;
+        $reply->user_id = $user->id;
+
+        $reply->save();
+
+        //send email
+        $message_user_email = DB::table('messages')
+            ->join('users', 'users.id', '=', 'messages.user_id')
+            ->where('messages.id', '=', $request->msg_id)
+            ->select('users.email', 'users.name')
+            ->first();
+
+        $mailArray = [
+            'name' => $message_user_email->name,
+            'url' => url('/message-room/' . $request->sub_id)
+        ];
+
+        $this->sendEmail($message_user_email->email, $mailArray);
+
+        return back()
+            ->with('msg', "Your reply has been successfully added.");
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            'sub_idd' => 'required',
+            'msg_txt' => 'required'
+        ]);
+
+        $user = Auth::user();
+
+        $create = new Message;
+
+        $create->subject_id = $request->sub_idd;
+        $create->message_txt = $request->msg_txt;
+        $create->user_id = $user->id;
+
+        $create->save();
+
+        return back()
+            ->with('msg', "Your new message has been successfully added.");
     }
 
     /**
@@ -110,4 +160,14 @@ class MessageController extends Controller
     {
         //
     }
+
+    private function sendEmail($email, $mailData) {
+
+        Mail::to($email)->send(new SendMessage($mailData));
+
+        return response()->json([
+            'message' => 'Email has been sent.'
+        ], Response::HTTP_OK);
+    }
+
 }

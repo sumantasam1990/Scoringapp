@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Auth\Events\Registered;
 
 class LoginController extends Controller
 {
@@ -63,7 +64,9 @@ class LoginController extends Controller
         ]);
 
         $data = $request->all();
-        $check = $this->create($data);
+        $user = $this->create($data);
+
+        event(new Registered($user));
 
         return redirect("login")->with('msg', 'You have successfully registered.');
     }
