@@ -37,6 +37,7 @@ Route::get('remove/file/{id}', [ScoringSheetController::class, 'remove_file'])->
 Route::get('finalists/{id}', [ScoringSheetController::class, 'finalists'])->middleware('auth');
 Route::get('applicant/{id}/{subid}', [ApplicantController::class, 'viewApplicant'])->middleware('auth');
 Route::get('/bulkemaillist/{id}', [ApplicantController::class, 'bulkEmails'])->middleware('auth');
+Route::get('/message-room/{id}', [\App\Http\Controllers\MessageController::class, 'index'])->middleware('auth');
 
 
 

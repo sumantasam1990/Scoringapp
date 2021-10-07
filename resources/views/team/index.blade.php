@@ -15,7 +15,7 @@
             <div class="row">
                 @if(count($teams) > 0)
                 @foreach($teams as $team)
-                <div class="col-2">
+                <div class="col-6 col-md-2 col-lg-2 col-xl-2 col-xxl-2 col-sm-6 col-xs-6">
                     <div class="member-box text-center">
                         <img src="https://datingshortcut.com/wp-content/themes/datingshortcut/images/user.svg" style="object-fit: cover; width: 100%; height: 120px;">
                         <p class="fw-bold">{{ $team->name }}</p>
