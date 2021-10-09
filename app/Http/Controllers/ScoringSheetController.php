@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applicant;
+use App\Models\Criteria;
 use App\Models\Finalist;
 use App\Models\Maincriteria;
-use Illuminate\Support\Facades\DB;
-use App\Models\Applicant;
-use Illuminate\Http\Request;
-use App\Models\Criteria;
 use App\Models\Metadata;
 use App\Models\Score;
 use App\Models\Subject;
-use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ScoringSheetController extends Controller
 {
@@ -54,7 +53,7 @@ class ScoringSheetController extends Controller
         $request->validate([
             'score_give' => 'required',
             'appl' => 'required',
-            'sub'  => 'required',
+            'sub' => 'required',
             'crit_id' => 'required',
             //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -79,7 +78,7 @@ class ScoringSheetController extends Controller
 
             //file upload
 
-            $imageName = 'scF_' . uniqid() . time().'.'.$request->image->extension();
+            $imageName = 'scF_' . uniqid() . time() . '.' . $request->image->extension();
 
             $request->image->move(public_path('uploads'), $imageName);
 
@@ -122,7 +121,8 @@ class ScoringSheetController extends Controller
         return view("scores.scoring_page", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, "sid" => $id]);
     }
 
-    public function edit(Request $request) {
+    public function edit(Request $request)
+    {
 
         if ($request->isMethod('post')) {
 
@@ -131,14 +131,14 @@ class ScoringSheetController extends Controller
             $request->validate([
                 'score_give' => 'required',
                 'appl' => 'required',
-                'sub'  => 'required',
+                'sub' => 'required',
                 'crit_id' => 'required',
                 //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
 
             Score::where('id', $request->hd_id)
-                    ->update(['score_number' => $request->score_give]); // update into score table
+                ->update(['score_number' => $request->score_give]); // update into score table
 
             $metadata = new Metadata;
 
@@ -146,7 +146,7 @@ class ScoringSheetController extends Controller
 
                 //file upload
 
-                $imageName = 'scF_' . uniqid() . time().'.'.$request->image->extension();
+                $imageName = 'scF_' . uniqid() . time() . '.' . $request->image->extension();
 
                 $request->image->move(public_path('uploads'), $imageName);
 
@@ -170,51 +170,55 @@ class ScoringSheetController extends Controller
 
 
             $scores = DB::table('scores')
-                        ->leftJoin('metadatas', 'scores.id', '=', 'metadatas.score_id')
-                        ->where("scores.id", $request->s)
-                        ->select('scores.id AS score_idd', 'scores.user_id', 'scores.subject_id', 'scores.applicant_id', 'scores.criteria_id', 'scores.score_number', 'metadatas.id AS metas_id', 'metadatas.score_id', 'metadatas.meta_notes', 'metadatas.meta_file')
-                        ->get();
+                ->leftJoin('metadatas', 'scores.id', '=', 'metadatas.score_id')
+                ->where("scores.id", $request->s)
+                ->select('scores.id AS score_idd', 'scores.user_id', 'scores.subject_id', 'scores.applicant_id', 'scores.criteria_id', 'scores.score_number', 'metadatas.id AS metas_id', 'metadatas.score_id', 'metadatas.meta_notes', 'metadatas.meta_file')
+                ->get();
 
 
             $returnHTML = view('scores.ajax_edit', ["data" => $scores, "scores_array" => $scores_array, "v" => $request->v])->render();
 
-            return response()->json(array('success' => true, 'html'=>$returnHTML));
+            return response()->json(array('success' => true, 'html' => $returnHTML));
         }
 
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
 
         $score = Score::find($id);
 
         $score->delete();
 
         return back()
-                ->with('msg', 'Score has been successfully deleted.');
+            ->with('msg', 'Score has been successfully deleted.');
 
     }
 
-    public function remove_note($id) {
+    public function remove_note($id)
+    {
 
         Metadata::where('id', $id)
-                    ->update(['meta_notes' => ""]); // update into metadata table
+            ->update(['meta_notes' => ""]); // update into metadata table
 
         return back()
-                ->with('msg', 'Your Note has been successfully deleted.');
+            ->with('msg', 'Your Note has been successfully deleted.');
 
     }
 
-    public function remove_file($id) {
+    public function remove_file($id)
+    {
 
         Metadata::where('id', $id)
-                    ->update(['meta_file' => ""]); // update into metadata table
+            ->update(['meta_file' => ""]); // update into metadata table
 
         return back()
-                ->with('msg', 'Your File has been successfully deleted.');
+            ->with('msg', 'Your File has been successfully deleted.');
 
     }
 
-    public function finalists($id) {
+    public function finalists($id)
+    {
 
         $subjs = Subject::where("id", $id)->first();
         $subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
@@ -227,7 +231,6 @@ class ScoringSheetController extends Controller
         //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ? AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id, $id]);
 
 
-
         $scores_array = array(
             1, 2, 3, 4, 5
         );
@@ -237,16 +240,17 @@ class ScoringSheetController extends Controller
 
     }
 
-    public function deletePage(Request $request) {
+    public function deletePage(Request $request)
+    {
         try {
             $user = Auth::user();
             //checking if it is main user who created the score page/subject or not
             $chk_main = Subject::select("id")
-                ->where("id",$request->subject_id)
+                ->where("id", $request->subject_id)
                 ->where("user_id", $user->id)
                 ->first();
 
-            if( !empty($chk_main->id) ) {
+            if (!empty($chk_main->id)) {
                 Score::where("subject_id", "=", $request->subject_id)
                     ->delete();
 
@@ -273,5 +277,29 @@ class ScoringSheetController extends Controller
         } catch (\Exception $ex) {
             return "Error! " . $ex->getMessage();
         }
+    }
+
+    public function scorecard($id, $appl_id)
+    {
+        $subject = Subject::select('user_id', 'id')
+            ->where('id', '=', $id)->first();
+
+        $applicants = DB::select("SELECT d.id,d.name,d.email,d.phone,d.photo, (SELECT SUM(scores.score_number)
+FROM scores WHERE subject_id = $id AND applicant_id = $appl_id AND user_id = $subject->user_id) AS total
+FROM applicants AS d WHERE d.`subject_id` = $id AND d.id = $appl_id ORDER BY total DESC");
+
+        /*
+        * Get scoreboard
+         * results as per each criteria
+         * or the main user who have
+         * created this subject
+        */
+
+        $scorecards = DB::select('select c.id as criteria_id, c.title as criteria_title, c.priority as criteria_priority, s.score_number from criterias c
+join scores s on c.id = s.criteria_id
+where s.subject_id = ? and s.criteria_id in (select id from criterias where subject_id = ?)
+and s.applicant_id = ? and s.user_id = ?', [$id, $id, $appl_id, $subject->user_id]);
+
+        return view('scores.scorecard', ['title' => 'Scorecard', 'applicants' => $applicants[0], 'scorecards' => $scorecards , 'subject' =>$subject]);
     }
 }

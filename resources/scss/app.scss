@@ -168,9 +168,22 @@ tr.noBorder td {
     padding: 20px;
 }
 
+.scorecard-table th {
+    font-size: 32px;
+    width: 200px;
+    text-align: left ;
+}
+
+.scorecard-header-table th {
+    font-size: 28px;
+    width: 200px;
+    text-align: left ;
+}
+
 
   @media only screen and (min-width: 320px) and (max-width: 800px) {
       .btn {
           margin: 5px;
       }
   }
+

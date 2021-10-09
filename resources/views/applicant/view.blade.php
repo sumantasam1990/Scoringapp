@@ -57,7 +57,9 @@
                 </div>
                 <div class="col-8">
                     <div class="text-right" style="float: right;">
-                    <a class="btn btn-success btn-sm" href="/scoring-sheet/{{ $subjs->id }}">Scoring Sheet</a>
+
+                        <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scorecard</a>
+                        <a class="btn btn-success btn-sm" href="/scoring-sheet/{{ $subjs->id }}">Scoring Sheet</a>
                         <form action="{{ route('add-emaillist') }}" method="post" @class('d-inline')>
                             @csrf
                             <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>

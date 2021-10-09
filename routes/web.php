@@ -40,6 +40,8 @@ Route::get('finalists/{id}', [ScoringSheetController::class, 'finalists'])->midd
 Route::get('applicant/{id}/{subid}', [ApplicantController::class, 'viewApplicant'])->middleware(['auth', 'verified']);
 Route::get('/bulkemaillist/{id}', [ApplicantController::class, 'bulkEmails'])->middleware(['auth', 'verified']);
 Route::get('/message-room/{id}', [\App\Http\Controllers\MessageController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/scorecard/{id}/{appl_id}', [ScoringSheetController::class, 'scorecard'])->middleware(['auth', 'verified']);
+
 
 
 
