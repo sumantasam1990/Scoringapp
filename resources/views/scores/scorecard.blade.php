@@ -94,3 +94,5 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
     </div>
 </div>
+
+@include('layouts.footer')
