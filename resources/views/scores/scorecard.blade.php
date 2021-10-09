@@ -81,7 +81,7 @@
 
                                 @endif
                                 <p class="btn score-priority"
-                                       style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px;"></p>
+                                       style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;"></p>
 
                             @endforeach
                         </th>

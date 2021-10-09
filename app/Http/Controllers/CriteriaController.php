@@ -38,12 +38,9 @@ class CriteriaController extends Controller
             // Create an array for priority
             $priorites_array = array(
             'Green'                      =>     '138D07',
-            'Light Green or Green'       =>     '40F328,138D07',
-            'Yellow and Light Green'     =>     'FCD40A,40F328',
+            'Light Green'                =>     '40F328',
             'Yellow'                     =>     'FCD40A',
             'Orange'                     =>     'F56A21',
-            'Yellow and Orange'          =>     'FCD40A,F56A21',
-            'Orange and Red'             =>     'F56A21,FC0A0A',
             'Red'                        =>     'FC0A0A',
             );
 
