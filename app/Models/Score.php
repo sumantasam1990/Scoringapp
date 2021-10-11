@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Score whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Score whereUserId($value)
  * @mixin \Eloquent
+ * @property string|null $score_card_no score_number - minimum score
+ * @method static \Illuminate\Database\Eloquent\Builder|Score whereScoreCardNo($value)
  */
 class Score extends Model
 {

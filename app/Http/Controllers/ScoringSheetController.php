@@ -69,6 +69,28 @@ class ScoringSheetController extends Controller
         $score->criteria_id = $request->crit_id;
         $score->score_number = $request->score_give;
 
+        // get score card no
+        $minimum_no = Criteria::select("priority")
+            ->where("id", "=", $request->crit_id)->first();
+
+        if($minimum_no->priority == "138D07") {
+            $minimum = 5;
+        }
+        if($minimum_no->priority == "40F328") {
+            $minimum = 4;
+        }
+        if($minimum_no->priority == "FCD40A") {
+            $minimum = 3;
+        }
+        if($minimum_no->priority == "F56A21") {
+            $minimum = 2;
+        }
+        if($minimum_no->priority == "FC0A0A") {
+            $minimum = 1;
+        }
+
+        $score->score_card_no = ($request->score_give - $minimum);
+
         $score->save();
 
         $metadata->meta_notes = $request->note; // save into metadata
@@ -137,8 +159,34 @@ class ScoringSheetController extends Controller
             ]);
 
 
+            // get score card no
+            $scorecriteriaid = Score::select('criteria_id')
+                ->where('id', '=', $request->hd_id)->first();
+
+            $minimum_no = Criteria::select("priority")
+                ->where("id", "=", $scorecriteriaid->criteria_id)->first();
+
+            if($minimum_no->priority == "138D07") {
+                $minimum = 5;
+            }
+            if($minimum_no->priority == "40F328") {
+                $minimum = 4;
+            }
+            if($minimum_no->priority == "FCD40A") {
+                $minimum = 3;
+            }
+            if($minimum_no->priority == "F56A21") {
+                $minimum = 2;
+            }
+            if($minimum_no->priority == "FC0A0A") {
+                $minimum = 1;
+            }
+
+            $score_card_no = ($request->score_give - $minimum);
+
+
             Score::where('id', $request->hd_id)
-                ->update(['score_number' => $request->score_give]); // update into score table
+                ->update(['score_number' => $request->score_give, 'score_card_no' => $score_card_no]); // update into score table
 
             $metadata = new Metadata;
 
@@ -281,25 +329,30 @@ class ScoringSheetController extends Controller
 
     public function scorecard($id, $appl_id)
     {
-        $subject = Subject::select('user_id', 'id')
-            ->where('id', '=', $id)->first();
+        try {
+            $subject = Subject::select('user_id', 'id')
+                ->where('id', '=', $id)->first();
 
-        $applicants = DB::select("SELECT d.id,d.name,d.email,d.phone,d.photo, (SELECT SUM(scores.score_number)
+            $applicants = DB::select("SELECT d.id,d.name,d.email,d.phone,d.photo, (SELECT SUM(scores.score_number)
 FROM scores WHERE subject_id = $id AND applicant_id = $appl_id AND user_id = $subject->user_id) AS total
 FROM applicants AS d WHERE d.`subject_id` = $id AND d.id = $appl_id ORDER BY total DESC");
 
-        /*
-        * Get scoreboard
-         * results as per each criteria
-         * or the main user who have
-         * created this subject
-        */
+            /*
+            * Get scoreboard
+             * results as per each criteria
+             * or the main user who have
+             * created this subject
+            */
 
-        $scorecards = DB::select('select c.id as criteria_id, c.title as criteria_title, c.priority as criteria_priority, s.score_number from criterias c
-join scores s on c.id = s.criteria_id
+            $scorecards = DB::select('select m.criteria_name as main_criteria, c.id as criteria_id, c.title as criteria_title, c.priority as criteria_priority, s.score_number from criterias c
+join scores s on c.id = s.criteria_id join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ? and s.criteria_id in (select id from criterias where subject_id = ?)
 and s.applicant_id = ? and s.user_id = ?', [$id, $id, $appl_id, $subject->user_id]);
 
-        return view('scores.scorecard', ['title' => 'Scorecard', 'applicants' => $applicants[0], 'scorecards' => $scorecards , 'subject' =>$subject]);
+            return view('scores.scorecard', ['title' => 'Scorecard', 'applicants' => $applicants[0], 'scorecards' => $scorecards , 'subject' =>$subject]);
+        } catch (\Throwable $th) {
+            return abort('404');
+        }
+
     }
 }

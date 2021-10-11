@@ -72,7 +72,7 @@ class CriteriaController extends Controller
 
         $criteria->save();
 
-        return redirect('/create-scoring-sheet/' .  $request->subject)
+        return redirect('/scoring-sheet/' .  $request->subject)
             ->with('msg','Criteria has been successfully added.');
 
     }

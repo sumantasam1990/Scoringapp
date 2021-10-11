@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereSubjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereUserId($value)
+ * @property int $room_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Message whereRoomId($value)
  */
 class Message extends Model
 {

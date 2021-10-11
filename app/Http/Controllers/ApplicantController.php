@@ -56,7 +56,7 @@ class ApplicantController extends Controller
 
         $applicant->save();
 
-        return redirect('/create-scoring-sheet/' . $request->sub_id)
+        return redirect('/scoring-sheet/' . $request->sub_id)
             ->with('msg', 'You have successfully added an applicant.');
 
     }

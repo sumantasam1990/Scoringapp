@@ -30,7 +30,7 @@
                         <a href="/finalists/{{$subjs->id}}" class="btn btn-success btn-sm">Finalist Page</a>
                         <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm">Bulk Email List</a>
                         <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member</a>
-                        <a href="/message-room/{{$subjs->id}}" class="btn btn-success btn-sm">Message Room</a>
+                        <a href="/rooms/{{$subjs->id}}" class="btn btn-success btn-sm">Message Room</a>
                     </div>
 
                     <div class="devider"></div>

@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Reply whereSubjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Reply whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Reply whereUserId($value)
  */
 class Reply extends Model
 {

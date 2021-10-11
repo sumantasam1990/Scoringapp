@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\Reply;
+use App\Models\Room;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,10 +22,14 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($id, $roomid)
     {
         $subject = Subject::select("id", "subject_name")
             ->where("id", "=", $id)
+            ->first();
+
+        $roomname = Room::select('room_name')
+            ->where('id', '=', $roomid)
             ->first();
 
         $teams = DB::table('teams')
@@ -35,12 +40,13 @@ class MessageController extends Controller
         $messages = DB::table('messages')
             ->join("users", "users.id", "=", "messages.user_id")
             ->where("messages.subject_id", "=", $id)
+            ->where('messages.room_id', '=', $roomid)
             ->select('messages.message_txt', 'messages.id', 'messages.user_id', 'messages.created_at', 'users.name')
             ->orderBy('messages.id', 'desc')
             ->get();
 
 
-        return view('message.index', ['title' => 'Message Room', 'subject' => $subject, 'teams' => $teams, 'messages' => $messages]);
+        return view('message.index', ['title' => 'Message Room', 'subject' => $subject, 'teams' => $teams, 'messages' => $messages, 'roomid' => $roomid, 'roomname' => $roomname]);
     }
 
     public function reply(Request $request) {
@@ -88,7 +94,8 @@ class MessageController extends Controller
     {
         $request->validate([
             'sub_idd' => 'required',
-            'msg_txt' => 'required'
+            'msg_txt' => 'required',
+            'room_id' => 'required'
         ]);
 
         $user = Auth::user();
@@ -97,6 +104,7 @@ class MessageController extends Controller
 
         $create->subject_id = $request->sub_idd;
         $create->message_txt = $request->msg_txt;
+        $create->room_id = $request->room_id;
         $create->user_id = $user->id;
 
         $create->save();
@@ -113,7 +121,25 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'hd_sub_id' => 'required',
+            'room_name' => 'required'
+        ]);
+
+        try {
+            $room = new Room;
+
+            $room->subject_id = $request->hd_sub_id;
+            $room->room_name = $request->room_name;
+
+            $room->save();
+
+            return back()
+                ->with('msg', "Your Room has been successfully created.");
+        } catch (\Throwable $th) {
+            return back()
+                ->with('err', "Error! Something is wrong try again later.");
+        }
     }
 
     /**
@@ -168,6 +194,19 @@ class MessageController extends Controller
         return response()->json([
             'message' => 'Email has been sent.'
         ], Response::HTTP_OK);
+    }
+
+    public function message_rooms($id) {
+
+        $subject = Subject::where('id', '=', $id)
+            ->first();
+
+        $rooms = Room::where('subject_id', '=', $id)
+            ->get();
+
+        return view('message.rooms',
+            ['title' => 'Message Room List', 'rooms' => $rooms,
+                'subject' => $subject]);
     }
 
 }

@@ -39,8 +39,9 @@ Route::get('remove/file/{id}', [ScoringSheetController::class, 'remove_file'])->
 Route::get('finalists/{id}', [ScoringSheetController::class, 'finalists'])->middleware(['auth', 'verified']);
 Route::get('applicant/{id}/{subid}', [ApplicantController::class, 'viewApplicant'])->middleware(['auth', 'verified']);
 Route::get('/bulkemaillist/{id}', [ApplicantController::class, 'bulkEmails'])->middleware(['auth', 'verified']);
-Route::get('/message-room/{id}', [\App\Http\Controllers\MessageController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/message-room/{id}/{room}', [\App\Http\Controllers\MessageController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/scorecard/{id}/{appl_id}', [ScoringSheetController::class, 'scorecard'])->middleware(['auth', 'verified']);
+Route::get('/rooms/{id}', [\App\Http\Controllers\MessageController::class, 'message_rooms'])->middleware(['auth', 'verified']);
 
 
 
@@ -61,7 +62,7 @@ Route::post('remove/applicant', [ApplicantController::class, 'removeApplicant'])
 Route::post('remove/page', [ScoringSheetController::class, 'deletePage'])->name('remove-page')->middleware(['auth', 'verified']);
 Route::post('message/reply', [\App\Http\Controllers\MessageController::class, 'reply'])->name('reply')->middleware(['auth', 'verified']);
 Route::post('message/create', [\App\Http\Controllers\MessageController::class, 'create'])->name('create')->middleware(['auth', 'verified']);
-
+Route::post('store/roomname', [\App\Http\Controllers\MessageController::class, 'store'])->name('roomname.store')->middleware(['auth', 'verified']);
 
 
 
