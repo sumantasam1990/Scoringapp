@@ -44,7 +44,7 @@
                         <div class="form-group mb-4">
                             <input type="text" name="criteria"
                                    class="form-control @error('criteria') is-invalid @enderror"
-                                   placeholder="Create Part Of Criteria (i.e. Employment History, etc)"
+                                   placeholder="Create Sub Criteria (i.e. Employment History, etc)"
                                    value="{{ old('criteria') }}">
                             @error('criteria')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <select class="form-control @error('priority') is-invalid @enderror" name="priority">
-                                <option selected value="" disabled>Minimum Score</option>
+                                <option selected value="" disabled>Expectation Rating</option>
                                 @foreach ($priorites_array as $priority_array => $value)
                                     <option
                                         value="{{ $value }}" {{ (old("priority") == $value ? "selected" : "") }}>{{ $priority_array }}</option>

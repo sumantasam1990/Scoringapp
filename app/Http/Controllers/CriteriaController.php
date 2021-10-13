@@ -37,11 +37,11 @@ class CriteriaController extends Controller
 
             // Create an array for priority
             $priorites_array = array(
-            'Green'                      =>     '138D07',
-            'Light Green'                =>     '40F328',
-            'Yellow'                     =>     'FCD40A',
-            'Orange'                     =>     'F56A21',
-            'Red'                        =>     'FC0A0A',
+            'Greatly Exceeded Expectations (Dark Green)'  =>     '138D07',
+            'Exceeded Expectation (Light Green)'          =>     '40F328',
+            'Met Expectation (yellow)'                    =>     'FCD40A',
+//            'Orange'                     =>     'F56A21',
+//            'Red'                        =>     'FC0A0A',
             );
 
             return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array, "maincriterias" => $maincriterias, "sid" => $id, "mainsubjectname" => $mainsubjectname]);
