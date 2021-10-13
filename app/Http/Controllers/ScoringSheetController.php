@@ -73,19 +73,19 @@ class ScoringSheetController extends Controller
         $minimum_no = Criteria::select("priority")
             ->where("id", "=", $request->crit_id)->first();
 
-        if($minimum_no->priority == "138D07") {
+        if ($minimum_no->priority == "138D07") {
             $minimum = 5;
         }
-        if($minimum_no->priority == "40F328") {
+        if ($minimum_no->priority == "40F328") {
             $minimum = 4;
         }
-        if($minimum_no->priority == "FCD40A") {
+        if ($minimum_no->priority == "FCD40A") {
             $minimum = 3;
         }
-        if($minimum_no->priority == "F56A21") {
+        if ($minimum_no->priority == "F56A21") {
             $minimum = 2;
         }
-        if($minimum_no->priority == "FC0A0A") {
+        if ($minimum_no->priority == "FC0A0A") {
             $minimum = 1;
         }
 
@@ -166,19 +166,19 @@ class ScoringSheetController extends Controller
             $minimum_no = Criteria::select("priority")
                 ->where("id", "=", $scorecriteriaid->criteria_id)->first();
 
-            if($minimum_no->priority == "138D07") {
+            if ($minimum_no->priority == "138D07") {
                 $minimum = 5;
             }
-            if($minimum_no->priority == "40F328") {
+            if ($minimum_no->priority == "40F328") {
                 $minimum = 4;
             }
-            if($minimum_no->priority == "FCD40A") {
+            if ($minimum_no->priority == "FCD40A") {
                 $minimum = 3;
             }
-            if($minimum_no->priority == "F56A21") {
+            if ($minimum_no->priority == "F56A21") {
                 $minimum = 2;
             }
-            if($minimum_no->priority == "FC0A0A") {
+            if ($minimum_no->priority == "FC0A0A") {
                 $minimum = 1;
             }
 
@@ -349,10 +349,27 @@ join scores s on c.id = s.criteria_id join maincriterias m on c.maincriteria_id 
 where s.subject_id = ? and s.criteria_id in (select id from criterias where subject_id = ?)
 and s.applicant_id = ? and s.user_id = ?', [$id, $id, $appl_id, $subject->user_id]);
 
-            return view('scores.scorecard', ['title' => 'Scorecard', 'applicants' => $applicants[0], 'scorecards' => $scorecards , 'subject' =>$subject]);
+            return view('scores.scorecard', ['title' => 'Scorecard', 'applicants' => $applicants[0], 'scorecards' => $scorecards, 'subject' => $subject]);
         } catch (\Throwable $th) {
             return abort('404');
         }
 
+    }
+
+    public function gridView($id)
+    {
+        $subject = Subject::where('id', '=', $id)
+            ->first();
+
+        $criterias = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
+
+        $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subject->user_id, $id, $id]);
+
+        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
+
+
+        return view('scores.grid', ['title' => 'Score Page Grid View',
+            'subject' => $subject, 'applicants' => $applicants, 'maincriterias' => $maincriterias,
+            'criterias' => $criterias]);
     }
 }

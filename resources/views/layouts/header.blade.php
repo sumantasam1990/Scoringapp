@@ -30,7 +30,7 @@
                     <a class="nav-link" href="#">How It Works</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Use Cases</a>
+                    <a class="nav-link" href="#">Features</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Pricing</a>
@@ -55,10 +55,10 @@
                     </li>
                     @else
                         <li class="nav-item" style="margin-right: 5px;">
-                            <a class="btn btn-dark btn-lg" href="/login">Login</a>
+                            <a class="btn btn-dark btn-sm" href="/login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-dark btn-lg" href="/registration">Sign Up</a>
+                            <a class="btn btn-dark btn-sm" href="/registration">Sign Up</a>
                         </li>
                   @endif
 

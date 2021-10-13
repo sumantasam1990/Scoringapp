@@ -117,7 +117,7 @@ button:focus,
 .btn-success:hover {
     border: 3px solid #138D07;
     background-color: transparent !important;
-    color: #FC0A0A;
+    color: #138D07;
 }
 .btn-info {
     transition: all 0.2s ease, visibility 0s;
@@ -178,6 +178,10 @@ tr.noBorder td {
     font-size: 28px;
     width: 200px;
     text-align: left ;
+}
+
+.nav-item {
+    margin-left: 20px;
 }
 
 

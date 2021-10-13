@@ -10993,7 +10993,7 @@ button:focus,
 .btn-success:hover {
   border: 3px solid #138D07;
   background-color: transparent !important;
-  color: #FC0A0A;
+  color: #138D07;
 }
 
 .btn-info {
@@ -11065,6 +11065,10 @@ tr.noBorder td {
   font-size: 28px;
   width: 200px;
   text-align: left;
+}
+
+.nav-item {
+  margin-left: 20px;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 800px) {

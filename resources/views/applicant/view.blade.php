@@ -55,48 +55,89 @@
                 <div class="col-4">
                     <h4 class="fw-bold">Scoring Sheets</h4>
                 </div>
-                <div class="col-8">
-                    <div class="text-right" style="float: right;">
+{{--                <div class="col-8">--}}
+{{--                    <div class="text-right" style="float: right;">--}}
 
-                        <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scoreboard</a>
-                        <a class="btn btn-success btn-sm" href="/scoring-sheet/{{ $subjs->id }}">Scoring Sheet</a>
-                        <form action="{{ route('add-emaillist') }}" method="post" @class('d-inline')>
-                            @csrf
-                            <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
-                            <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>
-                            <button type="submit" @class('btn btn-success btn-sm')>Add To Bulkemail List</button>
-                        </form>
+{{--                        <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scoreboard</a>--}}
+{{--                        <a class="btn btn-success btn-sm" href="/scoring-sheet/{{ $subjs->id }}">Score Page</a>--}}
+{{--                        <form action="{{ route('add-emaillist') }}" method="post" @class('d-inline')>--}}
+{{--                            @csrf--}}
+{{--                            <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>--}}
+{{--                            <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>--}}
+{{--                            <button type="submit" @class('btn btn-success btn-sm')>Add To Bulk Email List</button>--}}
+{{--                        </form>--}}
 
-                        <form action="{{ route('remove-applicant') }}" method="post" @class('d-inline') onsubmit="return confirm('Are you sure?')">
-                            @csrf
-                            <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
-                            <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>
-                            <button type="submit" @class('btn btn-success btn-sm')>Remove Applicant</button>
-                        </form>
+{{--                        <form action="{{ route('remove-applicant') }}" method="post" @class('d-inline') onsubmit="return confirm('Are you sure?')">--}}
+{{--                            @csrf--}}
+{{--                            <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>--}}
+{{--                            <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>--}}
+{{--                            <button type="submit" @class('btn btn-success btn-sm')>Remove Applicant</button>--}}
+{{--                        </form>--}}
 
-                        @php
-                        $chkfinalist = DB::select("select count(*) as total from finalists where subject_id = ? and applicant_id = ?", [$subjs->id, $applicants[0]->id]);
-                    @endphp
-                    @if ($chkfinalist[0]->total == 0)
+{{--                        @php--}}
+{{--                        $chkfinalist = DB::select("select count(*) as total from finalists where subject_id = ? and applicant_id = ?", [$subjs->id, $applicants[0]->id]);--}}
+{{--                    @endphp--}}
+{{--                    @if ($chkfinalist[0]->total == 0)--}}
 
-                        <form onsubmit="return confirm('Are you sure?')" action="{{ route("finalist.store") }}" method="post" style="display: inline;">
-                            @csrf
-                            <input type="hidden" name="subid" value="{{ $subjs->id }}">
-                            <input type="hidden" name="appl_id" value="{{ $applicants[0]->id }}">
-                            <button type="submit" class="btn btn-info btn-sm">Add To Finalist List</button>
-                        </form>
-                        @else
-                            <a class="btn btn-info btn-sm" style="text-decoration: none; color: #000; font-weight: bold;" href="/finalists/{{ $subjs->id }}"> Go Finalist List</a>
-                    @endif
-                    </div>
+{{--                        <form onsubmit="return confirm('Are you sure?')" action="{{ route("finalist.store") }}" method="post" style="display: inline;">--}}
+{{--                            @csrf--}}
+{{--                            <input type="hidden" name="subid" value="{{ $subjs->id }}">--}}
+{{--                            <input type="hidden" name="appl_id" value="{{ $applicants[0]->id }}">--}}
+{{--                            <button type="submit" class="btn btn-success btn-sm">Add To Finalist List</button>--}}
+{{--                        </form>--}}
+{{--                        @else--}}
+{{--                            <a class="btn btn-success btn-sm" style="text-decoration: none; color: #000; font-weight: bold;" href="/finalists/{{ $subjs->id }}"> Go Finalist List</a>--}}
+{{--                    @endif--}}
+{{--                    </div>--}}
 
-                </div>
+{{--                </div>--}}
             </div>
 
             <hr />
 
             {{-- ------------------------score sheet----------------------------- --}}
-            <h4>{{ $subjs->subject_name }}</h4>
+                <div class="row">
+                    <div class="col-4">
+                        <h4>{{ $subjs->subject_name }}</h4>
+                    </div>
+                    <div class="col-8">
+                        <div class="text-right" style="float: right;">
+
+                            <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scoreboard</a>
+                            <a class="btn btn-success btn-sm" href="/scoring-sheet/{{ $subjs->id }}">Score Page</a>
+                            <form action="{{ route('add-emaillist') }}" method="post" @class('d-inline')>
+                                @csrf
+                                <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
+                                <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>
+                                <button type="submit" @class('btn btn-success btn-sm')>Add To Bulk Email List</button>
+                            </form>
+
+                            <form action="{{ route('remove-applicant') }}" method="post" @class('d-inline') onsubmit="return confirm('Are you sure?')">
+                                @csrf
+                                <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
+                                <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>
+                                <button type="submit" @class('btn btn-success btn-sm')>Remove Applicant</button>
+                            </form>
+
+                            @php
+                                $chkfinalist = DB::select("select count(*) as total from finalists where subject_id = ? and applicant_id = ?", [$subjs->id, $applicants[0]->id]);
+                            @endphp
+                            @if ($chkfinalist[0]->total == 0)
+
+                                <form onsubmit="return confirm('Are you sure?')" action="{{ route("finalist.store") }}" method="post" style="display: inline;">
+                                    @csrf
+                                    <input type="hidden" name="subid" value="{{ $subjs->id }}">
+                                    <input type="hidden" name="appl_id" value="{{ $applicants[0]->id }}">
+                                    <button type="submit" class="btn btn-success btn-sm">Add To Finalist List</button>
+                                </form>
+                            @else
+                                <a class="btn btn-success btn-sm" href="/finalists/{{ $subjs->id }}"> Go Finalist List</a>
+                            @endif
+                        </div>
+
+                    </div>
+                </div>
+
             <div class="table-responsive">
                 <table class="table mt-4">
                     <thead>

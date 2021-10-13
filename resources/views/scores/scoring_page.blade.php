@@ -31,6 +31,11 @@
                         <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm">Bulk Email List</a>
                         <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member</a>
                         <a href="/rooms/{{$subjs->id}}" class="btn btn-success btn-sm">Message Room</a>
+
+                        <div style="float: right; font-size: 30px;">
+                            <a style="color: #138D07 !important;" class="text-dark" href="/scorepage-grid/{{$subjs->id}}"> <i class="bi bi-grid-fill"></i></a>
+                        </div>
+
                     </div>
 
                     <div class="devider"></div>
@@ -39,9 +44,13 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive">
-                                <table class="table mt-6">
+                                <table class="table mt-6 table-borderless">
                                     <thead>
-                                    <tr style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
+
+                                    @if(count($maincriterias) > 0 || count($applicants) > 0)
+                                     <tr style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
+                                        @endif
+
                                         <th>&nbsp;</th>
                                         <th>&nbsp;</th>
                                         @foreach ($maincriterias as $main)

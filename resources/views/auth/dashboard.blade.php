@@ -29,7 +29,7 @@
                         <div class="col-12 col-xl-4 col-md-4 col-xxl-4 col-sm-12 col-xs-12 mt-3 mb-4">
                             <div class="card text-dark border-success" style="border: 6px solid green !important;">
                                 <div class="card-body text-center">
-                                <h4 class="card-title fw-bold mb-4 text-success" style="font-size: 22px;">{{ $in->subject_name }}</h4>
+                                <h4 class="card-title fw-bold mb-4" style="font-size: 22px; color: green;">{{ $in->subject_name }}</h4>
                                 {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
                                 <a href="/scoring-sheet/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>
                                 </div>

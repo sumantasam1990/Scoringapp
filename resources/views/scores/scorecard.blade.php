@@ -14,7 +14,7 @@
                 <table class="table mt-6 scorecard-header-table">
                     <tr>
                         <th>{{ $applicants->name }}</th>
-                        <th>{{ $applicants->total }} Total Score</th>
+                        <th>{{ $applicants->total }} </th>
                         <th><a class="btn btn-success btn-sm"
                                href="/applicant/{{ $applicants->id }}/{{ $subject->id }}">Open Applicant Profile</a>
                         </th>

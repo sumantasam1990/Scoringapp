@@ -42,6 +42,7 @@ Route::get('/bulkemaillist/{id}', [ApplicantController::class, 'bulkEmails'])->m
 Route::get('/message-room/{id}/{room}', [\App\Http\Controllers\MessageController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/scorecard/{id}/{appl_id}', [ScoringSheetController::class, 'scorecard'])->middleware(['auth', 'verified']);
 Route::get('/rooms/{id}', [\App\Http\Controllers\MessageController::class, 'message_rooms'])->middleware(['auth', 'verified']);
+Route::get('/scorepage-grid/{id}', [ScoringSheetController::class, 'gridView'])->middleware(['auth', 'verified']);
 
 
 
