@@ -34,7 +34,7 @@ class ApplicantController extends Controller
             //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required',
             'email' => 'required',
-            'phone' => 'required'
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
         ]);
 
         $applicant = new Applicant;

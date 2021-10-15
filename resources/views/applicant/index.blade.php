@@ -9,8 +9,8 @@
         <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
             <div class="">
                 <h2 class="display-4 text-center heading_txt">Create An Applicant</h2>
-                <h6 style="margin-top: -5px;" class="display-7 text-center heading_txt">Add simple things like the name,
-                    photo, email and phone number.</h6>
+{{--                <h6 style="margin-top: -5px;" class="display-7 text-center heading_txt">Add simple things like the name,--}}
+{{--                    photo, email and phone number.</h6>--}}
                 <p class="display-6 text-center heading_txt">{{ $mainsubjectname->main_subject_name }}</p>
                 <p style="margin-top: -1px;" class="display-7 text-center heading_txt">{{$subjects->subject_name}}</p>
                 <div class="box mt-4">
@@ -35,7 +35,7 @@
                                    placeholder="Applicant's Email" autocomplete="offf">
                         </div>
                         <div class="form-group mb-4">
-                            <input required type="number" name="phone"
+                            <input required type="text" name="phone"
                                    class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}"
                                    placeholder="Applicant's Phone Number" autocomplete="offff">
                         </div>

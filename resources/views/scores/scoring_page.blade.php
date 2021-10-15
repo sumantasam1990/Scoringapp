@@ -7,16 +7,21 @@
     <div class="row">
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
+            <div style="float: right; font-size: 30px;">
+                <a style="color: #138D07 !important;" class="text-dark" href="/scorepage-grid/{{$subjs->id}}"> <i class="bi bi-grid-fill"></i> <i onclick="show_info_modal('grid')" style="margin-left: 3px; font-size: 12px;" class="bi bi-info-circle-fill"></i></a>
+            </div>
             <div class="">
                 <h2 class="display-4 text-left heading_txt">{{ $subjs->subject_name }}</h2>
                 <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Scoring Page</h5>
+
+
 
                 <div class="mt-4">
 
                     <div class="text-left">
 {{--                        <a href="/create-scoring-sheet/{{ $subjs->id }}" class="btn btn-info btn-sm">Create A Score</a>--}}
-                        <a href="/create-applicant/{{ $subjs->id }}" class="btn btn-success btn-sm">Add Applicant</a>
-                        <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm">Add Criteria</a>
+                        <a href="/create-applicant/{{ $subjs->id }}" class="btn btn-success btn-sm" id="add_app">Add Applicant <i onclick="show_info_modal('add_app')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i> </a>
+                        <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm">Add Criteria <i onclick="show_info_modal('add_crit')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
                         {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
 
                         <form action="{{ route('remove-page') }}" method="post"
@@ -24,24 +29,24 @@
                             @csrf
                             <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
 
-                            <button type="submit" @class('btn btn-success btn-sm')>Delete Page</button>
+                            <button type="submit" @class('btn btn-success btn-sm')>Delete Page <i onclick="show_info_modal('del_page')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></button>
                         </form>
 
-                        <a href="/finalists/{{$subjs->id}}" class="btn btn-success btn-sm">Finalist Page</a>
-                        <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm">Bulk Email List</a>
-                        <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member</a>
-                        <a href="/rooms/{{$subjs->id}}" class="btn btn-success btn-sm">Message Room</a>
+                        <a href="/finalists/{{$subjs->id}}" class="btn btn-success btn-sm">Finalist Page <i onclick="show_info_modal('finalist')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
+                        <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm">Bulk Email List <i onclick="show_info_modal('email')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
+                        <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member <i onclick="show_info_modal('team')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
+                        <a href="/rooms/{{$subjs->id}}" class="btn btn-success btn-sm">Message Room <i onclick="show_info_modal('room')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
 
-                        <div style="float: right; font-size: 30px;">
-                            <a style="color: #138D07 !important;" class="text-dark" href="/scorepage-grid/{{$subjs->id}}"> <i class="bi bi-grid-fill"></i></a>
-                        </div>
+
 
                     </div>
+
+
 
                     <div class="devider"></div>
 
                     {{-- Applicants & Criteria Loop --}}
-                    <div class="row">
+                    <div class="row text-center">
                         <div class="col-12">
                             <div class="table-responsive">
                                 <table class="table mt-6 table-borderless">
@@ -60,14 +65,14 @@
                                                 criterias WHERE maincriteria_id = ? ", [$main->id]);
 
                                                 //get total main criteria number
-                                                $total_main = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE subject_id = ? AND scores.`criteria_id` IN (SELECT id FROM criterias WHERE maincriteria_id = ?)", [$sid, $main->id])
+                                                //$total_main = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE subject_id = ? AND scores.`criteria_id` IN (SELECT id FROM criterias WHERE maincriteria_id = ?)", [$sid, $main->id])
 
                                             @endphp
                                             <th colspan="{{ $colspan_main[0]->total }}"
                                                 style="text-align: center; border-left: 2px solid #000;">
                                                 <h4 class="fw-bold">{{ $main->criteria_name }}</h4>
                                                 <p style="font-size: 34px;" class="fw-bold">
-                                                    {{ $total_main[0]->total }}
+{{--                                                    {{ $total_main[0]->total }}--}}
                                                 </p>
 
                                             </th>
@@ -97,7 +102,7 @@
 
                                                     @endif
                                                     <label class="btn score-priority"
-                                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -3px;"></label>
+                                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; "></label>
 
                                                 @endforeach
                                             </th>
@@ -112,13 +117,16 @@
                                     </tr> --}}
                                     @foreach ( $applicants as $applicant )
                                         <tr>
-                                            <td style="border-bottom: 2px solid #000 !important; border-top: 2px solid #000 !important; padding: 20px;"
+{{--                                            border-bottom: 1px solid #ccc !important;--}}
+                                            <td style="border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
                                                 colspan="@php echo count($subjects) + 2; @endphp"> {{-- @php echo count($subjects) + 2; @endphp --}}
 
-                                                <p style="font-size: 18px;" class="fw-bold"><a
+                                                <div style="font-size: 18px;" class="fw-bold">
+                                                    <p><a
                                                         style="color: #000; text-decoration: none;"
                                                         href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
-                                                        (Applicant) </a></p>
+                                                            (Applicant) </a></p>
+                                                </div>
                                         @php
                                             // getting users from subject id
                                             $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.id=teams.user_id) WHERE teams.subject_id = ?", [$subjs->id]);
@@ -126,15 +134,15 @@
                                         @endphp
 
                                         @foreach ($users as $user)
-                                            <tr class="noBorder">
-                                                <td><p>{{ $user->name }} </p></td>
-                                                <td>
+                                            <tr class="noBorder" style="vertical-align: middle;">
+                                                <td style="text-align: right;"><p>{{ $user->name }} </p></td>
+                                                <td style="text-align: right; vertical-align: middle !important;">
                                                     @php
                                                         $total_sum = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE user_id = ? AND applicant_id = ? AND subject_id = ?", [$user->id,$applicant->id,$subjs->id]);
 
                                                     @endphp
                                                     <p class="fw-bold"
-                                                       style="font-size: 42px; margin-top: -15px;">{{ $total_sum[0]->total }}</p>
+                                                       style="font-size: 42px;">{{ $total_sum[0]->total }}</p>
                                                 </td>
                                                 {{-- <td style="border-left: 2px solid #000;">
                                                     @php
@@ -169,31 +177,49 @@
                                                                 @if ($result->score_number == 1)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
-                                                                           style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                                           style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
                                                                 @elseif ($result->score_number == 2)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
-                                                                           style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                                           style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
                                                                 @elseif ($result->score_number == 3)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
-                                                                           style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                                           style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                @elseif ($result->score_number == 4)
+                                                                @elseif ($result->score_number == 0)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
-                                                                           style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                                           style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
                                                                 @elseif ($result->score_number == 5)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
-                                                                           style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                                           style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                                    </label>
+                                                                @elseif ($result->score_number == -1)
+                                                                    <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                                           class="btn score-priority"
+                                                                           style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                                    </label>
+                                                                @elseif ($result->score_number == -2)
+                                                                    <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                                           class="btn score-priority"
+                                                                           style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                                    </label>
+                                                                @elseif ($result->score_number == -3)
+                                                                    <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                                           class="btn score-priority"
+                                                                           style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
                                                                 @endif
@@ -264,9 +290,11 @@
                             <select required class="form-control @error('subject') is-invalid @enderror"
                                     name="score_give">
                                 <option value="" disabled selected>Choose A Score</option>
-                                @foreach ($scores_array as $score)
+
+
+                                @foreach ($scores_array as $key => $score)
                                     <option
-                                        value="{{ $score }}" {{ (old("score_give") == $score ? "selected" : "") }}>{{ $score }}</option>
+                                        value="{{ $score }}" {{ (old("score_give") == $score ? "selected" : "") }}>{{ $key }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -308,6 +336,26 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="edit_score_body_html">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{--Button Info message--}}
+
+<div class="modal fade" id="info_msg" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+{{--                <h5 class="display-6 text-center heading_txt" id="edit_score_heading">Create A Score</h5>--}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="info_msg_body_html">
 
 
             </div>
@@ -373,4 +421,15 @@
 
     }
 
+</script>
+
+
+<script>
+    function show_info_modal(key) {
+        event.preventDefault();
+        if(key == 'add_app') {
+            $("#info_msg").modal("show");
+            $("#info_msg_body_html").html(`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. `);
+        }
+    }
 </script>

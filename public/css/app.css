@@ -10872,6 +10872,10 @@ html, body {
   font-family: "Source Sans Pro", sans-serif !important;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 textarea:focus,
 input[type=text]:focus,
 input[type=password]:focus,
@@ -10973,41 +10977,41 @@ button:focus,
 
 .btn-dark {
   background-color: #414141 !important;
-  border: 3px solid #414141;
+  border: 4px solid #414141;
   font-weight: bold;
   color: #fff !important;
 }
 
 .btn-dark:hover {
-  border: 3px solid #414141;
+  border: 4px solid #414141;
   background-color: transparent !important;
   color: #414141 !important;
 }
 
 .btn-success {
   background-color: #138D07 !important;
-  border: 3px solid #138D07;
+  border: 4px solid #138D07;
   font-weight: bold;
 }
 
 .btn-success:hover {
-  border: 3px solid #138D07;
+  border: 4px solid #138D07;
   background-color: transparent !important;
   color: #138D07;
 }
 
 .btn-info {
   transition: all 0.2s ease, visibility 0s;
-  background: #F908CC;
-  border: 3px solid #F908CC;
+  background: #08ACA8;
+  border: 4px solid #08ACA8;
   font-weight: bold;
   color: #fff !important;
 }
 
 .btn-info:hover {
-  border: 3px solid #F908CC;
+  border: 4px solid #08ACA8;
   background-color: transparent !important;
-  color: #FC0A0A !important;
+  color: #08ACA8 !important;
 }
 
 .box {
@@ -11068,7 +11072,94 @@ tr.noBorder td {
 }
 
 .nav-item {
-  margin-left: 20px;
+  margin-left: 10px;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+  color: #414141;
+}
+
+.cta-text {
+  line-height: 40px !important;
+}
+
+.cta-sky {
+  background: #08ACA8 !important;
+  padding: 40px;
+  color: #fff;
+}
+
+.cta-red {
+  background: #FF3F3F !important;
+  padding: 40px;
+  color: #fff;
+}
+
+.cta-violet {
+  background: #370143 !important;
+  padding: 40px;
+  color: #fff;
+}
+
+.cta-red-deep {
+  background: #FE2301 !important;
+  padding: 40px;
+  color: #fff;
+}
+
+.cta-sky h4, .cta-sky .h4 {
+  color: #fff;
+}
+
+.cta-red h4, .cta-red .h4 {
+  color: #fff;
+}
+
+.cta-violet h4, .cta-violet .h4 {
+  color: #fff;
+}
+
+.cta-red-deep h4, .cta-red-deep .h4 {
+  color: #fff;
+}
+
+.box-black {
+  border: 8px solid #414141;
+  padding: 20px;
+  font-size: 22px;
+  min-height: 300px;
+}
+
+.btn-light {
+  border-width: 4px;
+}
+
+.btn-light:hover {
+  background: transparent !important;
+  color: #fff !important;
+  border-width: 4px;
+}
+
+.container-home {
+  padding: 50px;
+}
+
+footer {
+  margin-bottom: 120px !important;
+}
+
+footer ul {
+  padding: 0;
+  margin: 0;
+}
+
+footer ul li {
+  list-style: none;
+}
+
+footer ul li a {
+  color: #1a1e21;
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 800px) {

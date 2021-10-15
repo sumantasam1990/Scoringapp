@@ -11,19 +11,27 @@
             <div class="text-center">
                 <h2 class="display-4 text-center heading_txt">Scoreboard</h2>
 
-                <table class="table mt-6 scorecard-header-table">
+                <table class="table mt-6 scorecard-header-table table-bordered">
                     <tr>
-                        <th>{{ $applicants->name }}</th>
-                        <th>{{ $applicants->total }} </th>
-                        <th><a class="btn btn-success btn-sm"
+                        <th colspan="4" style="border: none !important;">
+                            <a class="btn btn-success btn-sm"
                                href="/applicant/{{ $applicants->id }}/{{ $subject->id }}">Open Applicant Profile</a>
                         </th>
                     </tr>
-                </table>
+                    <tr>
+                        <th>
+                            {{ $applicants->name }}
+                        </th>
+                        <th>{{ $applicants->total }} </th>
+
+                        <th>Criteria</th>
+
+                    </tr>
+
 
                 {{-- Main score board to display here --}}
 
-                <table class="table scorecard-table">
+
 
 
 
@@ -36,7 +44,7 @@
 {{--join maincriterias m on c.maincriteria_id = m.id--}}
 {{--where s.subject_id = ?--}}
 {{--and s.criteria_id in (select id from criterias where subject_id = ?)--}}
-{{--and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 4]);--}}
+{{--and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 4]);--}}
 {{--                    @endphp--}}
 
 {{--                    <tr>--}}
@@ -115,93 +123,116 @@
 {{--                        </th>--}}
 {{--                    </tr>--}}
 
-{{--                    @php--}}
-{{--                        $score = DB::select("select m.criteria_name, c.id as criteria_id, c.title as criteria_title,--}}
-{{--   c.priority as criteria_priority, s.score_number,--}}
-{{--   s.score_card_no--}}
-{{--from criterias c--}}
-{{--join scores s on c.id = s.criteria_id--}}
-{{--join maincriterias m on c.maincriteria_id = m.id--}}
-{{--where s.subject_id = ?--}}
-{{--and s.criteria_id in (select id from criterias where subject_id = ?)--}}
-{{--and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 3]);--}}
-{{--                    @endphp--}}
+                    @php
+                        $score = DB::select("select m.criteria_name, c.id as criteria_id, c.title as criteria_title,
+   c.priority as criteria_priority, s.score_number,
+   s.score_card_no
+from criterias c
+join scores s on c.id = s.criteria_id
+join maincriterias m on c.maincriteria_id = m.id
+where s.subject_id = ?
+and s.criteria_id in (select id from criterias where subject_id = ?)
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 3]);
+                    @endphp
 
-{{--                    <tr>--}}
-{{--                        <th>--}}
-{{--                            +3--}}
-{{--                        </th>--}}
-{{--                        <th>--}}
+                    <tr>
+                        <th>
+                            +3
+                        </th>
+                        <th>
 
-{{--                            {{ count($score) }}--}}
+                            {{ count($score) }}
 
-{{--                        </th>--}}
-{{--                        <th>--}}
-{{--                            @if(count($score) > 0)--}}
-{{--                                <h4>{{ $score[0]->criteria_name }}</h4>--}}
-{{--                                @foreach($score as $scorecard)--}}
+                        </th>
+                        <th>
+                            @if(count($score) > 0)
+                                <h4>{{ $score[0]->criteria_name }}</h4>
+                                @foreach($score as $scorecard)
 
-{{--                                    <p style="font-size: 14px;">{{ $scorecard->criteria_title }}</p>--}}
+                                    <p style="font-size: 14px;">{{ $scorecard->criteria_title }}</p>
 
-{{--                                    @php--}}
-{{--                                        $exp = explode(",", $scorecard->criteria_priority);--}}
-{{--                                    @endphp--}}
-{{--                                    @foreach ($exp as $e)--}}
-{{--                                        @if (count($exp) > 1)--}}
-{{--                                            @php--}}
-{{--                                                $width = "45%";--}}
-{{--                                            @endphp--}}
+                                    @php
+                                        $exp = explode(",", $scorecard->criteria_priority);
+                                    @endphp
+                                    @foreach ($exp as $e)
+                                        @if (count($exp) > 1)
+                                            @php
+                                                $width = "45%";
+                                            @endphp
 
-{{--                                        @else--}}
-{{--                                            @php--}}
-{{--                                                $width = "100%";--}}
-{{--                                            @endphp--}}
+                                        @else
+                                            @php
+                                                $width = "100%";
+                                            @endphp
 
-{{--                                        @endif--}}
+                                        @endif
 {{--                                        <p class="btn score-priority"--}}
 {{--                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
 {{--                                        </p>--}}
 
-{{--                                            <p style="margin-top: -25px;">{{ $scorecard->score_number }}</p>--}}
+                                            <p style="margin-top: -25px;">{{ $scorecard->score_number }}</p>
 
-{{--                                            @if($scorecard->score_number == 5)--}}
-{{--                                            <p class="btn score-priority"--}}
-{{--                                               style="background-color: #138D07; border: 3px solid #138D07; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
+                                            @if ($scorecard->score_number == 1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-{{--                                            </p>--}}
-{{--                                                @elseif($scorecard->score_number == 4)--}}
-{{--                                                    <p class="btn score-priority"--}}
-{{--                                                       style="background-color: #40F328; border: 3px solid #40F328; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
+                                                </p>
+                                            @elseif ($scorecard->score_number == 2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-{{--                                                    </p>--}}
-{{--                                            @elseif($scorecard->score_number == 3)--}}
-{{--                                                <p class="btn score-priority"--}}
-{{--                                                   style="background-color: #FCD40A; border: 3px solid #FCD40A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
+                                                </p>
+                                            @elseif ($scorecard->score_number == 3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-{{--                                                </p>--}}
-{{--                                            @elseif($scorecard->score_number == 2)--}}
-{{--                                                <p class="btn score-priority"--}}
-{{--                                                   style="background-color: #F56A21; border: 3px solid #F56A21; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
+                                                </p>
+                                            @elseif ($scorecard->score_number == 0)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-{{--                                                </p>--}}
-{{--                                            @elseif($scorecard->score_number == 1)--}}
-{{--                                                <p class="btn score-priority"--}}
-{{--                                                   style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
+                                                </p>
+                                            @elseif ($scorecard->score_number == 5)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-{{--                                                </p>--}}
-{{--                                            @endif--}}
+                                                </p>
+                                            @elseif ($scorecard->score_number == -1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @endif
 
 
 
-{{--                                    @endforeach--}}
+                                    @endforeach
 
-{{--                                @endforeach--}}
-{{--                            @endif--}}
+                                @endforeach
+                            @endif
 
 
-{{--                        </th>--}}
-{{--                    </tr>--}}
+                        </th>
+                    </tr>
 
                     @php
                         $score = DB::select("select m.criteria_name, c.id as criteria_id, c.title as criteria_title,
@@ -212,7 +243,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 2]);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 2]);
                     @endphp
 
                     <tr>
@@ -246,39 +277,62 @@ and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id
                                             @endphp
 
                                         @endif
-                                        <p class="btn score-priority"
-                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                        <p class="btn score-priority"--}}
+{{--                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                        </p>
+{{--                                        </p>--}}
 
                                         <p style="margin-top: -25px;">{{ $scorecard->score_number }}</p>
 
-                                        @if($scorecard->score_number == 5)
-                                            <p class="btn score-priority"
-                                               style="background-color: #138D07; border: 3px solid #138D07; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                            @if ($scorecard->score_number == 1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 4)
-                                            <p class="btn score-priority"
-                                               style="background-color: #40F328; border: 3px solid #40F328; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 3)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FCD40A; border: 3px solid #FCD40A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 2)
-                                            <p class="btn score-priority"
-                                               style="background-color: #F56A21; border: 3px solid #F56A21; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 0)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 1)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 5)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @endif
+                                                </p>
+                                            @elseif ($scorecard->score_number == -1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @endif
 
 
 
@@ -300,7 +354,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 1]);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 1]);
                     @endphp
 
                     <tr>
@@ -334,39 +388,62 @@ and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id
                                             @endphp
 
                                         @endif
-                                        <p class="btn score-priority"
-                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                        <p class="btn score-priority"--}}
+{{--                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                        </p>
+{{--                                        </p>--}}
 
                                         <p style="margin-top: -25px;">{{ $scorecard->score_number }}</p>
 
-                                        @if($scorecard->score_number == 5)
-                                            <p class="btn score-priority"
-                                               style="background-color: #138D07; border: 3px solid #138D07; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                            @if ($scorecard->score_number == 1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 4)
-                                            <p class="btn score-priority"
-                                               style="background-color: #40F328; border: 3px solid #40F328; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 3)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FCD40A; border: 3px solid #FCD40A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 2)
-                                            <p class="btn score-priority"
-                                               style="background-color: #F56A21; border: 3px solid #F56A21; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 0)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 1)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 5)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @endif
+                                                </p>
+                                            @elseif ($scorecard->score_number == -1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @endif
 
 
 
@@ -388,7 +465,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 0]);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 0]);
                     @endphp
 
                     <tr>
@@ -422,39 +499,62 @@ and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id
                                             @endphp
 
                                         @endif
-                                        <p class="btn score-priority"
-                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                        <p class="btn score-priority"--}}
+{{--                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                        </p>
+{{--                                        </p>--}}
 
                                         <p style="margin-top: -25px;">{{ $scorecard->score_number }}</p>
 
-                                        @if($scorecard->score_number == 5)
-                                            <p class="btn score-priority"
-                                               style="background-color: #138D07; border: 3px solid #138D07; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                            @if ($scorecard->score_number == 1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 4)
-                                            <p class="btn score-priority"
-                                               style="background-color: #40F328; border: 3px solid #40F328; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 3)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FCD40A; border: 3px solid #FCD40A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 2)
-                                            <p class="btn score-priority"
-                                               style="background-color: #F56A21; border: 3px solid #F56A21; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 0)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 1)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 5)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @endif
+                                                </p>
+                                            @elseif ($scorecard->score_number == -1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @endif
 
 
 
@@ -476,7 +576,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-1']);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-1']);
                     @endphp
 
                     <tr>
@@ -510,39 +610,62 @@ and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id
                                             @endphp
 
                                         @endif
-                                        <p class="btn score-priority"
-                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                        <p class="btn score-priority"--}}
+{{--                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                        </p>
+{{--                                        </p>--}}
 
                                         <p style="margin-top: -25px;">{{ $scorecard->score_number }}</p>
 
-                                        @if($scorecard->score_number == 5)
-                                            <p class="btn score-priority"
-                                               style="background-color: #138D07; border: 3px solid #138D07; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                            @if ($scorecard->score_number == 1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 4)
-                                            <p class="btn score-priority"
-                                               style="background-color: #40F328; border: 3px solid #40F328; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 3)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FCD40A; border: 3px solid #FCD40A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 2)
-                                            <p class="btn score-priority"
-                                               style="background-color: #F56A21; border: 3px solid #F56A21; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 0)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 1)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 5)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @endif
+                                                </p>
+                                            @elseif ($scorecard->score_number == -1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @endif
 
 
 
@@ -564,7 +687,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-2']);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-2']);
                     @endphp
 
                     <tr>
@@ -598,39 +721,62 @@ and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id
                                             @endphp
 
                                         @endif
-                                        <p class="btn score-priority"
-                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                        <p class="btn score-priority"--}}
+{{--                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                        </p>
+{{--                                        </p>--}}
 
                                         <p style="margin-top: -25px;">{{ $scorecard->score_number }}</p>
 
-                                        @if($scorecard->score_number == 5)
-                                            <p class="btn score-priority"
-                                               style="background-color: #138D07; border: 3px solid #138D07; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                            @if ($scorecard->score_number == 1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 4)
-                                            <p class="btn score-priority"
-                                               style="background-color: #40F328; border: 3px solid #40F328; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 3)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FCD40A; border: 3px solid #FCD40A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 2)
-                                            <p class="btn score-priority"
-                                               style="background-color: #F56A21; border: 3px solid #F56A21; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 0)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 1)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 5)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @endif
+                                                </p>
+                                            @elseif ($scorecard->score_number == -1)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -2)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -3)
+                                                <p
+                                                   class="btn score-priority"
+                                                   style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @endif
 
 
 
@@ -652,7 +798,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-3']);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-3']);
                     @endphp
 
                     <tr>
@@ -686,39 +832,62 @@ and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id
                                             @endphp
 
                                         @endif
-                                        <p class="btn score-priority"
-                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                        <p class="btn score-priority"--}}
+{{--                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                        </p>
+{{--                                        </p>--}}
 
                                         <p style="margin-top: -25px;">{{ $scorecard->score_number }}</p>
 
-                                        @if($scorecard->score_number == 5)
-                                            <p class="btn score-priority"
-                                               style="background-color: #138D07; border: 3px solid #138D07; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                            @if ($scorecard->score_number == 1)
+                                                <p
+                                                       class="btn score-priority"
+                                                       style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 4)
-                                            <p class="btn score-priority"
-                                               style="background-color: #40F328; border: 3px solid #40F328; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 2)
+                                                <p
+                                                       class="btn score-priority"
+                                                       style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 3)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FCD40A; border: 3px solid #FCD40A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 3)
+                                                <p
+                                                       class="btn score-priority"
+                                                       style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 2)
-                                            <p class="btn score-priority"
-                                               style="background-color: #F56A21; border: 3px solid #F56A21; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 0)
+                                                <p
+                                                       class="btn score-priority"
+                                                       style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 1)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+                                                </p>
+                                            @elseif ($scorecard->score_number == 5)
+                                                <p
+                                                       class="btn score-priority"
+                                                       style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
-                                            </p>
-                                        @endif
+                                                </p>
+                                            @elseif ($scorecard->score_number == -1)
+                                                <p
+                                                       class="btn score-priority"
+                                                       style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -2)
+                                                <p
+                                                       class="btn score-priority"
+                                                       style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @elseif ($scorecard->score_number == -3)
+                                                <p
+                                                       class="btn score-priority"
+                                                       style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                </p>
+                                            @endif
 
 
 
@@ -731,93 +900,93 @@ and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id
                         </th>
                     </tr>
 
-                    @php
-                        $score = DB::select("select m.criteria_name, c.id as criteria_id, c.title as criteria_title,
-   c.priority as criteria_priority, s.score_number,
-   s.score_card_no
-from criterias c
-join scores s on c.id = s.criteria_id
-join maincriterias m on c.maincriteria_id = m.id
-where s.subject_id = ?
-and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_card_no = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-4']);
-                    @endphp
+{{--                    @php--}}
+{{--                        $score = DB::select("select m.criteria_name, c.id as criteria_id, c.title as criteria_title,--}}
+{{--   c.priority as criteria_priority, s.score_number,--}}
+{{--   s.score_card_no--}}
+{{--from criterias c--}}
+{{--join scores s on c.id = s.criteria_id--}}
+{{--join maincriterias m on c.maincriteria_id = m.id--}}
+{{--where s.subject_id = ?--}}
+{{--and s.criteria_id in (select id from criterias where subject_id = ?)--}}
+{{--and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-4']);--}}
+{{--                    @endphp--}}
 
-                    <tr>
-                        <th>
-                            -4
-                        </th>
-                        <th>
+{{--                    <tr>--}}
+{{--                        <th>--}}
+{{--                            -4--}}
+{{--                        </th>--}}
+{{--                        <th>--}}
 
-                            {{ count($score) }}
+{{--                            {{ count($score) }}--}}
 
-                        </th>
-                        <th>
-                            @if(count($score) > 0)
-                                <h4>{{ $score[0]->criteria_name }}</h4>
-                                @foreach($score as $scorecard)
+{{--                        </th>--}}
+{{--                        <th>--}}
+{{--                            @if(count($score) > 0)--}}
+{{--                                <h4>{{ $score[0]->criteria_name }}</h4>--}}
+{{--                                @foreach($score as $scorecard)--}}
 
-                                    <p style="font-size: 14px;">{{ $scorecard->criteria_title }}</p>
+{{--                                    <p style="font-size: 14px;">{{ $scorecard->criteria_title }}</p>--}}
 
-                                    @php
-                                        $exp = explode(",", $scorecard->criteria_priority);
-                                    @endphp
-                                    @foreach ($exp as $e)
-                                        @if (count($exp) > 1)
-                                            @php
-                                                $width = "45%";
-                                            @endphp
+{{--                                    @php--}}
+{{--                                        $exp = explode(",", $scorecard->criteria_priority);--}}
+{{--                                    @endphp--}}
+{{--                                    @foreach ($exp as $e)--}}
+{{--                                        @if (count($exp) > 1)--}}
+{{--                                            @php--}}
+{{--                                                $width = "45%";--}}
+{{--                                            @endphp--}}
 
-                                        @else
-                                            @php
-                                                $width = "100%";
-                                            @endphp
+{{--                                        @else--}}
+{{--                                            @php--}}
+{{--                                                $width = "100%";--}}
+{{--                                            @endphp--}}
 
-                                        @endif
-                                        <p class="btn score-priority"
-                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                        @endif--}}
+{{--                                        <p class="btn score-priority"--}}
+{{--                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                        </p>
+{{--                                        </p>--}}
 
-                                        <p style="margin-top: -25px;">{{ $scorecard->score_number }}</p>
+{{--                                        <p style="margin-top: -25px;">{{ $scorecard->score_number }}</p>--}}
 
-                                        @if($scorecard->score_number == 5)
-                                            <p class="btn score-priority"
-                                               style="background-color: #138D07; border: 3px solid #138D07; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                        @if($scorecard->score_number == 5)--}}
+{{--                                            <p class="btn score-priority"--}}
+{{--                                               style="background-color: #138D07; border: 3px solid #138D07; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 4)
-                                            <p class="btn score-priority"
-                                               style="background-color: #40F328; border: 3px solid #40F328; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                            </p>--}}
+{{--                                        @elseif($scorecard->score_number == 4)--}}
+{{--                                            <p class="btn score-priority"--}}
+{{--                                               style="background-color: #40F328; border: 3px solid #40F328; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 3)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FCD40A; border: 3px solid #FCD40A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                            </p>--}}
+{{--                                        @elseif($scorecard->score_number == 3)--}}
+{{--                                            <p class="btn score-priority"--}}
+{{--                                               style="background-color: #FCD40A; border: 3px solid #FCD40A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 2)
-                                            <p class="btn score-priority"
-                                               style="background-color: #F56A21; border: 3px solid #F56A21; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                            </p>--}}
+{{--                                        @elseif($scorecard->score_number == 2)--}}
+{{--                                            <p class="btn score-priority"--}}
+{{--                                               style="background-color: #F56A21; border: 3px solid #F56A21; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                            </p>
-                                        @elseif($scorecard->score_number == 1)
-                                            <p class="btn score-priority"
-                                               style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">
+{{--                                            </p>--}}
+{{--                                        @elseif($scorecard->score_number == 1)--}}
+{{--                                            <p class="btn score-priority"--}}
+{{--                                               style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -8px; margin-top: -30px;">--}}
 
-                                            </p>
-                                        @endif
-
-
-
-                                    @endforeach
-
-                                @endforeach
-                            @endif
+{{--                                            </p>--}}
+{{--                                        @endif--}}
 
 
-                        </th>
-                    </tr>
+
+{{--                                    @endforeach--}}
+
+{{--                                @endforeach--}}
+{{--                            @endif--}}
+
+
+{{--                        </th>--}}
+{{--                    </tr>--}}
 
                 </table>
 

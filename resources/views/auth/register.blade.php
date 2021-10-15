@@ -8,7 +8,7 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div class="">
-            <h2 class="display-4 text-center heading_txt">Registration</h2>
+            <h2 class="display-4 text-center heading_txt">Sign Up For Scorng</h2>
 
                 <div class="box">
                     <form action="{{ route('register.custom') }}" method="POST">

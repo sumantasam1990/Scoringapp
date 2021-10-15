@@ -20,8 +20,8 @@
                 <div class="form-group mb-3">
                     <select required class="form-control @error('subject') is-invalid @enderror" name="score_give">
                         <option value="" disabled selected>Choose A Score</option>
-                        @foreach ($scores_array as $score)
-                            <option value="{{ $score }}" {{ ($data[0]->score_number == $score ? "selected" : "") }}>{{ $score }}</option>
+                        @foreach ($scores_array as $key => $score)
+                            <option value="{{ $score }}" {{ ($data[0]->score_number == $score ? "selected" : "") }}>{{ $key }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -88,31 +88,49 @@
                                                 @if ($result->score_number == 1)
                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                            class="btn score-priority"
-                                                           style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 30px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                           style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                     </label>
                                                 @elseif ($result->score_number == 2)
                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                            class="btn score-priority"
-                                                           style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 30px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                           style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                     </label>
                                                 @elseif ($result->score_number == 3)
                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                            class="btn score-priority"
-                                                           style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 30px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                           style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                     </label>
-                                                @elseif ($result->score_number == 4)
+                                                @elseif ($result->score_number == 0)
                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                            class="btn score-priority"
-                                                           style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 30px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                           style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                     </label>
                                                 @elseif ($result->score_number == 5)
                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                            class="btn score-priority"
-                                                           style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 30px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                           style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                    </label>
+                                                @elseif ($result->score_number == -1)
+                                                    <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                           class="btn score-priority"
+                                                           style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                    </label>
+                                                @elseif ($result->score_number == -2)
+                                                    <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                           class="btn score-priority"
+                                                           style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                    </label>
+                                                @elseif ($result->score_number == -3)
+                                                    <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                           class="btn score-priority"
+                                                           style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                     </label>
                                                 @endif

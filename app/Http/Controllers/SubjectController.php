@@ -30,23 +30,28 @@ class SubjectController extends Controller
 
         $user = Auth::user();
 
-        // add on subject table
-        $subject = new Subject;
+        foreach ($request->main as $key => $submain) {
 
-        $subject->subject_name = $request->subject;
-        $subject->user_id = $user->id;
-        $subject->mainsubject_id = $request->main;
+            // add on subject table
+            $subject = new Subject;
 
-        $subject->save();
+            $subject->subject_name = $request->subject[$key];
+            $subject->user_id = $user->id;
+            $subject->mainsubject_id = $submain;
 
-        // add on Team table also
-        $team = new Team;
+            $subject->save();
 
-        $team->user_id = $user->id;
-        $team->subject_id = $subject->id; // Last inserted subject id
-        $team->mainsubject_id = $request->main;
+            // add on Team table also
+            $team = new Team;
 
-        $team->save();
+            $team->user_id = $user->id;
+            $team->subject_id = $subject->id; // Last inserted subject id
+            $team->mainsubject_id = $submain;
+
+            $team->save();
+
+        }
+
 
         return redirect("/dashboard")->with("msg", "Your subject has been successfully added.");
 

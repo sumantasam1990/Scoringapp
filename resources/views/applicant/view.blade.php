@@ -97,10 +97,10 @@
 
             {{-- ------------------------score sheet----------------------------- --}}
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-2">
                         <h4>{{ $subjs->subject_name }}</h4>
                     </div>
-                    <div class="col-8">
+                    <div class="col-10">
                         <div class="text-right" style="float: right;">
 
                             <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scoreboard</a>
@@ -248,23 +248,51 @@
                                                 @foreach ($results as $result)
 
                                                     @if ($result->score_number == 1)
-                                                        <label onclick="editScoreModal('{{ $result->id }}')" class="btn score-priority" style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                               class="btn score-priority"
+                                                               style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                         </label>
                                                     @elseif ($result->score_number == 2)
-                                                        <label onclick="editScoreModal('{{ $result->id }}')" class="btn score-priority" style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                               class="btn score-priority"
+                                                               style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                         </label>
                                                     @elseif ($result->score_number == 3)
-                                                        <label onclick="editScoreModal('{{ $result->id }}')" class="btn score-priority" style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                               class="btn score-priority"
+                                                               style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                         </label>
-                                                    @elseif ($result->score_number == 4)
-                                                        <label onclick="editScoreModal('{{ $result->id }}')" class="btn score-priority" style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                    @elseif ($result->score_number == 0)
+                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                               class="btn score-priority"
+                                                               style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                         </label>
                                                     @elseif ($result->score_number == 5)
-                                                        <label onclick="editScoreModal('{{ $result->id }}')" class="btn score-priority" style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; margin-left: -3px;">
+                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                               class="btn score-priority"
+                                                               style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                        </label>
+                                                    @elseif ($result->score_number == -1)
+                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                               class="btn score-priority"
+                                                               style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                        </label>
+                                                    @elseif ($result->score_number == -2)
+                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                               class="btn score-priority"
+                                                               style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+
+                                                        </label>
+                                                    @elseif ($result->score_number == -3)
+                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
+                                                               class="btn score-priority"
+                                                               style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                         </label>
                                                     @endif
@@ -301,8 +329,88 @@
 
 @include('layouts.footer')
 
+{{--<script>--}}
+{{--function selectPhoto() {--}}
+{{--    $("#img").trigger('click');--}}
+{{--}--}}
+{{--</script>--}}
+
+
+{{-- edit score modal --}}
+
+
+<div class="modal fade" id="edit_score" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="display-6 text-center heading_txt" id="edit_score_heading">Create A Score</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="edit_score_body_html">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
-function selectPhoto() {
-    $("#img").trigger('click');
-}
+
+    function openModalCreateScore(sub, appl, crit, sub_name, appli_name, crit_id) {
+        $("#create_score").modal("show");
+        document.getElementById("sub").value = sub;
+        document.getElementById("appl").value = appl;
+        document.getElementById("crit").value = crit;
+
+        // form ID
+        document.getElementById("sub_name").value = sub_name;
+        document.getElementById("appli_name").value = appli_name;
+        document.getElementById("crit_id").value = crit_id;
+
+    }
+
+    function selectPhoto() {
+        $("#img").trigger('click');
+    }
+
+    function editScoreModal(s,v) {
+        $("#edit_score").modal("show")
+        if(v == {{ auth()->user()->id }}) {
+            $("#edit_score_heading").html("Edit Score")
+        } else {
+            $("#edit_score_heading").html("View Score")
+        }
+
+
+        $_token = "{{ csrf_token() }}";
+        var s = s;
+        $.ajax({
+            headers: {'X-CSRF-Token': $('meta[name=_token]').attr('content')},
+            url: "{{ url('edit/score') }}",
+            type: 'GET',
+            cache: false,
+            data: {'s': s, '_token': $_token, 'v': v }, //see the $_token
+            datatype: 'html',
+            beforeSend: function () {
+                //something before send
+            },
+            success: function (data) {
+                //success
+                //var data = $.parseJSON(data);
+                if (data.success == true) {
+                    //user_jobs div defined on page
+                    $('#edit_score_body_html').html(data.html);
+                } else {
+                    console.log(data.html)
+                }
+            },
+            error: function (xhr, textStatus, thrownError) {
+                alert(xhr + "\n" + textStatus + "\n" + thrownError);
+            }
+        });
+
+    }
+
 </script>

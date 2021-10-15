@@ -32,8 +32,15 @@ class ScoringSheetController extends Controller
 
         //$dd = Subject::with(['criteria.score', 'applicant.score', 'score'])->where("id",$id)->get();
 
+
         $scores_array = array(
-            1, 2, 3, 4, 5
+            'Greatly Exceeded Expectations' => '+3',
+            'Exceeded Expectations' => '+2',
+            'Slightly Exceeded Expectations' => '+1',
+            'Met Expectations' => '0',
+            'Slightly Failed Expectations' => '-1',
+            'Failed Expectations' => '-2',
+            'Greatly Failed Expectations' => '-3'
         );
 
         //$subjects = Subject::with('criteria')->where("id","=",$id)->get();
@@ -135,8 +142,18 @@ class ScoringSheetController extends Controller
         //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias `maincriteria_id`) LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ? AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id, $id]);
 
 
+//        $scores_array = array(
+//            1, 2, 3, 4, 5
+//        );
+
         $scores_array = array(
-            1, 2, 3, 4, 5
+            'Greatly Exceeded Expectations' => '+3',
+            'Exceeded Expectations' => '+2',
+            'Slightly Exceeded Expectations' => '+1',
+            'Met Expectations' => '0',
+            'Slightly Failed Expectations' => '-1',
+            'Failed Expectations' => '-2',
+            'Greatly Failed Expectations' => '-3'
         );
 
 
@@ -211,7 +228,13 @@ class ScoringSheetController extends Controller
                 ->with('msg', 'Score has been successfully updated.');
         } else {
             $scores_array = array(
-                1, 2, 3, 4, 5
+                'Greatly Exceeded Expectations' => '+3',
+                'Exceeded Expectations' => '+2',
+                'Slightly Exceeded Expectations' => '+1',
+                'Met Expectations' => '0',
+                'Slightly Failed Expectations' => '-1',
+                'Failed Expectations' => '-2',
+                'Greatly Failed Expectations' => '-3'
             );
 
             //$scores = Score::find($request->s);

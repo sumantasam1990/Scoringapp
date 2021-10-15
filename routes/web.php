@@ -23,7 +23,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', [LoginController::class, 'dashboard'])->middleware(['auth', 'verified']);
+Route::get('/', [\App\Http\Controllers\PagesController::class, 'index']);
 
 
 Route::get('/create-subject', [SubjectController::class, 'index'])->name('create.subject')->middleware(['auth', 'verified']);

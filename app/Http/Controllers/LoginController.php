@@ -68,7 +68,7 @@ class LoginController extends Controller
 
         event(new Registered($user));
 
-        return redirect("login")->with('msg', 'You have successfully registered.');
+        return redirect("login")->with('msg', 'Thank you for signing up! We’ve sent you an email, please confirm your email to complete your sign up.');
     }
 
     public function create(array $data)

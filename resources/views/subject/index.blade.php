@@ -13,7 +13,7 @@
                 <form action="{{ route('subject.store') }}" method="post">
                     @csrf
                     <div class="form-group mb-3">
-                        <select name="main" class="form-control @error('main') is-invalid @enderror" onchange="openMainSubjectModal(this.value)">
+                        <select name="main[]" class="form-control @error('main') is-invalid @enderror" onchange="openMainSubjectModal(this.value)">
                             <option selected disabled value="">Choose The Main Subject</option>
                             @foreach ($mainsubjects as $main)
                                <option {{ (old("main") == $main->id ? "selected" : "") }} value="{{$main->id}}">{{$main->main_subject_name}}</option>
@@ -24,10 +24,15 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <input autocomplete="off" type="text" name="subject" class="form-control @error('subject') is-invalid @enderror" placeholder="Create Sub Subject (i.e. address of rental property or job posting)" value="{{ old('subject') }}">
+                        <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Create Sub Subject" value="{{ old('subject') }}">
                     </div>
+
+                    <hr />
+
+                    <div id="html"></div>
+
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                        <button type="submit" class="btn btn-dark btn-md">Add Another Subject</button>
+                        <button type="button" onclick="add_more()" class="btn btn-dark btn-md">Add Another Subject</button>
                         <button type="submit" class="btn btn-dark btn-md">Submit</button>
                     </div>
                 </form>
@@ -80,5 +85,22 @@
             $("#main_subject_modal").modal("show");
         }
 
+    }
+
+    function add_more() {
+        $("#html").append(`<div class="form-group mb-3">
+                        <select name="main[]" class="form-control @error('main') is-invalid @enderror" onchange="openMainSubjectModal(this.value)">
+                            <option selected disabled value="">Choose The Main Subject</option>
+                            @foreach ($mainsubjects as $main)
+        <option {{ (old("main") == $main->id ? "selected" : "") }} value="{{$main->id}}">{{$main->main_subject_name}}</option>
+                            @endforeach
+        <optgroup>
+            <option style="background-color: green; color: #fff;" value="add_new_criteria7">Add New Main Subject</option>
+        </optgroup>
+    </select>
+</div>
+<div class="form-group mb-3 border-bottom">
+    <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Create Sub Subject" value="{{ old('subject') }}">
+                    </div> <hr />`);
     }
 </script>

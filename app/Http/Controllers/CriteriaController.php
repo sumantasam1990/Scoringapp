@@ -37,8 +37,8 @@ class CriteriaController extends Controller
 
             // Create an array for priority
             $priorites_array = array(
-            'Greatly Exceeded Expectations (Dark Green)'  =>     '138D07',
-            'Exceeded Expectation (Light Green)'          =>     '40F328',
+//            'Greatly Exceeded Expectations (Dark Green)'  =>     '138D07',
+//            'Exceeded Expectation (Light Green)'          =>     '40F328',
             'Met Expectation (yellow)'                    =>     'FCD40A',
 //            'Orange'                     =>     'F56A21',
 //            'Red'                        =>     'FC0A0A',
