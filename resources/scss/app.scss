@@ -13,6 +13,11 @@ a {
     text-decoration: none !important;
 }
 
+* {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 
 textarea:focus,
 input[type="text"]:focus,
