@@ -24,6 +24,12 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', [\App\Http\Controllers\PagesController::class, 'index']);
+Route::get('/howitworks', [\App\Http\Controllers\PagesController::class, 'howitworks']);
+Route::get('/sign-up-my-company', [\App\Http\Controllers\PagesController::class, 'signupmycompany']);
+Route::get('/invited-to-join', [\App\Http\Controllers\PagesController::class, 'invitedtojoin']);
+Route::get('/features', [\App\Http\Controllers\PagesController::class, 'features']);
+Route::get('/faq', [\App\Http\Controllers\PagesController::class, 'faq']);
+Route::get('/about', [\App\Http\Controllers\PagesController::class, 'about']);
 
 
 Route::get('/create-subject', [SubjectController::class, 'index'])->name('create.subject')->middleware(['auth', 'verified']);

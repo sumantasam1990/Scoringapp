@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\SubjectStore;
 use App\Models\Mainsubject;
 use Illuminate\Http\Request;
-use App\Models\Subject;
-use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
@@ -15,7 +14,6 @@ class SubjectController extends Controller
         $user = Auth::user();
 
         $mainsubjects = Mainsubject::where("user_id", $user->id)->get();
-
 
         return view("subject.index", ['mainsubjects' => $mainsubjects]);
 
@@ -28,32 +26,15 @@ class SubjectController extends Controller
             'subject' => 'required'
         ]);
 
-        $user = Auth::user();
+        try {
 
-        foreach ($request->main as $key => $submain) {
+            (new SubjectStore())->save($request->main, $request->subject);
 
-            // add on subject table
-            $subject = new Subject;
+            return redirect("/dashboard")->with("msg", "Your subject has been successfully added.");
 
-            $subject->subject_name = $request->subject[$key];
-            $subject->user_id = $user->id;
-            $subject->mainsubject_id = $submain;
-
-            $subject->save();
-
-            // add on Team table also
-            $team = new Team;
-
-            $team->user_id = $user->id;
-            $team->subject_id = $subject->id; // Last inserted subject id
-            $team->mainsubject_id = $submain;
-
-            $team->save();
-
+        } catch (\Throwable $th) {
+            return redirect("/dashboard")->with("err", "Error! " . $th->getMessage());
         }
-
-
-        return redirect("/dashboard")->with("msg", "Your subject has been successfully added.");
 
     }
 

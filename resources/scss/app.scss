@@ -15,9 +15,12 @@ a {
 
 * {
     outline: none !important;
-    box-shadow: none !important;
+
 }
 
+.text-success {
+    color: #008C01 !important;
+}
 
 textarea:focus,
 input[type="text"]:focus,
@@ -250,6 +253,13 @@ color: #fff;
     min-height: 300px;
 }
 
+.box-black-howitworks {
+    border: 8px solid #414141;
+    padding: 20px;
+    font-size: 22px;
+    min-height: 180px;
+}
+
 .btn-light {
     border-width: 4px;
 }
@@ -281,6 +291,23 @@ footer ul li {
 footer ul li a{
     color: #1a1e21;
     text-decoration: none;
+}
+
+.circle-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    background: gray;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 34px;
+    color: #fff;
+    font-weight: bold;
+    margin: 0 auto;
 }
 
 
