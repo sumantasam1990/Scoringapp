@@ -34,6 +34,13 @@
                             @endif
                         </div>
 
+                        <div class="form-check mb-3">
+                            <input required class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                I agree with the terms & conditions.
+                            </label>
+                        </div>
+
 
                         <div class="d-grid mx-auto">
                             <button type="submit" class="btn btn-dark btn-block">Sign up</button>
