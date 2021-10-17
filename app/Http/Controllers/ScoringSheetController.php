@@ -6,6 +6,7 @@ use App\Models\Applicant;
 use App\Models\Criteria;
 use App\Models\Finalist;
 use App\Models\Maincriteria;
+use App\Models\Mainsubject;
 use App\Models\Metadata;
 use App\Models\Score;
 use App\Models\Subject;
@@ -128,23 +129,13 @@ class ScoringSheetController extends Controller
         $subjs = Subject::where("id", $id)->first();
         $subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 
-        //getting who created this subject
-        // $subj_user = Subject::select("user_id")
-        //                     ->where("id", $id)
-        //                     ->first();
+        $mainsubject = Mainsubject::where('id', '=', $subjs->mainsubject_id)
+        ->select('main_subject_name')->first();
 
         $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
 
         $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
 
-        //ddd($maincriterias_data);
-
-        //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias `maincriteria_id`) LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ? AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id, $id]);
-
-
-//        $scores_array = array(
-//            1, 2, 3, 4, 5
-//        );
 
         $scores_array = array(
             'Greatly Exceeded Expectations' => '+3',
@@ -157,7 +148,7 @@ class ScoringSheetController extends Controller
         );
 
 
-        return view("scores.scoring_page", ["title" => "Scoring Sheet", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, "sid" => $id]);
+        return view("scores.scoring_page", ["title" => "Scoring Page", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, "sid" => $id, 'mainsubject' => $mainsubject]);
     }
 
     public function edit(Request $request)

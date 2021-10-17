@@ -11,7 +11,7 @@
                 <a style="color: #138D07 !important;" class="text-dark" href="/scorepage-grid/{{$subjs->id}}"> <i class="bi bi-grid-fill"></i> <i onclick="show_info_modal('grid')" style="margin-left: 3px; font-size: 12px;" class="bi bi-info-circle-fill"></i></a>
             </div>
             <div class="">
-                <h2 class="display-4 text-left heading_txt">{{ $subjs->subject_name }}</h2>
+                <h2 class="display-4 text-left heading_txt">{{ $subjs->subject_name }} <span class="fs-4">{{ $mainsubject->main_subject_name }}</span></h2>
                 <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Scoring Page</h5>
 
 
@@ -52,7 +52,7 @@
                                 <table class="table mt-6 table-borderless">
                                     <thead>
 
-                                    @if(count($maincriterias) > 0 || count($applicants) > 0)
+                                    @if(count($maincriterias) > 0 && count($applicants) > 0)
                                      <tr style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
                                         @endif
 
@@ -116,17 +116,48 @@
                                         <td colspan="3" style="height: 60px; border: none;"></td>
                                     </tr> --}}
                                     @foreach ( $applicants as $applicant )
+                                        @if(count($maincriterias) > 0 && count($applicants) > 0)
+                                        <tr>
+                                            <td colspan="@php echo count($subjects)+2; @endphp" style=" border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                                            >&nbsp;</td>
+                                        </tr>
+                                        @endif
                                         <tr>
 {{--                                            border-bottom: 1px solid #ccc !important;--}}
+
                                             <td style="border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
-                                                colspan="@php echo count($subjects) + 2; @endphp"> {{-- @php echo count($subjects) + 2; @endphp --}}
+                                                > {{-- @php echo count($subjects) + 2; @endphp --}}
 
                                                 <div style="font-size: 18px;" class="fw-bold">
                                                     <p><a
                                                         style="color: #000; text-decoration: none;"
                                                         href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
-                                                            (Applicant) </a></p>
+
+                                                             </a>
+
+                                                    </p>
                                                 </div>
+
+                                            </td>
+
+
+                                        @for($i=1; $i<=count($subjects)+1; $i++)
+                                                <td style="@if($i < count($subjects)+1) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                                                >
+                                                        @if($i == 1)
+                                                        <span>
+                                                            <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}">
+                                                            <img style="width: 30px; height: 30px;" src="{{ asset('images/scoreboard.png') }}">
+                                                            </a>
+                                                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </button>
+                                                        </span>
+                                                        @endif
+                                                </td>
+                                        @endfor
+
+
                                         @php
                                             // getting users from subject id
                                             $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.id=teams.user_id) WHERE teams.subject_id = ?", [$subjs->id]);
@@ -135,14 +166,22 @@
 
                                         @foreach ($users as $user)
                                             <tr class="noBorder" style="vertical-align: middle;">
-                                                <td style="text-align: right;"><p>{{ $user->name }} </p></td>
-                                                <td style="text-align: right; vertical-align: middle !important;">
-                                                    @php
-                                                        $total_sum = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE user_id = ? AND applicant_id = ? AND subject_id = ?", [$user->id,$applicant->id,$subjs->id]);
+                                                @php
+                                                    $total_sum = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE user_id = ? AND applicant_id = ? AND subject_id = ?", [$user->id,$applicant->id,$subjs->id]);
 
-                                                    @endphp
+                                                @endphp
+                                                <td style="@if($total_sum[0]->total != '') text-align: right; @else text-align: left; @endif"><p>{{ $user->name }} </p></td>
+                                                <td style="text-align: left; vertical-align: middle !important;">
+
                                                     <p class="fw-bold"
-                                                       style="font-size: 42px;">{{ $total_sum[0]->total }}</p>
+                                                       style="font-size: 42px;">{{ $total_sum[0]->total }}
+                                                        @if($total_sum[0]->total != '')
+                                                        <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </button>
+                                                        @endif
+
+                                                    </p>
                                                 </td>
                                                 {{-- <td style="border-left: 2px solid #000;">
                                                     @php
@@ -180,48 +219,72 @@
                                                                            style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+                                                                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </button>
                                                                 @elseif ($result->score_number == 2)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+                                                                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </button>
                                                                 @elseif ($result->score_number == 3)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+                                                                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </button>
                                                                 @elseif ($result->score_number == 0)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+                                                                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </button>
                                                                 @elseif ($result->score_number == 5)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+                                                                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </button>
                                                                 @elseif ($result->score_number == -1)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+                                                                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </button>
                                                                 @elseif ($result->score_number == -2)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+                                                                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </button>
                                                                 @elseif ($result->score_number == -3)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+                                                                    <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </button>
                                                                 @endif
 
                                                             @endforeach
