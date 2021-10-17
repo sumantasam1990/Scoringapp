@@ -20,8 +20,8 @@
 
                     <div class="text-left">
 {{--                        <a href="/create-scoring-sheet/{{ $subjs->id }}" class="btn btn-info btn-sm">Create A Score</a>--}}
-                        <a href="/create-applicant/{{ $subjs->id }}" class="btn btn-success btn-sm" id="add_app">Add Applicant <i onclick="show_info_modal('add_app')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i> </a>
-                        <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm">Add Criteria <i onclick="show_info_modal('add_crit')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
+                        <a href="/create-applicant/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2" id="add_app">Add Applicant <i onclick="show_info_modal('add_app')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i> </a>
+                        <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Add Criteria <i onclick="show_info_modal('add_crit')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
                         {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
 
                         <form action="{{ route('remove-page') }}" method="post"
@@ -29,13 +29,13 @@
                             @csrf
                             <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
 
-                            <button type="submit" @class('btn btn-success btn-sm')>Delete Page <i onclick="show_info_modal('del_page')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></button>
+                            <button type="submit" @class('btn btn-success btn-sm mt-2')>Delete Page <i onclick="show_info_modal('del_page')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></button>
                         </form>
 
-                        <a href="/finalists/{{$subjs->id}}" class="btn btn-success btn-sm">Finalist Page <i onclick="show_info_modal('finalist')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
-                        <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm">Bulk Email List <i onclick="show_info_modal('email')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
-                        <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member <i onclick="show_info_modal('team')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
-                        <a href="/rooms/{{$subjs->id}}" class="btn btn-success btn-sm">Message Room <i onclick="show_info_modal('room')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
+                        <a href="/finalists/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Finalist Page <i onclick="show_info_modal('finalist')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
+                        <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Bulk Email List <i onclick="show_info_modal('email')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
+                        <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Add Team Member <i onclick="show_info_modal('team')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
+                        <a href="/rooms/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Message Room <i onclick="show_info_modal('room')" style="margin-left: 3px;" class="bi bi-info-circle-fill"></i></a>
 
 
 

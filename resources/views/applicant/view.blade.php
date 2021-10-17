@@ -53,7 +53,7 @@
 
             <div class="row mt-6">
                 <div class="col-4">
-                    <h4 class="fw-bold">Scoring Sheets</h4>
+                    <h4 class="fw-bold">Score Pages</h4>
                 </div>
 {{--                <div class="col-8">--}}
 {{--                    <div class="text-right" style="float: right;">--}}
@@ -98,7 +98,7 @@
             {{-- ------------------------score sheet----------------------------- --}}
                 <div class="row">
                     <div class="col-2">
-                        <h4>{{ $subjs->subject_name }}</h4>
+                        <h4><span class="fs-5">{{ $mainsubject->main_subject_name }}</span> <br/> {{ $subjs->subject_name }} </h4>
                     </div>
                     <div class="col-10">
                         <div class="text-right" style="float: right;">

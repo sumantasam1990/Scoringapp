@@ -138,13 +138,13 @@ class ScoringSheetController extends Controller
 
 
         $scores_array = array(
-            'Greatly Exceeded Expectations' => '+3',
-            'Exceeded Expectations' => '+2',
-            'Slightly Exceeded Expectations' => '+1',
-            'Met Expectations' => '0',
-            'Slightly Failed Expectations' => '-1',
-            'Failed Expectations' => '-2',
-            'Greatly Failed Expectations' => '-3'
+            'Greatly Exceeded Expectations +3 (Very Dark Green)' => '+3',
+            'Exceeded Expectations +2 ( Dark Green)' => '+2',
+            'Slightly Exceeded Expectations +1 (Light Green)' => '+1',
+            'Met Expectations 0 (Yellow)' => '0',
+            'Slightly Failed Expectations -1 (Orange)' => '-1',
+            'Failed Expectations -2 (Red)' => '-2',
+            'Greatly Failed Expectations -3 (Dark Red)' => '-3'
         );
 
 
@@ -219,13 +219,13 @@ class ScoringSheetController extends Controller
                 ->with('msg', 'Score has been successfully updated.');
         } else {
             $scores_array = array(
-                'Greatly Exceeded Expectations' => '+3',
-                'Exceeded Expectations' => '+2',
-                'Slightly Exceeded Expectations' => '+1',
-                'Met Expectations' => '0',
-                'Slightly Failed Expectations' => '-1',
-                'Failed Expectations' => '-2',
-                'Greatly Failed Expectations' => '-3'
+                'Greatly Exceeded Expectations +3 (Very Dark Green)' => '+3',
+                'Exceeded Expectations +2 ( Dark Green)' => '+2',
+                'Slightly Exceeded Expectations +1 (Light Green)' => '+1',
+                'Met Expectations 0 (Yellow)' => '0',
+                'Slightly Failed Expectations -1 (Orange)' => '-1',
+                'Failed Expectations -2 (Red)' => '-2',
+                'Greatly Failed Expectations -3 (Dark Red)' => '-3'
             );
 
             //$scores = Score::find($request->s);
@@ -297,8 +297,14 @@ class ScoringSheetController extends Controller
             1, 2, 3, 4, 5
         );
 
+        if(count($applicants) > 0 && count($maincriterias) > 0) {
+            return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias]);
 
-        return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias]);
+        } else {
+            return redirect('/dashboard')->with('err', 'We don\'t have any data into the finalist page.');
+        }
+
+
 
     }
 

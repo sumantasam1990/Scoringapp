@@ -47,7 +47,7 @@
                                     <button type="submit" @class('btn btn-outline-danger btn-sm')><i class="far fa-trash-alt"></i></button>
                                 </form>
                             </td>
-                            <td>{{ $applicant->name }}</td>
+                            <td><a class="text-dark" href="/applicant/{{ $applicant->applid }}/{{ $subjects->id }}"> {{ $applicant->name }}</a> </td>
                             <td>{{ $applicant->email }}</td>
                         </tr>
                         @endforeach

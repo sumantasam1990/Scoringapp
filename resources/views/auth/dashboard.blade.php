@@ -12,7 +12,10 @@
             <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Dashboard</h5>
 
             <div class="mt-3">
-                <a class="btn btn-success btn-sm" href="/create-subject">Add Subject</a>
+                <a class="btn btn-success btn-sm" href="/create-subject">Add Subject </a>
+                <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                    <i class="fas fa-info-circle"></i>
+                </button>
 
             </div>
 
@@ -32,6 +35,9 @@
                                 <h4 class="card-title fw-bold mb-4" style="font-size: 22px; color: green;">{{ $in->subject_name }}</h4>
                                 {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
                                 <a href="/scoring-sheet/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>
+                                    <br><button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>

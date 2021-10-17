@@ -9,6 +9,7 @@
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div class="">
             <h2 class="display-4 text-center heading_txt">Sign Up For Scorng</h2>
+                <h6 class="text-center fs-5 fw-normal">7 Day Free Trial, No Credit Card Required.</h6>
 
                 <div class="box">
                     <form action="{{ route('register.custom') }}" method="POST">

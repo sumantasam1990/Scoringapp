@@ -6,6 +6,7 @@ use App\Models\Applicant;
 use App\Models\Bulkemail;
 use App\Models\Criteria;
 use App\Models\Finalist;
+use App\Models\Mainsubject;
 use App\Models\Score;
 use App\Models\Subject;
 use Exception;
@@ -67,6 +68,8 @@ class ApplicantController extends Controller
         $subjs = Subject::where("id", $subid)->first();
         $subjects = Criteria::where("subject_id", $subid)->orderBy("maincriteria_id", "ASC")->get();
 
+        $mainsubject = Mainsubject::where('id', '=', $subjs->mainsubject_id)
+            ->select('main_subject_name')->first();
 
         $applicants = DB::select('SELECT d.id,d.name,d.email,d.phone,d.photo, (SELECT SUM(scores.score_number)
         FROM scores WHERE subject_id = ? AND applicant_id = ?) AS total
@@ -78,7 +81,7 @@ class ApplicantController extends Controller
         //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ? AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$subid, $subid]);
 
 
-        return view("applicant.view", ["title" => "Applicant Details", "applicants" => $applicants, "subjects" => $subjects, "maincriterias" => $maincriterias, "subjs" => $subjs]);
+        return view("applicant.view", ["title" => "Applicant Details", "applicants" => $applicants, "subjects" => $subjects, "maincriterias" => $maincriterias, "subjs" => $subjs, 'mainsubject' => $mainsubject]);
     }
 
     public function add_finalist(Request $request)
@@ -145,7 +148,7 @@ class ApplicantController extends Controller
 
         $applicants = DB::table("applicants")
             ->join("bulkemails", "applicants.id", "=", "bulkemails.applicant_id")
-            ->select("applicants.name", "applicants.email", "bulkemails.id")
+            ->select("applicants.name", "applicants.email", "bulkemails.id", "applicants.id as applid")
             ->where("bulkemails.subject_id", "=", $id)
             ->get();
 

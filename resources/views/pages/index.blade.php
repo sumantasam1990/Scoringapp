@@ -2,17 +2,17 @@
 
 <div class="container home">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <div class="d-flex flex-column align-items-center text-center mt-6">
-                <h1 class="display-3 fw-bold">A scoring system that enables
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="text-center mt-4">
+                <h1 class="display-3 fw-bolder">A scoring system that enables
                     you to hire the best applicant.</h1>
-                <p class="fw-bold">A scoring system is objectively the most effective and efficient way to choose the most qualified applicant.</p>
+                <p class="fw-bold mt-3 text-center">A scoring system is objectively the most effective and efficient way to choose the most qualified applicant.</p>
                 <a class="btn btn-info btn-lg mt-4" href="/registration">Sign Up Now</a>
                 <p class="mt-3">No long-term commitment, month-to month plans.</p>
             </div>
         </div>
-        <div class="col-2"></div>
+        <div class="col-md-2"></div>
     </div>
 </div>
 
@@ -20,14 +20,14 @@
     <div class="row">
         <div class="col-md-6">
             <img src="{{ asset('images/clipboard.webp') }}" style="width: 80px; ">
-            <h4 class="fw-bold mt-4">Comprehensive</h4>
+            <h4 class="fw-bold mt-4 fs-2">Comprehensive</h4>
             <p class="mt-3">
                 Allow each member of your executive team to comprehensively score each applicant on limitless criteria and hear their thoughts. For each criteria, provide a score from -3 to +3 to each applicant based on whether they met your expectations, failed or exceeded your expectations. Each Score Page is color coded with 7 very different colors. Our score page automatically adds up the individual score that you gave for each criteria to each applicant.
             </p>
         </div>
         <div class="col-md-6">
-            <img src="{{ asset('images/scoreboard.webp') }}" style="width: 100px; margin-top: 30px; ">
-            <h4 class="fw-bold mt-4">Scoreboard</h4>
+            <img src="{{ asset('images/scoreboard.webp') }}" style="width: 100px; margin-top: 38px; ">
+            <h4 class="fw-bold mt-4 fs-2">Scoreboard</h4>
             <p class="mt-3">
                 This is the most important feature. Scoreboard allows you to get a clear overview of how you scored each applicant on each criteria against how many times they met your expectations, exceed or failed your expectations and by how much they exceeded or failed to exceed your expectations. This allows you to measure an applicant on a much more in depth way.            </p>
         </div>
@@ -46,7 +46,7 @@
 </div>
 
 
-<div class="container-fluid cta-sky container-home">
+<div class="container-fluid cta-sky container-home mt-6">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -62,7 +62,7 @@
 <div class="container mt-6 container-home">
     <div class="row">
         <div class="col-12 text-center">
-            <h4 class="fw-bold display-6">Our Prices</h4>
+            <h4 class="fw-bold display-4">Our Prices</h4>
             <p>We offer promo codes for 66% off.</p>
         </div>
     </div>
@@ -85,7 +85,7 @@
         </div>
         <div class="col-md-4 mb-3">
             <div class="box-black text-center">
-                <h4 class="display-4 fw-bold">Contact <br> Sales</h4>
+                <h4 class="display-5 fw-bold">Contact <br> Sales</h4>
                 <p class="fw-bold">Unlimited Applicants</p>
 
                 <a class="btn btn-dark" href="/registration">Sign Up Now</a>
@@ -138,27 +138,27 @@
 </div>
 
 
-<div class="container text-center mt-6 container-home">
+<div class="container text-center mt-4 container-home">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mt-4">
             <img src="{{ asset('images/team.webp') }}" style="width: 80px; ">
             <h4 class="fw-bold mt-4">Team Members</h4>
             <p class="mt-3">
                 Invite as many other Team Members as possible so you can always get many other scores based on other's opinions of each applicant. This will ultimately help you give the most accurate or deserving score to each applicant, which will help you hire the most qualified applicant.
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mt-4">
             <img src="{{ asset('images/star (1).webp') }}" style="width: 80px; ">
             <h4 class="fw-bold mt-4">Best Score</h4>
             <p class="mt-3">
                 Scores are always displayed from best to worst according to the main Team Member's score given but you can always see the scores that other user's have given to the same Applicant right below.
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mt-4">
             <img src="{{ asset('images/medal.webp') }}" style="width: 80px; ">
             <h4 class="fw-bold mt-4">Finalists Page</h4>
             <p class="mt-3">
                 Add Applicant's who you believe will make the cut, to one single page. This will allow you to more easily concentrate on the ones who you believe have what it takes to be hired.            </p>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mt-4">
             <img src="{{ asset('images/dashboard.webp') }}" style="width: 80px; margin-top: 20px; ">
             <h4 class="fw-bold mt-4">Company Dashboard</h4>
             <p class="mt-3">

@@ -11202,4 +11202,8 @@ footer ul li a {
   .btn {
     margin: 5px;
   }
+
+  .container-home h4, .container-home .h4 {
+    font-size: 40px !important;
+  }
 }
