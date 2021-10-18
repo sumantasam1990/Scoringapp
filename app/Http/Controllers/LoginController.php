@@ -66,9 +66,9 @@ class LoginController extends Controller
         $data = $request->all();
         $user = $this->create($data);
 
-        event(new Registered($user));
+        //event(new Registered($user));
 
-        return redirect("login")->with('msg', 'Thank you for signing up! We’ve sent you an email, please confirm your email to complete your sign up.');
+        return redirect("login")->with('msg', '<p>Please confirm your email to complete the sign up process. </p> <p>We have emailed you a verification</p> <p>Thank you</p> <p>Team Scorng</p>');
     }
 
     public function create(array $data)

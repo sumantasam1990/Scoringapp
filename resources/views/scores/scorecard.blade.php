@@ -11,20 +11,36 @@
             <div class="text-center">
                 <h2 class="display-4 text-center heading_txt">Scoreboard</h2>
 
+
+
                 <table class="table mt-6 scorecard-header-table table-bordered">
                     <tr>
                         <th colspan="4" style="border: none !important;">
                             <a class="btn btn-success btn-sm"
                                href="/applicant/{{ $applicants->id }}/{{ $subject->id }}">Open Applicant Profile</a>
+                            <span class="d-none d-sm-inline"> {{ $applicants->name }}</span>
+                            <p class="d-block d-sm-none">{{ $applicants->name }}</p>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            {{ $applicants->name }}
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
                         </th>
-                        <th>{{ $applicants->total }} </th>
+{{--                        <th>{{ $applicants->total }} </th>--}}
+                        <th>
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </th>
 
-                        <th>Criteria</th>
+                        <th>
+{{--                            Criteria--}}
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </th>
 
                     </tr>
 
@@ -137,7 +153,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            +3
+                            +3 <p class="sb-expect text-black-50">Greatly Exceeded Expectations</p>
                         </th>
                         <th>
 
@@ -248,7 +264,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            +2
+                            +2 <p class="sb-expect text-black-50">Exceeded Expectations</p>
                         </th>
                         <th>
 
@@ -359,7 +375,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            +1
+                            +1 <p class="sb-expect text-black-50">Slightly Exceeded Expectations</p>
                         </th>
                         <th>
 
@@ -470,7 +486,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            0
+                            0 <p class="sb-expect text-black-50">Met Expectations</p>
                         </th>
                         <th>
 
@@ -581,7 +597,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            -1
+                            -1 <p class="sb-expect text-black-50">Slightly Failed Expectations</p>
                         </th>
                         <th>
 
@@ -692,7 +708,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            -2
+                            -2 <p class="sb-expect text-black-50">Failed Expectations</p>
                         </th>
                         <th>
 
@@ -803,7 +819,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            -3
+                            -3 <p class="sb-expect text-black-50">Greatly Failed Expectations</p>
                         </th>
                         <th>
 

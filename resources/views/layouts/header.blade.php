@@ -39,9 +39,15 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/faq">FAQ</a>
                   </li>
+
                   <li class="nav-item">
-                    <a class="nav-link" href="/about">About US</a>
+                      @if (Auth::check())
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                      @else
+                          <a class="nav-link" href="/about">About us</a>
+                      @endif
                   </li>
+
 
                   @if (Auth::check())
                     <li class="nav-item dropdown">
@@ -49,8 +55,8 @@
                         <img style="width: 40px; border-radius: 4px; border: 3px solid #000;" src="https://datingshortcut.com/wp-content/themes/datingshortcut/images/user.svg">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
-                        <li><hr class="dropdown-divider"></li>
+{{--                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>--}}
+{{--                        <li><hr class="dropdown-divider"></li>--}}
                         <li><a class="dropdown-item" href="/signout">Logout</a></li>
                         </ul>
                     </li>

@@ -11198,6 +11198,20 @@ footer ul li a {
   border-top: 1px solid #000;
 }
 
+.table td {
+  width: 130px !important;
+}
+
+.sb-expect {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.subheading {
+  width: 500px;
+  margin: 0 auto;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 800px) {
   .btn {
     margin: 5px;
@@ -11205,5 +11219,10 @@ footer ul li a {
 
   .container-home h4, .container-home .h4 {
     font-size: 40px !important;
+  }
+
+  .subheading {
+    width: 100%;
+    margin: 0 auto;
   }
 }

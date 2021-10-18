@@ -1,13 +1,13 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container home">
+<div class="container home mt-4">
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <div class="text-center mt-4">
                 <h1 class="display-3 fw-bolder">A scoring system that enables
                     you to hire the best applicant.</h1>
-                <p class="fw-bold mt-3 text-center">A scoring system is objectively the most effective and efficient way to choose the most qualified applicant.</p>
+                <p class="fw-bold mt-3 text-center subheading">A scoring system is objectively the most effective and efficient way to choose the most qualified applicant.</p>
                 <a class="btn btn-info btn-lg mt-4" href="/registration">Sign Up Now</a>
                 <p class="mt-3">No long-term commitment, month-to month plans.</p>
             </div>

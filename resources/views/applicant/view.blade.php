@@ -97,10 +97,10 @@
 
             {{-- ------------------------score sheet----------------------------- --}}
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-md-2">
                         <h4><span class="fs-5">{{ $mainsubject->main_subject_name }}</span> <br/> {{ $subjs->subject_name }} </h4>
                     </div>
-                    <div class="col-10">
+                    <div class="col-md-10 col-12 mt-3">
                         <div class="text-right" style="float: right;">
 
                             <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scoreboard</a>
@@ -143,7 +143,7 @@
                     <thead>
                         <tr style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
                             <th>&nbsp;</th>
-                            <th>&nbsp;</th>
+{{--                            <th>&nbsp;</th>--}}
                             @foreach ($maincriterias as $main)
                             @php
 
@@ -165,7 +165,7 @@
                         </tr>
                         <tr>
                             <th>&nbsp;</th>
-                            <th>&nbsp;</th>
+{{--                            <th>&nbsp;</th>--}}
                             {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
                             @foreach ($subjects as $data)
                             <th style="text-align: center; border-left: 2px solid #000; ">
@@ -201,9 +201,35 @@
                         </tr> --}}
                         @foreach ( $applicants as $applicant )
                         <tr>
-                            <td style="border-bottom: 2px solid #000 !important; border-top: 2px solid #000 !important;" colspan="@php echo count($subjects) + 2; @endphp"> {{-- @php echo count($subjects) + 2; @endphp --}}
+                            <td style="border-right: 2px solid; border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                            > {{-- @php echo count($subjects) + 2; @endphp --}}
 
-                                <p class="fw-bold">{{ $applicant->name }} (Applicant)</p>
+                                <div style="font-size: 18px;" class="fw-bold">
+                                    <p class="fs-3"><a
+                                            style="color: #000; text-decoration: none;"
+                                            href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
+
+                                        </a>
+
+                                    </p>
+                                    <span>
+                                                            <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}">
+                                                            <img style="width: 30px; height: 30px;" src="{{ asset('images/scoreboard.png') }}">
+                                                            </a>
+                                                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </button>
+                                                        </span>
+                                </div>
+
+                            </td>
+                            @for($i=1; $i<=count($subjects)+1; $i++)
+                                <td style="@if($i < count($subjects)) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                                >
+
+                                </td>
+                        @endfor
+
                                 @php
                                 // getting users from subject id
                                 $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.id=teams.user_id) WHERE teams.subject_id = ?", [$subjs->id]);
@@ -212,14 +238,20 @@
 
                                 @foreach ($users as $user)
                                 <tr class="noBorder">
-                                    <td> <p>{{ $user->name }} </p></td>
-                                    <td>
-                                        @php
-                                            $total_sum = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE user_id = ? AND applicant_id = ? AND subject_id = ?", [$user->id,$applicant->id,$subjs->id]);
+                                    @php
+                                        $total_sum = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE user_id = ? AND applicant_id = ? AND subject_id = ?", [$user->id,$applicant->id,$subjs->id]);
 
-                                        @endphp
-                                        <p class="fw-bold" style="font-size: 42px; margin-top: -15px;">{{ $total_sum[0]->total }}</p>
-                                    </td>
+                                    @endphp
+                                    <td style="@if($total_sum[0]->total != '') text-align: left; @else text-align: left; @endif">
+                                        <p class="fw-bold">
+                                            {{ $user->name }} <br>
+                                            <span style="font-size: 42px; margin-left: 10px; margin-top: 10px;" class="fw-bold">{{ $total_sum[0]->total }}</span>
+                                            @if($total_sum[0]->total != '')
+                                                <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </button>
+                                            @endif
+                                        </p></td>
                                     {{-- <td style="border-left: 2px solid #000;">
                                         @php
 

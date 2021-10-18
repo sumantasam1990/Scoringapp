@@ -11,7 +11,7 @@
                 <a style="color: #138D07 !important;" class="text-dark" href="/scorepage-grid/{{$subjs->id}}"> <i class="bi bi-grid-fill"></i> <i onclick="show_info_modal('grid')" style="margin-left: 3px; font-size: 12px;" class="bi bi-info-circle-fill"></i></a>
             </div>
             <div class="">
-                <h2 class="display-4 text-left heading_txt">{{ $subjs->subject_name }} <span class="fs-4">{{ $mainsubject->main_subject_name }}</span></h2>
+                <h2 class="display-4 text-left heading_txt">{{ $subjs->subject_name }} <p class="fs-4 mt-3">{{ $mainsubject->main_subject_name }}</p></h2>
                 <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Scoring Page</h5>
 
 
@@ -57,7 +57,7 @@
                                         @endif
 
                                         <th>&nbsp;</th>
-                                        <th>&nbsp;</th>
+{{--                                        <th>&nbsp;</th>--}}
                                         @foreach ($maincriterias as $main)
                                             @php
 
@@ -80,7 +80,7 @@
                                     </tr>
                                     <tr>
                                         <th>&nbsp;</th>
-                                        <th>&nbsp;</th>
+{{--                                        <th>&nbsp;</th>--}}
                                         {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
                                         @foreach ($subjects as $data)
                                             <th style="text-align: center; border-left: 2px solid #000; ">
@@ -125,27 +125,18 @@
                                         <tr>
 {{--                                            border-bottom: 1px solid #ccc !important;--}}
 
-                                            <td style="border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                                            <td style="border-right: 2px solid; border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
                                                 > {{-- @php echo count($subjects) + 2; @endphp --}}
 
                                                 <div style="font-size: 18px;" class="fw-bold">
-                                                    <p><a
+                                                    <p class="fs-3"><a
                                                         style="color: #000; text-decoration: none;"
                                                         href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
 
                                                              </a>
 
                                                     </p>
-                                                </div>
-
-                                            </td>
-
-
-                                        @for($i=1; $i<=count($subjects)+1; $i++)
-                                                <td style="@if($i < count($subjects)+1) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
-                                                >
-                                                        @if($i == 1)
-                                                        <span>
+                                                    <span>
                                                             <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}">
                                                             <img style="width: 30px; height: 30px;" src="{{ asset('images/scoreboard.png') }}">
                                                             </a>
@@ -153,7 +144,15 @@
                                                                         <i class="fas fa-info-circle"></i>
                                                                     </button>
                                                         </span>
-                                                        @endif
+                                                </div>
+
+                                            </td>
+
+
+                                        @for($i=1; $i<=count($subjects)+1; $i++)
+                                                <td style="@if($i < count($subjects)) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                                                >
+
                                                 </td>
                                         @endfor
 
@@ -170,26 +169,25 @@
                                                     $total_sum = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE user_id = ? AND applicant_id = ? AND subject_id = ?", [$user->id,$applicant->id,$subjs->id]);
 
                                                 @endphp
-                                                <td style="@if($total_sum[0]->total != '') text-align: right; @else text-align: left; @endif"><p>{{ $user->name }} </p></td>
-                                                <td style="text-align: left; vertical-align: middle !important;">
-
-                                                    <p class="fw-bold"
-                                                       style="font-size: 42px;">{{ $total_sum[0]->total }}
+                                                <td style="@if($total_sum[0]->total != '') text-align: left; @else text-align: left; @endif">
+                                                    <p class="fw-bold">
+                                                        {{ $user->name }} <br>
+                                                        <span style="font-size: 42px; margin-left: 10px; margin-top: 10px;" class="fw-bold">{{ $total_sum[0]->total }}</span>
                                                         @if($total_sum[0]->total != '')
-                                                        <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
-                                                            <i class="fas fa-info-circle"></i>
-                                                        </button>
+                                                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                                <i class="fas fa-info-circle"></i>
+                                                            </button>
                                                         @endif
+                                                    </p></td>
+{{--                                                <td style="text-align: left; vertical-align: middle !important;">--}}
 
-                                                    </p>
-                                                </td>
-                                                {{-- <td style="border-left: 2px solid #000;">
-                                                    @php
+{{--                                                    <p class="fw-bold"--}}
+{{--                                                       style="font-size: 42px;">--}}
+{{--                                                       --}}
 
-                                                    $query = DB::select("select id from criterias where maincriteria_id = ?", [1]);
-                                                    @endphp
-                                                    <span class="fw-bold" style="font-size: 24px;">{{ $total_sum[0]->total }}</span>
-                                                </td> --}}
+{{--                                                    </p>--}}
+{{--                                                </td>--}}
+
                                                 @foreach ($subjects as $data)
 
                                                     <td style="border-left: 2px solid #000;">
