@@ -11,7 +11,9 @@
                 <a style="color: #138D07 !important;" class="text-dark" href="/scorepage-grid/{{$subjs->id}}"> <i class="bi bi-grid-fill"></i> <i onclick="show_info_modal('grid')" style="margin-left: 3px; font-size: 12px;" class="bi bi-info-circle-fill"></i></a>
             </div>
             <div class="">
-                <h2 class="display-4 text-left heading_txt">{{ $subjs->subject_name }} <p class="fs-4 mt-3">{{ $mainsubject->main_subject_name }}</p></h2>
+
+                @livewire('inlineedit', ['subject_name' => $subjs->subject_name, 'subject_id' => $subjs->id, 'main_subject_name' => $mainsubject->main_subject_name])
+
                 <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Scoring Page</h5>
 
 
@@ -83,8 +85,13 @@
 {{--                                        <th>&nbsp;</th>--}}
                                         {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
                                         @foreach ($subjects as $data)
-                                            <th style="text-align: center; border-left: 2px solid #000; ">
-                                                <p>{{ $data->title }}</p>
+                                            <th style="text-align: center; border-left: 2px solid #000; vertical-align: top; ">
+
+                                                @livewire('inlineeditcriteria', ['title' => $data->title, 'criteria_id' => $data->id])
+
+
+
+
                                                 @php
                                                     $exp = explode(",", $data->priority);
 
@@ -101,9 +108,13 @@
                                                         @endphp
 
                                                     @endif
-                                                    <label class="btn score-priority"
-                                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; "></label>
-
+{{--                                                    <label class="btn score-priority"--}}
+{{--                                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; "></label>--}}
+                                                        @if($data->note != '')
+                                                        <button style="font-size: 12px;" type="button" class="btn fw-light" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" title="Important Note" data-bs-content="{{ $data->note }}">
+                                                            "Important Note"
+                                                        </button>
+                                                        @endif
                                                 @endforeach
                                             </th>
                                         @endforeach
@@ -128,8 +139,8 @@
                                             <td style="border-right: 2px solid; border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
                                                 > {{-- @php echo count($subjects) + 2; @endphp --}}
 
-                                                <div style="font-size: 18px;" class="fw-bold">
-                                                    <p class="fs-3"><a
+                                                <div style="font-size: 18px;" class="fw-bold mb-3">
+                                                    <p class="fs-3 m-0"><a
                                                         style="color: #000; text-decoration: none;"
                                                         href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
 
@@ -140,10 +151,11 @@
                                                             <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}">
                                                             <img style="width: 30px; height: 30px;" src="{{ asset('images/scoreboard.png') }}">
                                                             </a>
-                                                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
-                                                                        <i class="fas fa-info-circle"></i>
-                                                                    </button>
+                                                                                                                        <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
+
                                                         </span>
+
                                                 </div>
 
                                             </td>
@@ -172,11 +184,15 @@
                                                 <td style="@if($total_sum[0]->total != '') text-align: left; @else text-align: left; @endif">
                                                     <p class="fw-bold">
                                                         {{ $user->name }} <br>
+
+                                                        <a style="color: #138D07 !important; font-size: 24px;" class="text-dark" href="/scorepage-grid/{{ $subjs->id }}/{{ $applicant->id }}"> <i class="bi bi-grid-fill"></i> </a>
+
+                                                        <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
+
                                                         <span style="font-size: 42px; margin-left: 10px; margin-top: 10px;" class="fw-bold">{{ $total_sum[0]->total }}</span>
                                                         @if($total_sum[0]->total != '')
-                                                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
-                                                                <i class="fas fa-info-circle"></i>
-                                                            </button>
+                                                            <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                         @endif
                                                     </p></td>
 {{--                                                <td style="text-align: left; vertical-align: middle !important;">--}}

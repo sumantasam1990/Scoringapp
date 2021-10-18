@@ -19,6 +19,12 @@
                     <div class="member-box text-center">
                         <img src="https://datingshortcut.com/wp-content/themes/datingshortcut/images/user.svg" style="object-fit: cover; width: 100%; height: 120px;">
                         <p class="fw-bold">{{ $team->name }}</p>
+{{--                        <p class="fs-6 text-danger">--}}
+{{--                        <form action="" method="delete">--}}
+{{--                            <input type="hidden" value="{{ $team->id }}">--}}
+{{--                            <button type="submit" @class('btn')><i class="fas fa-trash"></i></button>--}}
+{{--                        </form>--}}
+{{--                        </p>--}}
                     </div>
 
                 </div>

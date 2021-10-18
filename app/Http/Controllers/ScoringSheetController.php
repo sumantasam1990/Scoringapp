@@ -376,20 +376,31 @@ and s.applicant_id = ? and s.user_id = ?', [$id, $id, $appl_id, $subject->user_i
 
     }
 
-    public function gridView($id)
+    public function gridView(int $id, int $applicantId = null)
     {
-        $subject = Subject::where('id', '=', $id)
-            ->first();
+        try {
+            $subject = Subject::where('id', '=', $id)
+                ->first();
 
-        $criterias = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
+            $criterias = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 
-        $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subject->user_id, $id, $id]);
+            if($applicantId == null) {
+                $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subject->user_id, $id, $id]);
 
-        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
+            } else {
+                $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? AND d.id = ? ORDER BY total DESC', [$subject->user_id, $id, $id, $applicantId]);
+
+            }
+
+            $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
 
 
-        return view('scores.grid', ['title' => 'Score Page Grid View',
-            'subject' => $subject, 'applicants' => $applicants, 'maincriterias' => $maincriterias,
-            'criterias' => $criterias]);
+            return view('scores.grid', ['title' => 'Score Page Grid View',
+                'subject' => $subject, 'applicants' => $applicants, 'maincriterias' => $maincriterias,
+                'criterias' => $criterias]);
+        } catch (\Throwable $th) {
+            return abort(403);
+        }
+
     }
 }

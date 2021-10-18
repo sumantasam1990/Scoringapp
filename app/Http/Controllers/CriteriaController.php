@@ -60,7 +60,8 @@ class CriteriaController extends Controller
             'criteria' => 'required',
             'priority' => 'required',
             'subject'  => 'required',
-            'main'     => 'required'
+            'main'     => 'required',
+
         ]);
 
         $criteria = new Criteria;
@@ -69,6 +70,7 @@ class CriteriaController extends Controller
         $criteria->title = $request->criteria;
         $criteria->priority = $request->priority;
         $criteria->maincriteria_id = $request->main;
+        $criteria->note = $request->note;
 
         $criteria->save();
 

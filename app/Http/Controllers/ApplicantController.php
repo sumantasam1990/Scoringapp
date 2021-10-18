@@ -17,13 +17,15 @@ class ApplicantController extends Controller
 {
     public function index($id)
     {
+
         //get main subject name from subject ID
         $mainsubjectname = DB::table("mainsubjects")
             ->join("subjects", "mainsubjects.id", "=", "subjects.mainsubject_id")
             ->where("subjects.id", "=", $id)->first();
 
         $subject = Subject::whereId($id)->first();
-        //$subject = User::with('subject')->get();
+
+
 
         return view("applicant.index", ["title" => "Applicant", "subjects" => $subject, "mainsubjectname" => $mainsubjectname]);
     }

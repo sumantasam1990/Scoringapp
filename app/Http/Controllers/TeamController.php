@@ -16,7 +16,7 @@ class TeamController extends Controller
 
         $subject = Subject::find($id);
 
-        $teams = DB::select('SELECT users.name FROM teams LEFT JOIN users ON (users.id=teams.user_id) WHERE teams.subject_id = ?', [$id]);
+        $teams = DB::select('SELECT users.name, teams.id FROM teams LEFT JOIN users ON (users.id=teams.user_id) WHERE teams.subject_id = ?', [$id]);
 
         return view("team.index", ["title" => "Invite Team Members", "subject" => $subject, "teams" => $teams]);
 
