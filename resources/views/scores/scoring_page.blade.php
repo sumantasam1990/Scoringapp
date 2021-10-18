@@ -12,6 +12,9 @@
             </div>
             <div class="">
 
+
+
+
                 @livewire('inlineedit', ['subject_name' => $subjs->subject_name, 'subject_id' => $subjs->id, 'main_subject_name' => $mainsubject->main_subject_name])
 
                 <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Scoring Page</h5>
@@ -87,8 +90,8 @@
                                         @foreach ($subjects as $data)
                                             <th style="text-align: center; border-left: 2px solid #000; vertical-align: top; ">
 
-                                                @livewire('inlineeditcriteria', ['title' => $data->title, 'criteria_id' => $data->id])
 
+                                                @livewire('inlineeditcriteria', ['title' => $data->title, 'criteria_id' => $data->id])
 
 
 
