@@ -10,26 +10,26 @@
                     <a class="text-dark fw-bold fs-4" href="/privacy">Privacy Policy</a>
                 </li>
                 <li class="mt-3">
-                    <a class="text-dark fw-bold fs-4" href="">Terms Of Service</a>
+                    <a class="text-dark fw-bold fs-4" href="/terms">Terms Of Service</a>
                 </li>
                 <li class="mt-3">
-                    <a class="text-dark fw-bold fs-4" href="">Privacy Regulation Reference</a>
+                    <a class="text-dark fw-bold fs-4" href="/privacy-regulation">Privacy Regulation Reference</a>
                 </li>
                 <li class="mt-3">
-                    <a class="text-dark fw-bold fs-4" href="">Cancellation Policy</a>
+                    <a class="text-dark fw-bold fs-4" href="/cancellation-policy">Cancellation Policy</a>
                 </li>
                 <li class="mt-3">
-                    <a class="text-dark fw-bold fs-4" href="">Refund Policy</a>
+                    <a class="text-dark fw-bold fs-4" href="/refund">Refund Policy</a>
                 </li>
+{{--                <li class="mt-3">--}}
+{{--                    <a class="text-dark fw-bold fs-4" href="">Use Restriction Policy</a>--}}
+{{--                </li>--}}
                 <li class="mt-3">
-                    <a class="text-dark fw-bold fs-4" href="">Use Restriction Policy</a>
+                    <a class="text-dark fw-bold fs-4" href="/security">Security Overview</a>
                 </li>
-                <li class="mt-3">
-                    <a class="text-dark fw-bold fs-4" href="">Security Overview</a>
-                </li>
-                <li class="mt-3">
-                    <a class="text-dark fw-bold fs-4" href="">Account Ownership</a>
-                </li>
+{{--                <li class="mt-3">--}}
+{{--                    <a class="text-dark fw-bold fs-4" href="">Account Ownership</a>--}}
+{{--                </li>--}}
             </ul>
 
         </div>

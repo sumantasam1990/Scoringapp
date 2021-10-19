@@ -42,6 +42,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  * @mixin \Eloquent
+ * @property string|null $user_type
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUserType($value)
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -59,6 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'user_type',
     ];
 
     /**

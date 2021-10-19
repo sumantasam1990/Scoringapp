@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Criteria whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Criteria whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $note
+ * @method static \Illuminate\Database\Eloquent\Builder|Criteria whereNote($value)
  */
 class Criteria extends Model
 {

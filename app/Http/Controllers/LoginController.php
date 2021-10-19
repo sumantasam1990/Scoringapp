@@ -22,16 +22,6 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
 
-        // Retrieve the currently authenticated user...
-        //$user = Auth::user();
-
-        // Retrieve the currently authenticated user's ID...
-        //$id = Auth::id();
-
-        // if (Auth::check()) {
-        //     // The user is logged in...
-        // }
-
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -41,7 +31,14 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, true)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            if (Auth::user()->user_type == 'Administrator')
+            {
+                return redirect()->intended('admin/dashboard');
+            } else {
+                return redirect()->intended('dashboard');
+            }
+
+
         }
 
         return back()->withErrors([

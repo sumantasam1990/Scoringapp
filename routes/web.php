@@ -29,10 +29,20 @@ Route::get('/sign-up-my-company', [\App\Http\Controllers\PagesController::class,
 Route::get('/invited-to-join', [\App\Http\Controllers\PagesController::class, 'invitedtojoin']);
 Route::get('/features', [\App\Http\Controllers\PagesController::class, 'features']);
 Route::get('/faq', [\App\Http\Controllers\PagesController::class, 'faq']);
+Route::get('/faqs/{id}', [\App\Http\Controllers\PagesController::class, 'faqs']);
 Route::get('/about', [\App\Http\Controllers\PagesController::class, 'about']);
 Route::get('/pricing', [\App\Http\Controllers\PagesController::class, 'pricing']);
 Route::get('/legal', [\App\Http\Controllers\PagesController::class, 'legal']);
 Route::get('/privacy', [\App\Http\Controllers\PagesController::class, 'privacy']);
+Route::get('/terms', [\App\Http\Controllers\PagesController::class, 'terms']);
+Route::get('/privacy-regulation', [\App\Http\Controllers\PagesController::class, 'regulation']);
+Route::get('/cancellation-policy', [\App\Http\Controllers\PagesController::class, 'cancellation']);
+Route::get('/refund', [\App\Http\Controllers\PagesController::class, 'refund']);
+Route::get('/security', [\App\Http\Controllers\PagesController::class, 'security']);
+Route::get('/contact', [\App\Http\Controllers\PagesController::class, 'contact']);
+Route::post('contact/us', [\App\Http\Controllers\PagesController::class, 'sendemailToContact'])->name('contact.us');
+
+
 
 
 Route::get('/create-subject', [SubjectController::class, 'index'])->name('create.subject')->middleware(['auth', 'verified']);
@@ -77,6 +87,7 @@ Route::post('store/roomname', [\App\Http\Controllers\MessageController::class, '
 
 
 
+
 // authentications
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('custom-login', [LoginController::class, 'authenticate'])->name('login.custom');
@@ -102,3 +113,23 @@ Route::post('/email/verification-notification', function (Request $request) {
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+
+
+//Admin Routes
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('admin/dashboard', [\App\Http\Controllers\admin\AdminController::class, 'dashboard']);
+    Route::get('admin/applicants', [\App\Http\Controllers\admin\AdminController::class, 'applicants']);
+    Route::get('admin/faqs', [\App\Http\Controllers\admin\AdminController::class, 'faqs']);
+
+
+
+
+
+    Route::post('admin/faqs/store', [\App\Http\Controllers\admin\AdminController::class, 'faqsStore'])->name('admin.faqs.store');
+
+
+
+});
