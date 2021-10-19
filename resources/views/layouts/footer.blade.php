@@ -57,7 +57,7 @@
                 <p class="fw-bold">Legal</p>
                 <ul>
                     <li>
-                        <a href="">Legal Stuff</a>
+                        <a href="/legal">Legal Stuff</a>
                     </li>
                     <li>
                         &nbsp;

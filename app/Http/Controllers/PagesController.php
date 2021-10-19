@@ -39,4 +39,19 @@ class PagesController extends Controller
     {
         return view('pages.about', ['title' => 'About']);
     }
+
+    public function pricing()
+    {
+        return view('pages.pricing', ['title' => 'Pricing']);
+    }
+
+    public function legal()
+    {
+        return view('pages.legal', ['title' => 'Legal']);
+    }
+
+    public function privacy()
+    {
+        return view('pages.privacy', ['title' => 'Privacy']);
+    }
 }

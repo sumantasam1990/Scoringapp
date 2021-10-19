@@ -30,6 +30,9 @@ Route::get('/invited-to-join', [\App\Http\Controllers\PagesController::class, 'i
 Route::get('/features', [\App\Http\Controllers\PagesController::class, 'features']);
 Route::get('/faq', [\App\Http\Controllers\PagesController::class, 'faq']);
 Route::get('/about', [\App\Http\Controllers\PagesController::class, 'about']);
+Route::get('/pricing', [\App\Http\Controllers\PagesController::class, 'pricing']);
+Route::get('/legal', [\App\Http\Controllers\PagesController::class, 'legal']);
+Route::get('/privacy', [\App\Http\Controllers\PagesController::class, 'privacy']);
 
 
 Route::get('/create-subject', [SubjectController::class, 'index'])->name('create.subject')->middleware(['auth', 'verified']);
