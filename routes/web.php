@@ -131,5 +131,21 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('admin/faqs/store', [\App\Http\Controllers\admin\AdminController::class, 'faqsStore'])->name('admin.faqs.store');
 
 
+    // artisan command
+
+    Route::get('admin/clear_cache', function () {
+
+        try {
+            \Illuminate\Support\Facades\Artisan::call('cache:clear');
+            \Illuminate\Support\Facades\Artisan::call('config:cache');
+
+            dd("Config && Cache is cleared");
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
+
+
+    });
+
 
 });

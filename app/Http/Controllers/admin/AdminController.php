@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Applicant;
 use App\Models\Faq;
-use App\Models\faqscategory;
+use App\Models\Faqscategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 
