@@ -8,7 +8,14 @@
         <div class="col-xxl-3 col-xl-3 col-lg-2 col-md-2"></div>
         <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
             <div class="">
-                <h2 class="display-4 text-center heading_txt">Create An Applicant</h2>
+                <h2 class="display-4 text-center heading_txt">Create An Applicant
+
+                    <i
+                        style="text-align: center !important; font-size: 14px;"
+                        data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="top" data-bs-content="This is how you add an applicant to your Scorng account and to a Score Page. Simply click the button and open the page to enter in their name, email address, phone number and add any files and notes associated with this Applicant. Only the Main Team Member can add an Applicant. Team Members who have been invited, cannot add an Applicant" class="fas fa-info-circle"></i>
+
+                </h2>
 {{--                <h6 style="margin-top: -5px;" class="display-7 text-center heading_txt">Add simple things like the name,--}}
 {{--                    photo, email and phone number.</h6>--}}
                 <p class="display-6 text-center heading_txt">{{ $mainsubjectname->main_subject_name }}</p>

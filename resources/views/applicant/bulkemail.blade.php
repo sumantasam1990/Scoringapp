@@ -13,7 +13,15 @@
 
                 <div @class("row")>
                     <div @class("col-md-6")>
-                        <h4 class="display-7 heading_txt">Email List</h4>
+                        <h4 class="display-7 heading_txt">Email List
+
+
+                            <i
+                                style="text-align: center !important; font-size: 14px;"
+                                data-bs-container="body" data-bs-toggle="popover"
+                                data-bs-placement="top" data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting." class="fas fa-info-circle"></i>
+
+                        </h4>
                     </div>
                     <div @class("col-md-6") style="float:right;">
                         <form action="{{ route("export-emails") }}" method="post" style="float:right;">

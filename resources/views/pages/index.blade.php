@@ -8,7 +8,7 @@
                 <h1 class="display-3 fw-bolder">A scoring system that enables
                     you to hire the best applicant.</h1>
                 <p class="fw-bold mt-3 text-center subheading">A scoring system is objectively the most effective and efficient way to choose the most qualified applicant.</p>
-                <a class="btn btn-info btn-lg mt-4" href="/registration">Sign Up Now</a>
+                <a class="btn btn-info btn-lg mt-4" href="/signup">Sign Up Now</a>
                 <p class="mt-3">No long-term commitment, one time annual payment.</p>
             </div>
         </div>
@@ -52,7 +52,7 @@
             <div class="col-12 text-center">
                 <h4 class="fw-bold display-5">Your Expectations.</h4>
                 <p>View whether an applicant met your expectations, exceeded or failed to met or exceed your <br/> expectations, by how much and how many times.</p>
-                <a style="color: #0CABA8;" class="btn btn-light btn-lg fw-bold mt-4" href="/registration">Sign Up Today</a>
+                <a style="color: #0CABA8;" class="btn btn-light btn-lg fw-bold mt-4" href="/signup">Sign Up Today</a>
             </div>
         </div>
     </div>
@@ -62,46 +62,31 @@
 <div class="container mt-6 container-home">
     <div class="row">
         <div class="col-12 text-center">
-            <h4 class="fw-bold display-4">Our Prices</h4>
-            <p>We offer promo codes for 66% off.</p>
+            <h4 class="fw-bold display-4">One Simple Price</h4>
+            <p>Month-to-Month. No long term commitment </p>
         </div>
     </div>
     <div class="row mt-4">
         <div class="col-md-4 mb-3">
-            <div class="box-black text-center">
-                <h4 class="display-4 fw-bold">$99</h4>
-                <p class="fw-bold">Monthly</p>
-                <div class="m-0">
-                    <p class="m-2 fw-bold fs-6">Up to 500 Applicants</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Email Lists</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>
-                </div>
-                <a class="btn btn-dark mt-4" href="/registration">Sign Up Now</a>
-            </div>
+{{--            <div class="box-black text-center">--}}
+{{--                <h4 class="display-4 fw-bold">$99</h4>--}}
+{{--                <p class="fw-bold">Monthly</p>--}}
+{{--                <div class="m-0">--}}
+{{--                    <p class="m-2 fw-bold fs-6">Up to 500 Applicants</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Email Lists</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>--}}
+{{--                </div>--}}
+{{--                <a class="btn btn-dark mt-4" href="/registration">Sign Up Now</a>--}}
+{{--            </div>--}}
         </div>
         <div class="col-md-4 mb-3">
             <div class="box-black text-center">
-                <h4 class="display-4 fw-bold">$199</h4>
+                <h4 class="display-4 fw-bold">$29</h4>
                 <p class="fw-bold">Monthly</p>
-                <div class="m-0">
-                    <p class="m-2 fw-bold fs-6">Up to 2,000 Applicants</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Email Lists</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>
-                    <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>
-                </div>
-                <a class="btn btn-dark mt-4" href="/registration">Sign Up Now</a>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="box-black text-center">
-                <h4 class="display-5 fw-bold">Contact <br> Sales</h4>
                 <div class="m-0">
                     <p class="m-2 fw-bold fs-6">Unlimited Applicants</p>
                     <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>
@@ -111,9 +96,24 @@
                     <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>
                     <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>
                 </div>
-
-                <a class="btn btn-dark mt-4" href="/registration">Sign Up Now</a>
+                <a class="btn btn-dark mt-4" href="/signup">Sign Up Now</a>
             </div>
+        </div>
+        <div class="col-md-4 mb-3">
+{{--            <div class="box-black text-center">--}}
+{{--                <h4 class="display-5 fw-bold">Contact <br> Sales</h4>--}}
+{{--                <div class="m-0">--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Applicants</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Email Lists</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>--}}
+{{--                    <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>--}}
+{{--                </div>--}}
+
+{{--                <a class="btn btn-dark mt-4" href="/registration">Sign Up Now</a>--}}
+{{--            </div>--}}
         </div>
     </div>
 </div>
@@ -125,7 +125,7 @@
             <div class="col-12 text-center">
                 <h4 class="fw-bold display-5">Applicant Profiles.</h4>
                 <p>Keep any files, notes and more for each applicant in their profile. One-click accessibility.</p>
-                <a style="color: #FF3F3F;" class="btn btn-light btn-lg fw-bold mt-4" href="/registration">Sign Up Today</a>
+                <a style="color: #FF3F3F;" class="btn btn-light btn-lg fw-bold mt-4" href="/signup">Sign Up Today</a>
             </div>
         </div>
     </div>
@@ -155,7 +155,7 @@
             <div class="col-12 text-center">
                 <h4 class="fw-bold display-5">Bulk, One-Click Email</h4>
                 <p>We have super powerful features in the works that will help you choose the best possible applicant.</p>
-                <a style="color: #370143;" class="btn btn-light btn-lg fw-bold mt-4" href="/registration">Sign Up Today</a>
+                <a style="color: #370143;" class="btn btn-light btn-lg fw-bold mt-4" href="/signup">Sign Up Today</a>
             </div>
         </div>
     </div>
@@ -170,7 +170,7 @@
             <p class="mt-3">
                 Invite as many other Team Members as possible so you can always get many other scores based on other's opinions of each applicant. This will ultimately help you give the most accurate or deserving score to each applicant, which will help you hire the most qualified applicant.
         </div>
-        <div class="col-md-6 mt-2">
+        <div class="col-md-6 mt-md-2 mt-4">
             <img src="{{ asset('images/star (1).webp') }}" style="width: 80px; ">
             <h4 class="fw-bold mt-4">Best Score</h4>
             <p class="mt-3">
@@ -199,7 +199,7 @@
             <div class="col-12 text-center">
                 <h4 class="fw-bold display-5">Sign Up Now</h4>
                 <p>Start choosing the best qualified applicant with Scorng today!</p>
-                <a style="color: #FE2301;" class="btn btn-light btn-lg fw-bold mt-4" href="/registration">Sign Up Today</a>
+                <a style="color: #FE2301;" class="btn btn-light btn-lg fw-bold mt-4" href="/signup">Sign Up Today</a>
             </div>
         </div>
     </div>

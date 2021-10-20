@@ -8,7 +8,14 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div class="">
-            <h2 class="display-4 text-center heading_txt">Applicant Page</h2>
+            <h2 class="display-4 text-center heading_txt">Applicant Page
+                <i style="font-size: 15px;" data-bs-container="body"
+                   data-bs-toggle="popover"
+                   data-bs-placement="top"
+                   data-bs-content="This is the page where everything associated with an Applicant can be accessed. From each of the Score Pages, to any files and notes and personal contact information." class="fas fa-info-circle"></i>
+
+
+            </h2>
 
             <div class="row mt-6">
                 <div class="col-6">
@@ -103,13 +110,47 @@
                     <div class="col-md-10 col-12 mt-3">
                         <div class="text-right" style="float: right;">
 
-                            <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scoreboard</a>
-                            <a class="btn btn-success btn-sm" href="/score-page/{{ $subjs->id }}">Score Page</a>
+                            <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scoreboard
+
+                                <i data-bs-container="body"
+                                   data-bs-toggle="popover"
+                                   data-bs-placement="top"
+                                   data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below. <br>
+
+These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.<br><br>
+
+<p>Greatly Exceeded Expectations </p>
+<p>Exceeded Expectations </p>
+<p>Slightly Exceeded Expectations </p>
+<p>Met Expectations </p>
+<p>Slightly Failed Expectations </p>
+<p>Failed Expectations </p>
+<p>Greatly Failed Expectations </p>
+" class="fas fa-info-circle"></i>
+                            </a>
+                            <a class="btn btn-success btn-sm" href="/score-page/{{ $subjs->id }}">Score Page
+
+                                <i style="font-size: 15px;" data-bs-container="body"
+                                   data-bs-toggle="popover"
+                                   data-bs-placement="top"
+                                   data-bs-content="This is the page where you can actually give scores to each Applicant. This first step is to add Criteria, get as detailed as possible so the score that you give each Applicant represents the most detail and in turn represents who is the most qualified Applicant to hire.<br><br>
+
+The second step is to add and Applicant, and finally is to actually give one of 7 scores to each Applicant within each Criteria." class="fas fa-info-circle"></i>
+
+
+                            </a>
                             <form action="{{ route('add-emaillist') }}" method="post" @class('d-inline')>
                                 @csrf
                                 <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
                                 <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>
-                                <button type="submit" @class('btn btn-success btn-sm')>Add To Bulk Email List</button>
+                                <button type="submit" @class('btn btn-success btn-sm')>Add To Bulk Email List
+
+                                    <i data-bs-container="body"
+                                       data-bs-toggle="popover"
+                                       data-bs-placement="top"
+                                       data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting." class="fas fa-info-circle"></i>
+
+                                </button>
                             </form>
 
                             <form action="{{ route('remove-applicant') }}" method="post" @class('d-inline') onsubmit="return confirm('Are you sure?')">
@@ -128,10 +169,25 @@
                                     @csrf
                                     <input type="hidden" name="subid" value="{{ $subjs->id }}">
                                     <input type="hidden" name="appl_id" value="{{ $applicants[0]->id }}">
-                                    <button type="submit" class="btn btn-success btn-sm">Add To Finalist List</button>
+                                    <button type="submit" class="btn btn-success btn-sm">Add To Finalist List
+
+                                        <i data-bs-container="body"
+                                           data-bs-toggle="popover"
+                                           data-bs-placement="top"
+                                           data-bs-content="A Finalist Page is simply another Score Page but for applicants that you will be considering hiring. Think of this as applicants who have passed the initial hiring stage and now have moved one step closer to actually being chosen for the position. You can add an unlimited number of applicants to the Finalist Page. Each Score Page has it’s own dedicated Finalist Page." class="fas fa-info-circle"></i>
+
+                                    </button>
                                 </form>
                             @else
-                                <a class="btn btn-success btn-sm" href="/finalists/{{ $subjs->id }}"> Go Finalist List</a>
+                                <a class="btn btn-success btn-sm" href="/finalists/{{ $subjs->id }}"> Go Finalist List
+
+                                    <i data-bs-container="body"
+                                       data-bs-toggle="popover"
+                                       data-bs-placement="top"
+                                       data-bs-content="A Finalist Page is simply another Score Page but for applicants that you will be considering hiring. Think of this as applicants who have passed the initial hiring stage and now have moved one step closer to actually being chosen for the position. You can add an unlimited number of applicants to the Finalist Page. Each Score Page has it’s own dedicated Finalist Page." class="fas fa-info-circle"></i>
+
+
+                                </a>
                             @endif
                         </div>
 
@@ -221,7 +277,21 @@
                                                             <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}">
                                                             <img style="width: 30px; height: 30px;" src="{{ asset('images/scoreboard.png') }}">
                                                             </a>
-                                                              <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
+                                        <i data-bs-container="body"
+                                           data-bs-toggle="popover"
+                                           data-bs-placement="top"
+                                           data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>
+
+These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.
+<br><br>
+<p>Greatly Exceeded Expectations</p>
+<p>Exceeded Expectations</p>
+<p>Slightly Exceeded Expectations</p>
+<p>Met Expectations</p>
+<p>Slightly Failed Expectations</p>
+<p>Failed Expectations</p>
+<p>Greatly Failed Expectations</p>"class="fas fa-info-circle"></i>
 
                                                         </span>
                                 </div>
@@ -268,7 +338,7 @@
                                             <div class="number_tota_l"><i
                                                     style="text-align: center !important; font-size: 14px;"
                                                     data-bs-container="body" data-bs-toggle="popover"
-                                                    data-bs-placement="top" data-bs-content="Top popover"
+                                                    data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
                                                     class="fas fa-info-circle icon-left"></i></div>
                                             @endif
 

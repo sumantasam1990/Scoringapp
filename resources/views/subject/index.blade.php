@@ -8,7 +8,14 @@
         <div class="col-xxl-3 col-xl-3 col-lg-2 col-md-2"></div>
         <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
             <div class="">
-            <h2 class="display-4 text-center heading_txt">Create A Subject</h2>
+            <h2 class="display-4 text-center heading_txt">Create A Subject
+
+                <i
+                    style="text-align: center !important; font-size: 14px;"
+                    data-bs-container="body" data-bs-toggle="popover"
+                    data-bs-placement="top" data-bs-content="Subjects are a way to organize where Applicants will be added within your Scorng account. A Subject is broken into two parts, a Main Subject and a Sub Subject. For example, the Main Subject can be something like the store or location where the new Applicant for which you’re hiring, will be working. For example the Sub Subject can be the actual position for which you’re hiring." class="fas fa-info-circle"></i>
+
+            </h2>
             <div class="box mt-6">
                 <form action="{{ route('subject.store') }}" method="post">
                     @csrf

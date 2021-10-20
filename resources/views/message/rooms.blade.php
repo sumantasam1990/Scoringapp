@@ -10,7 +10,14 @@
 
             <div @class('row')>
                 <div class="col-md-6">
-                    <h2 class="display-6 text-left heading_txt">Message Room List</h2>
+                    <h2 class="display-6 text-left heading_txt">Message Room List
+
+                        <i
+                            style="text-align: center !important; font-size: 14px;"
+                            data-bs-container="body" data-bs-toggle="popover"
+                            data-bs-placement="top" data-bs-content="Message Rooms allows you to discuss in detail various aspects about anything associated with a Score Page. So you can discuss the criteria, applicants, scores and more. Each Score Page has it’s own set of Message Rooms. So you can create an unlimited number of Message Rooms for each detailed topic so you and your Team Members stay organized and remember what you discussed." class="fas fa-info-circle"></i>
+
+                    </h2>
                     <h4 class="fs-4">{{ $mainsubject->main_subject_name }}</h4>
                     <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $subject->subject_name }}</h5>
 

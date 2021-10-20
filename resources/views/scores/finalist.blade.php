@@ -8,7 +8,14 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div class="">
-                <h2 class="display-4 text-left heading_txt">Finalists Page</h2>
+                <h2 class="display-4 text-left heading_txt">Finalists Page
+
+                    <i
+                        style="text-align: center !important; font-size: 14px;"
+                        data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="top" data-bs-content="A Finalist Page is simply another Score Page but for applicants that you will be considering hiring. Think of this as applicants who have passed the initial hiring stage and now have moved one step closer to actually being chosen for the position. You can add an unlimited number of applicants to the Finalist Page. Each Score Page has it’s own dedicated Finalist Page." class="fas fa-info-circle"></i>
+
+                </h2>
                 <h4 class="fs-4 text-left heading_txt">{{ $mainsubject->main_subject_name }}</h4>
                 <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $subjs->subject_name }}</h5>
 
@@ -18,8 +25,23 @@
                     {{-- <a href="/create-applicant/{{ $subjs->id }}" class="btn btn-success btn-sm">Add Applicant</a> --}}
                     {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
                     {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Page</a> --}}
-                    <a href="/score-page/{{$subjs->id}}" class="btn btn-success btn-sm">Score Page</a>
-                    <a href="/bulkemaillist/{{ $subjs->id }}" class="btn btn-success btn-sm">Bulk Email List</a>
+                    <a href="/score-page/{{$subjs->id}}" class="btn btn-success btn-sm">Score Page
+
+                        <i
+                            style="text-align: center !important; font-size: 14px;"
+                            data-bs-container="body" data-bs-toggle="popover"
+                            data-bs-placement="top" data-bs-content="This is the page where you can actually give scores to each Applicant. This first step is to add Criteria, get as detailed as possible so the score that you give each Applicant represents the most detail and in turn represents who is the most qualified Applicant to hire.<br>The second step is to add and Applicant, and finally is to actually give one of 7 scores to each Applicant within each Criteria." class="fas fa-info-circle"></i>
+
+                    </a>
+                    <a href="/bulkemaillist/{{ $subjs->id }}" class="btn btn-success btn-sm">Bulk Email List
+
+
+                        <i
+                            style="text-align: center !important; font-size: 14px;"
+                            data-bs-container="body" data-bs-toggle="popover"
+                            data-bs-placement="top" data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting." class="fas fa-info-circle"></i>
+
+                    </a>
                    {{-- <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member</a>
                     <a href="/create-applicant" class="btn btn-success btn-sm">Message Room</a> --}}
                     </div>
@@ -113,7 +135,20 @@
                                                             <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}">
                                                             <img style="width: 30px; height: 30px;" src="{{ asset('images/scoreboard.png') }}">
                                                             </a>
-                                                                                                                    <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                                                                                                                    <i data-bs-container="body"
+                                                                                                                       data-bs-toggle="popover"
+                                                                                                                       data-bs-placement="top"
+                                                                                                                       data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>
+
+These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.
+<br><br>
+<p>Greatly Exceeded Expectations</p>
+<p>Exceeded Expectations</p>
+<p>Slightly Exceeded Expectations</p>
+<p>Met Expectations</p>
+<p>Slightly Failed Expectations</p>
+<p>Failed Expectations</p>
+<p>Greatly Failed Expectations</p>"class="fas fa-info-circle"></i>
 
                                                         </span>
                                             </div>
@@ -157,11 +192,13 @@
                                                     {{ $total_sum[0]->total }}
 
                                                     @if($total_sum[0]->total != '')
-                                                        <div class="number_tota_l"><i
+                                                        <div class="number_tota_l">
+                                                            <i
                                                                 style="text-align: center !important; font-size: 14px;"
                                                                 data-bs-container="body" data-bs-toggle="popover"
-                                                                data-bs-placement="top" data-bs-content="Top popover"
-                                                                class="fas fa-info-circle icon-left"></i></div>
+                                                                data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
+                                                                class="fas fa-info-circle icon-left"></i>
+                                                        </div>
                                                         @endif
 
 

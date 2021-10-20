@@ -7,7 +7,14 @@
     <div class="row">
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 mb-4">
-            <h2 class="display-4 text-left heading_txt">Invite Team Members</h2>
+            <h2 class="display-4 text-left heading_txt">Invite Team Members
+
+                <i
+                    style="text-align: center !important; font-size: 14px;"
+                    data-bs-container="body" data-bs-toggle="popover"
+                    data-bs-placement="top" data-bs-content="Team Members allow you to add anyone who you would like to also score applicants. This way you can hear other people’s opinions so that you can make a more comprehensive hiring decision. " class="fas fa-info-circle"></i>
+
+            </h2>
             <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $subject->subject_name }}</h5>
             <h2 class="display-4 text-left heading_txt mt-4">Team Members</h2>
             <hr />

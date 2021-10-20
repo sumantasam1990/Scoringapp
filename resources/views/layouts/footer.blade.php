@@ -12,7 +12,7 @@
                         <a href="/pricing">Pricing</a>
                     </li>
                     <li>
-                        <a href="/registration">Sign Up</a>
+                        <a href="/signup">Sign Up</a>
                     </li>
                     <li>
                         <a href="/login">Login</a>
@@ -108,7 +108,7 @@
 
 <script>
     $(function () {
-        $('[data-bs-toggle="popover"]').popover({ trigger: "hover" })
+        $('[data-bs-toggle="popover"]').popover({ trigger: "hover", html: true })
     })
 
     $('body').on('click', function (e) {
@@ -122,7 +122,11 @@
 
     if ($(window).width() < 700) {
         $(document).ready(function () {
-            $("#mob_message").modal('show');
+            if(localStorage.getItem('mob_alert') != 'done') {
+                $("#mob_message").modal('show');
+                localStorage.setItem('mob_alert', "done");
+            }
+
         })
     }
 

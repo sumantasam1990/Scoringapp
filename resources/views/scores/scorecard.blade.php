@@ -9,7 +9,24 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div class="text-center">
-                <h2 class="display-4 text-center heading_txt">Scoreboard</h2>
+                <h2 class="display-4 text-center heading_txt">Scoreboard
+
+                    <i
+                        style="text-align: center !important; font-size: 14px;"
+                        data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="top" data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below. <br><br>
+
+These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.<br><br>
+
+<p>Greatly Exceeded Expectations </p>
+<p>Exceeded Expectations </p>
+<p>Slightly Exceeded Expectations </p>
+<p>Met Expectations </p>
+<p>Slightly Failed Expectations </p>
+<p>Failed Expectations </p>
+<p>Greatly Failed Expectations</p>" class="fas fa-info-circle"></i>
+
+                </h2>
 
 
 
@@ -24,20 +41,20 @@
                     </tr>
                     <tr>
                         <th>
-                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The first column has 7 numbers which represent each of the 7 scores that an Applicant can receive. Ranging from +3 to -3">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </th>
 {{--                        <th>{{ $applicants->total }} </th>--}}
                         <th>
-                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The second column allows you to see how many times this particular applicant received one of these 7 scores.">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </th>
 
                         <th>
 {{--                            Criteria--}}
-                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The third column allows you to see the actual criteria that the Applicant has received the score for.">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </th>

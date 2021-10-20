@@ -11,7 +11,7 @@
 
                 <div class="col-md-4 mt-4">
                     <div class="box-black-howitworks text-center">
-                        <h4 class="display-6 fw-bold">{{ $faqcategoryy->title }}</h4>
+                        <h4 class="fs-3 mt-3 fw-bold">{{ $faqcategoryy->title }}</h4>
                         <p @class('mt-4')><a class="btn btn-dark" href="/faqs/{{ $faqcategoryy->id }}">FAQs</a></p>
                     </div>
 

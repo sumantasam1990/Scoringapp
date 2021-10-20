@@ -24,7 +24,16 @@
                 @livewire('inlineedit', ['subject_name' => $subjs->subject_name, 'subject_id' => $subjs->id,
                 'main_subject_name' => $mainsubject->main_subject_name])
 
-                <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Scoring Page</h5>
+                <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Scoring Page
+
+                    <i
+                        style="text-align: center !important; font-size: 14px;"
+                        data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="top" data-bs-content="This is the page where you can actually give scores to each Applicant. This first step is to add Criteria, get as detailed as possible so the score that you give each Applicant represents the most detail and in turn represents who is the most qualified Applicant to hire.<br><br>
+
+The second step is to add and Applicant, and finally is to actually give one of 7 scores to each Applicant within each Criteria." class="fas fa-info-circle"></i>
+
+                </h5>
 
 
                 <div class="mt-4">
@@ -35,12 +44,12 @@
                             Applicant <i data-bs-container="body"
                                          data-bs-toggle="popover"
                                          data-bs-placement="top"
-                                         data-bs-content="Top popover" class="fas fa-info-circle"></i> </a>
+                                         data-bs-content="This is how you add an applicant to your Scorng account and to a Score Page. Simply click the button and open the page to enter in their name, email address, phone number and add any files and notes associated with this Applicant. Only the Main Team Member can add an Applicant. Team Members who have been invited, cannot add an Applicant." class="fas fa-info-circle"></i> </a>
                         <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Add Criteria
                             <i data-bs-container="body"
                                data-bs-toggle="popover"
                                data-bs-placement="top"
-                               data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                               data-bs-content="Criteria are ways to get into as much detail for the position that you’re hiring. It’s a great way to dissect for example a resume, an interview and more. There are Main Criteria and Sub Criteria. A Main Criteria could be, for example, the applicant’s job experience. A Sub Criteria, for example, could be for example, the applicant’s experience working with a particular software." class="fas fa-info-circle"></i>
                         </a>
                         {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
 
@@ -54,7 +63,7 @@
                                 <i data-bs-container="body"
                                    data-bs-toggle="popover"
                                    data-bs-placement="top"
-                                   data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                                   data-bs-content="This button simply allows you to delete this particular Score Page. Please remember that once you delete it, all of the data is permanently deleted and CANNOT be retrieved." class="fas fa-info-circle"></i>
 
                             </button>
                         </form>
@@ -63,25 +72,25 @@
                             <i data-bs-container="body"
                                data-bs-toggle="popover"
                                data-bs-placement="top"
-                               data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                               data-bs-content="A Finalist Page is simply another Score Page but for applicants that you will be considering hiring. Think of this as applicants who have passed the initial hiring stage and now have moved one step closer to actually being chosen for the position. You can add an unlimited number of applicants to the Finalist Page. Each Score Page has it’s own dedicated Finalist Page." class="fas fa-info-circle"></i>
                         </a>
                         <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Bulk Email List
                             <i data-bs-container="body"
                                data-bs-toggle="popover"
                                data-bs-placement="top"
-                               data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                               data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting." class="fas fa-info-circle"></i>
                         </a>
                         <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Add Team Member
                             <i data-bs-container="body"
                                data-bs-toggle="popover"
                                data-bs-placement="top"
-                               data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                               data-bs-content="Team Members allow you to add anyone who you would like to also score applicants. This way you can hear other people’s opinions so that you can make a more comprehensive hiring decision." class="fas fa-info-circle"></i>
                         </a>
                         <a href="/rooms/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Message Room
                             <i data-bs-container="body"
                                data-bs-toggle="popover"
                                data-bs-placement="top"
-                               data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                               data-bs-content="Message Rooms allows you to discuss in detail various aspects about anything associated with a Score Page. So you can discuss the criteria, applicants, scores and more. Each Score Page has it’s own set of Message Rooms. So you can create an unlimited number of Message Rooms for each detailed topic so you and your Team Members stay organized and remember what you discussed." class="fas fa-info-circle"></i>
                         </a>
 
 
@@ -206,8 +215,17 @@
                                                                                                                         <i data-bs-container="body"
                                                                                                                            data-bs-toggle="popover"
                                                                                                                            data-bs-placement="top"
-                                                                                                                           data-bs-content="Top popover"
-                                                                                                                           class="fas fa-info-circle"></i>
+                                                                                                                           data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>
+
+These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.
+<br><br>
+<p>Greatly Exceeded Expectations</p>
+<p>Exceeded Expectations</p>
+<p>Slightly Exceeded Expectations</p>
+<p>Met Expectations</p>
+<p>Slightly Failed Expectations</p>
+<p>Failed Expectations</p>
+<p>Greatly Failed Expectations</p>"class="fas fa-info-circle"></i>
 
 
                                                         </span>
@@ -263,7 +281,7 @@
                                                         <div class="number_tota_l"><i
                                                                 style="text-align: center !important; font-size: 14px;"
                                                                 data-bs-container="body" data-bs-toggle="popover"
-                                                                data-bs-placement="top" data-bs-content="Top popover"
+                                                                data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
                                                                 class="fas fa-info-circle icon-left"></i></div>
                                                         @endif
 
@@ -285,7 +303,7 @@
 
                                                     <td style="border-left: 2px solid #000; vertical-align: top">
 
-                                                        <div class="text-left">
+                                                        <div class="text-left" style="position: relative;">
                                                             @php
                                                                 $results = DB::select("SELECT scores.id,scores.score_number,subjects.subject_name,criterias.title,applicants.name FROM scores
                                                                 LEFT JOIN subjects ON (scores.subject_id=subjects.id)
@@ -299,7 +317,17 @@
                                                                 <a onclick="openModalCreateScore('{{$subjects[0]->subject->id}}', '{{$applicant->id}}', '{{$data->title}}', '{{$subjects[0]->subject->subject_name}}', '{{$applicant->name}}', '{{$data->id}}')"
                                                                    class="btn btn-link text-center"
                                                                    style="color: #138D07; font-weight: bold; font-size: 20px; text-decoration: none;"
-                                                                   href="#"><i class="fas fa-plus"></i></a>
+                                                                   href="#"><i class="fas fa-plus"></i>
+
+
+                                                                </a>
+
+                                                                <i data-bs-container="body"
+                                                                   data-bs-toggle="popover"
+                                                                   data-bs-placement="top"
+                                                                   data-bs-content="Click here to actually give a score to an applicant. Choose from one of 7 scores. You can always change the score by clicking on the colored rectangle which represents that score." class="fas fa-info-circle i_plus"></i>
+
+
                                                             @endif
 
                                                             @foreach ($results as $result)
