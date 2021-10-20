@@ -9,7 +9,7 @@
                     you to hire the best applicant.</h1>
                 <p class="fw-bold mt-3 text-center subheading">A scoring system is objectively the most effective and efficient way to choose the most qualified applicant.</p>
                 <a class="btn btn-info btn-lg mt-4" href="/registration">Sign Up Now</a>
-                <p class="mt-3">No long-term commitment, month-to month plans.</p>
+                <p class="mt-3">No long-term commitment, one time annual payment.</p>
             </div>
         </div>
         <div class="col-md-2"></div>
@@ -71,24 +71,48 @@
             <div class="box-black text-center">
                 <h4 class="display-4 fw-bold">$99</h4>
                 <p class="fw-bold">Monthly</p>
-                <p class="fw-bold">Up to 500 Applicants</p>
-                <a class="btn btn-dark" href="/registration">Sign Up Now</a>
+                <div class="m-0">
+                    <p class="m-2 fw-bold fs-6">Up to 500 Applicants</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Email Lists</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>
+                </div>
+                <a class="btn btn-dark mt-4" href="/registration">Sign Up Now</a>
             </div>
         </div>
         <div class="col-md-4 mb-3">
             <div class="box-black text-center">
                 <h4 class="display-4 fw-bold">$199</h4>
                 <p class="fw-bold">Monthly</p>
-                <p class="fw-bold">Up to 5,000 Applicants</p>
-                <a class="btn btn-dark" href="/registration">Sign Up Now</a>
+                <div class="m-0">
+                    <p class="m-2 fw-bold fs-6">Up to 2,000 Applicants</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Email Lists</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>
+                </div>
+                <a class="btn btn-dark mt-4" href="/registration">Sign Up Now</a>
             </div>
         </div>
         <div class="col-md-4 mb-3">
             <div class="box-black text-center">
                 <h4 class="display-5 fw-bold">Contact <br> Sales</h4>
-                <p class="fw-bold">Unlimited Applicants</p>
+                <div class="m-0">
+                    <p class="m-2 fw-bold fs-6">Unlimited Applicants</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Email Lists</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>
+                    <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>
+                </div>
 
-                <a class="btn btn-dark" href="/registration">Sign Up Now</a>
+                <a class="btn btn-dark mt-4" href="/registration">Sign Up Now</a>
             </div>
         </div>
     </div>
@@ -146,7 +170,7 @@
             <p class="mt-3">
                 Invite as many other Team Members as possible so you can always get many other scores based on other's opinions of each applicant. This will ultimately help you give the most accurate or deserving score to each applicant, which will help you hire the most qualified applicant.
         </div>
-        <div class="col-md-6 mt-4">
+        <div class="col-md-6 mt-2">
             <img src="{{ asset('images/star (1).webp') }}" style="width: 80px; ">
             <h4 class="fw-bold mt-4">Best Score</h4>
             <p class="mt-3">
@@ -174,7 +198,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <h4 class="fw-bold display-5">Sign Up Now</h4>
-                <p>Start choosing the best qualified applicant with our Scorng today!</p>
+                <p>Start choosing the best qualified applicant with Scorng today!</p>
                 <a style="color: #FE2301;" class="btn btn-light btn-lg fw-bold mt-4" href="/registration">Sign Up Today</a>
             </div>
         </div>

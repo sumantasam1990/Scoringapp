@@ -119,7 +119,7 @@ class ScoringSheetController extends Controller
 
         $metadata->save();
 
-        return redirect('/scoring-sheet/' . $request->sub)
+        return redirect('/score-page/' . $request->sub)
             ->with('msg', 'Score has been successfully added.');
     }
 
@@ -148,7 +148,7 @@ class ScoringSheetController extends Controller
         );
 
 
-        return view("scores.scoring_page", ["title" => "Scoring Page", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, "sid" => $id, 'mainsubject' => $mainsubject]);
+        return view("scores.scoring_page", ["title" => "Score Page", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, "sid" => $id, 'mainsubject' => $mainsubject]);
     }
 
     public function edit(Request $request)
@@ -215,7 +215,7 @@ class ScoringSheetController extends Controller
 
             $metadata->save();
 
-            return redirect('/scoring-sheet/' . $request->sub)
+            return redirect('/score-page/' . $request->sub)
                 ->with('msg', 'Score has been successfully updated.');
         } else {
             $scores_array = array(
@@ -285,6 +285,9 @@ class ScoringSheetController extends Controller
         $subjs = Subject::where("id", $id)->first();
         $subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 
+        $mainsubject = Mainsubject::where('id', '=', $subjs->mainsubject_id)
+            ->select('main_subject_name')->first();
+
 
         $applicants = DB::select('SELECT d.id,d.name, finalists.`applicant_id`, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d RIGHT JOIN finalists ON (d.`id`=finalists.`applicant_id`) WHERE d.`subject_id` = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
 
@@ -298,7 +301,7 @@ class ScoringSheetController extends Controller
         );
 
         if(count($applicants) > 0 && count($maincriterias) > 0) {
-            return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias]);
+            return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, 'mainsubject' => $mainsubject]);
 
         } else {
             return redirect('/dashboard')->with('err', 'We don\'t have any data into the finalist page.');

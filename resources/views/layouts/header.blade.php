@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="icon" href="{{ asset('images/SB ICON.png') }}">
+        <link rel="icon" href="{{ asset('images/fav.png') }}">
 
         <title>Scorng - {{ $title }}</title>
 
@@ -68,7 +68,7 @@
                             <a class="btn btn-dark btn-sm" href="/login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-dark btn-sm" href="/registration">Sign Up</a>
+                            <a class="btn btn-dark btn-sm" href="/signup">Sign Up</a>
                         </li>
                   @endif
 

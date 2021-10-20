@@ -8,6 +8,7 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 mb-4">
             <h2 class="display-6 text-left heading_txt">Message Room</h2>
+
             <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $subject->subject_name }}</h5>
             <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $roomname->room_name }}</h5>
 

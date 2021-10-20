@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-12">
             <h1 class="display-4 fw-bold text-center">About Scorng.</h1>
-            <h4 class="fw-bold text-success display-6">Igor Rabinovich</h4>
+            <h4 class="fw-bold text-success display-6 mt-6">Igor Rabinovich</h4>
             <p>Co-Founder. Head of Product</p>
 
             <h4 class="fw-bold text-success display-6">Tyler Emmit</h4>

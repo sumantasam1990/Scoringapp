@@ -104,7 +104,7 @@
                         <div class="text-right" style="float: right;">
 
                             <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scoreboard</a>
-                            <a class="btn btn-success btn-sm" href="/scoring-sheet/{{ $subjs->id }}">Score Page</a>
+                            <a class="btn btn-success btn-sm" href="/score-page/{{ $subjs->id }}">Score Page</a>
                             <form action="{{ route('add-emaillist') }}" method="post" @class('d-inline')>
                                 @csrf
                                 <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
@@ -143,7 +143,7 @@
                     <thead>
                         <tr style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
                             <th>&nbsp;</th>
-{{--                            <th>&nbsp;</th>--}}
+                            <th>&nbsp;</th>
                             @foreach ($maincriterias as $main)
                             @php
 
@@ -165,7 +165,7 @@
                         </tr>
                         <tr>
                             <th>&nbsp;</th>
-{{--                            <th>&nbsp;</th>--}}
+                            <th>&nbsp;</th>
                             {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
                             @foreach ($subjects as $data)
                             <th style="text-align: center; border-left: 2px solid #000; vertical-align: top; ">
@@ -210,7 +210,7 @@
                             > {{-- @php echo count($subjects) + 2; @endphp --}}
 
                                 <div style="font-size: 18px;" class="fw-bold mb-3">
-                                    <p class="fs-3 m-0"><a
+                                    <p class="fs-5 mb-2"><a
                                             style="color: #000; text-decoration: none;"
                                             href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
 
@@ -227,8 +227,8 @@
                                 </div>
 
                             </td>
-                            @for($i=1; $i<=count($subjects)+1; $i++)
-                                <td style="@if($i < count($subjects)) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                            @for($i=1; $i<=count($subjects)+2; $i++)
+                                <td style="@if($i < count($subjects)+1) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
                                 >
 
                                 </td>
@@ -255,19 +255,26 @@
                                             <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" class="fas fa-info-circle"></i>
 
 
-                                            <span style="font-size: 42px; margin-left: 10px; margin-top: 10px;" class="fw-bold">{{ $total_sum[0]->total }}</span>
-                                            @if($total_sum[0]->total != '')
-                                                <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" class="fas fa-info-circle"></i>
 
-                                            @endif
                                         </p></td>
-                                    {{-- <td style="border-left: 2px solid #000;">
-                                        @php
+                                    <td style="text-align: left; border-left: 2px solid #000;">
+                                        <p style="font-size: 42px; margin-left: 10px; margin-top: -10px;"
+                                           class="fw-bold">
 
-                                        $query = DB::select("select id from criterias where maincriteria_id = ?", [1]);
-                                        @endphp
-                                        <span class="fw-bold" style="font-size: 24px;">{{ $total_sum[0]->total }}</span>
-                                    </td> --}}
+
+                                        {{ $total_sum[0]->total }}
+
+                                        @if($total_sum[0]->total != '')
+                                            <div class="number_tota_l"><i
+                                                    style="text-align: center !important; font-size: 14px;"
+                                                    data-bs-container="body" data-bs-toggle="popover"
+                                                    data-bs-placement="top" data-bs-content="Top popover"
+                                                    class="fas fa-info-circle icon-left"></i></div>
+                                            @endif
+
+
+                                            </p>
+                                    </td>
                                     @foreach ($subjects as $data)
 
                                         <td style="border-left: 2px solid #000;">

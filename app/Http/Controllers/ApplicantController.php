@@ -59,7 +59,7 @@ class ApplicantController extends Controller
 
         $applicant->save();
 
-        return redirect('/scoring-sheet/' . $request->sub_id)
+        return redirect('/score-page/' . $request->sub_id)
             ->with('msg', 'You have successfully added an applicant.');
 
     }
@@ -210,7 +210,7 @@ class ApplicantController extends Controller
             Score::where("applicant_id", "=", $request->applicant_id)
                 ->delete();
 
-            return redirect('scoring-sheet/' . $request->subject_id)
+            return redirect('score-page/' . $request->subject_id)
                 ->with("msg", "Applicant has been successfully removed.");
 
         } catch (Exception $ex) {

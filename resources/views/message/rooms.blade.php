@@ -11,6 +11,7 @@
             <div @class('row')>
                 <div class="col-md-6">
                     <h2 class="display-6 text-left heading_txt">Message Room List</h2>
+                    <h4 class="fs-4">{{ $mainsubject->main_subject_name }}</h4>
                     <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $subject->subject_name }}</h5>
 
 

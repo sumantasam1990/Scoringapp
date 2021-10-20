@@ -9,6 +9,7 @@
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div class="">
                 <h2 class="display-4 text-left heading_txt">Finalists Page</h2>
+                <h4 class="fs-4 text-left heading_txt">{{ $mainsubject->main_subject_name }}</h4>
                 <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $subjs->subject_name }}</h5>
 
             <div class="mt-4">
@@ -17,7 +18,7 @@
                     {{-- <a href="/create-applicant/{{ $subjs->id }}" class="btn btn-success btn-sm">Add Applicant</a> --}}
                     {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
                     {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Page</a> --}}
-                    <a href="/scoring-sheet/{{$subjs->id}}" class="btn btn-success btn-sm">Score Page</a>
+                    <a href="/score-page/{{$subjs->id}}" class="btn btn-success btn-sm">Score Page</a>
                     <a href="/bulkemaillist/{{ $subjs->id }}" class="btn btn-success btn-sm">Bulk Email List</a>
                    {{-- <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member</a>
                     <a href="/create-applicant" class="btn btn-success btn-sm">Message Room</a> --}}
@@ -33,7 +34,7 @@
                                 <thead>
                                     <tr style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
                                         <th>&nbsp;</th>
-{{--                                        <th>&nbsp;</th>--}}
+                                        <th>&nbsp;</th>
                                         @foreach ($maincriterias as $main)
                                         @php
 
@@ -55,7 +56,7 @@
                                     </tr>
                                     <tr>
                                         <th>&nbsp;</th>
-{{--                                        <th>&nbsp;</th>--}}
+                                        <th>&nbsp;</th>
                                         {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
                                         @foreach ($subjects as $data)
                                         <th style="text-align: center; border-left: 2px solid #000; vertical-align: top; ">
@@ -96,11 +97,12 @@
                                     </tr> --}}
                                     @foreach ( $applicants as $applicant )
                                     <tr>
+
                                         <td style="border-right: 2px solid; border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
                                         > {{-- @php echo count($subjects) + 2; @endphp --}}
 
                                             <div style="font-size: 18px;" class="fw-bold mb-3">
-                                                <p class="fs-3 m-0"><a
+                                                <p class="fs-5 mb-2"><a
                                                         style="color: #000; text-decoration: none;"
                                                         href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
 
@@ -118,8 +120,8 @@
 
                                         </td>
 
-                                        @for($i=1; $i<=count($subjects)+1; $i++)
-                                            <td style="@if($i < count($subjects)) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                                        @for($i=1; $i<=count($subjects)+2; $i++)
+                                            <td style="@if($i < count($subjects)+1) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
                                             >
 
                                             </td>
@@ -145,19 +147,26 @@
 
                                                         <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" class="fas fa-info-circle"></i>
 
-                                                        <span style="font-size: 42px; margin-left: 10px; margin-top: 10px;" class="fw-bold">{{ $total_sum[0]->total }}</span>
-                                                        @if($total_sum[0]->total != '')
-                                                            <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" class="fas fa-info-circle"></i>
 
-                                                        @endif
                                                     </p></td>
-                                                {{-- <td style="border-left: 2px solid #000;">
-                                                    @php
+                                                <td style="text-align: left; border-left: 2px solid #000;">
+                                                    <p style="font-size: 42px; margin-left: 10px; margin-top: -10px;"
+                                                       class="fw-bold">
 
-                                                    $query = DB::select("select id from criterias where maincriteria_id = ?", [1]);
-                                                    @endphp
-                                                    <span class="fw-bold" style="font-size: 24px;">{{ $total_sum[0]->total }}</span>
-                                                </td> --}}
+
+                                                    {{ $total_sum[0]->total }}
+
+                                                    @if($total_sum[0]->total != '')
+                                                        <div class="number_tota_l"><i
+                                                                style="text-align: center !important; font-size: 14px;"
+                                                                data-bs-container="body" data-bs-toggle="popover"
+                                                                data-bs-placement="top" data-bs-content="Top popover"
+                                                                class="fas fa-info-circle icon-left"></i></div>
+                                                        @endif
+
+
+                                                        </p>
+                                                </td>
                                                 @foreach ($subjects as $data)
 
                                                     <td style="border-left: 2px solid #000;">

@@ -10,7 +10,7 @@
             <div class="">
             <h2 class="display-4 text-center heading_txt">Create Scoring Sheet</h2>
             <h5 style="margin-top: -5px;" class="display-7 text-center heading_txt">{{ $subjs->subject_name ?? 'not' }}</h5>
-            <p class="text-center"><a href="/scoring-sheet/{{$subjs->id ?? ''}}" class="btn btn-success btn-sm">Open Scoring Sheet</a></p>
+            <p class="text-center"><a href="/score-page/{{$subjs->id ?? ''}}" class="btn btn-success btn-sm">Open Scoring Sheet</a></p>
 
 
             <div class="mt-6">

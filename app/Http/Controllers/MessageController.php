@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mainsubject;
 use App\Models\Message;
 use App\Models\Reply;
 use App\Models\Room;
@@ -27,6 +28,8 @@ class MessageController extends Controller
         $subject = Subject::select("id", "subject_name")
             ->where("id", "=", $id)
             ->first();
+
+
 
         $roomname = Room::select('room_name')
             ->where('id', '=', $roomid)
@@ -201,12 +204,15 @@ class MessageController extends Controller
         $subject = Subject::where('id', '=', $id)
             ->first();
 
+        $mainsubject = Mainsubject::where('id', '=', $subject->mainsubject_id)
+            ->select('main_subject_name')->first();
+
         $rooms = Room::where('subject_id', '=', $id)
             ->get();
 
         return view('message.rooms',
             ['title' => 'Message Room List', 'rooms' => $rooms,
-                'subject' => $subject]);
+                'subject' => $subject, 'mainsubject' => $mainsubject]);
     }
 
 }

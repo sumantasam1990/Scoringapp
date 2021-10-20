@@ -1,4 +1,4 @@
-<div class="container-fluid footer">
+<div class="container-fluid footer mt-6">
     <footer class="container text-left mt-6">
         <div class="row">
             <div class="col-md-1 col-12"></div>
@@ -6,7 +6,7 @@
                 <img src="{{ asset('images/logo.webp') }}">
             </div>
             <div class="col-md-2 col-6">
-                <p class="fw-bold">Scorng</p>
+                <p class="fw-bold mb-0">Scorng</p>
                 <ul>
                     <li>
                         <a href="/pricing">Pricing</a>
@@ -20,7 +20,7 @@
                 </ul>
             </div>
             <div class="col-md-2 col-6">
-                <p class="fw-bold">Support</p>
+                <p class="fw-bold mb-0">Support</p>
                 <ul>
                     <li>
                         <a href="/about">About Us</a>
@@ -37,7 +37,7 @@
                 </ul>
             </div>
             <div class="col-md-2 col-6">
-                <p class="fw-bold">Get In Touch</p>
+                <p class="fw-bold mb-0">Get In Touch</p>
                 <ul>
                     <li>
                         <a href="/contact">Message Us</a>
@@ -54,17 +54,15 @@
                 </ul>
             </div>
             <div class="col-md-2 col-6">
-                <p class="fw-bold">Legal</p>
+                <p class="fw-bold mb-0">Legal</p>
                 <ul>
                     <li>
                         <a href="/legal">Legal Stuff</a>
                     </li>
-                    <li>
-                        &nbsp;
-                    </li>
+
 
                     <li>
-                        <a href="#" nofollow>&copy; 2021 .</a>
+                        <a style="cursor: inherit" href="javascript:void(0)" nofollow>&copy; 2021</a>
                     </li>
                 </ul>
             </div>

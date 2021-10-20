@@ -48,8 +48,8 @@ Route::post('contact/us', [\App\Http\Controllers\PagesController::class, 'sendem
 Route::get('/create-subject', [SubjectController::class, 'index'])->name('create.subject')->middleware(['auth', 'verified']);
 Route::get('/create-applicant/{id}', [ApplicantController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/create-criteria/{id}', [CriteriaController::class, 'index'])->middleware(['auth', 'verified']);
-Route::get('/create-scoring-sheet/{id}', [ScoringSheetController::class, 'index'])->middleware(['auth', 'verified']);
-Route::get('/scoring-sheet/{id}', [ScoringSheetController::class, 'scoring'])->middleware(['auth', 'verified']);
+Route::get('/create-score-page/{id}', [ScoringSheetController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/score-page/{id}', [ScoringSheetController::class, 'scoring'])->middleware(['auth', 'verified']);
 Route::get('dashboard', [LoginController::class, 'dashboard'])->middleware(['auth', 'verified']);
 Route::get('/delete/score/{id}', [ScoringSheetController::class, 'delete'])->middleware(['auth', 'verified']);
 Route::get('/add-team-member/{id}', [TeamController::class, 'index'])->middleware(['auth', 'verified']);
@@ -91,7 +91,7 @@ Route::post('store/roomname', [\App\Http\Controllers\MessageController::class, '
 // authentications
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('custom-login', [LoginController::class, 'authenticate'])->name('login.custom');
-Route::get('registration', [LoginController::class, 'registration'])->name('register-user');
+Route::get('signup', [LoginController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [LoginController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [LoginController::class, 'logout'])->name('signout');
 
