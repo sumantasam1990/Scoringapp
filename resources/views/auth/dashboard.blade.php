@@ -22,7 +22,7 @@
 
 
 
-            <div class="row mt-6 border-top border-2 border-dark p-4">
+            <div class="row mt-6 border-top border-2 border-dark p-2">
                 @php $i = 1 @endphp
                 @foreach ($mysubjects as $inv)
                     <h6 class="fw-bold @if($i > 1) mt-6 border-top border-2 border-dark @endif p-4" style="color: green; font-size: 26px;">{{ $inv->main_subject_name }}</h6>

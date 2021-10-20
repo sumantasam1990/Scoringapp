@@ -108,7 +108,7 @@
 
 <script>
     $(function () {
-        $('[data-bs-toggle="popover"]').popover()
+        $('[data-bs-toggle="popover"]').popover({ trigger: "hover" })
     })
 
     $('body').on('click', function (e) {

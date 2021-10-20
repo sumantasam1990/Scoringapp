@@ -9,9 +9,14 @@
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div style="float: right; font-size: 30px;">
                 <a style="color: #138D07 !important;" class="text-dark" href="/scorepage-grid/{{$subjs->id}}"> <i
-                        class="bi bi-grid-fill"></i> <i onclick="show_info_modal('grid')"
-                                                        style="margin-left: 3px; font-size: 12px;"
-                                                        class="bi bi-info-circle-fill"></i></a>
+                        class="bi bi-grid-fill"></i>
+
+                    <i style="font-size: 14px;" data-bs-container="body"
+                       data-bs-toggle="popover"
+                       data-bs-placement="top"
+                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
+                </a>
             </div>
             <div class="">
 
@@ -27,11 +32,16 @@
                     <div class="text-left">
                         {{--                        <a href="/create-scoring-sheet/{{ $subjs->id }}" class="btn btn-info btn-sm">Create A Score</a>--}}
                         <a href="/create-applicant/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2" id="add_app">Add
-                            Applicant <i onclick="show_info_modal('add_app')" style="margin-left: 3px;"
-                                         class="bi bi-info-circle-fill"></i> </a>
-                        <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Add Criteria <i
-                                onclick="show_info_modal('add_crit')" style="margin-left: 3px;"
-                                class="bi bi-info-circle-fill"></i></a>
+                            Applicant <i data-bs-container="body"
+                                         data-bs-toggle="popover"
+                                         data-bs-placement="top"
+                                         data-bs-content="Top popover" class="fas fa-info-circle"></i> </a>
+                        <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Add Criteria
+                            <i data-bs-container="body"
+                               data-bs-toggle="popover"
+                               data-bs-placement="top"
+                               data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                        </a>
                         {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
 
                         <form action="{{ route('remove-page') }}" method="post"
@@ -39,23 +49,40 @@
                             @csrf
                             <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
 
-                            <button type="submit" @class('btn btn-success btn-sm mt-2')>Delete Page <i
-                                    onclick="show_info_modal('del_page')" style="margin-left: 3px;"
-                                    class="bi bi-info-circle-fill"></i></button>
+                            <button type="submit" @class('btn btn-success btn-sm mt-2')>Delete Page
+
+                                <i data-bs-container="body"
+                                   data-bs-toggle="popover"
+                                   data-bs-placement="top"
+                                   data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
+                            </button>
                         </form>
 
-                        <a href="/finalists/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Finalist Page <i
-                                onclick="show_info_modal('finalist')" style="margin-left: 3px;"
-                                class="bi bi-info-circle-fill"></i></a>
-                        <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Bulk Email List <i
-                                onclick="show_info_modal('email')" style="margin-left: 3px;"
-                                class="bi bi-info-circle-fill"></i></a>
-                        <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Add Team Member <i
-                                onclick="show_info_modal('team')" style="margin-left: 3px;"
-                                class="bi bi-info-circle-fill"></i></a>
-                        <a href="/rooms/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Message Room <i
-                                onclick="show_info_modal('room')" style="margin-left: 3px;"
-                                class="bi bi-info-circle-fill"></i></a>
+                        <a href="/finalists/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Finalist Page
+                            <i data-bs-container="body"
+                               data-bs-toggle="popover"
+                               data-bs-placement="top"
+                               data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                        </a>
+                        <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Bulk Email List
+                            <i data-bs-container="body"
+                               data-bs-toggle="popover"
+                               data-bs-placement="top"
+                               data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                        </a>
+                        <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Add Team Member
+                            <i data-bs-container="body"
+                               data-bs-toggle="popover"
+                               data-bs-placement="top"
+                               data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                        </a>
+                        <a href="/rooms/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Message Room
+                            <i data-bs-container="body"
+                               data-bs-toggle="popover"
+                               data-bs-placement="top"
+                               data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                        </a>
 
 
                     </div>
@@ -283,28 +310,32 @@
                                                                         class="btn score-priority"
                                                                         style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
+
+
                                                                     </label>
-                                                                    <button type="button" class="btn"
-                                                                            data-bs-container="body"
-                                                                            data-bs-toggle="popover"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-content="Top popover">
-                                                                        <i class="fas fa-info-circle"></i>
-                                                                    </button>
+
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
+
+
+
                                                                 @elseif ($result->score_number == 2)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                         class="btn score-priority"
                                                                         style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
+
                                                                     </label>
-                                                                    <button type="button" class="btn"
-                                                                            data-bs-container="body"
-                                                                            data-bs-toggle="popover"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-content="Top popover">
-                                                                        <i class="fas fa-info-circle"></i>
-                                                                    </button>
+
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == 3)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -312,13 +343,10 @@
                                                                         style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <button type="button" class="btn"
-                                                                            data-bs-container="body"
-                                                                            data-bs-toggle="popover"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-content="Top popover">
-                                                                        <i class="fas fa-info-circle"></i>
-                                                                    </button>
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == 0)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -326,13 +354,10 @@
                                                                         style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <button type="button" class="btn"
-                                                                            data-bs-container="body"
-                                                                            data-bs-toggle="popover"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-content="Top popover">
-                                                                        <i class="fas fa-info-circle"></i>
-                                                                    </button>
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == 5)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -340,13 +365,10 @@
                                                                         style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <button type="button" class="btn"
-                                                                            data-bs-container="body"
-                                                                            data-bs-toggle="popover"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-content="Top popover">
-                                                                        <i class="fas fa-info-circle"></i>
-                                                                    </button>
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == -1)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -354,13 +376,10 @@
                                                                         style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <button type="button" class="btn"
-                                                                            data-bs-container="body"
-                                                                            data-bs-toggle="popover"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-content="Top popover">
-                                                                        <i class="fas fa-info-circle"></i>
-                                                                    </button>
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == -2)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -368,13 +387,10 @@
                                                                         style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <button type="button" class="btn"
-                                                                            data-bs-container="body"
-                                                                            data-bs-toggle="popover"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-content="Top popover">
-                                                                        <i class="fas fa-info-circle"></i>
-                                                                    </button>
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == -3)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -382,13 +398,10 @@
                                                                         style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <button type="button" class="btn"
-                                                                            data-bs-container="body"
-                                                                            data-bs-toggle="popover"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-content="Top popover">
-                                                                        <i class="fas fa-info-circle"></i>
-                                                                    </button>
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @endif
 
                                                             @endforeach

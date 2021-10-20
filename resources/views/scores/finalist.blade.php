@@ -171,7 +171,7 @@
 
                                                     <td style="border-left: 2px solid #000;">
 
-                                                        <div class="text-left">
+                                                        <div class="text-center">
                                                             @php
                                                                 $results = DB::select("SELECT scores.id,scores.score_number,subjects.subject_name,criterias.title,applicants.name FROM scores
                                                                 LEFT JOIN subjects ON (scores.subject_id=subjects.id)
@@ -193,48 +193,88 @@
                                                                            style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == 2)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == 3)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == 0)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == 5)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == -1)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @elseif ($result->score_number == -2)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == -3)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
+
+                                                                    <i data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
                                                                 @endif
 
                                                             @endforeach
