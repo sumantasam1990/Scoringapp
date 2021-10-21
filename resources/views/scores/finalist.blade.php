@@ -155,10 +155,22 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                         </td>
 
-                                        @for($i=1; $i<=count($subjects)+2; $i++)
-                                            <td style="@if($i < count($subjects)+1) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                                        @for($i=1; $i<=count($subjects)+1; $i++)
+                                            <td style="@if($i < count($subjects)+1) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: center; vertical-align: middle !important;
+                                                "
                                             >
 
+                                                @if($i == 1)
+                                                    <i
+                                                        data-bs-container="body" data-bs-toggle="popover"
+                                                        data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
+                                                        class="fas fa-info-circle"></i>
+                                                @else
+                                                    <i data-bs-container="body"
+                                                       data-bs-toggle="popover"
+                                                       data-bs-placement="top"
+                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                                                @endif
                                             </td>
                                         @endfor
 
@@ -192,13 +204,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                     {{ $total_sum[0]->total }}
 
                                                     @if($total_sum[0]->total != '')
-                                                        <div class="number_tota_l">
-                                                            <i
-                                                                style="text-align: center !important; font-size: 14px;"
-                                                                data-bs-container="body" data-bs-toggle="popover"
-                                                                data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
-                                                                class="fas fa-info-circle icon-left"></i>
-                                                        </div>
+
                                                         @endif
 
 
@@ -231,10 +237,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                     </label>
 
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == 2)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
@@ -242,10 +245,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                     </label>
 
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == 3)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
@@ -253,10 +253,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                     </label>
 
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == 0)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
@@ -264,10 +261,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                     </label>
 
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == 5)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
@@ -275,10 +269,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                     </label>
 
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == -1)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
@@ -286,20 +277,14 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                     </label>
 
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == -2)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                            class="btn score-priority"
                                                                            style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
 
                                                                 @elseif ($result->score_number == -3)
                                                                     <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -308,10 +293,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                     </label>
 
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @endif
 
                                                             @endforeach

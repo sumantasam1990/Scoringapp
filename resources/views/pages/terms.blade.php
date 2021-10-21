@@ -1,11 +1,11 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-6">
+<div class="container mt-4">
     <div class="row">
         <div class="col-12">
             <h1 class="display-4 fw-bold">Terms Of Service</h1>
 
-            <h4 class="mt-4 mb-4">Last updated: October 16, 2021</h4>
+            <h4 class="mt-3 mb-4">Last updated: October 16, 2021</h4>
 
             <p class="fs-4 mt-4">
                 From everyone at Scorng, thank you for using our product! We build them to help you do your best work.  Because we don’t know every one of our customers personally, we have to put in place some Terms of Service to help keep the ship afloat.

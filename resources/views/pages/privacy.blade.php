@@ -1,11 +1,11 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-6 mb-4">
+<div class="container mt-4 mb-4">
     <div class="row">
         <div class="col-12">
             <h1 class="display-4 fw-bold text-left">Privacy Policy</h1>
 
-            <h4 class="mt-6">Last updated: October 16, 2021</h4>
+            <h4 class="mt-3">Last updated: October 16, 2021</h4>
 
             <p class="mt-4 fs-4">The privacy of your data — and it is your data, not ours! — is a big deal to us. In this policy, we lay out: what data we collect and why; how your data is handled; and your rights to your data. We promise we never sell your data: never have, never will.</p>
             <p class="mt-4 fs-4">

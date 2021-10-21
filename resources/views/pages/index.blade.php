@@ -143,7 +143,7 @@
         <div class="col-md-6">
             <img src="{{ asset('images/infinity (1).webp') }}" style="width: 100px; margin-top: 30px; ">
             <h4 class="fw-bold mt-4">Limitless Details</h4>
-            <p class="mt-3">
+            <p class="mt-4">
                 Add as many super detailed criteria as possible so that the final score gives you the most detailed assessment of each applicant.        </div>
     </div>
 </div>
@@ -212,5 +212,7 @@
 
 
 
+<div style="margin-top: -60px !important;">
+    @include('layouts.footer')
+</div>
 
-@include('layouts.footer')

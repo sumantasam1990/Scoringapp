@@ -1,6 +1,6 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-6 mb-3">
+<div class="container mt-4 mb-3">
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8 text-center">

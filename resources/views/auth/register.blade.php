@@ -1,6 +1,6 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-6">
+<div class="container mt-4">
 
     @include('layouts.alert')
 
@@ -45,6 +45,7 @@
 
                         <div class="d-grid mx-auto">
                             <button type="submit" class="btn btn-dark btn-block">Sign up</button>
+                            <a class="btn btn-success mt-3" href="/login">Already Have An Account? Login</a>
                         </div>
                     </form>
                 </div>

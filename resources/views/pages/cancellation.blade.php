@@ -1,11 +1,11 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-6">
+<div class="container mt-4">
     <div class="row">
         <div class="col-12">
             <h1 class="display-4 fw-bold">Cancellation Policy</h1>
 
-            <h4 class="mt-4 mb-4">Last updated: October 16, 2021</h4>
+            <h4 class="mt-4 mb-3">Last updated: October 16, 2021</h4>
 
             <p class="fs-4 mt-4">
                 We want satisfied customers. That's why we send invoices when your account is due for renewal, depending on which of the 3 pricing plans you chose.

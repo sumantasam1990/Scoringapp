@@ -1,11 +1,11 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-6">
+<div class="container mt-4">
     <div class="row">
         <div class="col-12">
             <h1 class="display-4 fw-bold">Privacy Regulation Reference</h1>
 
-            <h4 class="mt-4 mb-4">Last updated: October 16, 2021</h4>
+            <h4 class="mt-4 mb-3">Last updated: October 16, 2021</h4>
 
             <p class="fs-4 mt-4">
                 The data privacy regulatory landscape is undergoing a lot of change. You probably have heard about the EU General Data Protection Regulation (GDPR) that went into effect on May 25, 2018. There are also other regulations in effect or in the works around the world. We’ve written up this reference document to put helpful information regarding our products and privacy regulations in one place. Please also view our full <a class="text-dark text-decoration-underline" href="">Privacy policy</a>.

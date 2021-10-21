@@ -22,7 +22,7 @@
 
 
                 @livewire('inlineedit', ['subject_name' => $subjs->subject_name, 'subject_id' => $subjs->id,
-                'main_subject_name' => $mainsubject->main_subject_name])
+                'main_subject_name' => $mainsubject->main_subject_name, 'main_subject_id' => $mainsubject->id])
 
                 <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Scoring Page
 
@@ -123,8 +123,13 @@ The second step is to add and Applicant, and finally is to actually give one of 
 
                                                 @endphp
                                                 <th colspan="{{ $colspan_main[0]->total }}"
-                                                    style="text-align: center; border-left: 2px solid #000;">
-                                                    <h4 class="fw-bold">{{ $main->criteria_name }}</h4>
+                                                    style="text-align: center; border-left: 2px solid #000; vertical-align: middle; font-size: 20px; font-weight: 700; padding-top: 20px;">
+
+                                                    @livewire('inlineeditmaincriteria', ['criteria_name' => $main->criteria_name,
+                                                    'main_criteria_id' => $main->id])
+
+
+
                                                     <p style="font-size: 34px;" class="fw-bold">
                                                         {{--                                                    {{ $total_main[0]->total }}--}}
                                                     </p>
@@ -137,7 +142,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                             <th>&nbsp;</th>
                                             {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
                                             @foreach ($subjects as $data)
-                                                <th style="text-align: center; border-left: 2px solid #000; vertical-align: top; ">
+                                                <th style="text-align: center; border-left: 2px solid #000; vertical-align: middle; font-weight: 700; padding-top: 20px;">
 
 
                                                     @livewire('inlineeditcriteria', ['title' => $data->title,
@@ -236,9 +241,21 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
 
                                             @for($i=1; $i<=count($subjects)+1; $i++)
-                                                <td style="@if($i < count($subjects)+1) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                                                <td style="@if($i < count($subjects)+1) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: center; vertical-align: middle !important;
+                                                    "
                                                 >
 
+                                                    @if($i == 1)
+                                                        <i
+                                                            data-bs-container="body" data-bs-toggle="popover"
+                                                            data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
+                                                            class="fas fa-info-circle"></i>
+                                                    @else
+                                                        <i data-bs-container="body"
+                                                           data-bs-toggle="popover"
+                                                           data-bs-placement="top"
+                                                           data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                                                    @endif
                                                 </td>
                                         @endfor
 
@@ -270,19 +287,19 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
 
                                                     </p></td>
-                                                <td style="text-align: left; border-left: 2px solid #000; vertical-align: top;">
-                                                    <p style="font-size: 42px; margin-left: 10px; margin-top: -10px;"
+                                                <td style="text-align: center; border-left: 2px solid #000; vertical-align: top;">
+                                                    <p style="font-size: 40px;  margin-top: -10px;"
                                                        class="fw-bold">
 
 
                                                     {{ $total_sum[0]->total }}
 
                                                     @if($total_sum[0]->total != '')
-                                                        <div class="number_tota_l"><i
-                                                                style="text-align: center !important; font-size: 14px;"
-                                                                data-bs-container="body" data-bs-toggle="popover"
-                                                                data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
-                                                                class="fas fa-info-circle icon-left"></i></div>
+{{--                                                        <div class="number_tota_l"><i--}}
+{{--                                                                style="text-align: center !important; font-size: 14px;"--}}
+{{--                                                                data-bs-container="body" data-bs-toggle="popover"--}}
+{{--                                                                data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."--}}
+{{--                                                                class="fas fa-info-circle icon-left"></i></div>--}}
                                                         @endif
 
 
@@ -322,11 +339,6 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                 </a>
 
-                                                                <i data-bs-container="body"
-                                                                   data-bs-toggle="popover"
-                                                                   data-bs-placement="top"
-                                                                   data-bs-content="Click here to actually give a score to an applicant. Choose from one of 7 scores. You can always change the score by clicking on the colored rectangle which represents that score." class="fas fa-info-circle i_plus"></i>
-
 
                                                             @endif
 
@@ -342,12 +354,6 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                     </label>
 
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
-
-
 
 
                                                                 @elseif ($result->score_number == 2)
@@ -359,10 +365,6 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                     </label>
 
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
 
                                                                 @elseif ($result->score_number == 3)
                                                                     <label
@@ -371,10 +373,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                                         style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == 0)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -382,10 +381,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                                         style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == 5)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -393,10 +389,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                                         style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == -1)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -404,10 +397,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                                         style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == -2)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -415,10 +405,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                                         style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @elseif ($result->score_number == -3)
                                                                     <label
                                                                         onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
@@ -426,10 +413,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                                         style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
 
                                                                     </label>
-                                                                    <i data-bs-container="body"
-                                                                       data-bs-toggle="popover"
-                                                                       data-bs-placement="top"
-                                                                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+
                                                                 @endif
 
                                                             @endforeach

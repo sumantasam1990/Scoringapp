@@ -11133,7 +11133,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
 
 .box-black {
   border: 8px solid #414141;
-  padding: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   font-size: 22px;
   min-height: 300px;
 }
@@ -11142,12 +11143,19 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
   border: 8px solid #414141;
   padding: 6px;
   font-size: 22px;
-  height: 200px;
+  height: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .box-black-pricing {
   border: 8px solid #414141;
-  padding: 6px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   font-size: 22px;
   min-height: 180px;
 }
@@ -11241,6 +11249,12 @@ footer ul li a {
   top: 15px;
 }
 
+.msg_info_icon {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 800px) {
   .btn {
     margin: 5px;
@@ -11274,5 +11288,15 @@ footer ul li a {
     position: absolute;
     right: -6px;
     top: 20px;
+  }
+
+  .msg_info_icon {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+  }
+
+  label {
+    width: 50px !important;
   }
 }

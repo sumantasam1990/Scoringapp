@@ -1,6 +1,6 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-6 mb-4">
+<div class="container mt-4 mb-4">
     <div class="row">
         <div class="col-12">
             <h1 class="display-4 fw-bold text-center">Scorng Policies, Terms, <br >and Legal Stuff.</h1>

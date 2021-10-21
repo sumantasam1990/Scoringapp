@@ -130,7 +130,7 @@ class ScoringSheetController extends Controller
         $subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 
         $mainsubject = Mainsubject::where('id', '=', $subjs->mainsubject_id)
-        ->select('main_subject_name')->first();
+        ->select('main_subject_name', 'id')->first();
 
         $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
 
