@@ -7,7 +7,7 @@
 
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <form action="" method="post">
+            <form action="{{ route('password.update') }}" method="post">
                 @csrf
 
                 <input type="hidden" name="token" value="{{ $token }}">
