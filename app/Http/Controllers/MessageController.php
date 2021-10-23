@@ -36,7 +36,7 @@ class MessageController extends Controller
             ->first();
 
         $teams = DB::table('teams')
-            ->leftJoin('users', "users.id", "=", "teams.user_id")
+            ->leftJoin('users', "users.email", "=", "teams.user_email")
             ->select('users.name', 'teams.created_at')
             ->where('teams.subject_id', '=', $id)->get();
 
@@ -79,10 +79,10 @@ class MessageController extends Controller
 
         $mailArray = [
             'name' => $message_user_email->name,
-            'url' => url('/message-room/' . $request->sub_id)
+            'url' => url('/message-room/' . $request->sub_id . '/' . $request->msg_id)
         ];
 
-        $this->sendEmail($message_user_email->email, $mailArray);
+        //$this->sendEmail($message_user_email->email, $mailArray);
 
         return back()
             ->with('msg', "Your reply has been successfully added.");

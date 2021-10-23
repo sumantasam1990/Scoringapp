@@ -57,7 +57,8 @@ class LoginController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6'
         ]);
 
         $data = $request->all();
@@ -84,8 +85,6 @@ class LoginController extends Controller
             $user = Auth::user();
 
             $mysubjects = DB::select('SELECT DISTINCT(mainsubjects.main_subject_name), mainsubjects.id FROM mainsubjects RIGHT JOIN teams ON (teams.mainsubject_id=mainsubjects.id) WHERE teams.user_email = ? AND teams.status = ?', [$user->email, 1]);
-
-
 
             return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "mysubjects" => $mysubjects]);
         }

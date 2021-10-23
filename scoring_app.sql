@@ -264,7 +264,7 @@ CREATE TABLE `teams` (
 -- Dumping data for table `teams`
 --
 
-INSERT INTO `teams` (`id`, `user_id`, `mainsubject_id`, `subject_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `teams` (`id`, user_email, `mainsubject_id`, `subject_id`, `created_at`, `updated_at`) VALUES
 (19, 1, 5, 11, '2021-10-04 09:17:08', '2021-10-04 15:39:48'),
 (20, 2, 5, 11, '2021-10-04 09:36:34', '2021-10-04 15:39:51'),
 (21, 1, 6, 12, '2021-10-04 10:24:25', '2021-10-04 15:54:51'),

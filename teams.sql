@@ -39,7 +39,7 @@ CREATE TABLE `teams` (
 -- Dumping data for table `teams`
 --
 
-INSERT INTO `teams` (`id`, `user_id`, `subject_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `teams` (`id`, user_email, `subject_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 2, '2021-10-01 04:13:02', '2021-10-01 04:24:51'),
 (2, 2, 2, '2021-10-01 04:24:56', '2021-10-01 04:24:56');
 

@@ -153,8 +153,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h4 class="fw-bold display-5">Bulk, One-Click Email</h4>
-                <p>We have super powerful features in the works that will help you choose the best possible applicant.</p>
+                <h4 class="fw-bold display-5">Bulk Email List</h4>
+                <p class="fw-bold mt-3 text-center subheading">We make it super easy to download any emails of applicants that you added to the Finalist List but didn’t hire. This way you can easily send them emails for future open job positions.</p>
                 <a style="color: #370143;" class="btn btn-light btn-lg fw-bold mt-4" href="/signup">Sign Up Today</a>
             </div>
         </div>

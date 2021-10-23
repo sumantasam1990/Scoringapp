@@ -15,23 +15,30 @@
                     <form action="{{ route('register.custom') }}" method="POST">
                         @csrf
                         <div class="form-group mb-3">
-                            <input type="text" placeholder="Name" id="name" class="form-control" name="name" required autofocus>
+                            <input type="text" placeholder="Name" id="name" class="form-control @error('name') is-invalid @enderror" name="name" required autofocus value="{{ old('name') }}">
                             @if ($errors->has('name'))
                             <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
 
                         <div class="form-group mb-3">
-                            <input type="email" placeholder="Email" id="email_address" class="form-control" name="email" required autofocus autocomplete="off">
+                            <input type="email" placeholder="Email" id="email_address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus autocomplete="off">
                             @if ($errors->has('email'))
                             <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
                         </div>
 
                         <div class="form-group mb-3">
-                            <input type="password" placeholder="Password" id="password" class="form-control" name="password" required autocomplete="offf">
+                            <input type="password" placeholder="Password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" {{ old('password') }} required autocomplete="offf">
                             @if ($errors->has('password'))
                             <span class="text-danger">{{ $errors->first('password') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <input type="password" placeholder="Confirm Password" id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" value="{{ old('password_confirmation') }}" required autocomplete="offf">
+                            @if ($errors->has('password_confirmation'))
+                                <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                             @endif
                         </div>
 
@@ -45,7 +52,7 @@
 
                         <div class="d-grid mx-auto">
                             <button type="submit" class="btn btn-dark btn-block">Sign up</button>
-                            <a class="btn btn-success mt-3" href="/login">Already Have An Account? Login</a>
+                            <a class="btn text-dark text-decoration-underline fw-bold mt-3" href="/login">Already Have An Account? Login</a>
                         </div>
                     </form>
                 </div>

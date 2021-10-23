@@ -297,7 +297,7 @@ CREATE TABLE `teams` (
 LOCK TABLES `teams` WRITE;
 /*!40000 ALTER TABLE `teams` DISABLE KEYS */;
 
-INSERT INTO `teams` (`id`, `user_id`, `mainsubject_id`, `subject_id`, `created_at`, `updated_at`)
+INSERT INTO `teams` (`id`, user_email, `mainsubject_id`, `subject_id`, `created_at`, `updated_at`)
 VALUES
 	(19,1,5,11,'2021-10-04 14:47:08','2021-10-04 21:09:48'),
 	(20,2,5,11,'2021-10-04 15:06:34','2021-10-04 21:09:51'),

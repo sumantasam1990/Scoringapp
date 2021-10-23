@@ -212,9 +212,9 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
                         </th>
                         <th>
                             @if(count($score) > 0)
-                                <h4>{{ $score[0]->criteria_name }}</h4>
-                                @foreach($score as $scorecard)
 
+                                @foreach($score as $scorecard)
+                                    <h4>{{ $scorecard->criteria_name }}</h4>
                                     <p style="font-size: 14px;">{{ $scorecard->criteria_title }}</p>
 
 {{--                                    @php--}}
