@@ -1,6 +1,6 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container-fluid mt-6">
+<div class="container-fluid mt-4">
 
     @include('layouts.alert')
 
@@ -8,7 +8,8 @@
         <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1"></div>
         <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10">
 
-            <h2 class="display-4 heading_txt">{{ $subject->subject_name ?? 'not' }}</h2>
+            <h4 class="display-4 heading_txt">{{ $mainsubject->main_subject_name }}</h4>
+            <h2 class="fw-bold fs-4 mb-4">{{ $subject->subject_name ?? 'not' }}</h2>
             <h5 style="margin-top: -5px;" class="display-7 heading_txt">Scoring Page: Grid View</h5>
 
             <!----------- loop start ----------------->
@@ -38,6 +39,7 @@
                                     <tr>
                                         @foreach($criterias as $criteria)
                                         <th>
+                                            <p>{{ $criteria->criteria_name }}</p>
                                             <p style="font-size: 13px;">{{ $criteria->title }}</p>
 
                                             @if($criteria->priority == "138D07")

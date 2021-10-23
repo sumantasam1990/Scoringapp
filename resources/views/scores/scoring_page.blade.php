@@ -14,7 +14,7 @@
                     <i style="font-size: 14px;" data-bs-container="body"
                        data-bs-toggle="popover"
                        data-bs-placement="top"
-                       data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                       data-bs-content="Grid View is simply an easier way to consume information by looking at it in no more than two columns. Less scrolling side to side and more time to consume important information." class="fas fa-info-circle"></i>
 
                 </a>
             </div>
@@ -206,7 +206,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
 
                                                 <div style="font-size: 18px;" class="fw-bold mb-3">
                                                     <p class="fs-5 mb-2"><a
-                                                            style="color: #000; text-decoration: none;"
+                                                            style=" text-decoration: none; color: #138D07;"
                                                             href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
 
                                                         </a>
@@ -251,10 +251,23 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                             data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
                                                             class="fas fa-info-circle"></i>
                                                     @else
+
                                                         <i data-bs-container="body"
                                                            data-bs-toggle="popover"
                                                            data-bs-placement="top"
-                                                           data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                                                           data-bs-content="Colored rectangles represent the score that was assigned by a Team Member to an Applicant within a particular criteria.
+
+<br><br> Scoring works as follows: <br><br>
+<p>Light Green (+1) Slightly Exceeded Expectations</p>
+<p>Green (+2) Exceeded Expectations</p>
+<p>Dark Green (+3) Greatly Exceeded Expectations.</p>
+<p>Yellow (0) Met Expectations</p>
+<p>Orange (-1) Slightly Failed Expectations</p>
+<p>Red (-2) Failed Expectations</p>
+<p>Dark Red (-3) Greatly Failed Expectations</p>
+<br>
+<h5 style='line-height: 40px; font-size: 18px;'>The plus sign is what you select to add a score to an Applicant within a particular criteria.</h5>" class="fas fa-info-circle"></i>
+
                                                     @endif
                                                 </td>
                                         @endfor
@@ -282,7 +295,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                             <i class="bi bi-grid-fill"></i> </a>
 
                                                         <i data-bs-container="body" data-bs-toggle="popover"
-                                                           data-bs-placement="top" data-bs-content="Top popover"
+                                                           data-bs-placement="top" data-bs-content="Grid View is simply an easier way to consume information by looking at it in no more than two columns. Less scrolling side to side and more time to consume important information."
                                                            class="fas fa-info-circle"></i>
 
 
@@ -334,7 +347,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                                 <a onclick="openModalCreateScore('{{$subjects[0]->subject->id}}', '{{$applicant->id}}', '{{$data->title}}', '{{$subjects[0]->subject->subject_name}}', '{{$applicant->name}}', '{{$data->id}}')"
                                                                    class="btn btn-link text-center"
                                                                    style="color: #138D07; font-weight: bold; font-size: 20px; text-decoration: none;"
-                                                                   href="#"><i class="fas fa-plus"></i>
+                                                                   href="javascript:void(0)"><i class="fas fa-plus"></i>
 
 
                                                                 </a>
@@ -429,6 +442,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                             </tr>
                                             {{-- <tr><td>&nbsp;</td></tr> --}}
                                         @endforeach
+                                        <tr style="border: 2px solid #000 !important;"></tr>
                                     </tbody>
                                 </table>
                             </div>

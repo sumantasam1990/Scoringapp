@@ -133,7 +133,8 @@ class PagesController extends Controller
 
     private function sendEmail($email, $mailData) {
 
-        Mail::to($email)->send(new Contactus($mailData));
+        //Mail::to($email)->send(new Contactus($mailData));
+        Mail::to($email)->queue(new Contactus($mailData));
 
         return response()->json([
             'message' => 'Email has been sent.'

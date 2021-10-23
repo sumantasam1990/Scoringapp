@@ -1,6 +1,6 @@
 @include('layouts.header', ['title' => 'Forgot Password'])
 
-<div class="container mt-6">
+<div class="container mt-4">
 
     @include('layouts.alert')
     <div class="row">
@@ -11,7 +11,7 @@
                 @csrf
 
                 <div class="form-group">
-                    <label class="fw-bold mb-3">Enter Your Registered Email Address</label>
+                    <p class="fw-bold mb-3">Enter Your Registered Email Address</p>
                     <input type="email" required name="email" class="form-control"
                            placeholder="Your Registered Email ID">
                 </div>

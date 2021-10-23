@@ -94,15 +94,26 @@ class ApplicantController extends Controller
             'appl_id' => 'required'
         ]);
 
-        $finalist = new Finalist;
+        //checking if the logged in user is main user or not
+        $subject = Subject::where('id', '=', $request->subid)
+            ->where('user_id', '=', \Auth::user()->id)
+            ->select('id')
+            ->count('id');
 
-        $finalist->subject_id = $request->subid;
-        $finalist->applicant_id = $request->appl_id;
+       if($subject == 1) {
+           $finalist = new Finalist;
 
-        $finalist->save();
+           $finalist->subject_id = $request->subid;
+           $finalist->applicant_id = $request->appl_id;
 
-        return redirect('/finalists/' . $request->subid)
-            ->with('msg', 'Successfully added to the finalist page.');
+           $finalist->save();
+
+           return redirect('/finalists/' . $request->subid)
+               ->with('msg', 'Successfully added to the finalist page.');
+       } else {
+           return back()
+               ->with('err', 'Sorry! You don\'t have permission to add applicant to the finalist page.');
+       }
 
     }
 

@@ -6,13 +6,13 @@
         <div class="col-md-8 text-center">
             <h1 class="display-4 fw-bold">Our Features</h1>
             <p>They will enable you to hire the most qualified applicant.</p>
-            <div class="row mt-6">
-                <div class="col-md-6 text-center mt-6">
+            <div class="row">
+                <div class="col-md-6 text-center mt-4">
                     <div class="circle-number">1</div>
                     <h4 class="mt-3 display-6 fw-bold">Score Page</h4>
                     <p>Score Page allows you to see all of your applicant's scores including how your Team Members scored each applicant. See how each applicant scored for each criteria.</p>
                 </div>
-                <div class="col-md-6 text-center mt-6">
+                <div class="col-md-6 text-center mt-4">
                     <div class="circle-number">2</div>
                     <h4 class="mt-3 display-6 fw-bold">Scoreboard</h4>
                     <p>Scoreboard allows you to see how many times each applicant met your expectation, exceeded and failed expectations amongst all of the criteria.</p>

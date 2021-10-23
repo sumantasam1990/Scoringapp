@@ -385,7 +385,10 @@ and s.applicant_id = ? and s.user_id = ?', [$id, $id, $appl_id, $subject->user_i
             $subject = Subject::where('id', '=', $id)
                 ->first();
 
-            $criterias = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
+            $mainsubject = Mainsubject::where('id', '=', $subject->mainsubject_id)
+                ->select('main_subject_name', 'id')->first();
+
+            $maincriterias = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 
             if($applicantId == null) {
                 $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subject->user_id, $id, $id]);
@@ -395,12 +398,12 @@ and s.applicant_id = ? and s.user_id = ?', [$id, $id, $appl_id, $subject->user_i
 
             }
 
-            $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
+            $criterias = DB::select("SELECT maincriterias.*, criterias.* FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ?", [$id]);
 
 
             return view('scores.grid', ['title' => 'Score Page Grid View',
                 'subject' => $subject, 'applicants' => $applicants, 'maincriterias' => $maincriterias,
-                'criterias' => $criterias]);
+                'criterias' => $criterias, 'mainsubject' => $mainsubject]);
         } catch (\Throwable $th) {
             return abort(403);
         }

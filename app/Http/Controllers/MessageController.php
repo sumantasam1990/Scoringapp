@@ -192,7 +192,7 @@ class MessageController extends Controller
 
     private function sendEmail($email, $mailData) {
 
-        Mail::to($email)->send(new SendMessage($mailData));
+        Mail::to($email)->queue(new SendMessage($mailData));
 
         return response()->json([
             'message' => 'Email has been sent.'

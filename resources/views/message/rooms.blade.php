@@ -15,7 +15,7 @@
                         <i
                             style="text-align: center !important; font-size: 14px;"
                             data-bs-container="body" data-bs-toggle="popover"
-                            data-bs-placement="top" data-bs-content="Message Rooms allows you to discuss in detail various aspects about anything associated with a Score Page. So you can discuss the criteria, applicants, scores and more. Each Score Page has it’s own set of Message Rooms. So you can create an unlimited number of Message Rooms for each detailed topic so you and your Team Members stay organized and remember what you discussed." class="fas fa-info-circle msg_info_icon"></i>
+                            data-bs-placement="top" data-bs-content="Message Rooms allows you to discuss in detail various aspects about anything associated with a Score Page. So you can discuss the criteria, applicants, scores and more. Each Score Page has it’s own set of Message Rooms. So you can create an unlimited number of Message Rooms for each detailed topic so you and your Team Members stay organized and remember what you discussed." class="fas fa-info-circle "></i>
 
                     </h2>
                     <h4 class="fs-4">{{ $mainsubject->main_subject_name }}</h4>
@@ -26,7 +26,14 @@
                 </div>
                 <div class="col-md-6">
                     <a href="/score-page/{{ $subject->id }}" class="btn btn-success btn-sm">Score Page</a>
-                    <a href="#" onclick="openModal()" class="btn btn-success btn-sm">Create New Message Room</a>
+                    <a href="#" onclick="openModal()" class="btn btn-success btn-sm">Create New Message Room
+
+                        <i
+                            data-bs-container="body" data-bs-toggle="popover"
+                            data-bs-placement="top" data-bs-content="This is where you create a new Message Room and then all Team Members can post messages and reply to any posted messages."
+                            class="fas fa-info-circle"></i>
+
+                    </a>
 
                 </div>
             </div>

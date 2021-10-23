@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-12">
             <h1 class="display-4 fw-bold text-center">{{ $faqs[0]->title ?? '' }}</h1>
-            <div class="row mt-6 mb-4">
+            <div class="row  mb-4">
 
             @foreach($faqs as $faq)
 

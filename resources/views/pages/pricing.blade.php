@@ -1,11 +1,11 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-6 mb-4">
+<div class="container mt-4 mb-4">
     <div class="row">
         <div class="col-12 text-center">
             <h1 class="display-4 fw-bold">One Simple Price</h1>
             <h5>Month-to-Month. No long term commitment</h5>
-            <div class="row mt-6">
+            <div class="row ">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <div class="row">

@@ -5,7 +5,7 @@
         <div class="col-12 text-center">
             <h1 class="display-4 fw-bold">Your Questions, Answered.</h1>
             <p>If you don't see your question, feel free to <a class="text-dark fw-bold" href="/contact"> shoot us a message</a>.</p>
-            <div class="row mt-6">
+            <div class="row ">
 
                 @foreach($faqcategory as $faqcategoryy)
 

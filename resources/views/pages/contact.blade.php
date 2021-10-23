@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <div class="box mt-6">
+                    <div class="box mt-3">
                         <form action="{{ route('contact.us') }}" method="post">
                             @csrf
                             <div class="form-group mb-3">

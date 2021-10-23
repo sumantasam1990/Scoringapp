@@ -1,6 +1,6 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-4">
+<div class="container mt-6">
 
     @include('layouts.alert')
 
@@ -37,9 +37,9 @@
 
                         <div class="form-check mb-3">
                             <input required class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
+                            <p class="form-check-label" for="flexCheckDefault">
                                 I agree with the terms & conditions.
-                            </label>
+                            </p>
                         </div>
 
 

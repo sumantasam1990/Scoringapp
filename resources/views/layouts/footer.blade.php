@@ -37,7 +37,7 @@
                 </ul>
             </div>
             <div class="col-md-2 col-6">
-                <p class="fw-bold mb-0">Get In Touch</p>
+                <p class="fw-bold mb-0 mt-4 mt-md-0">Get In Touch</p>
                 <ul>
                     <li>
                         <a href="/contact">Message Us</a>
@@ -54,7 +54,7 @@
                 </ul>
             </div>
             <div class="col-md-2 col-6">
-                <p class="fw-bold mb-0">Legal</p>
+                <p class="fw-bold mb-0 mt-4 mt-md-0">Legal</p>
                 <ul>
                     <li>
                         <a href="/legal">Legal Stuff</a>

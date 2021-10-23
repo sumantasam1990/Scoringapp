@@ -191,6 +191,32 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     // artisan command
 
+    Route::get('admin/queue_table', function () {
+
+        try {
+            \Illuminate\Support\Facades\Artisan::call('queue:table');
+
+            dd("Queue table created.");
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
+
+
+    });
+
+    Route::get('admin/migrate', function () {
+
+        try {
+            \Illuminate\Support\Facades\Artisan::call('migrate');
+
+            dd("Tables migrate completed.");
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
+
+
+    });
+
     Route::get('admin/clear_cache', function () {
 
         try {
@@ -210,3 +236,15 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 
 
+Route::get('cron/queue_worker', function () {
+
+    try {
+        \Illuminate\Support\Facades\Artisan::call('queue:work');
+
+        dd("Worker started...");
+    } catch (\Throwable $th) {
+        dd($th->getMessage());
+    }
+
+
+});

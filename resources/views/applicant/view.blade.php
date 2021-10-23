@@ -261,13 +261,21 @@ The second step is to add and Applicant, and finally is to actually give one of 
                             <td colspan="3" style="height: 60px; border: none;"></td>
                         </tr> --}}
                         @foreach ( $applicants as $applicant )
+                            @if(count($maincriterias) > 0 && count($applicants) > 0)
+                                <tr>
+                                    <td colspan="@php echo count($subjects)+2; @endphp"
+                                        style=" border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                                    >&nbsp;
+                                    </td>
+                                </tr>
+                            @endif
                         <tr>
                             <td style="border-right: 2px solid; border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
                             > {{-- @php echo count($subjects) + 2; @endphp --}}
 
                                 <div style="font-size: 18px;" class="fw-bold mb-3">
                                     <p class="fs-5 mb-2"><a
-                                            style="color: #000; text-decoration: none;"
+                                            style="color: #138D07; text-decoration: none;"
                                             href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
 
                                         </a>
@@ -312,7 +320,18 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                         <i data-bs-container="body"
                                            data-bs-toggle="popover"
                                            data-bs-placement="top"
-                                           data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                                           data-bs-content="Colored rectangles represent the score that was assigned by a Team Member to an Applicant within a particular criteria.
+
+<br><br> Scoring works as follows: <br><br>
+<p>Light Green (+1) Slightly Exceeded Expectations</p>
+<p>Green (+2) Exceeded Expectations</p>
+<p>Dark Green (+3) Greatly Exceeded Expectations.</p>
+<p>Yellow (0) Met Expectations</p>
+<p>Orange (-1) Slightly Failed Expectations</p>
+<p>Red (-2) Failed Expectations</p>
+<p>Dark Red (-3) Greatly Failed Expectations</p>
+<h5 style='line-height: 40px; font-size: 18px;'>The plus sign is what you select to add a score to an Applicant within a particular criteria.</h5>" class="fas fa-info-circle"></i>
+
                                     @endif
                                 </td>
                         @endfor
@@ -335,7 +354,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                             <a style="color: #138D07 !important; font-size: 24px;" class="text-dark" href="/scorepage-grid/{{ $subjs->id }}/{{ $applicant->id }}"> <i class="bi bi-grid-fill"></i> </a>
 
-                                            <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" class="fas fa-info-circle"></i>
+                                            <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Grid View is simply an easier way to consume information by looking at it in no more than two columns. Less scrolling side to side and more time to consume important information." class="fas fa-info-circle"></i>
 
 
 
@@ -454,6 +473,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                         </tr>
                         {{-- <tr><td>&nbsp;</td></tr> --}}
                         @endforeach
+                        <tr style="border: 2px solid #000 !important;"></tr>
                     </tbody>
                 </table>
             </div>

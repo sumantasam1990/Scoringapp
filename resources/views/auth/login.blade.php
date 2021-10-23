@@ -1,6 +1,6 @@
 @include('layouts.header', ['title' => $title])
 
-<div class="container mt-4">
+<div class="container mt-6">
 
     @include('layouts.alert')
 
