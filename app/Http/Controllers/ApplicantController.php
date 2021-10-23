@@ -32,7 +32,6 @@ class ApplicantController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required',

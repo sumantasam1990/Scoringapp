@@ -338,7 +338,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                 @php
                                 // getting users from subject id
-                                $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.id=teams.user_id) WHERE teams.subject_id = ?", [$subjs->id]);
+                                $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.email=teams.user_email) WHERE teams.subject_id = ?", [$subjs->id]);
 
                             @endphp
 

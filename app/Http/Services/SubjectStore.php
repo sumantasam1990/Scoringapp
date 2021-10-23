@@ -26,9 +26,10 @@ class SubjectStore
             // add on Team table also
             $team = new Team;
 
-            $team->user_id = $user->id;
+            $team->user_email = $user->email;
             $team->subject_id = $subject->id; // Last inserted subject id
             $team->mainsubject_id = $submain;
+            $team->status = 1;
 
             $team->save();
 

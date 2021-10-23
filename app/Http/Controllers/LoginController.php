@@ -61,9 +61,10 @@ class LoginController extends Controller
         ]);
 
         $data = $request->all();
+
         $user = $this->create($data);
 
-        //event(new Registered($user));
+        event(new Registered($user));
 
         return redirect("login")->with('msg', '<p>Please confirm your email to complete the sign up process. </p> <p>We have emailed you a verification</p> <p>Thank you</p> <p>Team Scorng</p>');
     }
@@ -82,7 +83,7 @@ class LoginController extends Controller
         if(Auth::check()){
             $user = Auth::user();
 
-            $mysubjects = DB::select('SELECT DISTINCT(mainsubjects.main_subject_name), mainsubjects.id FROM mainsubjects RIGHT JOIN teams ON (teams.mainsubject_id=mainsubjects.id) WHERE teams.user_id = ?', [$user->id]);
+            $mysubjects = DB::select('SELECT DISTINCT(mainsubjects.main_subject_name), mainsubjects.id FROM mainsubjects RIGHT JOIN teams ON (teams.mainsubject_id=mainsubjects.id) WHERE teams.user_email = ? AND teams.status = ?', [$user->email, 1]);
 
 
 
@@ -90,6 +91,25 @@ class LoginController extends Controller
         }
 
         return redirect("registration")->with('err', 'You are not allowed to access');
+    }
+
+    public function uploadPhoto(Request $request)
+    {
+        if ($request->has('image')) {
+
+            $imageName = 'sca_' . uniqid() . time() . '.' . $request->image->extension();
+
+            $request->image->move(public_path('uploads'), $imageName);
+
+            try {
+                User::where('id', '=', Auth::user()->id)
+                    ->update(['photo' => $imageName]);
+                return back();
+            } catch (\Throwable $th) {
+                return back()
+                    ->with('err', 'Error! ' . $th->getMessage());
+            }
+        }
     }
 
 

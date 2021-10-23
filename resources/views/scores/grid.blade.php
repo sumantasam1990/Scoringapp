@@ -22,7 +22,7 @@
                 <hr/>
 
                 @php
-                    $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.id=teams.user_id) WHERE teams.subject_id = ?", [$subject->id]);
+                    $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.email=teams.user_email) WHERE teams.subject_id = ?", [$subject->id]);
                 @endphp
 
                 <div class="row">

@@ -24,6 +24,10 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property int $mainsubject_id
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereMainsubjectId($value)
+ * @property string $user_email
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereUserEmail($value)
+ * @property int $status
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereStatus($value)
  */
 class Team extends Model
 {

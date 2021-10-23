@@ -125,7 +125,6 @@ class ScoringSheetController extends Controller
 
     public function scoring($id)
     {
-
         $subjs = Subject::where("id", $id)->first();
         $subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 

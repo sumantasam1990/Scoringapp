@@ -93,6 +93,16 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                data-bs-content="Message Rooms allows you to discuss in detail various aspects about anything associated with a Score Page. So you can discuss the criteria, applicants, scores and more. Each Score Page has it’s own set of Message Rooms. So you can create an unlimited number of Message Rooms for each detailed topic so you and your Team Members stay organized and remember what you discussed." class="fas fa-info-circle"></i>
                         </a>
 
+                        <a onclick="return confirm('Are you sure?')" href="/position-filled/{{$subjs->id}}" class="btn btn-dark btn-sm mt-2">
+                            Position Filled
+
+                            <i data-bs-container="body"
+                               data-bs-toggle="popover"
+                               data-bs-placement="top"
+                               data-bs-content="Position Filled" class="fas fa-info-circle"></i>
+
+                        </a>
+
 
                     </div>
 
@@ -275,7 +285,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                         @php
                                             // getting users from subject id
-                                            $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.id=teams.user_id) WHERE teams.subject_id = ?", [$subjs->id]);
+                                            $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.email=teams.user_email) WHERE teams.subject_id = ?", [$subjs->id]);
 
                                         @endphp
 

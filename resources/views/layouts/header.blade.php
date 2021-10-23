@@ -45,7 +45,7 @@
 
                   <li class="nav-item">
                       @if (Auth::check())
-                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                        <a class="nav-link dashboard-border" href="/dashboard">Dashboard</a>
                       @else
                           <a class="nav-link" href="/about">About us</a>
                       @endif
@@ -55,7 +55,13 @@
                   @if (Auth::check())
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img style="width: 40px; border-radius: 4px; border: 3px solid #000;" src="https://datingshortcut.com/wp-content/themes/datingshortcut/images/user.svg">
+                            @if(\Illuminate\Support\Facades\Auth::user()->photo == null)
+                                <img src="{{ asset('images/user.svg') }}" style="width: 40px; border-radius: 4px; height: 40px; object-fit: cover; border: 3px solid #000; ">
+                            @else
+                                <img src="{{ asset('uploads/' . \Illuminate\Support\Facades\Auth::user()->photo) }}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; border: 3px solid #000; ">
+                            @endif
+
+
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 {{--                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>--}}

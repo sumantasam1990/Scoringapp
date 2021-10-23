@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Mainsubject;
+use App\Models\Subject;
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ApplicantController;
@@ -51,7 +55,7 @@ Route::get('/create-subject', [SubjectController::class, 'index'])->name('create
 Route::get('/create-applicant/{id}', [ApplicantController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/create-criteria/{id}', [CriteriaController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/create-score-page/{id}', [ScoringSheetController::class, 'index'])->middleware(['auth', 'verified']);
-Route::get('/score-page/{id}', [ScoringSheetController::class, 'scoring'])->middleware(['auth', 'verified']);
+Route::get('/score-page/{id}', [ScoringSheetController::class, 'scoring'])->middleware(['auth', 'verified', 'scorePage']);
 Route::get('dashboard', [LoginController::class, 'dashboard'])->middleware(['auth', 'verified']);
 Route::get('/delete/score/{id}', [ScoringSheetController::class, 'delete'])->middleware(['auth', 'verified']);
 Route::get('/add-team-member/{id}', [TeamController::class, 'index'])->middleware(['auth', 'verified']);
@@ -85,7 +89,7 @@ Route::post('remove/page', [ScoringSheetController::class, 'deletePage'])->name(
 Route::post('message/reply', [\App\Http\Controllers\MessageController::class, 'reply'])->name('reply')->middleware(['auth', 'verified']);
 Route::post('message/create', [\App\Http\Controllers\MessageController::class, 'create'])->name('create')->middleware(['auth', 'verified']);
 Route::post('store/roomname', [\App\Http\Controllers\MessageController::class, 'store'])->name('roomname.store')->middleware(['auth', 'verified']);
-
+Route::post('company/photo', [LoginController::class, 'uploadPhoto'])->name('company.photo')->middleware(['auth', 'verified']);
 
 
 
@@ -93,7 +97,7 @@ Route::post('store/roomname', [\App\Http\Controllers\MessageController::class, '
 // authentications
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('custom-login', [LoginController::class, 'authenticate'])->name('login.custom');
-Route::get('signup', [LoginController::class, 'registration'])->name('register-user');
+Route::get('signup/{token?}', [LoginController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [LoginController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [LoginController::class, 'logout'])->name('signout');
 
@@ -235,16 +239,38 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 });
 
 
+// Accept invitations
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::get('cron/queue_worker', function () {
+    Route::get('accept-invitation/{token}', function ($token) {
 
-    try {
-        \Illuminate\Support\Facades\Artisan::call('queue:work');
+        try {
+            return (new \App\Http\Services\AddTeamMember())->acceptTeamMember(\Illuminate\Support\Facades\Crypt::decrypt($token));
 
-        dd("Worker started...");
-    } catch (\Throwable $th) {
-        dd($th->getMessage());
-    }
+        } catch (\Throwable $th) {
+            return redirect('/dashboard')
+                ->with('err', $th->getMessage());
+        }
 
+
+    });
+
+    Route::get('position-filled/{id}', function ($id) {
+
+        try {
+            Subject::where('id', '=', $id)
+                ->update(['status' => 1]);
+
+            return back()
+                ->with('msg', 'Success.');
+
+        } catch (\Throwable $th) {
+            return back()
+                ->with('err', $th->getMessage());
+        }
+
+
+    });
 
 });
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\AddTeamMember;
 use App\Models\Mainsubject;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -16,7 +17,7 @@ class TeamController extends Controller
 
         $subject = Subject::find($id);
 
-        $teams = DB::select('SELECT users.name, teams.id FROM teams LEFT JOIN users ON (users.id=teams.user_id) WHERE teams.subject_id = ?', [$id]);
+        $teams = DB::select('SELECT users.name, teams.id, teams.status, teams.user_email FROM teams LEFT JOIN users ON (users.email=teams.user_email) WHERE teams.subject_id = ?', [$id]);
 
         return view("team.index", ["title" => "Invite Team Members", "subject" => $subject, "teams" => $teams]);
 
@@ -32,37 +33,12 @@ class TeamController extends Controller
             't_name'  => 'required'
         ]);
 
-        $user = User::where("email", $request->t_email)->get();
-
-        if(count($user) > 0) {
-
-            $chkTeamExist = Team::where("user_id", $user[0]->id)->where("subject_id", $request->hd_sub)->get();
-
-            if(count($chkTeamExist) == 0) {
-
-                $sub = Subject::select("mainsubject_id")->where("id", $request->hd_sub)->first();
-                $mainsubID = Mainsubject::select("id")->where("id", $sub->mainsubject_id)->first();
-
-                $team = new Team;
-
-                $team->user_id = $user[0]->id;
-                $team->subject_id = $request->hd_sub;
-                $team->mainsubject_id = $mainsubID->id;
-
-                $team->save();
-
-                return back()
-                    ->with('msg','Your have successfully added this ' . $request->t_name . '.');
-
-            } else {
-                return back()
-                ->with('err','You have already added ' . $request->t_name . '.');
-            }
-
-        } else {
+        try{
+            return (new AddTeamMember())->saveTeamMember($request->hd_sub, $request->t_email, $request->t_name);
+        } catch(\Throwable $th) {
+            //abort('403');
             return back()
-                ->with('err','Sorry! You have entered wrong email ' . $request->t_email);
-
+                ->with('err', $th->getMessage());
         }
 
     }
