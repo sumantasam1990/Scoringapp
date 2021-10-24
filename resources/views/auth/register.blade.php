@@ -45,7 +45,7 @@
                         <div class="form-check mb-3">
                             <input required class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                             <p class="form-check-label" for="flexCheckDefault">
-                                I agree with the terms & conditions.
+                                I agree with the <a class="text-dark text-decoration-underline" target="_blank" href="/terms">terms & conditions</a>.
                             </p>
                         </div>
 

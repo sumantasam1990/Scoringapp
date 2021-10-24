@@ -182,6 +182,7 @@ Route::post('/reset-password', function (Request $request) {
 //Admin Routes
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('admin', [\App\Http\Controllers\admin\AdminController::class, 'dashboard']);
     Route::get('admin/dashboard', [\App\Http\Controllers\admin\AdminController::class, 'dashboard']);
     Route::get('admin/applicants', [\App\Http\Controllers\admin\AdminController::class, 'applicants']);
     Route::get('admin/faqs', [\App\Http\Controllers\admin\AdminController::class, 'faqs']);
