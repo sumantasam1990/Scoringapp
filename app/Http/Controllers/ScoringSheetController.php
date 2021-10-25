@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\ScoreStore;
 use App\Models\Applicant;
 use App\Models\Criteria;
 use App\Models\Finalist;
@@ -66,61 +67,19 @@ class ScoringSheetController extends Controller
             //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $user = Auth::user();
+        try {
 
-        $score = new Score;
-        $metadata = new Metadata;
+            (new ScoreStore())->save($request->score_give, $request->appl, $request->sub, $request->crit_id, $request->image, $request->note);
 
-        $score->user_id = $user->id; // session loggedin user id
-        $score->subject_id = $request->sub;
-        $score->applicant_id = $request->appl;
-        $score->criteria_id = $request->crit_id;
-        $score->score_number = $request->score_give;
+            return redirect('/score-page/' . $request->sub)
+                ->with('msg', 'Score has been successfully added.');
 
-        // get score card no
-        $minimum_no = Criteria::select("priority")
-            ->where("id", "=", $request->crit_id)->first();
+        } catch (\Throwable $th) {
 
-        if ($minimum_no->priority == "138D07") {
-            $minimum = 5;
-        }
-        if ($minimum_no->priority == "40F328") {
-            $minimum = 4;
-        }
-        if ($minimum_no->priority == "FCD40A") {
-            $minimum = 3;
-        }
-        if ($minimum_no->priority == "F56A21") {
-            $minimum = 2;
-        }
-        if ($minimum_no->priority == "FC0A0A") {
-            $minimum = 1;
-        }
-
-        $score->score_card_no = ($request->score_give - $minimum);
-
-        $score->save();
-
-        $metadata->meta_notes = $request->note; // save into metadata
-        $metadata->score_id = $score->id; // last insert score id
-
-        if (!empty($request->image)) {
-
-            //file upload
-
-            $imageName = 'scF_' . uniqid() . time() . '.' . $request->image->extension();
-
-            $request->image->move(public_path('uploads'), $imageName);
-
-            $metadata->meta_file = $imageName; // save into metadata
+            return redirect('/score-page/' . $request->sub)
+                ->with('err', 'Error!' . $th->getMessage());
 
         }
-
-
-        $metadata->save();
-
-        return redirect('/score-page/' . $request->sub)
-            ->with('msg', 'Score has been successfully added.');
     }
 
     public function scoring($id)
