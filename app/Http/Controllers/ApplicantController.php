@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\ApplicantStore;
 use App\Models\Applicant;
 use App\Models\Bulkemail;
 use App\Models\Criteria;
@@ -36,30 +37,11 @@ class ApplicantController extends Controller
             //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required',
             'email' => 'required',
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'sub_id' => 'required'
         ]);
 
-        $applicant = new Applicant;
-
-        if ($request->has('image')) {
-
-            $imageName = 'sca_' . uniqid() . time() . '.' . $request->image->extension();
-
-            $request->image->move(public_path('uploads'), $imageName);
-
-            $applicant->photo = $imageName; /* Store $imageName name in DATABASE from HERE */
-
-        }
-
-        $applicant->subject_id = $request->sub_id;
-        $applicant->name = $request->name;
-        $applicant->email = $request->email;
-        $applicant->phone = $request->phone;
-
-        $applicant->save();
-
-        return redirect('/score-page/' . $request->sub_id)
-            ->with('msg', 'You have successfully added an applicant.');
+        return (new ApplicantStore())->save($request->sub_id, $request->name, $request->email, $request->phone, $request->image);
 
     }
 

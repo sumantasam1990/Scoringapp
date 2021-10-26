@@ -67,19 +67,9 @@ class ScoringSheetController extends Controller
             //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        try {
+        (new ScoreStore())->save($request->score_give, $request->appl, $request->sub, $request->crit_id, $request->image, $request->note);
 
-            (new ScoreStore())->save($request->score_give, $request->appl, $request->sub, $request->crit_id, $request->image, $request->note);
 
-            return redirect('/score-page/' . $request->sub)
-                ->with('msg', 'Score has been successfully added.');
-
-        } catch (\Throwable $th) {
-
-            return redirect('/score-page/' . $request->sub)
-                ->with('err', 'Error!' . $th->getMessage());
-
-        }
     }
 
     public function scoring($id)

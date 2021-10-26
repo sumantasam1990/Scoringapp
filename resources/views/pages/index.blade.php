@@ -5,9 +5,8 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <div class="text-center mt-4">
-                <h1 class="display-3 fw-bolder">A scoring system that enables
-                    you to hire the best applicant.</h1>
-                <p class="fw-bold mt-3 text-center subheading">A scoring system is objectively the most effective and efficient way to choose the most qualified applicant.</p>
+                <h1 class="display-3 fw-bolder">A scoring system that enables your buyers to choose a property they love most.</h1>
+                <p class="fw-bold mt-3 text-center subheading">Data that enables you to show super relevant properties to your buyers.</p>
                 <a class="btn btn-info btn-lg mt-4" href="/signup">Sign Up Now</a>
                 <p class="mt-3">No long-term commitment, one time annual payment.</p>
             </div>

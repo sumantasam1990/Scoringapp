@@ -24,31 +24,17 @@ class CriteriaController extends Controller
 
         $maincriterias = Maincriteria::where("user_id", $user->id)->where("subject_id", $id)->get();
 
-        //checking if it is main user who created the criteria or not
-        $chk_main = Subject::select("id")
-                            ->where("id", $id)
-                            ->where("user_id", $user->id)
-                            ->first();
+        $subjects = Subject::where("id", $id)
+        ->first();
 
-        if( !empty($chk_main->id) ) {
+        // Create an array for priority
+        $priorites_array = array(
+        'Met Expectation (yellow)'                    =>     'FCD40A',
+        );
 
-            $subjects = Subject::where("id", $id)
-            ->first();
+        return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array, "maincriterias" => $maincriterias, "sid" => $id, "mainsubjectname" => $mainsubjectname]);
 
-            // Create an array for priority
-            $priorites_array = array(
-//            'Greatly Exceeded Expectations (Dark Green)'  =>     '138D07',
-//            'Exceeded Expectation (Light Green)'          =>     '40F328',
-            'Met Expectation (yellow)'                    =>     'FCD40A',
-//            'Orange'                     =>     'F56A21',
-//            'Red'                        =>     'FC0A0A',
-            );
 
-            return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array, "maincriterias" => $maincriterias, "sid" => $id, "mainsubjectname" => $mainsubjectname]);
-
-        } else {
-            return back()->with("err", "You don't have access the \"Add Criteria\" Page.");
-        }
 
     }
 
