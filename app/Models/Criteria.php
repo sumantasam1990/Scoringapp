@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property string|null $note
  * @method static \Illuminate\Database\Eloquent\Builder|Criteria whereNote($value)
+ * @property int $applicant_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Criteria whereApplicantId($value)
  */
 class Criteria extends Model
 {

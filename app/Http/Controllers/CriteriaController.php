@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applicant;
 use Illuminate\Http\Request;
 use App\Models\Criteria;
 use App\Models\Maincriteria;
@@ -12,41 +13,38 @@ use Illuminate\Support\Facades\DB;
 
 class CriteriaController extends Controller
 {
-    public function index($id) {
-
+    public function index($id, $applid) {
         //get main subject name from subject ID
         $mainsubjectname = DB::table("mainsubjects")
             ->join("subjects", "mainsubjects.id", "=", "subjects.mainsubject_id")
             ->select("main_subject_name")
             ->where("subjects.id", "=", $id)->first();
 
-        $user = Auth::user();
-
-        $maincriterias = Maincriteria::where("user_id", $user->id)->where("subject_id", $id)->get();
+        $maincriterias = Maincriteria::where("subject_id", $id)->get();
 
         $subjects = Subject::where("id", $id)
         ->first();
 
+        $applicant = Applicant::where('id', '=', $applid)
+            ->select('name', 'email')
+            ->first();
+
         // Create an array for priority
         $priorites_array = array(
-        'Met Expectation (yellow)'                    =>     'FCD40A',
+        'Met Expectation (yellow)' => 'FCD40A',
         );
 
-        return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array, "maincriterias" => $maincriterias, "sid" => $id, "mainsubjectname" => $mainsubjectname]);
-
-
-
+        return view("criteria.index", ["title" => "Criteria", "subjects" => $subjects, "priorites_array" => $priorites_array, "maincriterias" => $maincriterias, "sid" => $id, "mainsubjectname" => $mainsubjectname, "applid" => $applid, "applicant" => $applicant]);
     }
 
     public function store(Request $request) {
-
         //Validation
-
         $request->validate([
             'criteria' => 'required',
             'priority' => 'required',
             'subject'  => 'required',
             'main'     => 'required',
+            'applicant_id' => 'required|exists:applicants,id'
 
         ]);
 
@@ -57,6 +55,7 @@ class CriteriaController extends Controller
         $criteria->priority = $request->priority;
         $criteria->maincriteria_id = $request->main;
         $criteria->note = $request->note;
+        $criteria->applicant_id = $request->applicant_id;
 
         $criteria->save();
 

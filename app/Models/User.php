@@ -44,6 +44,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @mixin \Eloquent
  * @property string|null $user_type
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserType($value)
+ * @property string|null $photo
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePhoto($value)
  */
 class User extends Authenticatable implements MustVerifyEmail
 {

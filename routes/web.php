@@ -53,7 +53,7 @@ Route::post('contact/us', [\App\Http\Controllers\PagesController::class, 'sendem
 
 Route::get('/create-subject', [SubjectController::class, 'index'])->name('create.subject')->middleware(['auth', 'verified']);
 Route::get('/create-applicant/{id}', [ApplicantController::class, 'index'])->middleware(['auth', 'verified']);
-Route::get('/create-criteria/{id}', [CriteriaController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/create-criteria/{id}/{applid}', [CriteriaController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/create-score-page/{id}', [ScoringSheetController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/score-page/{id}', [ScoringSheetController::class, 'scoring'])->middleware(['auth', 'verified', 'scorePage']);
 Route::get('dashboard', [LoginController::class, 'dashboard'])->middleware(['auth', 'verified']);
@@ -229,6 +229,33 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             \Illuminate\Support\Facades\Artisan::call('config:cache');
 
             dd("Config && Cache is cleared");
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
+
+
+    });
+
+    Route::get('admin/remove_all_tables', function () {
+
+        try {
+            \App\Models\Applicant::truncate();
+            \App\Models\Bulkemail::truncate();
+            \App\Models\Criteria::truncate();
+            \App\Models\Faq::truncate();
+            \App\Models\Faqscategory::truncate();
+            \App\Models\Finalist::truncate();
+            \App\Models\Maincriteria::truncate();
+            Mainsubject::truncate();
+            \App\Models\Message::truncate();
+            \App\Models\Metadata::truncate();
+            \App\Models\Reply::truncate();
+            \App\Models\Room::truncate();
+            \App\Models\Score::truncate();
+            Subject::truncate();
+            Team::truncate();
+
+            dd("All tables has been truncated.");
         } catch (\Throwable $th) {
             dd($th->getMessage());
         }

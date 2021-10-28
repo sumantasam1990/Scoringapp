@@ -25,7 +25,16 @@
                 <div class="box mt-4">
                     <form action="{{ route('criteria.store') }}" method="post">
                         @csrf
+                        <input type="hidden" name="applicant_id" value="{{ $applid }}">
 
+                        @error('applicant_id')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+                        <div>
+                            <label>Applicant: </label>
+                            {{ $applicant->name }} - ( {{ $applicant->email }} )
+                        </div>
                         <div class="form-group mb-4">
                             <input required type="hidden" name="subject" value="{{ $subjects->id }}">
                             {{--                        <select class="form-control @error('subject') is-invalid @enderror" name="subject" style="font-weight: bold;">--}}

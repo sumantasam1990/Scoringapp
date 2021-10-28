@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property int $mainsubject_id
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereMainsubjectId($value)
+ * @property int $status
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject whereStatus($value)
  */
 class Subject extends Model
 {

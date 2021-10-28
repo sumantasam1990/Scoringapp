@@ -55,13 +55,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                          data-bs-placement="top"
                                          data-bs-content="This is how you add an applicant to your Scorng account and to a Score Page. Simply click the button and open the page to enter in their name, email address, phone number and add any files and notes associated with this Applicant. Only the Main Team Member can add an Applicant. Team Members who have been invited, cannot add an Applicant."
                                          class="fas fa-info-circle"></i> </a>
-                        <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Add Criteria
-                            <i data-bs-container="body"
-                               data-bs-toggle="popover"
-                               data-bs-placement="top"
-                               data-bs-content="Criteria are ways to get into as much detail for the position that you’re hiring. It’s a great way to dissect for example a resume, an interview and more. There are Main Criteria and Sub Criteria. A Main Criteria could be, for example, the applicant’s job experience. A Sub Criteria, for example, could be for example, the applicant’s experience working with a particular software."
-                               class="fas fa-info-circle"></i>
-                        </a>
+{{--                        <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Add Criteria</a>--}}
                         {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
 
                         <form action="{{ route('remove-page') }}" method="post"
@@ -185,7 +179,9 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                                 </tr>
                                                 <tr>
                                                     <th>&nbsp;</th>
-                                                    <th>&nbsp;</th>
+                                                    <th style="vertical-align: middle;">&nbsp;
+                                                    <a class="btn btn-success btn-sm" href="/create-criteria/{{ $sid }}/{{ $applicant->id }}">Add Criteria</a>
+                                                    </th>
                                                     {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
 
                                                     @php
