@@ -67,7 +67,7 @@ class ScoringSheetController extends Controller
             //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        (new ScoreStore())->save($request->score_give, $request->appl, $request->sub, $request->crit_id, $request->image, $request->note);
+        return (new ScoreStore())->save($request->score_give, $request->appl, $request->sub, $request->crit_id, $request->image, $request->note);
 
 
     }
@@ -75,14 +75,14 @@ class ScoringSheetController extends Controller
     public function scoring($id)
     {
         $subjs = Subject::where("id", $id)->first();
-        $subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
+        //$subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 
         $mainsubject = Mainsubject::where('id', '=', $subjs->mainsubject_id)
         ->select('main_subject_name', 'id')->first();
 
         $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
 
-        $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
+        //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
 
 
         $scores_array = array(
@@ -96,7 +96,7 @@ class ScoringSheetController extends Controller
         );
 
 
-        return view("scores.scoring_page", ["title" => "Score Page", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, "sid" => $id, 'mainsubject' => $mainsubject]);
+        return view("scores.scoring_page", ["title" => "Score Page", "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "sid" => $id, 'mainsubject' => $mainsubject]);
     }
 
     public function edit(Request $request)

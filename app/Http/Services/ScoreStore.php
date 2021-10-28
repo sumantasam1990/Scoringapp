@@ -12,9 +12,8 @@ class ScoreStore
 
     private $minimum;
 
-    public function save($score_give, $appl, $sub, $crit_id, $image, $note): void
+    public function save($score_give, $appl, $sub, $crit_id, $image, $note)
     {
-
         try {
 
             $user = Auth::user();
@@ -28,7 +27,7 @@ class ScoreStore
 
 
             if(count($scores) > 0) {
-                redirect('/score-page/' . $sub)
+               return redirect('/score-page/' . $sub)
                     ->with('err', 'You have already added score on this criteria.');
 
             } else {
@@ -74,7 +73,7 @@ class ScoreStore
 
                 $metadata->save();
 
-                redirect('/score-page/' . $request->sub)
+                return redirect('/score-page/' . $sub)
                     ->with('msg', 'Score has been successfully added.');
             }
 
@@ -86,7 +85,7 @@ class ScoreStore
 
 
         } catch (\Throwable $th) {
-            redirect('/score-page/' . $sub)
+            return redirect('/score-page/' . $sub)
                 ->with('err', 'Error!' . $th->getMessage());
         }
     }
