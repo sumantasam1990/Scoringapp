@@ -110,7 +110,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 {{--join maincriterias m on c.maincriteria_id = m.id--}}
 {{--where s.subject_id = ?--}}
 {{--and s.criteria_id in (select id from criterias where subject_id = ?)--}}
-{{--and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 4]);--}}
+{{--and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $userid, 4]);--}}
 {{--                    @endphp--}}
 
 {{--                    <tr>--}}
@@ -198,7 +198,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 3]);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $userid, 3]);
                     @endphp
 
                     <tr>
@@ -306,7 +306,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 2]);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $userid, 2]);
                     @endphp
 
                     <tr>
@@ -343,7 +343,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 1]);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $userid, 1]);
                     @endphp
 
                     <tr>
@@ -380,7 +380,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, 0]);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $userid, 0]);
                     @endphp
 
                     <tr>
@@ -417,7 +417,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-1']);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $userid, '-1']);
                     @endphp
 
                     <tr>
@@ -454,7 +454,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-2']);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $userid, '-2']);
                     @endphp
 
                     <tr>
@@ -491,7 +491,7 @@ join scores s on c.id = s.criteria_id
 join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ?
 and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-3']);
+and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $userid, '-3']);
                     @endphp
 
                     <tr>
@@ -528,7 +528,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 {{--join maincriterias m on c.maincriteria_id = m.id--}}
 {{--where s.subject_id = ?--}}
 {{--and s.criteria_id in (select id from criterias where subject_id = ?)--}}
-{{--and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $subject->user_id, '-4']);--}}
+{{--and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id, $subject->id, $applicants->id, $userid, '-4']);--}}
 {{--                    @endphp--}}
 
 {{--                    <tr>--}}

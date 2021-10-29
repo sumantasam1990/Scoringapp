@@ -139,19 +139,19 @@ The second step is to add and Applicant, and finally is to actually give one of 
 
 
                             </a>
-                            <form action="{{ route('add-emaillist') }}" method="post" @class('d-inline')>
-                                @csrf
-                                <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
-                                <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>
-                                <button type="submit" @class('btn btn-success btn-sm')>Add To Bulk Email List
+{{--                            <form action="{{ route('add-emaillist') }}" method="post" @class('d-inline')>--}}
+{{--                                @csrf--}}
+{{--                                <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>--}}
+{{--                                <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>--}}
+{{--                                <button type="submit" @class('btn btn-success btn-sm')>Add To Bulk Email List--}}
 
-                                    <i data-bs-container="body"
-                                       data-bs-toggle="popover"
-                                       data-bs-placement="top"
-                                       data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting." class="fas fa-info-circle"></i>
+{{--                                    <i data-bs-container="body"--}}
+{{--                                       data-bs-toggle="popover"--}}
+{{--                                       data-bs-placement="top"--}}
+{{--                                       data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting." class="fas fa-info-circle"></i>--}}
 
-                                </button>
-                            </form>
+{{--                                </button>--}}
+{{--                            </form>--}}
 
                             <form action="{{ route('remove-applicant') }}" method="post" @class('d-inline') onsubmit="return confirm('Are you sure?')">
                                 @csrf

@@ -50,7 +50,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
                     <div class="text-left">
                         {{--                        <a href="/create-scoring-sheet/{{ $subjs->id }}" class="btn btn-info btn-sm">Create A Score</a>--}}
                         <a href="/create-applicant/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2" id="add_app">Add
-                            Applicant <i data-bs-container="body"
+                            Property <i data-bs-container="body"
                                          data-bs-toggle="popover"
                                          data-bs-placement="top"
                                          data-bs-content="This is how you add an applicant to your Scorng account and to a Score Page. Simply click the button and open the page to enter in their name, email address, phone number and add any files and notes associated with this Applicant. Only the Main Team Member can add an Applicant. Team Members who have been invited, cannot add an Applicant."
@@ -81,13 +81,13 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                data-bs-content="A Finalist Page is simply another Score Page but for applicants that you will be considering hiring. Think of this as applicants who have passed the initial hiring stage and now have moved one step closer to actually being chosen for the position. You can add an unlimited number of applicants to the Finalist Page. Each Score Page has it’s own dedicated Finalist Page."
                                class="fas fa-info-circle"></i>
                         </a>
-                        <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Bulk Email List
-                            <i data-bs-container="body"
-                               data-bs-toggle="popover"
-                               data-bs-placement="top"
-                               data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting."
-                               class="fas fa-info-circle"></i>
-                        </a>
+{{--                        <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Bulk Email List--}}
+{{--                            <i data-bs-container="body"--}}
+{{--                               data-bs-toggle="popover"--}}
+{{--                               data-bs-placement="top"--}}
+{{--                               data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting."--}}
+{{--                               class="fas fa-info-circle"></i>--}}
+{{--                        </a>--}}
                         <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Add Team Member
                             <i data-bs-container="body"
                                data-bs-toggle="popover"
@@ -130,6 +130,9 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                         {{-- <tr>
                                             <td colspan="3" style="height: 60px; border: none;"></td>
                                         </tr> --}}
+                                        @php
+                                        $i = 1;
+                                        @endphp
                                         @foreach ( $applicants as $applicant )
 {{--                                            @if(count($maincriterias) > 0 && count($applicants) > 0)--}}
 {{--                                                <tr>--}}
@@ -147,6 +150,11 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                             @endphp
 
                                             @if(count($maincriterias) > 0 && count($applicants) > 0)
+                                                @if($i > 1)
+                                                <tr style="border-top: 1px solid; height: 80px">
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                @endif
                                                 <tr style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
                                                     @endif
 
@@ -247,28 +255,28 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                                             </a>
 
                                                         </p>
-                                                        <span>
-                                                            <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}">
-                                                            <img style="width: 30px; height: 30px;"
-                                                                 src="{{ asset('images/scoreboard.png') }}">
-                                                            </a>
-                                                                                                                        <i data-bs-container="body"
-                                                                                                                           data-bs-toggle="popover"
-                                                                                                                           data-bs-placement="top"
-                                                                                                                           data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>
+{{--                                                        <span>--}}
+{{--                                                            <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}">--}}
+{{--                                                            <img style="width: 30px; height: 30px;"--}}
+{{--                                                                 src="{{ asset('images/scoreboard.png') }}">--}}
+{{--                                                            </a>--}}
+{{--                                                                                                                        <i data-bs-container="body"--}}
+{{--                                                                                                                           data-bs-toggle="popover"--}}
+{{--                                                                                                                           data-bs-placement="top"--}}
+{{--                                                                                                                           data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>--}}
 
-These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.
-<br><br>
-<p>Greatly Exceeded Expectations</p>
-<p>Exceeded Expectations</p>
-<p>Slightly Exceeded Expectations</p>
-<p>Met Expectations</p>
-<p>Slightly Failed Expectations</p>
-<p>Failed Expectations</p>
-<p>Greatly Failed Expectations</p>" class="fas fa-info-circle"></i>
+{{--These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.--}}
+{{--<br><br>--}}
+{{--<p>Greatly Exceeded Expectations</p>--}}
+{{--<p>Exceeded Expectations</p>--}}
+{{--<p>Slightly Exceeded Expectations</p>--}}
+{{--<p>Met Expectations</p>--}}
+{{--<p>Slightly Failed Expectations</p>--}}
+{{--<p>Failed Expectations</p>--}}
+{{--<p>Greatly Failed Expectations</p>" class="fas fa-info-circle"></i>--}}
 
 
-                                                        </span>
+{{--                                                        </span>--}}
 
                                                     </div>
 
@@ -335,6 +343,30 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                                data-bs-placement="top"
                                                                data-bs-content="Grid View is simply an easier way to consume information by looking at it in no more than two columns. Less scrolling side to side and more time to consume important information."
                                                                class="fas fa-info-circle"></i>
+
+
+                                                            <span>
+                                                            <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}/{{ $user->id }}">
+                                                            <img style="width: 30px; height: 30px;"
+                                                                 src="{{ asset('images/scoreboard.png') }}">
+                                                            </a>
+                                                                                                                        <i data-bs-container="body"
+                                                                                                                           data-bs-toggle="popover"
+                                                                                                                           data-bs-placement="top"
+                                                                                                                           data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>
+
+These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.
+<br><br>
+<p>Greatly Exceeded Expectations</p>
+<p>Exceeded Expectations</p>
+<p>Slightly Exceeded Expectations</p>
+<p>Met Expectations</p>
+<p>Slightly Failed Expectations</p>
+<p>Failed Expectations</p>
+<p>Greatly Failed Expectations</p>" class="fas fa-info-circle"></i>
+
+
+                                                        </span>
 
 
                                                         </p></td>
@@ -480,6 +512,9 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                 </tr>
                                                 {{-- <tr><td>&nbsp;</td></tr> --}}
                                             @endforeach
+                                                @php
+                                                $i++;
+                                                @endphp
                                             <tr style="border: 2px solid #000 !important;"></tr>
                                     </tbody>
                                 </table>

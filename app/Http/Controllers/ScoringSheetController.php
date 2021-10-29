@@ -298,7 +298,7 @@ class ScoringSheetController extends Controller
         }
     }
 
-    public function scorecard($id, $appl_id)
+    public function scorecard($id, $appl_id, $userid)
     {
         try {
             $subject = Subject::select('user_id', 'id')
@@ -318,9 +318,9 @@ FROM applicants AS d WHERE d.`subject_id` = $id AND d.id = $appl_id ORDER BY tot
             $scorecards = DB::select('select m.criteria_name as main_criteria, c.id as criteria_id, c.title as criteria_title, c.priority as criteria_priority, s.score_number from criterias c
 join scores s on c.id = s.criteria_id join maincriterias m on c.maincriteria_id = m.id
 where s.subject_id = ? and s.criteria_id in (select id from criterias where subject_id = ?)
-and s.applicant_id = ? and s.user_id = ?', [$id, $id, $appl_id, $subject->user_id]);
+and s.applicant_id = ? and s.user_id = ?', [$id, $id, $appl_id, $userid]);
 
-            return view('scores.scorecard', ['title' => 'Scorecard', 'applicants' => $applicants[0], 'scorecards' => $scorecards, 'subject' => $subject]);
+            return view('scores.scorecard', ['title' => 'Scorecard', 'applicants' => $applicants[0], 'scorecards' => $scorecards, 'subject' => $subject, 'userid' => $userid]);
         } catch (\Throwable $th) {
             return abort('404');
         }
