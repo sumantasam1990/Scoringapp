@@ -8,7 +8,7 @@
         <div class="col-xxl-3 col-xl-3 col-lg-2 col-md-2"></div>
         <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
             <div class="">
-            <h2 class="display-4 text-center heading_txt">Create A Subject
+            <h2 class="display-4 text-center heading_txt">Create A Client
 
                 <i
                     style="text-align: center !important; font-size: 14px;"
@@ -21,17 +21,17 @@
                     @csrf
                     <div class="form-group mb-3">
                         <select name="main[]" class="form-control @error('main') is-invalid @enderror" onchange="openMainSubjectModal(this.value)">
-                            <option selected disabled value="">Choose The Main Subject</option>
+                            <option selected disabled value="">Choose The Main Client</option>
                             @foreach ($mainsubjects as $main)
                                <option {{ (old("main") == $main->id ? "selected" : "") }} value="{{$main->id}}">{{$main->main_subject_name}}</option>
                             @endforeach
                             <optgroup>
-                                <option style="background-color: green; color: #fff;" value="add_new_criteria7">Add New Main Subject</option>
+                                <option style="background-color: green; color: #fff;" value="add_new_criteria7">Add New Main Client</option>
                             </optgroup>
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Create Sub Subject" value="{{ old('subject') }}">
+                        <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Create Client" value="{{ old('subject') }}">
                     </div>
 
                     <hr />
@@ -39,7 +39,7 @@
                     <div id="html"></div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                        <button type="button" onclick="add_more()" class="btn btn-dark btn-md">Add Another Subject</button>
+                        <button type="button" onclick="add_more()" class="btn btn-dark btn-md">Add Another Client</button>
                         <button type="submit" class="btn btn-dark btn-md">Submit</button>
                     </div>
                 </form>
@@ -68,7 +68,7 @@
                 @csrf
                 <div class="box">
                     <div class="form-group">
-                        <input type="text" class="form-control" required name="main_sub" placeholder="Create a Main Subject">
+                        <input type="text" class="form-control" required name="main_sub" placeholder="Create a Main Client">
                     </div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
@@ -97,17 +97,17 @@
     function add_more() {
         $("#html").append(`<div class="form-group mb-3">
                         <select name="main[]" class="form-control @error('main') is-invalid @enderror" onchange="openMainSubjectModal(this.value)">
-                            <option selected disabled value="">Choose The Main Subject</option>
+                            <option selected disabled value="">Choose The Main Client</option>
                             @foreach ($mainsubjects as $main)
         <option {{ (old("main") == $main->id ? "selected" : "") }} value="{{$main->id}}">{{$main->main_subject_name}}</option>
                             @endforeach
         <optgroup>
-            <option style="background-color: green; color: #fff;" value="add_new_criteria7">Add New Main Subject</option>
+            <option style="background-color: green; color: #fff;" value="add_new_criteria7">Add New Main Client</option>
         </optgroup>
     </select>
 </div>
 <div class="form-group mb-3 border-bottom">
-    <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Create Sub Subject" value="{{ old('subject') }}">
+    <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Create Client" value="{{ old('subject') }}">
                     </div> <hr />`);
     }
 </script>

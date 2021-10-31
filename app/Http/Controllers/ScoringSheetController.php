@@ -19,7 +19,6 @@ class ScoringSheetController extends Controller
 {
     public function index($id)
     {
-
         $authUser = Auth::user();
 
         $subjs = Subject::where("id", $id)->first();

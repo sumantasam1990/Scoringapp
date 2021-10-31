@@ -8,7 +8,7 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div class="">
-            <h2 class="display-4 text-center heading_txt">Applicant Page
+            <h2 class="display-4 text-center heading_txt">Property Page
                 <i style="font-size: 15px;" data-bs-container="body"
                    data-bs-toggle="popover"
                    data-bs-placement="top"
@@ -19,7 +19,7 @@
 
             <div class="row mt-6">
                 <div class="col-6">
-                    <h4 class="fw-bold">Main Applicant Information</h4>
+                    <h4 class="fw-bold">Main Property Information</h4>
                 </div>
                 <div class="col-6 text-right">
                     {{-- <p style="float: right;"><a class="btn btn-success btn-sm" href="">Edit Information</a></p> --}}
@@ -157,7 +157,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                 @csrf
                                 <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
                                 <input type="hidden" name="applicant_id" value="{{ $applicants[0]->id }}" required>
-                                <button type="submit" @class('btn btn-success btn-sm')>Remove Applicant</button>
+                                <button type="submit" @class('btn btn-success btn-sm')>Remove Property</button>
                             </form>
 
                             @php

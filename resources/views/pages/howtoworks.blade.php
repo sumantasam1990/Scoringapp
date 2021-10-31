@@ -8,12 +8,12 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="box-black-howitworks text-center">
-                        <h4 class="display-6 fw-bold">I'm Signing Up My Company.</h4>
+                        <h4 class="display-6 fw-bold">I'm A Realtor</h4>
                         <p @class('mt-4')><a class="btn btn-dark" href="/sign-up-my-company">Learn More</a></p>
                     </div>
 
                     <div class="box-black-howitworks text-center mt-4">
-                        <h4 class="display-6 fw-bold">I've Been Invited To Join.</h4>
+                        <h4 class="display-6 fw-bold">I'm A Buyer</h4>
                         <p @class('mt-4')><a class="btn btn-dark" href="/invited-to-join">Learn More</a></p>
                     </div>
                 </div>

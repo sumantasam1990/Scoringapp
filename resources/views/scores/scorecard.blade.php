@@ -63,7 +63,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                             @endif
 
                             <a class="btn btn-success btn-sm"
-                               href="/applicant/{{ $applicants->id }}/{{ $subject->id }}">Open Applicant Profile</a> &nbsp;
+                               href="/applicant/{{ $applicants->id }}/{{ $subject->id }}">Open Property Profile</a> &nbsp;
                             <span class="d-none d-sm-inline"> {{ $applicants->name }}</span>
                             <p class="d-block d-sm-none">{{ $applicants->name }}</p>
 

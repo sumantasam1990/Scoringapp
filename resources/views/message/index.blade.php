@@ -13,7 +13,7 @@
             <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $roomname->room_name }}</h5>
 
             <hr />
-            <h2 class="display-6 text-left heading_txt mt-4">Team Members</h2>
+            <h2 class="display-6 text-left heading_txt mt-4">Buyers</h2>
             <hr />
 
             <div class="row">

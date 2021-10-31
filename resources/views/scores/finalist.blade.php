@@ -33,15 +33,15 @@
                             data-bs-placement="top" data-bs-content="This is the page where you can actually give scores to each Applicant. This first step is to add Criteria, get as detailed as possible so the score that you give each Applicant represents the most detail and in turn represents who is the most qualified Applicant to hire.<br>The second step is to add and Applicant, and finally is to actually give one of 7 scores to each Applicant within each Criteria." class="fas fa-info-circle"></i>
 
                     </a>
-                    <a href="/bulkemaillist/{{ $subjs->id }}" class="btn btn-success btn-sm">Bulk Email List
+{{--                    <a href="/bulkemaillist/{{ $subjs->id }}" class="btn btn-success btn-sm">Bulk Email List--}}
 
 
-                        <i
-                            style="text-align: center !important; font-size: 14px;"
-                            data-bs-container="body" data-bs-toggle="popover"
-                            data-bs-placement="top" data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting." class="fas fa-info-circle"></i>
+{{--                        <i--}}
+{{--                            style="text-align: center !important; font-size: 14px;"--}}
+{{--                            data-bs-container="body" data-bs-toggle="popover"--}}
+{{--                            data-bs-placement="top" data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting." class="fas fa-info-circle"></i>--}}
 
-                    </a>
+{{--                    </a>--}}
                    {{-- <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm">Add Team Member</a>
                     <a href="/create-applicant" class="btn btn-success btn-sm">Message Room</a> --}}
                     </div>

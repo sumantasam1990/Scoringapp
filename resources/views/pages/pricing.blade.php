@@ -33,13 +33,13 @@
                                 <h4 class="display-4 fw-bold">$29</h4>
                                 <p class="m-0 fw-bold">Monthly</p>
                                 <div class="m-0">
-                                    <p class="m-2 fw-bold fs-6">Unlimited Applicants</p>
+                                    <p class="m-2 fw-bold fs-6">Unlimited People</p>
                                     <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>
                                     <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>
                                     <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>
-                                    <p class="m-2 fw-bold fs-6">Unlimited Email Lists</p>
                                     <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>
-                                    <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>
+                                    <p class="m-2 fw-bold fs-6">Unlimited Files & Notes</p>
+                                    <p class="m-2 fw-bold fs-6">Unlimited Finalist Pages</p>
                                 </div>
 
                                 <p @class('mt-4')><a class="btn btn-dark" href="/signup">Sign Up Now</a></p>

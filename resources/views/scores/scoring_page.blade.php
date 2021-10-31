@@ -88,7 +88,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
 {{--                               data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting."--}}
 {{--                               class="fas fa-info-circle"></i>--}}
 {{--                        </a>--}}
-                        <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Add Team Member
+                        <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Add Buyer
                             <i data-bs-container="body"
                                data-bs-toggle="popover"
                                data-bs-placement="top"
@@ -103,16 +103,16 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                class="fas fa-info-circle"></i>
                         </a>
 
-                        <a onclick="return confirm('Are you sure?')" href="/position-filled/{{$subjs->id}}"
-                           class="btn btn-dark btn-sm mt-2">
-                            Position Filled
+{{--                        <a onclick="return confirm('Are you sure?')" href="/position-filled/{{$subjs->id}}"--}}
+{{--                           class="btn btn-dark btn-sm mt-2">--}}
+{{--                            Position Filled--}}
 
-                            <i data-bs-container="body"
-                               data-bs-toggle="popover"
-                               data-bs-placement="top"
-                               data-bs-content="Position Filled" class="fas fa-info-circle"></i>
+{{--                            <i data-bs-container="body"--}}
+{{--                               data-bs-toggle="popover"--}}
+{{--                               data-bs-placement="top"--}}
+{{--                               data-bs-content="Position Filled" class="fas fa-info-circle"></i>--}}
 
-                        </a>
+{{--                        </a>--}}
 
 
                     </div>
@@ -547,11 +547,11 @@ These numbers are only based on the scores given by the Main Team Member. The se
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
-                            <span class="fw-bold">Subject Name</span>
+                            <span class="fw-bold">Buyer's Name</span>
                             <input style="border: none;" readonly type="text" id="sub_name">
                         </div>
                         <div class="col">
-                            <span class="fw-bold">Applicant Name</span>
+                            <span class="fw-bold">Property Address</span>
                             <input style="border: none;" readonly type="text" id="appli_name">
                         </div>
                         <div class="col">
