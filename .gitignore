@@ -16,3 +16,4 @@ yarn-error.log
 public/js/bootstrap.js
 package-lock.json
 .env.example
+/artisan_old
