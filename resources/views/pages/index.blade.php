@@ -5,7 +5,7 @@
 
         <div class="col-md-10 mx-auto">
             <div class="text-center mt-4">
-                <h1 class="display-4 fw-bolder">Find your clients their favorite house, based on their super detailed feedback.</h1>
+                <h1 class="display-3 fw-bolder">Find your clients their favorite house, based on their super detailed feedback.</h1>
                 <p class="fw-bold mt-3 fs-6 text-center subheading">A scoring system that enables Buyers to give specific scores to each detailed aspect of each house so that Agents can find their Buyers the house they'll love the most.</p>
                 <a class="btn btn-info btn-lg mt-4" href="/signup">Sign Up Now</a>
                 <p class="mt-3">7-day free trial. No credit card required.</p>

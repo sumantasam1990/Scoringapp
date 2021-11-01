@@ -7,7 +7,7 @@
     }
 </style>
 
-<div class="container-fluid mt-6">
+<div class="container-fluid mt-4">
 
     @include('layouts.alert')
 
@@ -15,16 +15,16 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
             <div style="float: right; font-size: 30px;">
-                <a style="color: #138D07 !important;" class="text-dark" href="/scorepage-grid/{{$subjs->id}}"> <i
-                        class="bi bi-grid-fill"></i>
+{{--                <a style="color: #138D07 !important;" class="text-dark" href="/scorepage-grid/{{$subjs->id}}"> <i--}}
+{{--                        class="bi bi-grid-fill"></i>--}}
 
-                    <i style="font-size: 14px;" data-bs-container="body"
-                       data-bs-toggle="popover"
-                       data-bs-placement="top"
-                       data-bs-content="Grid View is simply an easier way to consume information by looking at it in no more than two columns. Less scrolling side to side and more time to consume important information."
-                       class="fas fa-info-circle"></i>
+{{--                    <i style="font-size: 14px;" data-bs-container="body"--}}
+{{--                       data-bs-toggle="popover"--}}
+{{--                       data-bs-placement="top"--}}
+{{--                       data-bs-content="Grid View is simply an easier way to consume information by looking at it in no more than two columns. Less scrolling side to side and more time to consume important information."--}}
+{{--                       class="fas fa-info-circle"></i>--}}
 
-                </a>
+{{--                </a>--}}
             </div>
             <div class="">
 
@@ -88,7 +88,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
 {{--                               data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting."--}}
 {{--                               class="fas fa-info-circle"></i>--}}
 {{--                        </a>--}}
-                        <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Add Buyer
+                        <a href="/add-team-member/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Invite Buyer
                             <i data-bs-container="body"
                                data-bs-toggle="popover"
                                data-bs-placement="top"
@@ -334,15 +334,15 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                                         <p class="fw-bold">
                                                             {{ $user->name }} <br>
 
-                                                            <a style="color: #138D07 !important; font-size: 24px;"
-                                                               class="text-dark"
-                                                               href="/scorepage-grid/{{ $subjs->id }}/{{ $applicant->id }}">
-                                                                <i class="bi bi-grid-fill"></i> </a>
+{{--                                                            <a style="color: #138D07 !important; font-size: 24px;"--}}
+{{--                                                               class="text-dark"--}}
+{{--                                                               href="/scorepage-grid/{{ $subjs->id }}/{{ $applicant->id }}">--}}
+{{--                                                                <i class="bi bi-grid-fill"></i> </a>--}}
 
-                                                            <i data-bs-container="body" data-bs-toggle="popover"
-                                                               data-bs-placement="top"
-                                                               data-bs-content="Grid View is simply an easier way to consume information by looking at it in no more than two columns. Less scrolling side to side and more time to consume important information."
-                                                               class="fas fa-info-circle"></i>
+{{--                                                            <i data-bs-container="body" data-bs-toggle="popover"--}}
+{{--                                                               data-bs-placement="top"--}}
+{{--                                                               data-bs-content="Grid View is simply an easier way to consume information by looking at it in no more than two columns. Less scrolling side to side and more time to consume important information."--}}
+{{--                                                               class="fas fa-info-circle"></i>--}}
 
 
                                                             <span>
@@ -428,76 +428,78 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                 @foreach ($results as $result)
 
-                                                                    @if ($result->score_number == 1)
-                                                                        <label
-                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                                            class="btn score-priority"
-                                                                            style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+                                                                    <span onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})" class="fw-bold fs-4">{{ $result->score_number }} <i class="bi bi-pencil-square"></i></span>
+
+{{--                                                                    @if ($result->score_number == 1)--}}
+{{--                                                                        <label--}}
+{{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+{{--                                                                            class="btn score-priority"--}}
+{{--                                                                            style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
 
-                                                                        </label>
+{{--                                                                        </label>--}}
 
 
 
-                                                                    @elseif ($result->score_number == 2)
-                                                                        <label
-                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                                            class="btn score-priority"
-                                                                            style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+{{--                                                                    @elseif ($result->score_number == 2)--}}
+{{--                                                                        <label--}}
+{{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+{{--                                                                            class="btn score-priority"--}}
+{{--                                                                            style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
 
-                                                                        </label>
+{{--                                                                        </label>--}}
 
 
-                                                                    @elseif ($result->score_number == 3)
-                                                                        <label
-                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                                            class="btn score-priority"
-                                                                            style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+{{--                                                                    @elseif ($result->score_number == 3)--}}
+{{--                                                                        <label--}}
+{{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+{{--                                                                            class="btn score-priority"--}}
+{{--                                                                            style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
-                                                                        </label>
+{{--                                                                        </label>--}}
 
-                                                                    @elseif ($result->score_number == 0)
-                                                                        <label
-                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                                            class="btn score-priority"
-                                                                            style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+{{--                                                                    @elseif ($result->score_number == 0)--}}
+{{--                                                                        <label--}}
+{{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+{{--                                                                            class="btn score-priority"--}}
+{{--                                                                            style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
-                                                                        </label>
+{{--                                                                        </label>--}}
 
-                                                                    @elseif ($result->score_number == 5)
-                                                                        <label
-                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                                            class="btn score-priority"
-                                                                            style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+{{--                                                                    @elseif ($result->score_number == 5)--}}
+{{--                                                                        <label--}}
+{{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+{{--                                                                            class="btn score-priority"--}}
+{{--                                                                            style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
-                                                                        </label>
+{{--                                                                        </label>--}}
 
-                                                                    @elseif ($result->score_number == -1)
-                                                                        <label
-                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                                            class="btn score-priority"
-                                                                            style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+{{--                                                                    @elseif ($result->score_number == -1)--}}
+{{--                                                                        <label--}}
+{{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+{{--                                                                            class="btn score-priority"--}}
+{{--                                                                            style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
-                                                                        </label>
+{{--                                                                        </label>--}}
 
-                                                                    @elseif ($result->score_number == -2)
-                                                                        <label
-                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                                            class="btn score-priority"
-                                                                            style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+{{--                                                                    @elseif ($result->score_number == -2)--}}
+{{--                                                                        <label--}}
+{{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+{{--                                                                            class="btn score-priority"--}}
+{{--                                                                            style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
-                                                                        </label>
+{{--                                                                        </label>--}}
 
-                                                                    @elseif ($result->score_number == -3)
-                                                                        <label
-                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                                            class="btn score-priority"
-                                                                            style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+{{--                                                                    @elseif ($result->score_number == -3)--}}
+{{--                                                                        <label--}}
+{{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+{{--                                                                            class="btn score-priority"--}}
+{{--                                                                            style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
-                                                                        </label>
+{{--                                                                        </label>--}}
 
-                                                                    @endif
+{{--                                                                    @endif--}}
 
                                                                 @endforeach
 
@@ -573,7 +575,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                 @foreach ($scores_array as $key => $score)
                                     <option
-                                        value="{{ $score }}" {{ (old("score_give") == $score ? "selected" : "") }}>{{ $key }}</option>
+                                        value="{{ $score }}" {{ (old("score_give") == $score ? "selected" : "") }}>{{ $score }}</option>
                                 @endforeach
                             </select>
                         </div>

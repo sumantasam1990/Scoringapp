@@ -38,7 +38,7 @@ class ScoringSheetController extends Controller
             'Greatly Exceeded Expectations' => '+3',
             'Exceeded Expectations' => '+2',
             'Slightly Exceeded Expectations' => '+1',
-            'Met Expectations' => '0',
+//            'Met Expectations' => '0',
             'Slightly Failed Expectations' => '-1',
             'Failed Expectations' => '-2',
             'Greatly Failed Expectations' => '-3'
@@ -88,7 +88,7 @@ class ScoringSheetController extends Controller
             'Greatly Exceeded Expectations +3 (Very Dark Green)' => '+3',
             'Exceeded Expectations +2 ( Dark Green)' => '+2',
             'Slightly Exceeded Expectations +1 (Light Green)' => '+1',
-            'Met Expectations 0 (Yellow)' => '0',
+//            'Met Expectations 0 (Yellow)' => '0',
             'Slightly Failed Expectations -1 (Orange)' => '-1',
             'Failed Expectations -2 (Red)' => '-2',
             'Greatly Failed Expectations -3 (Dark Red)' => '-3'
@@ -169,7 +169,7 @@ class ScoringSheetController extends Controller
                 'Greatly Exceeded Expectations +3 (Very Dark Green)' => '+3',
                 'Exceeded Expectations +2 ( Dark Green)' => '+2',
                 'Slightly Exceeded Expectations +1 (Light Green)' => '+1',
-                'Met Expectations 0 (Yellow)' => '0',
+//                'Met Expectations 0 (Yellow)' => '0',
                 'Slightly Failed Expectations -1 (Orange)' => '-1',
                 'Failed Expectations -2 (Red)' => '-2',
                 'Greatly Failed Expectations -3 (Dark Red)' => '-3'
@@ -352,7 +352,7 @@ and s.applicant_id = ? and s.user_id = ?', [$id, $id, $appl_id, $userid]);
                 'subject' => $subject, 'applicants' => $applicants, 'maincriterias' => $maincriterias,
                 'criterias' => $criterias, 'mainsubject' => $mainsubject]);
         } catch (\Throwable $th) {
-            return abort(403);
+            return abort('403');
         }
 
     }
