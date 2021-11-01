@@ -11,6 +11,7 @@ use App\Models\Mainsubject;
 use App\Models\Metadata;
 use App\Models\Score;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -76,12 +77,18 @@ class ScoringSheetController extends Controller
         $subjs = Subject::where("id", $id)->first();
         //$subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 
+        Subject::with('applicant')->where('id', '=', $id)->get()->dd();
+
+
+
         $mainsubject = Mainsubject::where('id', '=', $subjs->mainsubject_id)
         ->select('main_subject_name', 'id')->first();
 
         $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
 
-        //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
+
+        $algo = new ScoreStore();
+        $algo->algo($id, $applicants);
 
 
         $scores_array = array(

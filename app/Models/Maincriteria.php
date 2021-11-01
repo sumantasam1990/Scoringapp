@@ -31,4 +31,12 @@ class Maincriteria extends Model
 
     protected $table = 'maincriterias';
     protected $primaryKey = 'id';
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function subject() {
+        return $this->belongsTo(Subject::class);
+    }
 }

@@ -32,7 +32,7 @@
                         @enderror
 
                         <div>
-                            <label>Applicant: </label>
+                            <label>Property: </label>
                             {{ $applicant->name }} - ( {{ $applicant->email }} )
                         </div>
                         <div class="form-group mb-4">
