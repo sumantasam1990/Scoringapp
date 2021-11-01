@@ -87,9 +87,6 @@ class ScoreStore
         }
     }
 
-    public function algo($sid, $applicants)
-    {
 
-    }
 
 }

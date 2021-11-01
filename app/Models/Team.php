@@ -36,6 +36,8 @@ class Team extends Model
     protected $table = 'teams';
     protected $primaryKey = 'id';
 
+
+
     public function user() {
         return $this->belongsTo(User::class);
     }

@@ -39,4 +39,8 @@ class Maincriteria extends Model
     public function subject() {
         return $this->belongsTo(Subject::class);
     }
+
+    public function criteria() {
+        return $this->hasMany(Criteria::class);
+    }
 }

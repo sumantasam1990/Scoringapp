@@ -74,21 +74,16 @@ class ScoringSheetController extends Controller
 
     public function scoring($id)
     {
+        //Subject::with('applicant', 'team.user', 'criteria.score.user')->where('id', '=', $id)->get();
+
         $subjs = Subject::where("id", $id)->first();
         //$subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
-
-        Subject::with('applicant')->where('id', '=', $id)->get()->dd();
-
 
 
         $mainsubject = Mainsubject::where('id', '=', $subjs->mainsubject_id)
         ->select('main_subject_name', 'id')->first();
 
         $applicants = DB::select('SELECT d.id,d.name, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d WHERE subject_id = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
-
-
-        $algo = new ScoreStore();
-        $algo->algo($id, $applicants);
 
 
         $scores_array = array(
