@@ -50,4 +50,8 @@ class Criteria extends Model
         return $this->hasMany(Score::class);
     }
 
+    public function maincriteria() {
+        return $this->belongsTo(Maincriteria::class);
+    }
+
 }

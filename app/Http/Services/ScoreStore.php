@@ -5,12 +5,15 @@ namespace App\Http\Services;
 use App\Models\Criteria;
 use App\Models\Metadata;
 use App\Models\Score;
+use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ScoreStore
 {
 
     private $minimum;
+    private $scoreData = [];
 
     public function save($score_give, $appl, $sub, $crit_id, $image, $note)
     {
@@ -78,16 +81,12 @@ class ScoreStore
             }
 
 
-
-
-
-
-
-
         } catch (\Throwable $th) {
             return redirect('/score-page/' . $sub)
                 ->with('err', 'Error!' . $th->getMessage());
         }
     }
+
+
 
 }

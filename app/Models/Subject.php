@@ -55,7 +55,15 @@ class Subject extends Model
         return $this->hasMany(Criteria::class);
     }
 
+    public function maincriteria() {
+        return $this->hasMany(Maincriteria::class);
+    }
+
     public function score() {
         return $this->hasMany(Score::class);
+    }
+
+    public function team() {
+        return $this->hasMany(Team::class);
     }
 }

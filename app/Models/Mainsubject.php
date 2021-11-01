@@ -29,4 +29,12 @@ class Mainsubject extends Model
 
     protected $table = 'mainsubjects';
     protected $primaryKey = 'id';
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function team() {
+        return $this->hasMany(Team::class, 'user_email', 'id');
+    }
 }

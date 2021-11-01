@@ -58,5 +58,9 @@ class Score extends Model
         return $this->belongsTo(Applicant::class);
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
 
 }
