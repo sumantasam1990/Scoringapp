@@ -19,17 +19,17 @@
             <div class="box mt-6">
                 <form action="{{ route('subject.store') }}" method="post">
                     @csrf
-                    <div class="form-group mb-3">
-                        <select name="main[]" class="form-control @error('main') is-invalid @enderror" onchange="openMainSubjectModal(this.value)">
-                            <option selected disabled value="">Choose The Main Client</option>
-                            @foreach ($mainsubjects as $main)
-                               <option {{ (old("main") == $main->id ? "selected" : "") }} value="{{$main->id}}">{{$main->main_subject_name}}</option>
-                            @endforeach
-                            <optgroup>
-                                <option style="background-color: green; color: #fff;" value="add_new_criteria7">Add New Main Client</option>
-                            </optgroup>
-                        </select>
-                    </div>
+{{--                    <div class="form-group mb-3">--}}
+{{--                        <select name="main[]" class="form-control @error('main') is-invalid @enderror" onchange="openMainSubjectModal(this.value)">--}}
+{{--                            <option selected disabled value="">Choose The Main Client</option>--}}
+{{--                            @foreach ($mainsubjects as $main)--}}
+{{--                               <option {{ (old("main") == $main->id ? "selected" : "") }} value="{{$main->id}}">{{$main->main_subject_name}}</option>--}}
+{{--                            @endforeach--}}
+{{--                            <optgroup>--}}
+{{--                                <option style="background-color: green; color: #fff;" value="add_new_criteria7">Add New Main Client</option>--}}
+{{--                            </optgroup>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
                     <div class="form-group mb-3">
                         <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Create Client" value="{{ old('subject') }}">
                     </div>

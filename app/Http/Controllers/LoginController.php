@@ -84,7 +84,9 @@ class LoginController extends Controller
         if(Auth::check()){
             $user = Auth::user();
 
-            $mysubjects = DB::select('SELECT DISTINCT(mainsubjects.main_subject_name), mainsubjects.id FROM mainsubjects RIGHT JOIN teams ON (teams.mainsubject_id=mainsubjects.id) WHERE teams.user_email = ?', [$user->email]);
+            $mysubjects = Subject::with('team')
+                ->where('user_id', '=', $user->id)
+                ->get();
 
             return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "mysubjects" => $mysubjects]);
         }

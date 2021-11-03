@@ -22,13 +22,13 @@ class SubjectController extends Controller
     public function store(Request $request) {
 
         $request->validate([
-            'main' => 'required',
+            //'main' => 'required',
             'subject' => 'required'
         ]);
 
         try {
 
-            (new SubjectStore())->save($request->main, $request->subject);
+            (new SubjectStore())->save($request->subject);
 
             return redirect("/dashboard")->with("msg", "Your subject has been successfully added.");
 

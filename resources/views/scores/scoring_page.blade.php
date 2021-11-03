@@ -30,7 +30,7 @@
 
 
                 @livewire('inlineedit', ['subject_name' => $subjs->subject_name, 'subject_id' => $subjs->id,
-                'main_subject_name' => $mainsubject->main_subject_name, 'main_subject_id' => $mainsubject->id])
+                'main_subject_name' => 0, 'main_subject_id' => 0])
 
                 <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">Scoring Page
 

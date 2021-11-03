@@ -54,14 +54,12 @@
 
 
             <div class="row mt-6 border-top border-1 border-dark p-2">
-                @php $i = 1 @endphp
-                @foreach ($mysubjects as $inv)
 {{--                    <h2 class="fw-bold">Active</h2>--}}
 {{--                    <h4 class="display-5 fw-bold @if($i > 1) mt-6 border-top border-2 border-dark @endif p-4" style="color: green; ">{{ $inv->main_subject_name }}</h4>--}}
-                    @php
-                        $invited = DB::select('select subjects.subject_name, subjects.id, teams.status, teams.user_email from subjects left join teams on (teams.subject_id=subjects.id) where teams.user_email = ? and teams.mainsubject_id = ? and subjects.status = ?', [$user->email, $inv->id, 0]);
-                    @endphp
-                    @foreach ($invited as $in)
+{{--                    @php--}}
+{{--                        $invited = DB::select('select subjects.subject_name, subjects.id, teams.status, teams.user_email from subjects left join teams on (teams.subject_id=subjects.id) where teams.user_email = ? and teams.mainsubject_id = ? and subjects.status = ?', [$user->email, $inv->id, 0]);--}}
+{{--                    @endphp--}}
+                    @foreach ($mysubjects as $in)
                         <div class="col-12 col-xl-4 col-md-4 col-xxl-4 col-sm-12 col-xs-12 mt-3 mb-4">
                             <div class="card text-dark border-success" style="border: 6px solid green !important;">
                                 <div class="card-body text-center">
@@ -71,7 +69,7 @@
                                         $token = Crypt::encrypt($in->user_email . '|' . $in->id);
                                     @endphp
 
-                                    @if($in->status == 0)
+                                    @if($in->team[0]->status == 0)
                                         <a onclick="return confirm('Are you sure?')" class="btn btn-link text-dark text-decoration-underline fw-bold" href="/accept-invitation/{{ $token }}">Accept Invitation</a>
                                     @else
                                         <a href="/score-page/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>
@@ -85,8 +83,8 @@
                             </div>
                         </div>
                     @endforeach
-                @php $i++ @endphp
-                @endforeach
+
+
 
 
 
