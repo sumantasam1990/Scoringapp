@@ -59,6 +59,16 @@ class CriteriaController extends Controller
         $criteria->note = $request->note;
         $criteria->applicant_id = $request->applicant_id;
 
+        if (!empty($request->image)) {
+
+            $imageName = 'crit_' . uniqid() . time() . '.' . $request->image->extension();
+
+            $request->image->move(public_path('uploads'), $imageName);
+
+            $criteria->photo = $imageName; /* Store $imageName name in DATABASE from HERE */
+
+        }
+
         $criteria->save();
 
         return redirect('/score-page/' .  $request->subject)

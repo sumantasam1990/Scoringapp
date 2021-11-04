@@ -22,6 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Mainsubject whereMainSubjectName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mainsubject whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Mainsubject whereUserId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $team
+ * @property-read int|null $team_count
+ * @property-read \App\Models\User $user
  */
 class Mainsubject extends Model
 {

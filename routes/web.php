@@ -29,6 +29,10 @@ use Illuminate\Auth\Events\PasswordReset;
 |
 */
 
+//Route::group(['prefix' => "app"], function () {
+//
+//});
+
 Route::get('/', [\App\Http\Controllers\PagesController::class, 'index']);
 Route::get('/howitworks', [\App\Http\Controllers\PagesController::class, 'howitworks']);
 Route::get('/sign-up-my-company', [\App\Http\Controllers\PagesController::class, 'signupmycompany']);

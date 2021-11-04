@@ -24,6 +24,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Maincriteria whereSubjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Maincriteria whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Maincriteria whereUserId($value)
+ * @property int $applicant_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Criteria[] $criteria
+ * @property-read int|null $criteria_count
+ * @property-read \App\Models\Subject $subject
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Maincriteria whereApplicantId($value)
  */
 class Maincriteria extends Model
 {

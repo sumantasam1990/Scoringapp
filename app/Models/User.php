@@ -46,6 +46,14 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserType($value)
  * @property string|null $photo
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhoto($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Maincriteria[] $maincriteria
+ * @property-read int|null $maincriteria_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Mainsubject[] $mainsubject
+ * @property-read int|null $mainsubject_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Score[] $scores
+ * @property-read int|null $scores_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $team
+ * @property-read int|null $team_count
  */
 class User extends Authenticatable implements MustVerifyEmail
 {

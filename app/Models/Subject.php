@@ -33,6 +33,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereMainsubjectId($value)
  * @property int $status
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereStatus($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Maincriteria[] $maincriteria
+ * @property-read int|null $maincriteria_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $team
+ * @property-read int|null $team_count
  */
 class Subject extends Model
 {

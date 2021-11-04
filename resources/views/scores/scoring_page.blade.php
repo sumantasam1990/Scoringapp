@@ -231,6 +231,17 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                                                         "Important Note"
                                                                     </button>
                                                                 @endif
+
+                                                                    @if($data->photo != '')
+                                                                        <button style="font-size: 12px;" type="button"
+                                                                                class="btn fw-light" data-bs-container="body"
+                                                                                data-bs-toggle="popover" data-bs-placement="top"
+                                                                                title=" Photo"
+                                                                                data-bs-content="<img class='criteria-photo' src='{{ asset('uploads') }}/{{ $data->photo }}'/>">
+                                                                            <i class="fas fa-camera"></i> "Photo"
+                                                                        </button>
+                                                                    @endif
+
                                                             @endforeach
                                                         </th>
 

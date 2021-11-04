@@ -33,6 +33,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Criteria whereNote($value)
  * @property int $applicant_id
  * @method static \Illuminate\Database\Eloquent\Builder|Criteria whereApplicantId($value)
+ * @property string|null $photo
+ * @property-read \App\Models\Maincriteria $maincriteria
+ * @method static \Illuminate\Database\Eloquent\Builder|Criteria wherePhoto($value)
  */
 class Criteria extends Model
 {
@@ -42,6 +45,11 @@ class Criteria extends Model
     protected $primaryKey = 'id';
 
     // Relationships
+    /**
+     * @var string|null
+     */
+    private $photo;
+
     public function subject() {
         return $this->belongsTo(Subject::class);
     }

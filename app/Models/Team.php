@@ -28,6 +28,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereUserEmail($value)
  * @property int $status
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereStatus($value)
+ * @property-read \App\Models\Mainsubject $mainsubject
+ * @property-read \App\Models\Subject $subject
+ * @property-read \App\Models\User|null $user
  */
 class Team extends Model
 {

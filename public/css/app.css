@@ -11255,6 +11255,13 @@ footer ul li a {
   right: 50px;
 }
 
+.criteria-photo {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 800px) {
   .btn {
     margin: 5px;

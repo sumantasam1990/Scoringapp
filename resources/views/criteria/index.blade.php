@@ -23,7 +23,7 @@
 
 
                 <div class="box mt-4">
-                    <form action="{{ route('criteria.store') }}" method="post">
+                    <form action="{{ route('criteria.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="applicant_id" value="{{ $applid }}">
 
@@ -102,8 +102,10 @@
                           </div> --}}
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <button type="button" onclick="selectPhoto()" class="btn btn-dark btn-md"><i class="fas fa-camera"></i> Add Photo</button>
                             <button type="submit" class="btn btn-dark btn-md">Submit</button>
                         </div>
+                        <input style="display: none;" type="file" id="img" name="image" class="form-control">
                     </form>
                 </div>
             </div>
@@ -163,5 +165,11 @@
         } else {
             document.getElementById(e).style.width = "50px"
         }
+    }
+</script>
+
+<script>
+    function selectPhoto() {
+        $("#img").trigger('click');
     }
 </script>

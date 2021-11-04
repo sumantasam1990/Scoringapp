@@ -33,8 +33,8 @@
                 </div>
             </div>
 
-            <hr />
-            <table class="table">
+
+            <table class="table table-striped table-bordered">
                 <tr>
                     <th>Full Name</th>
                     <td>{{ $applicants[0]->name }}</td>
@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <th>Listing URL</th>
-                    <td>{{ $applicants[0]->phone }}</td>
+                    <td><a class="text-dark text-decoration-underline" target="_blank" href="{{ $applicants[0]->phone }}">{{ $applicants[0]->phone }}</a> </td>
                 </tr>
             </table>
 
@@ -309,6 +309,17 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                                     "Important Note"
                                                 </button>
                                             @endif
+
+                                                @if($data->photo != '')
+                                                    <button style="font-size: 12px;" type="button"
+                                                            class="btn fw-light" data-bs-container="body"
+                                                            data-bs-toggle="popover" data-bs-placement="top"
+                                                            title=" Photo"
+                                                            data-bs-content="<img class='criteria-photo' src='{{ asset('uploads') }}/{{ $data->photo }}'/>">
+                                                        <i class="fas fa-camera"></i> "Photo"
+                                                    </button>
+                                                @endif
+
                                         @endforeach
                                     </th>
 
