@@ -117,24 +117,26 @@
                     <div class="col-md-10 col-12 mt-3">
                         <div class="text-right" style="float: right;">
 
-                            <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scoreboard
+{{--                            <a class="btn btn-success btn-sm" href="/scorecard/{{ $subjs->id }}/{{ $applicants[0]->id }}">Scoreboard--}}
 
-                                <i data-bs-container="body"
-                                   data-bs-toggle="popover"
-                                   data-bs-placement="top"
-                                   data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below. <br>
+{{--                                <i data-bs-container="body"--}}
+{{--                                   data-bs-toggle="popover"--}}
+{{--                                   data-bs-placement="top"--}}
+{{--                                   data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below. <br>--}}
 
-These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.<br><br>
+{{--These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.<br><br>--}}
 
-<p>Greatly Exceeded Expectations </p>
-<p>Exceeded Expectations </p>
-<p>Slightly Exceeded Expectations </p>
-<p>Met Expectations </p>
-<p>Slightly Failed Expectations </p>
-<p>Failed Expectations </p>
-<p>Greatly Failed Expectations </p>
-" class="fas fa-info-circle"></i>
-                            </a>
+{{--<p>Greatly Exceeded Expectations </p>--}}
+{{--<p>Exceeded Expectations </p>--}}
+{{--<p>Slightly Exceeded Expectations </p>--}}
+{{--<p>Met Expectations </p>--}}
+{{--<p>Slightly Failed Expectations </p>--}}
+{{--<p>Failed Expectations </p>--}}
+{{--<p>Greatly Failed Expectations </p>--}}
+{{--" class="fas fa-info-circle"></i>--}}
+{{--                            </a>--}}
+
+
                             <a class="btn btn-success btn-sm" href="/score-page/{{ $subjs->id }}">Score Page
 
                                 <i style="font-size: 15px;" data-bs-container="body"

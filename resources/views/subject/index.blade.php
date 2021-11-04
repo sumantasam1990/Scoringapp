@@ -8,7 +8,7 @@
         <div class="col-xxl-3 col-xl-3 col-lg-2 col-md-2"></div>
         <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
             <div class="">
-            <h2 class="display-4 text-center heading_txt">Create A Client
+            <h2 class="display-4 text-center heading_txt">Create A Buyer
 
                 <i
                     style="text-align: center !important; font-size: 14px;"
@@ -39,7 +39,7 @@
                     <div id="html"></div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                        <button type="button" onclick="add_more()" class="btn btn-dark btn-md">Add Another Client</button>
+                        <button type="button" onclick="add_more()" class="btn btn-dark btn-md">Add Another Buyer</button>
                         <button type="submit" class="btn btn-dark btn-md">Submit</button>
                     </div>
                 </form>

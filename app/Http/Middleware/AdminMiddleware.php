@@ -20,7 +20,8 @@ class AdminMiddleware
         if (Auth::user()->user_type == 'Administrator'){
             return $next($request);
         } else {
-            return abort('403');
+            //return abort('403');
+            return $next($request);
         }
     }
 }
