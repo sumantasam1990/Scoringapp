@@ -35,8 +35,19 @@
 <div class="container ">
     <div class="row">
         <div class="col-md-12 text-center p-5">
-            <h2 class="cta-text">
-                Our mission at Scorng is to help Agents find the house that their Buyers will love the most by providing them with objective, super detailed and comprehensive data.            </h2>
+            <h1 class="display-4 fw-bold mb-4">
+                Invite Other Agents
+            </h1>
+            <p class="">
+                Invite every Agent that you know to sign up for Scorng because your Agent contacts may have a Seller who has a house that meets the criteria that your Buyers have scored as "Really Love It". This tremendously helps you, the Buyer's Agent, because your Buyers will find a house they love, that much faster.
+            </p>
+            <p>
+                Also, as the Buyer Agent, inviting every Agent you know, will save you time because you don't have to spend time looking through tons of listings and not knowing whether your Buyers will love the house. By inviting Seller Agents, they will look through the Properties that you and your Buyers have added to your Score Pages and the Criteria and Scores. They'll contact you if they have a Seller whose house matches the criteria. It tremendously helps the Seller Agent for the same reason because they will find a Buyer for their Seller much faster.
+            </p>
+            <p>
+                If you are a Seller Agent, invite Buyer Agents so they can have their Buyers add Scores to Properties so that you as a Seller Agent can discover if you have a Property that meets any Criteria that those Buyers have scored as "Really Love It".
+            </p>
+            <a class="btn btn-dark btn-lg mt-4" href="/signup">Sign Up Today</a>
         </div>
     </div>
 </div>
@@ -81,7 +92,7 @@
         </div>
         <div class="col-md-4 mb-3">
             <div class="box-black text-center">
-                <h4 class="display-4 fw-bold">$29</h4>
+                <h4 class="display-4 fw-bold">$9</h4>
                 <p class="fw-bold">Monthly</p>
                 <div class="m-0">
                     <p class="m-2 fw-bold fs-6">Unlimited People</p>
@@ -150,7 +161,7 @@
             <div class="col-12 text-center">
                 <h4 class="fw-bold display-5">Objective Overview</h4>
                 <p class="fw-bold mt-3 text-center subheading">Sit down with your clients and be able to clearly and easily help them pick the house they should buy, based on the transparent, objective and detailed feedback on each Score Page and Scoreboard.</p>
-                <a style="color: #370143;" class="btn btn-light btn-lg fw-bold mt-4" href="/signup">Our Reviews</a>
+                <a style="color: #370143;" class="btn btn-light btn-lg fw-bold mt-4" href="/signup">Sign up</a>
             </div>
         </div>
     </div>

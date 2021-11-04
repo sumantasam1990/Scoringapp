@@ -80,7 +80,7 @@
                     </select>
                 </div> --}}
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-dark btn-sm">Add Buyer</button>
+                    <button type="submit" class="btn btn-dark btn-sm">Add Person</button>
                 </div>
             </form>
 

@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-md-4 mt-4">
                             <div class="box-black-pricing text-center">
-                                <h4 class="display-4 fw-bold">$29</h4>
+                                <h4 class="display-4 fw-bold">$9</h4>
                                 <p class="m-0 fw-bold">Monthly</p>
                                 <div class="m-0">
                                     <p class="m-2 fw-bold fs-6">Unlimited People</p>

@@ -33,11 +33,11 @@
                     <td>{{ $applicants[0]->name }}</td>
                 </tr>
                 <tr>
-                    <th>Email Address</th>
+                    <th>Property Address</th>
                     <td>{{ $applicants[0]->email }}</td>
                 </tr>
                 <tr>
-                    <th>Phone Number</th>
+                    <th>Listing URL</th>
                     <td>{{ $applicants[0]->phone }}</td>
                 </tr>
             </table>

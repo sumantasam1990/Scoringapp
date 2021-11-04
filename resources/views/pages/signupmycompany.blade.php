@@ -14,28 +14,28 @@
                 </div>
                 <div class="col-md-6 text-center mt-4">
                     <div class="circle-number">2</div>
-                    <h4 class="mt-3 display-6 fw-bold">Add Buyers</h4>
-                    <p>In your Dashboard, simply click "Add A Buyer". Add their name and any associated notes or files.</p>
+                    <h4 class="mt-3 display-6 fw-bold">Add Buyers & Agents</h4>
+                    <p>In your Dashboard, simply click "Add A Person". Add their name and any associated notes or files.</p>
                 </div>
                 <div class="col-md-6 text-center mt-4">
                     <div class="circle-number">3</div>
                     <h4 class="mt-3 display-6 fw-bold">Add Properties</h4>
-                    <p>Either the agents and/or the buyers can now add properties that can be scored. Whenever you add a new property, your buyers will receive an email, asking them to score that property.</p>
+                    <p>Either the Agents and/or the Buyers can now add properties that can be scored. Whenever you add a new property, your Buyers will receive an email, asking them to score that property.</p>
                 </div>
                 <div class="col-md-6 text-center mt-4">
                     <div class="circle-number">4</div>
                     <h4 class="mt-3 display-6 fw-bold">Add Criteria</h4>
-                    <p>Have your buyers add as many criteria for each property as possible. This allows both your and your buyers to have a much more comprehensive, objective and transparent overview of the feedback on each property.</p>
+                    <p>Have your Buyers add as many criteria for each property as possible. This allows both your and your Buyers to have a much more comprehensive, objective and transparent overview of the feedback on each property.</p>
                 </div>
                 <div class="col-md-6 text-center mt-4">
                     <div class="circle-number">5</div>
                     <h4 class="mt-3 display-6 fw-bold">Messages</h4>
-                    <p>Within each Score Page, you and your buyers can create as many Threaded Messages as possible. This allows detailed discussions to happen about not only each property itself but also each criteria and score for each property. Add important dates and notes as well.</p>
+                    <p>Within each Score Page, you and your Buyers can create as many Threaded Messages as possible. This allows detailed discussions to happen about not only each property itself but also each criteria and score for each property. Add important dates and notes as well.</p>
                 </div>
                 <div class="col-md-6 text-center mt-4">
                     <div class="circle-number">6</div>
                     <h4 class="mt-3 display-6 fw-bold">View Scores</h4>
-                    <p>View the Scores that your buyers have added to each property and each criteria. Use these Scores to show your buyers more relevant properties based on their detailed feedback. Best of all each buyer can add their own Score to each property.</p>
+                    <p>View the Scores that your Buyers have added to each property and each criteria. Use these Scores to show your Buyers more relevant properties based on their detailed feedback. Best of all, each Buyer can add their own Score to each property.</p>
                 </div>
 {{--                <div class="col-md-6 text-center mt-4">--}}
 {{--                    <div class="circle-number">7</div>--}}

@@ -42,6 +42,17 @@
                             @endif
                         </div>
 
+                        <div class="form-group mb-3">
+                            <select name="user_type" class="form-control">
+                                <option selected disabled value="">I Am</option>
+                                <option>Buyer</option>
+                                <option>Agent</option>
+                            </select>
+                            @if ($errors->has('user_type'))
+                                <span class="text-danger">{{ $errors->first('user_type') }}</span>
+                            @endif
+                        </div>
+
                         <div class="form-check mb-3">
                             <input required class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                             <p class="form-check-label" for="flexCheckDefault">
