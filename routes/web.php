@@ -257,7 +257,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             \App\Models\Room::truncate();
             \App\Models\Score::truncate();
             Subject::truncate();
-            Team::truncate();
 
             dd("All tables has been truncated.");
         } catch (\Throwable $th) {
