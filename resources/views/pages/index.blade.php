@@ -35,7 +35,7 @@
 <div class="container ">
     <div class="row">
         <div class="col-md-12 text-center p-5">
-            <h1 class="display-4 fw-bold mb-4">
+            <h1 class="display-3 fw-bold mb-4">
                 Invite Other Agents
             </h1>
             <p class="">

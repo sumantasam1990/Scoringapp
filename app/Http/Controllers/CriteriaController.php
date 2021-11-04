@@ -20,7 +20,9 @@ class CriteriaController extends Controller
             ->select("main_subject_name")
             ->where("subjects.id", "=", $id)->first();
 
-        $maincriterias = Maincriteria::where("subject_id", $id)->get();
+        $maincriterias = Maincriteria::where("subject_id", $id)
+            ->where('applicant_id', $applid)
+            ->get();
 
         $subjects = Subject::where("id", $id)
         ->first();
@@ -67,7 +69,8 @@ class CriteriaController extends Controller
     public function mainstore(Request $request) {
         $request->validate([
             'main_sub' => 'required',
-            'hd_sub_id' => 'required'
+            'hd_sub_id' => 'required',
+            'hd_applicant_id' => 'required'
         ]);
 
         $user = Auth::user();
@@ -77,6 +80,7 @@ class CriteriaController extends Controller
         $maincriteria->criteria_name = $request->main_sub;
         $maincriteria->user_id = $user->id;
         $maincriteria->subject_id = $request->hd_sub_id;
+        $maincriteria->applicant_id = $request->hd_applicant_id;
 
         $maincriteria->save();
 

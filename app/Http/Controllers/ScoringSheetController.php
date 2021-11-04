@@ -250,7 +250,7 @@ class ScoringSheetController extends Controller
         );
 
         if(count($applicants) > 0 && count($maincriterias) > 0) {
-            return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, 'mainsubject' => $mainsubject]);
+            return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, 'mainsubject' => $mainsubject, 'sid' => $id]);
 
         } else {
             return redirect('/dashboard')->with('err', 'We don\'t have any data into the finalist page.');

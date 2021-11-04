@@ -1,5 +1,12 @@
 @include('layouts.header', ['title' => $title])
 
+<style>
+    .table tr {
+        width: 100%;
+        border-top: 1px solid #ADADAD;
+    }
+</style>
+
 <div class="container-fluid mt-6">
 
     @include('layouts.alert')
@@ -195,132 +202,182 @@ The second step is to add and Applicant, and finally is to actually give one of 
                 </div>
 
             <div class="table-responsive">
-                <table class="table mt-4">
-                    <thead>
-                        <tr style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
-                            @foreach ($maincriterias as $main)
-                            @php
-
-                            $colspan_main = DB::select("SELECT COUNT(id) AS total FROM
-                            criterias WHERE maincriteria_id = ? ", [$main->id]);
-
-                            //get total main criteria number
-                            $total_main = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE subject_id = ? AND scores.`criteria_id` IN (SELECT id FROM criterias WHERE maincriteria_id = ?)", [2, $main->id])
-
-                            @endphp
-                            <th colspan="{{ $colspan_main[0]->total }}" style="text-align: center; border-left: 2px solid #000;">
-                                <h4 class="fw-bold">{{ $main->criteria_name }}</h4>
-                                <p style="font-size: 34px;" class="fw-bold">
-                                    {{ $total_main[0]->total }}
-                                </p>
-
-                            </th>
-                            @endforeach
-                        </tr>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
-                            {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
-                            @foreach ($subjects as $data)
-                            <th style="text-align: center; border-left: 2px solid #000; vertical-align: top; ">
-                                <p>{{ $data->title }}</p>
-                                @php
-                                    $exp = explode(",", $data->priority);
-
-                                @endphp
-                                @foreach ($exp as $e)
-                                    @if (count($exp) > 1)
-                                        @php
-                                            $width = "45%";
-                                        @endphp
-
-                                    @else
-                                        @php
-                                            $width = "100%";
-                                        @endphp
-
-                                    @endif
-{{--                                    <label class="btn score-priority" style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; margin-left: -3px;"></label>--}}
-
-                                        @if($data->note != '')
-                                            <button style="font-size: 12px;" type="button" class="btn fw-light" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" title="Important Note" data-bs-content="{{ $data->note }}">
-                                                "Important Note"
-                                            </button>
-                                        @endif
-                                @endforeach
-                            </th>
-                            @endforeach
-                        </tr>
-
-                    </thead>
+                <table class="table mt-6 table-borderless">
 
                     <tbody>
-                        {{-- <tr>
-                            <td colspan="3" style="height: 60px; border: none;"></td>
-                        </tr> --}}
-                        @foreach ( $applicants as $applicant )
-                            @if(count($maincriterias) > 0 && count($applicants) > 0)
-                                <tr>
-                                    <td colspan="@php echo count($subjects)+2; @endphp"
-                                        style=" border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
-                                    >&nbsp;
-                                    </td>
+                    {{-- <tr>
+                        <td colspan="3" style="height: 60px; border: none;"></td>
+                    </tr> --}}
+                    @php
+                        $i = 1;
+                    @endphp
+                    @foreach ( $applicants as $applicant )
+                        {{--                                            @if(count($maincriterias) > 0 && count($applicants) > 0)--}}
+                        {{--                                                <tr>--}}
+                        {{--                                                    <td colspan="@php echo count($subjects)+2; @endphp"--}}
+                        {{--                                                        style=" border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"--}}
+                        {{--                                                    >&nbsp;--}}
+                        {{--                                                    </td>--}}
+                        {{--                                                </tr>--}}
+                        {{--                                            @endif--}}
+
+                        {{--                                            ---------------------------------------------------------}}
+
+                        @php
+                            $maincriterias = \Illuminate\Support\Facades\DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? AND criterias.applicant_id = ? GROUP BY maincriterias.`id`", [$sid, $applicant->id]);
+                        @endphp
+
+                        @if(count($maincriterias) > 0 && count($applicants) > 0)
+                            @if($i > 1)
+                                <tr style="border-top: 1px solid; height: 80px">
+                                    <td>&nbsp;</td>
                                 </tr>
                             @endif
-                        <tr>
-                            <td style="border-right: 2px solid; border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
-                            > {{-- @php echo count($subjects) + 2; @endphp --}}
+                            <tr style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
+                                @endif
 
-                                <div style="font-size: 18px;" class="fw-bold mb-3">
-                                    <p class="fs-5 mb-2"><a
-                                            style="color: #138D07; text-decoration: none;"
-                                            href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                                @foreach ($maincriterias as $main)
+                                    @php
 
-                                        </a>
+                                        $colspan_main = DB::select("SELECT COUNT(id) AS total FROM
+                                        criterias WHERE maincriteria_id = ? ", [$main->id]);
 
-                                    </p>
-                                    <span>
-                                                            <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}">
-                                                            <img style="width: 30px; height: 30px;" src="{{ asset('images/scoreboard.png') }}">
-                                                            </a>
+                                        //get total main criteria number
+                                        //$total_main = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE subject_id = ? AND scores.`criteria_id` IN (SELECT id FROM criterias WHERE maincriteria_id = ?)", [$sid, $main->id])
 
-                                        <i data-bs-container="body"
-                                           data-bs-toggle="popover"
-                                           data-bs-placement="top"
-                                           data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>
+                                    @endphp
+                                    <th colspan="{{ $colspan_main[0]->total }}"
+                                        style="text-align: center; border-left: 2px solid #000; vertical-align: middle; font-size: 20px; font-weight: 700; padding-top: 20px;">
 
-These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.
-<br><br>
-<p>Greatly Exceeded Expectations</p>
-<p>Exceeded Expectations</p>
-<p>Slightly Exceeded Expectations</p>
-<p>Met Expectations</p>
-<p>Slightly Failed Expectations</p>
-<p>Failed Expectations</p>
-<p>Greatly Failed Expectations</p>"class="fas fa-info-circle"></i>
+                                        @livewire('inlineeditmaincriteria', ['criteria_name' =>
+                                        $main->criteria_name,
+                                        'main_criteria_id' => $main->id])
 
-                                                        </span>
-                                </div>
 
-                            </td>
-                            @for($i=1; $i<=count($subjects)+1; $i++)
-                                <td style="@if($i < count($subjects)+1) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: center; vertical-align: middle !important;
-                                    "
-                                >
+                                        <p style="font-size: 34px;" class="fw-bold">
+                                            {{--                                                    {{ $total_main[0]->total }}--}}
+                                        </p>
 
-                                    @if($i == 1)
-                                        <i
+                                    </th>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th style="vertical-align: middle;">&nbsp;
+{{--                                    <a class="btn btn-success btn-sm" href="/create-criteria/{{ $sid }}/{{ $applicant->id }}">Add Criteria</a>--}}
+                                </th>
+                                {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
 
-                                            data-bs-container="body" data-bs-toggle="popover"
-                                            data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
-                                            class="fas fa-info-circle"></i>
-                                    @else
-                                        <i data-bs-container="body"
-                                           data-bs-toggle="popover"
-                                           data-bs-placement="top"
-                                           data-bs-content="Colored rectangles represent the score that was assigned by a Team Member to an Applicant within a particular criteria.
+                                @php
+                                    $subjects = \App\Models\Criteria::where("subject_id", "=", $sid)->where("applicant_id", "=", $applicant->id)->orderBy("maincriteria_id", "ASC")->get();
+                                @endphp
+
+                                @foreach ($subjects as $data)
+                                    <th style="text-align: center; border-left: 2px solid #000; vertical-align: middle; font-weight: 700; padding-top: 20px;">
+
+
+                                        @livewire('inlineeditcriteria', ['title' => $data->title,
+                                        'criteria_id' => $data->id])
+
+
+                                        @php
+                                            $exp = explode(",", $data->priority);
+
+                                        @endphp
+                                        @foreach ($exp as $e)
+                                            @if (count($exp) > 1)
+                                                @php
+                                                    $width = "45%";
+                                                @endphp
+
+                                            @else
+                                                @php
+                                                    $width = "100%";
+                                                @endphp
+
+                                            @endif
+                                            {{--                                                    <label class="btn score-priority"--}}
+                                            {{--                                                           style="background-color: #{{ $e }}; border: 3px solid #{{ $e }}; width: {{ $width }}; height: 30px; color: #fff; font-weight: bold; "></label>--}}
+                                            @if($data->note != '')
+                                                <button style="font-size: 12px;" type="button"
+                                                        class="btn fw-light" data-bs-container="body"
+                                                        data-bs-toggle="popover" data-bs-placement="top"
+                                                        title="Important Note"
+                                                        data-bs-content="{{ $data->note }}">
+                                                    "Important Note"
+                                                </button>
+                                            @endif
+                                        @endforeach
+                                    </th>
+
+                                @endforeach
+
+                            </tr>
+
+
+                            {{--                                            ----------------------------------------------------------------}}
+
+                            <tr>
+                                {{--                                            border-bottom: 1px solid #ccc !important;--}}
+
+                                <td style="border-right: 2px solid; border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: left;"
+                                > {{-- @php echo count($subjects) + 2; @endphp --}}
+
+                                    <div style="font-size: 18px;" class="fw-bold mb-3">
+                                        <p class="fs-5 mb-2"><a
+                                                style=" text-decoration: none; color: #138D07;"
+                                                href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
+
+                                            </a>
+
+                                        </p>
+                                        {{--                                                        <span>--}}
+                                        {{--                                                            <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}">--}}
+                                        {{--                                                            <img style="width: 30px; height: 30px;"--}}
+                                        {{--                                                                 src="{{ asset('images/scoreboard.png') }}">--}}
+                                        {{--                                                            </a>--}}
+                                        {{--                                                                                                                        <i data-bs-container="body"--}}
+                                        {{--                                                                                                                           data-bs-toggle="popover"--}}
+                                        {{--                                                                                                                           data-bs-placement="top"--}}
+                                        {{--                                                                                                                           data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>--}}
+
+                                        {{--These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.--}}
+                                        {{--<br><br>--}}
+                                        {{--<p>Greatly Exceeded Expectations</p>--}}
+                                        {{--<p>Exceeded Expectations</p>--}}
+                                        {{--<p>Slightly Exceeded Expectations</p>--}}
+                                        {{--<p>Met Expectations</p>--}}
+                                        {{--<p>Slightly Failed Expectations</p>--}}
+                                        {{--<p>Failed Expectations</p>--}}
+                                        {{--<p>Greatly Failed Expectations</p>" class="fas fa-info-circle"></i>--}}
+
+
+                                        {{--                                                        </span>--}}
+
+                                    </div>
+
+                                </td>
+
+
+                                @for($i=1; $i<=count($subjects)+1; $i++)
+                                    <td style="@if($i < count($subjects)+1) border-right: 2px solid; @endif border-bottom: 1px solid #ADADAD !important; border-top: 2px solid #707070 !important; padding-bottom: 0px; text-align: center; vertical-align: middle !important;
+                                        "
+                                    >
+
+                                        @if($i == 1)
+                                            <i
+                                                data-bs-container="body" data-bs-toggle="popover"
+                                                data-bs-placement="top"
+                                                data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
+                                                class="fas fa-info-circle"></i>
+                                        @else
+
+                                            <i data-bs-container="body"
+                                               data-bs-toggle="popover"
+                                               data-bs-placement="top"
+                                               data-bs-content="Colored rectangles represent the score that was assigned by a Team Member to an Applicant within a particular criteria.
 
 <br><br> Scoring works as follows: <br><br>
 <p>Light Green (+1) Slightly Exceeded Expectations</p>
@@ -330,20 +387,23 @@ These numbers are only based on the scores given by the Main Team Member. The se
 <p>Orange (-1) Slightly Failed Expectations</p>
 <p>Red (-2) Failed Expectations</p>
 <p>Dark Red (-3) Greatly Failed Expectations</p>
-<h5 style='line-height: 40px; font-size: 18px;'>The plus sign is what you select to add a score to an Applicant within a particular criteria.</h5>" class="fas fa-info-circle"></i>
+<br>
+<h5 style='line-height: 40px; font-size: 18px;'>The plus sign is what you select to add a score to an Applicant within a particular criteria.</h5>"
+                                               class="fas fa-info-circle"></i>
 
-                                    @endif
-                                </td>
-                        @endfor
+                                        @endif
+                                    </td>
+                            @endfor
 
-                                @php
+
+                            @php
                                 // getting users from subject id
                                 $users = DB::select("SELECT users.id,users.name FROM users LEFT JOIN teams ON (users.email=teams.user_email) WHERE teams.subject_id = ?", [$subjs->id]);
 
                             @endphp
 
-                                @foreach ($users as $user)
-                                <tr class="noBorder">
+                            @foreach ($users as $user)
+                                <tr class="noBorder" style="vertical-align: middle;">
                                     @php
                                         $total_sum = DB::select("SELECT SUM(scores.score_number) AS total FROM scores WHERE user_id = ? AND applicant_id = ? AND subject_id = ?", [$user->id,$applicant->id,$subjs->id]);
 
@@ -352,32 +412,76 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                         <p class="fw-bold">
                                             {{ $user->name }} <br>
 
-                                            <a style="color: #138D07 !important; font-size: 24px;" class="text-dark" href="/scorepage-grid/{{ $subjs->id }}/{{ $applicant->id }}"> <i class="bi bi-grid-fill"></i> </a>
+                                            {{--                                                            <a style="color: #138D07 !important; font-size: 24px;"--}}
+                                            {{--                                                               class="text-dark"--}}
+                                            {{--                                                               href="/scorepage-grid/{{ $subjs->id }}/{{ $applicant->id }}">--}}
+                                            {{--                                                                <i class="bi bi-grid-fill"></i> </a>--}}
 
-                                            <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Grid View is simply an easier way to consume information by looking at it in no more than two columns. Less scrolling side to side and more time to consume important information." class="fas fa-info-circle"></i>
+                                            {{--                                                            <i data-bs-container="body" data-bs-toggle="popover"--}}
+                                            {{--                                                               data-bs-placement="top"--}}
+                                            {{--                                                               data-bs-content="Grid View is simply an easier way to consume information by looking at it in no more than two columns. Less scrolling side to side and more time to consume important information."--}}
+                                            {{--                                                               class="fas fa-info-circle"></i>--}}
 
+
+                                            <span>
+                                                            <a href="/scorecard/{{ $subjs->id }}/{{ $applicant->id }}/{{ $user->id }}">
+                                                            <img style="width: 30px; height: 30px;"
+                                                                 src="{{ asset('images/scoreboard.png') }}">
+                                                            </a>
+                                                                                                                        <i data-bs-container="body"
+                                                                                                                           data-bs-toggle="popover"
+                                                                                                                           data-bs-placement="top"
+                                                                                                                           data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>
+
+These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.
+<br><br>
+<p>Greatly Exceeded Expectations</p>
+<p>Exceeded Expectations</p>
+<p>Slightly Exceeded Expectations</p>
+<p>Met Expectations</p>
+<p>Slightly Failed Expectations</p>
+<p>Failed Expectations</p>
+<p>Greatly Failed Expectations</p>" class="fas fa-info-circle"></i>
+
+
+                                                        </span>
 
 
                                         </p></td>
-                                    <td style="text-align: left; border-left: 2px solid #000;">
-                                        <p style="font-size: 42px; margin-left: 10px; margin-top: -10px;"
+                                    <td style="text-align: center; border-left: 2px solid #000; vertical-align: top;">
+                                        <p style="font-size: 40px;  margin-top: -10px;"
                                            class="fw-bold">
 
 
-                                        {{ $total_sum[0]->total }}
+                                            {{ $total_sum[0]->total }}
 
-                                        @if($total_sum[0]->total != '')
-
+                                            @if($total_sum[0]->total != '')
+                                                {{--                                                        <div class="number_tota_l"><i--}}
+                                                {{--                                                                style="text-align: center !important; font-size: 14px;"--}}
+                                                {{--                                                                data-bs-container="body" data-bs-toggle="popover"--}}
+                                                {{--                                                                data-bs-placement="top" data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."--}}
+                                                {{--                                                                class="fas fa-info-circle icon-left"></i></div>--}}
                                             @endif
 
 
-                                            </p>
+                                        </p>
+
+
                                     </td>
+                                    {{--                                                <td style="text-align: left; vertical-align: middle !important;">--}}
+
+                                    {{--                                                    <p class="fw-bold"--}}
+                                    {{--                                                       style="font-size: 42px;">--}}
+                                    {{--                                                       --}}
+
+                                    {{--                                                    </p>--}}
+                                    {{--                                                </td>--}}
+
                                     @foreach ($subjects as $data)
 
-                                        <td style="border-left: 2px solid #000;">
+                                        <td style="border-left: 2px solid #000; vertical-align: top; text-align: center;">
 
-                                            <div class="text-center">
+                                            <div class="text-left" style="position: relative;">
                                                 @php
                                                     $results = DB::select("SELECT scores.id,scores.score_number,subjects.subject_name,criterias.title,applicants.name FROM scores
                                                     LEFT JOIN subjects ON (scores.subject_id=subjects.id)
@@ -387,78 +491,93 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                 @endphp
 
-                                                {{-- @if (count($results) == 0)
-                                                    <a onclick="openModalCreateScore('{{$subjects[0]->subject->id}}', '{{$applicant->id}}', '{{$data->title}}', '{{$subjects[0]->subject->subject_name}}', '{{$applicant->name}}', '{{$data->id}}')" class="btn btn-link text-center" style="color: #138D07; font-weight: bold; font-size: 20px; text-decoration: none;" href="#"><i class="fas fa-plus"></i></a>
-                                                @endif --}}
+                                                @if (count($results) === 0 && $user->id === auth()->user()->id)
+                                                    <a onclick="openModalCreateScore('{{$subjects[0]->subject->id}}', '{{$applicant->id}}', '{{$data->title}}', '{{$subjects[0]->subject->subject_name}}', '{{$applicant->name}}', '{{$data->id}}')"
+                                                       class="btn btn-link text-center"
+                                                       style="color: #138D07; font-weight: bold; font-size: 20px; text-decoration: none;"
+                                                       href="javascript:void(0)"><i
+                                                            class="fas fa-plus"></i>
+
+
+                                                    </a>
+
+
+                                                @endif
 
                                                 @foreach ($results as $result)
 
-                                                    @if ($result->score_number == 1)
-                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                               class="btn score-priority"
-                                                               style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+                                                    <span onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})" class="fw-bold fs-4">{{ $result->score_number }} <i class="bi bi-pencil-square"></i></span>
 
-                                                        </label>
-
-
-                                                    @elseif ($result->score_number == 2)
-                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                               class="btn score-priority"
-                                                               style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
-
-                                                        </label>
+                                                    {{--                                                                    @if ($result->score_number == 1)--}}
+                                                    {{--                                                                        <label--}}
+                                                    {{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+                                                    {{--                                                                            class="btn score-priority"--}}
+                                                    {{--                                                                            style="background-color: #40F328; border: 3px solid #40F328; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
 
-                                                    @elseif ($result->score_number == 3)
-                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                               class="btn score-priority"
-                                                               style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
-
-                                                        </label>
+                                                    {{--                                                                        </label>--}}
 
 
 
-                                                    @elseif ($result->score_number == 0)
-                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                               class="btn score-priority"
-                                                               style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
-
-                                                        </label>
-
-
-                                                    @elseif ($result->score_number == 5)
-                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                               class="btn score-priority"
-                                                               style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
-
-                                                        </label>
+                                                    {{--                                                                    @elseif ($result->score_number == 2)--}}
+                                                    {{--                                                                        <label--}}
+                                                    {{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+                                                    {{--                                                                            class="btn score-priority"--}}
+                                                    {{--                                                                            style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
 
-                                                    @elseif ($result->score_number == -1)
-                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                               class="btn score-priority"
-                                                               style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
-
-                                                        </label>
+                                                    {{--                                                                        </label>--}}
 
 
-                                                    @elseif ($result->score_number == -2)
-                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                               class="btn score-priority"
-                                                               style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+                                                    {{--                                                                    @elseif ($result->score_number == 3)--}}
+                                                    {{--                                                                        <label--}}
+                                                    {{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+                                                    {{--                                                                            class="btn score-priority"--}}
+                                                    {{--                                                                            style="background-color: #022D02; border: 3px solid #022D02; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
-                                                        </label>
+                                                    {{--                                                                        </label>--}}
 
+                                                    {{--                                                                    @elseif ($result->score_number == 0)--}}
+                                                    {{--                                                                        <label--}}
+                                                    {{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+                                                    {{--                                                                            class="btn score-priority"--}}
+                                                    {{--                                                                            style="background-color: #FCD40A; border: 3px solid #FCD40A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
-                                                    @elseif ($result->score_number == -3)
-                                                        <label onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                               class="btn score-priority"
-                                                               style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">
+                                                    {{--                                                                        </label>--}}
 
-                                                        </label>
+                                                    {{--                                                                    @elseif ($result->score_number == 5)--}}
+                                                    {{--                                                                        <label--}}
+                                                    {{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+                                                    {{--                                                                            class="btn score-priority"--}}
+                                                    {{--                                                                            style="background-color: #138D07; border: 3px solid #138D07; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
 
+                                                    {{--                                                                        </label>--}}
 
-                                                    @endif
+                                                    {{--                                                                    @elseif ($result->score_number == -1)--}}
+                                                    {{--                                                                        <label--}}
+                                                    {{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+                                                    {{--                                                                            class="btn score-priority"--}}
+                                                    {{--                                                                            style="background-color: #F56A21; border: 3px solid #F56A21; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
+
+                                                    {{--                                                                        </label>--}}
+
+                                                    {{--                                                                    @elseif ($result->score_number == -2)--}}
+                                                    {{--                                                                        <label--}}
+                                                    {{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+                                                    {{--                                                                            class="btn score-priority"--}}
+                                                    {{--                                                                            style="background-color: #FC0A0A; border: 3px solid #FC0A0A; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
+
+                                                    {{--                                                                        </label>--}}
+
+                                                    {{--                                                                    @elseif ($result->score_number == -3)--}}
+                                                    {{--                                                                        <label--}}
+                                                    {{--                                                                            onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"--}}
+                                                    {{--                                                                            class="btn score-priority"--}}
+                                                    {{--                                                                            style="background-color: #5E0303; border: 3px solid #5E0303; width: 100%; height: 40px; font-size: 14px; color: #fff; font-weight: bold; ">--}}
+
+                                                    {{--                                                                        </label>--}}
+
+                                                    {{--                                                                    @endif--}}
 
                                                 @endforeach
 
@@ -468,12 +587,15 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                     @endforeach
                                 </tr>
                                 @endforeach
-                            </td>
+                                </td>
 
-                        </tr>
-                        {{-- <tr><td>&nbsp;</td></tr> --}}
-                        @endforeach
-                        <tr style="border: 2px solid #000 !important;"></tr>
+                                </tr>
+                                {{-- <tr><td>&nbsp;</td></tr> --}}
+                            @endforeach
+                            @php
+                                $i++;
+                            @endphp
+                            <tr style="border: 2px solid #000 !important;"></tr>
                     </tbody>
                 </table>
             </div>

@@ -1,5 +1,8 @@
 <div>
-    <p>{{ $title }} <i wire:click="startEdit" style="font-size: 16px; cursor: pointer;" class="bi bi-pencil"></i></p>
+    <p>
+        {{ $title }}
+        <i wire:click="startEdit" style="font-size: 16px; cursor: pointer;" class="bi bi-pencil"></i>
+    </p>
 
     @if($edit)
         <form class="d-flex" wire:submit.prevent="save">

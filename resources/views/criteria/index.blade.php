@@ -127,6 +127,7 @@
                 <form action="{{ route('maincriteria.store') }}" method="post">
                     @csrf
                     <input type="hidden" name="hd_sub_id" value="{{$sid}}">
+                    <input type="hidden" name="hd_applicant_id" value="{{ $applid }}">
                     <div class="box">
                         <div class="form-group">
                             <input type="text" class="form-control" required name="main_sub"

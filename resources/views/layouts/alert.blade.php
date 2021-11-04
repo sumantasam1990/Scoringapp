@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-6 mx-auto">
+    <div class="col-10 mx-auto">
         @if (session('msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <h4 class="alert-heading"><i class="bi bi-check2-circle"></i> Success!</h4>

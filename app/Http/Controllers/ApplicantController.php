@@ -65,7 +65,7 @@ class ApplicantController extends Controller
         //$maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id`, (SELECT sum(`score_number`) AS num FROM scores WHERE scores.`criteria_id` = criterias.`id`) AS total FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) LEFT JOIN scores ON (scores.`criteria_id`=criterias.`id`) WHERE scores.`subject_id` = ? AND criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$subid, $subid]);
 
 
-        return view("applicant.view", ["title" => "Applicant Details", "applicants" => $applicants, "subjects" => $subjects, "maincriterias" => $maincriterias, "subjs" => $subjs, 'mainsubject' => $mainsubject]);
+        return view("applicant.view", ["title" => "Applicant Details", "applicants" => $applicants, "subjects" => $subjects, "maincriterias" => $maincriterias, "subjs" => $subjs, 'mainsubject' => $mainsubject, 'sid' => $subid]);
     }
 
     public function add_finalist(Request $request)
