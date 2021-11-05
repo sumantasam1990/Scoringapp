@@ -29,7 +29,7 @@ class AddNewApplicant extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject('New Applicant Has Been Added')
+        return $this->subject('New Property Has Been Added')
             ->markdown('Email.addnewapplicant')
             ->with('mailData', $this->mailData);
     }

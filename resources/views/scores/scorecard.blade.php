@@ -203,7 +203,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            +3 <p class="sb-expect text-black-50">Greatly Exceeded Expectations</p>
+                            +3 <p class="sb-expect text-black-50">Really Love It</p>
                         </th>
                         <th>
 
@@ -311,7 +311,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            +2 <p class="sb-expect text-black-50">Exceeded Expectations</p>
+                            +2 <p class="sb-expect text-black-50">Love It</p>
                         </th>
                         <th>
 
@@ -348,7 +348,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            +1 <p class="sb-expect text-black-50">Slightly Exceeded Expectations</p>
+                            +1 <p class="sb-expect text-black-50">Like It</p>
                         </th>
                         <th>
 
@@ -371,7 +371,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
                         </th>
                     </tr>
 
-                    @php
+                    {{-- @php
                         $score = DB::select("select m.criteria_name, c.id as criteria_id, c.title as criteria_title,
    c.priority as criteria_priority, s.score_number,
    s.score_card_no
@@ -406,7 +406,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
 
                         </th>
-                    </tr>
+                    </tr> --}}
 
                     @php
                         $score = DB::select("select m.criteria_name, c.id as criteria_id, c.title as criteria_title,
@@ -422,7 +422,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            -1 <p class="sb-expect text-black-50">Slightly Failed Expectations</p>
+                            -1 <p class="sb-expect text-black-50">Really Really Don’t Like It</p>
                         </th>
                         <th>
 
@@ -459,7 +459,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            -2 <p class="sb-expect text-black-50">Failed Expectations</p>
+                            -2 <p class="sb-expect text-black-50">Really Don’t Like It</p>
                         </th>
                         <th>
 
@@ -496,7 +496,7 @@ and s.applicant_id = ? and s.user_id = ? and s.score_number = ?", [$subject->id,
 
                     <tr>
                         <th>
-                            -3 <p class="sb-expect text-black-50">Greatly Failed Expectations</p>
+                            -3 <p class="sb-expect text-black-50">Don't Like It</p>
                         </th>
                         <th>
 

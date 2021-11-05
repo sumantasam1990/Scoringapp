@@ -8,7 +8,7 @@
     </select>
     </div>
 
-    <div style="margin-bottom: 15px; text-align: center; font-size: 22px; font-weight: bold;">Or,</div>
+    <div style="margin-bottom: 15px; text-align: center; font-size: 22px; font-weight: bold;">Or</div>
     <div class="form-group mb-4">
         <input required type="text" name="name"
                class="form-control @error('name') is-invalid @enderror" value="{{ old('name') ? old('name') : $applicantName }}"

@@ -13,7 +13,7 @@
                     <i
                         style="text-align: center !important; font-size: 14px;"
                         data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="top" data-bs-content="This is how you add an applicant to your Scorng account and to a Score Page. Simply click the button and open the page to enter in their name, email address, phone number and add any files and notes associated with this Applicant. Only the Main Team Member can add an Applicant. Team Members who have been invited, cannot add an Applicant" class="fas fa-info-circle"></i>
+                        data-bs-placement="top" data-bs-content="This is how Agents and Buyers can add a Property to their Scorng account and to a Score Page. On A Score Page, simply click the “Add Property” button and open the page to enter in the Property Address, the Listing Link and any notes or files that you want to add." class="fas fa-info-circle"></i>
 
                 </h2>
 {{--                <h6 style="margin-top: -5px;" class="display-7 text-center heading_txt">Add simple things like the name,--}}

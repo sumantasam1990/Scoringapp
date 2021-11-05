@@ -32,8 +32,8 @@
                         @enderror
 
                         <div>
-                            <label>Property: </label>
-                            {{ $applicant->name }} - ( {{ $applicant->email }} )
+                            <label class="fw-bold">Property Address: </label>
+                             {{ $applicant->email }}
                         </div>
                         <div class="form-group mb-4">
                             <input required type="hidden" name="subject" value="{{ $subjects->id }}">

@@ -8,7 +8,7 @@
         <div class="col-xxl-3 col-xl-3 col-lg-2 col-md-2"></div>
         <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
             <div class="">
-            <h2 class="display-4 text-center heading_txt">Create A Buyer
+            <h2 class="display-4 text-center heading_txt">Add A Buyer
 
                 <i
                     style="text-align: center !important; font-size: 14px;"
@@ -31,7 +31,7 @@
 {{--                        </select>--}}
 {{--                    </div>--}}
                     <div class="form-group mb-3">
-                        <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Create Client" value="{{ old('subject') }}">
+                        <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Buyer's Name" value="{{ old('subject') }}">
                     </div>
 
                     <hr />

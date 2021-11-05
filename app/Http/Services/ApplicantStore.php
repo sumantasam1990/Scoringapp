@@ -50,7 +50,7 @@ class ApplicantStore
             }
 
             return redirect('/score-page/' . $sub)
-                ->with('msg', 'You have successfully added an applicant.');
+                ->with('msg', 'You’ve added a new Property.');
         } catch (\Throwable $th) {
             return redirect('/score-page/' . $sub)
                 ->with('err', 'Error! '. $th->getMessage());

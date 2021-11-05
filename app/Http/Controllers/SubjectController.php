@@ -30,7 +30,7 @@ class SubjectController extends Controller
 
             (new SubjectStore())->save($request->subject);
 
-            return redirect("/dashboard")->with("msg", "Your subject has been successfully added.");
+            return redirect("/dashboard")->with("msg", "A new Buyer has been added.");
 
         } catch (\Throwable $th) {
             return redirect("/dashboard")->with("err", "Error! " . $th->getMessage());

@@ -13,7 +13,7 @@
             <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $roomname->room_name }}</h5>
 
             <hr />
-            <h2 class="display-6 text-left heading_txt mt-4">Buyers</h2>
+            <h2 class="display-6 text-left heading_txt mt-4">People</h2>
             <hr />
 
             <div class="row">
@@ -23,7 +23,7 @@
                             <div class="member-box text-center">
                                 <img src="https://datingshortcut.com/wp-content/themes/datingshortcut/images/user.svg" style="object-fit: cover; width: 100%; height: 120px;">
                                 <p class="fw-bold">{{ $team->name }}</p>
-                                <small>Added <span>{{ date('F jS, y', strtotime($team->created_at)) }}</span></small>
+                                {{-- <small>Added <span>{{ date('F jS, y', strtotime($team->created_at)) }}</span></small> --}}
                             </div>
 
                         </div>
@@ -53,7 +53,7 @@
                         <div class="flex-grow-1 ms-3">
                             <h4 class="fs-6 fw-bold">{{ $message->name }}</h4>
                             {{ $message->message_txt }}
-                            <p class="text-black-50"><small>{{ date('F jS, Y @ h:i A', strtotime($message->created_at)) }}</small></p>
+                            <p class="text-black-50"><small>{{ date('F jS, Y', strtotime($message->created_at)) }}</small></p>
                         </div>
                     </div>
                     @php
@@ -98,7 +98,7 @@
                                         <input required type="text" name="reply_msg" class="form-control" placeholder="Write your reply...">
                                     </div>
                                     <div class="col-4">
-                                        <button type="submit" @class('btn btn-dark btn-sm')>Submit</button>
+                                        <button type="submit" @class('btn btn-dark btn-sm')>Reply</button>
                                     </div>
                                 </div>
 
@@ -111,7 +111,7 @@
             </div>
 
             <div id="create_msg_nav" class="row mt-6 border-top p-4">
-                <div class="col-12">
+                <div class="col-8 mx-auto">
                     <h4>Post A Message</h4>
                     <form action="{{ route('create') }}" method="post"@class('d-inline')>
                         @csrf
@@ -120,8 +120,8 @@
 
                         <textarea required rows="4" name="msg_txt" class="form-control" placeholder="Write your message..."></textarea>
 
-                        <div class="d-grid gap-2 mt-2">
-                            <button type="submit" class="btn btn-dark btn-lg">Submit</button>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+                            <button type="submit" class="btn btn-dark">Post</button>
                         </div>
                     </form>
                 </div>

@@ -28,7 +28,7 @@ class ApplicantController extends Controller
 
 
 
-        return view("applicant.index", ["title" => "Applicant", "subjects" => $subject, "mainsubjectname" => $mainsubjectname]);
+        return view("applicant.index", ["title" => "Property", "subjects" => $subject, "mainsubjectname" => $mainsubjectname]);
     }
 
     public function store(Request $request)

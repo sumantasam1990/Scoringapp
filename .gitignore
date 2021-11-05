@@ -17,3 +17,5 @@ public/js/bootstrap.js
 package-lock.json
 .env.example
 /artisan_old
+.DS_Store
+.DS_Store

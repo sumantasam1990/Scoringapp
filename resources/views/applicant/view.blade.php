@@ -35,10 +35,10 @@
 
 
             <table class="table table-striped table-bordered">
-                <tr>
+                {{-- <tr>
                     <th>Full Name</th>
                     <td>{{ $applicants[0]->name }}</td>
-                </tr>
+                </tr> --}}
                 <tr>
                     <th>Property Address</th>
                     <td>{{ $applicants[0]->email }}</td>

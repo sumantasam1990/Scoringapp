@@ -3,7 +3,7 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-12 text-center">
-            <h1 class="display-4 fw-bold">How To Get Started.</h1>
+            <h1 class="display-4 fw-bold mb-4">How To Get Started.</h1>
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">

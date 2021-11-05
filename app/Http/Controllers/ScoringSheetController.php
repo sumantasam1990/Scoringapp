@@ -87,13 +87,13 @@ class ScoringSheetController extends Controller
 
 
         $scores_array = array(
-            'Greatly Exceeded Expectations +3 (Very Dark Green)' => '+3',
-            'Exceeded Expectations +2 ( Dark Green)' => '+2',
-            'Slightly Exceeded Expectations +1 (Light Green)' => '+1',
-//            'Met Expectations 0 (Yellow)' => '0',
-            'Slightly Failed Expectations -1 (Orange)' => '-1',
-            'Failed Expectations -2 (Red)' => '-2',
-            'Greatly Failed Expectations -3 (Dark Red)' => '-3'
+            '+3 (Really Love It)' => '+3',
+                '+2 (Love It)' => '+2',
+                '+1 (Like It)' => '+1',
+//                'Met Expectations 0 (Yellow)' => '0',
+                '-1 (Don’t Like It)' => '-1',
+                '-2 (Really Don’t Like It)' => '-2',
+                '-3 (Really Really Don’t Like It)' => '-3'
         );
 
 
@@ -168,13 +168,13 @@ class ScoringSheetController extends Controller
                 ->with('msg', 'Score has been successfully updated.');
         } else {
             $scores_array = array(
-                'Greatly Exceeded Expectations +3 (Very Dark Green)' => '+3',
-                'Exceeded Expectations +2 ( Dark Green)' => '+2',
-                'Slightly Exceeded Expectations +1 (Light Green)' => '+1',
+                '+3 (Really Love It)' => '+3',
+                '+2 (Love It)' => '+2',
+                '+1 (Like It)' => '+1',
 //                'Met Expectations 0 (Yellow)' => '0',
-                'Slightly Failed Expectations -1 (Orange)' => '-1',
-                'Failed Expectations -2 (Red)' => '-2',
-                'Greatly Failed Expectations -3 (Dark Red)' => '-3'
+                '-1 (Don’t Like It)' => '-1',
+                '-2 (Really Don’t Like It)' => '-2',
+                '-3 (Really Really Don’t Like It)' => '-3'
             );
 
             //$scores = Score::find($request->s);
