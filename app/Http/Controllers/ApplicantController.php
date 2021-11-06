@@ -35,14 +35,15 @@ class ApplicantController extends Controller
     {
         $request->validate([
             //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name' => 'required',
+            //'name' => 'required',
             'email' => 'required',
             //'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'phone' => 'required|url',
-            'sub_id' => 'required'
+            'sub_id' => 'required',
+            'important_note' => 'required'
         ]);
 
-        return (new ApplicantStore())->save($request->sub_id, $request->name, $request->email, $request->phone, $request->image);
+        return (new ApplicantStore())->save($request->sub_id, $request->name, $request->email, $request->phone, $request->image, $request->important_note);
 
     }
 

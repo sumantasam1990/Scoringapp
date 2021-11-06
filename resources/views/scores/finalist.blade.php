@@ -374,7 +374,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                             @foreach ($results as $result)
 
-                                                                <span onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})" class="fw-bold fs-4">{{ $result->score_number }} <i class="bi bi-pencil-square"></i></span>
+                                                                <span onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})" class="fw-bold fs-2">{{ $result->score_number }} <i class="bi bi-pencil-square"></i></span>
 
                                                                 {{--                                                                    @if ($result->score_number == 1)--}}
                                                                 {{--                                                                        <label--}}

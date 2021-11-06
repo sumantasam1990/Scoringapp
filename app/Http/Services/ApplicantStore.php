@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ApplicantStore
 {
-    public function save($sub, $name, $email, $phone, $image)
+    public function save($sub, $name, $email, $phone, $image, $note)
     {
         try {
             $user = Auth::user();
@@ -32,6 +32,7 @@ class ApplicantStore
             $applicant->name = $name;
             $applicant->email = $email;
             $applicant->phone = $phone;
+            $applicant->important_note = $note;
 
             $applicant->save();
 

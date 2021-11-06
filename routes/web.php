@@ -142,8 +142,8 @@ Route::post('/forgot-password', function (Request $request) {
     );
 
     return $status === Password::RESET_LINK_SENT
-        ? back()->with(['status' => __($status)])
-        : back()->withErrors(['email' => __($status)]);
+        ? back()->with(['status' => __($status), 'msg' => "An email has been sent to you where you can reset your password."])
+        : back()->withErrors(['email' => __($status), 'err' => 'Please check your Email ID.']);
 })->middleware('guest')->name('password.email');
 
 Route::get('/reset-password/{token}', function ($token) {

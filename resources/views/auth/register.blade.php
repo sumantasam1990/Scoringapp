@@ -42,6 +42,10 @@
                             @endif
                         </div>
 
+                        <p class="mt-4 fw-bold">
+                            IMPORTANT: Please choose whether you’re an Agent or Buyer. Agents have special features and functionalities on Scorng. This cannot be changed later.
+                        </p>
+
                         <div class="form-group mb-3">
                             <select name="user_type" class="form-control">
                                 <option selected disabled value="">I Am</option>

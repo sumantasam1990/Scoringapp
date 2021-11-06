@@ -84,9 +84,9 @@
                 <button style="float: right; margin: 10px;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
-                <h4 class="fw-bold fs-3">Please use the desktop version.</h4>
+                <h4 class="fw-bold fs-4">PLEASE USE SCORNG ON DESKTOP</h4>
 
-                <p class="fs-6 mt-4">We HIGHLY recommend using the DESKTOP version of Scorng for a much better experience. The desktop version is much better designed and you can also see and consume much more of the important information on Score Pages and Scoreboards, more easily.</p>
+                <p class="fs-6 mt-4">We HIGHLY recommend using Scorng on desktop to get the best possible experience of all of our features!</p>
 
             </div>
         </div>

@@ -13,6 +13,7 @@
             <table id="scorng-tbl" class="display table table-bordered table-flush table-striped">
                 <thead>
                 <tr>
+                    <th>User Type</th>
                     <th>User Name</th>
                     <th>User Email</th>
                     <th>Email Verified</th>
@@ -22,6 +23,7 @@
                 <tbody>
                 @foreach($users as $user)
                 <tr>
+                    <td>{{ $user->user_type }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->email_verified_at != '' ? 'verified' : 'Not verified' }}</td>

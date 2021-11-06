@@ -262,7 +262,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                                         <p class="fs-5 mb-2"><a
                                                                 style=" text-decoration: none; color: #138D07;"
                                                                 href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}">
-                                                                {{ $applicant->name }}
+                                                                {{ $applicant->email }}
 
                                                             </a>
 
@@ -443,7 +443,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                                 <span
                                                                     onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
-                                                                    class="fw-bold fs-4">{{ $result->score_number }}
+                                                                    class="fw-bold fs-2">{{ $result->score_number }}
                                                                     <i class="bi bi-pencil-square"></i></span>
 
                                                                 {{-- @if ($result->score_number == 1) --}}
