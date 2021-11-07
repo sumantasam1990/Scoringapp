@@ -181,9 +181,12 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                             <tr>
                                                 <th>&nbsp;</th>
                                                 <th style="vertical-align: middle;">&nbsp;
+                                                    @role('buyer')
                                                     <a class="btn btn-success btn-sm"
                                                         href="/create-criteria/{{ $sid }}/{{ $applicant->id }}">Add
                                                         Criteria</a>
+                                                        @endrole
+
                                                 </th>
                                                 {{-- <th style="border-left: 2px solid #000;">&nbsp;</th> --}}
 

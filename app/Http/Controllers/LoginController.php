@@ -66,6 +66,12 @@ class LoginController extends Controller
 
         $user = $this->create($data);
 
+        if($user) {
+            if($user->user_type == 'Buyer') {
+                $user->assignRole('buyer');
+            }
+        }
+
         event(new Registered($user));
 
         return redirect("login")->with('msg', '<p>Please confirm your email to complete the sign up process. </p> <p>We have emailed you a verification</p> <p>Thank you</p> <p>Team Scorng</p>');
