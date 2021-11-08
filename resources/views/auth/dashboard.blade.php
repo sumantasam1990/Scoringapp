@@ -17,13 +17,14 @@
 
                         <div class="mt-3 ">
 
-
+                            @unlessrole('buyer')
                             <a class="btn btn-success btn-sm" href="/create-subject">Add Buyer &nbsp;
 
                                 <i class="fas fa-info-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Subjects are a way to organize where Applicants will be added within your Scorng account. A Subject is broken into two parts, a Main Subject and a Sub Subject. For example, the Main Subject can be something like the store or location where the new Applicant for which you’re hiring, will be working. For example the Sub Subject can be the actual position for which you’re hiring. "></i>
 
 
                             </a>
+                            @endunlessrole
 
 
                             <a onclick="selectPhoto()" class="btn btn-dark btn-sm" href="#"> &nbsp;

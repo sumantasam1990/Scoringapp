@@ -172,21 +172,24 @@ The second step is to add and Applicant, and finally is to actually give one of 
                             @php
                                 $chkfinalist = DB::select("select count(*) as total from finalists where subject_id = ? and applicant_id = ?", [$subjs->id, $applicants[0]->id]);
                             @endphp
+
+
                             @if ($chkfinalist[0]->total == 0)
+                                @role('buyer')
+                                    <form onsubmit="return confirm('Are you sure?')" action="{{ route("finalist.store") }}" method="post" style="display: inline;">
+                                        @csrf
+                                        <input type="hidden" name="subid" value="{{ $subjs->id }}">
+                                        <input type="hidden" name="appl_id" value="{{ $applicants[0]->id }}">
+                                        <button type="submit" class="btn btn-success btn-sm">Add To Finalist List
 
-                                <form onsubmit="return confirm('Are you sure?')" action="{{ route("finalist.store") }}" method="post" style="display: inline;">
-                                    @csrf
-                                    <input type="hidden" name="subid" value="{{ $subjs->id }}">
-                                    <input type="hidden" name="appl_id" value="{{ $applicants[0]->id }}">
-                                    <button type="submit" class="btn btn-success btn-sm">Add To Finalist List
+                                            <i data-bs-container="body"
+                                            data-bs-toggle="popover"
+                                            data-bs-placement="top"
+                                            data-bs-content="A Finalist Page is simply another Score Page but for applicants that you will be considering hiring. Think of this as applicants who have passed the initial hiring stage and now have moved one step closer to actually being chosen for the position. You can add an unlimited number of applicants to the Finalist Page. Each Score Page has it’s own dedicated Finalist Page." class="fas fa-info-circle"></i>
 
-                                        <i data-bs-container="body"
-                                           data-bs-toggle="popover"
-                                           data-bs-placement="top"
-                                           data-bs-content="A Finalist Page is simply another Score Page but for applicants that you will be considering hiring. Think of this as applicants who have passed the initial hiring stage and now have moved one step closer to actually being chosen for the position. You can add an unlimited number of applicants to the Finalist Page. Each Score Page has it’s own dedicated Finalist Page." class="fas fa-info-circle"></i>
-
-                                    </button>
-                                </form>
+                                        </button>
+                                    </form>
+                                @endrole
                             @else
                                 <a class="btn btn-success btn-sm" href="/finalists/{{ $subjs->id }}"> Go Finalist List
 
