@@ -28,7 +28,7 @@ class SubjectController extends Controller
 
         try {
 
-            (new SubjectStore())->save($request->subject);
+            (new SubjectStore())->save($request->subject, $request->mailid);
 
             return redirect("/dashboard")->with("msg", "A new Buyer has been added.");
 

@@ -88,6 +88,63 @@ class AddTeamMember
             ->with('msg','You have successfully accepted the invitation.');
     }
 
+    public function addbuyer($email, $name)
+    {
+        $user = User::where("email", $email)->first();
+
+        if($user == null) {
+            $token = Crypt::encrypt($email . '|' . uniqid());
+            $data = array(
+                'name' => $name,
+                'url' => url('/accept-invitation/' . $token),
+            );
+
+            //$subb = Subject::select("mainsubject_id")->where("id", $sub)->first();
+            //$mainsubID = Mainsubject::select("id")->where("id", $subb->mainsubject_id)->first();
+
+            $subject = new Subject;
+
+            $subject->user_id = $user->id;
+            $subject->subject_name = $name;
+
+            $subject->save();
+
+            $this->sendEmail($email, $data);
+
+            return back()
+                ->with('msg', 'We have sent an invitation email.');
+        }
+
+        $chkTeamExist = Subject::where("user_id", $user->id)->get();
+
+        if(count($chkTeamExist) > 0) {
+            return back()
+                ->with('err','You have already added ' . $name . '.');
+        }
+
+        //$subb = Subject::select("mainsubject_id")->where("id", $sub)->first();
+
+        //$mainsubID = Mainsubject::select("id")->where("id", $subb->mainsubject_id)->first();
+
+        $subject = new Subject;
+
+        $subject->user_id = $user->id;
+        $subject->subject_name = $name;
+
+        $subject->save();
+
+        $token = Crypt::encrypt($email . '|' . uniqid());
+        $data = array(
+            'name' => $name,
+            'url' => url('/accept-invitation/' . $token),
+        );
+        $this->sendEmail($email, $data);
+
+
+        return back()
+            ->with('msg','You have successfully added ' . $name . '.');
+    }
+
     private function sendEmail($email, $mailData)
     {
         Mail::to($email)->queue(new RequestTeamMember($mailData));

@@ -34,6 +34,10 @@
                         <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Buyer's Name" value="{{ old('subject') }}">
                     </div>
 
+                    <div class="form-group mb-3">
+                        <input autocomplete="off" type="email" name="mailid[]" class="form-control @error('mailid') is-invalid @enderror" placeholder="Buyer's Email" value="{{ old('mailid') }}">
+                    </div>
+
                     <hr />
 
                     <div id="html"></div>
@@ -95,19 +99,14 @@
     }
 
     function add_more() {
-        $("#html").append(`<div class="form-group mb-3">
-                        <select name="main[]" class="form-control @error('main') is-invalid @enderror" onchange="openMainSubjectModal(this.value)">
-                            <option selected disabled value="">Choose The Main Client</option>
-                            @foreach ($mainsubjects as $main)
-        <option {{ (old("main") == $main->id ? "selected" : "") }} value="{{$main->id}}">{{$main->main_subject_name}}</option>
-                            @endforeach
-        <optgroup>
-            <option style="background-color: green; color: #fff;" value="add_new_criteria7">Add New Main Client</option>
-        </optgroup>
-    </select>
-</div>
-<div class="form-group mb-3 border-bottom">
-    <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Create Client" value="{{ old('subject') }}">
-                    </div> <hr />`);
+        $("#html").append(`
+        <div class="form-group mb-3">
+                        <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Buyer's Name" value="{{ old('subject') }}">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input autocomplete="off" type="email" name="mailid[]" class="form-control @error('mailid') is-invalid @enderror" placeholder="Buyer's Email" value="{{ old('mailid') }}">
+                    </div>
+         <hr />`);
     }
 </script>
