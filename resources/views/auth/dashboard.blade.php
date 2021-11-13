@@ -68,16 +68,23 @@
                             <div class="card text-dark border-success" style="border: 6px solid green !important;">
                                 <div class="card-body text-center">
                                 <h4 class="card-title fw-bold mb-2" style="font-size: 22px; color: green;">{{ $in->subject_name }}</h4>
-                                {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+
+                                @unlessrole('buyer')
                                     @php
                                         $token = Crypt::encrypt($in->user_email . '|' . $in->id);
                                     @endphp
+
 
                                     @if($in->team[0]->status == 0)
                                         <a onclick="return confirm('Are you sure?')" class="btn btn-link text-dark text-decoration-underline fw-bold" href="/accept-invitation/{{ $token }}">Accept Invitation</a>
                                     @else
                                         <a href="/score-page/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>
                                     @endif
+                                @endunlessrole
+
+                                @role('buyer')
+                                <a href="/score-page/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>
+                                @endrole
 
                                     <br><button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Subjects are a way to organize where Applicants will be added within your Scorng account. A Subject is broken into two parts, a Main Subject and a Sub Subject. For example, the Main Subject can be something like the store or location where the new Applicant for which you’re hiring, will be working. For example the Sub Subject can be the actual position for which you’re hiring.
 ">

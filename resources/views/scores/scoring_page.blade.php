@@ -123,6 +123,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                         @php
                                             $i = 1;
                                         @endphp
+
                                         @foreach ($applicants as $applicant)
                                             {{-- @if (count($maincriterias) > 0 && count($applicants) > 0) --}}
                                             {{-- <tr> --}}
@@ -429,6 +430,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                             @endphp
 
+                                                            @role('buyer')
                                                             @if (count($results) === 0 && $user->id === auth()->user()->id)
                                                                 <a onclick="openModalCreateScore('{{ $subjects[0]->subject->id }}', '{{ $applicant->id }}', '{{ $data->title }}', '{{ $subjects[0]->subject->subject_name }}', '{{ $applicant->name }}', '{{ $data->id }}')"
                                                                     class="btn btn-link text-center"
@@ -441,6 +443,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
 
                                                             @endif
+                                                            @endrole
 
                                                             @foreach ($results as $result)
 

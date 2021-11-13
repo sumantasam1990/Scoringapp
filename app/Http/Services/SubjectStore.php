@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Models\Agentbuyer;
 use App\Models\Mainsubject;
 use App\Models\Subject;
 use App\Models\Team;
@@ -14,6 +15,7 @@ class SubjectStore
     {
         $user = Auth::user();
 
+        $i = 0;
         foreach ($subjectt as $submain) {
 
             // main subject
@@ -33,15 +35,16 @@ class SubjectStore
             $subject->save();
 
             // again insert subject
-            $userBuyer = User::where("email", $mailid)->first();
+            $userAgent = User::where("email", $mailid[$i])->first();
 
-            $subject_buyer = new Subject;
+            $agentbuyer = new Agentbuyer;
 
-            $subject_buyer->subject_name = $submain;
-            $subject_buyer->user_id = $userBuyer->id;
-            $subject_buyer->mainsubject_id = $main_subject->id;
+            $agentbuyer->agent_id = $user->id;
+            $agentbuyer->buyer_email = $userAgent->email;
+            $agentbuyer->subject_id = $subject->id;
+            $agentbuyer->status = 1;
 
-            $subject_buyer->save();
+            $agentbuyer->save();
 
             // add on Team table also
             $team = new Team;
@@ -54,17 +57,7 @@ class SubjectStore
 
             $team->save();
 
-            // Again add on Team table also
-            $team = new Team;
-
-            $team->user_id = $userBuyer->id;
-            $team->user_email = $userBuyer->email;
-            $team->subject_id = $subject_buyer->id; // Last inserted subject id
-           // $team->mainsubject_id = $submain;
-            $team->status = 1;
-
-            $team->save();
-
+            $i++;
         }
     }
 }

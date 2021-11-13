@@ -87,10 +87,10 @@ class ScoringSheetController extends Controller
 
 
         $scores_array = array(
-            '+3 (Really Love It)' => '+3',
+                '+3 (Really Love It)' => '+3',
                 '+2 (Love It)' => '+2',
                 '+1 (Like It)' => '+1',
-//                'Met Expectations 0 (Yellow)' => '0',
+//              'Met Expectations 0 (Yellow)' => '0',
                 '-1 (Don’t Like It)' => '-1',
                 '-2 (Really Don’t Like It)' => '-2',
                 '-3 (Really Really Don’t Like It)' => '-3'

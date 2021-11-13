@@ -92,9 +92,17 @@ class LoginController extends Controller
         if(Auth::check()){
             $user = Auth::user();
 
-            $mysubjects = Subject::with('team')
+            if($user->hasRole('buyer')) {
+                $mysubjects = DB::table('subjects')
+                ->join('agentbuyers', 'subjects.id', '=', 'agentbuyers.subject_id')
+                ->where('agentbuyers.buyer_email', '=', $user->email)
+                ->select('subjects.*')
+                ->get();
+            } else {
+                $mysubjects = Subject::with('team')
                 ->where('user_id', '=', $user->id)
                 ->get();
+            }
 
             return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "mysubjects" => $mysubjects]);
         }

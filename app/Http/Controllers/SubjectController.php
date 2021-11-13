@@ -33,7 +33,8 @@ class SubjectController extends Controller
             return redirect("/dashboard")->with("msg", "A new Buyer has been added.");
 
         } catch (\Throwable $th) {
-            return redirect("/dashboard")->with("err", "Error! " . $th->getMessage());
+            return $th->getMessage();
+            //return redirect("/dashboard")->with("err", "Error! " . $th->getMessage());
         }
 
     }
