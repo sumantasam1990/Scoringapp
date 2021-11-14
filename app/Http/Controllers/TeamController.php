@@ -30,11 +30,12 @@ class TeamController extends Controller
         $request->validate([
             'hd_sub' => 'required',
             't_email' => 'required|email',
-            't_name'  => 'required'
+            't_name'  => 'required',
+            'user_type' => 'required'
         ]);
 
         try{
-            return (new AddTeamMember())->saveTeamMember($request->hd_sub, $request->t_email, $request->t_name);
+            return (new AddTeamMember())->saveTeamMember($request->hd_sub, $request->t_email, $request->t_name, $request->user_type);
         } catch(\Throwable $th) {
             //abort('403');
             return back()

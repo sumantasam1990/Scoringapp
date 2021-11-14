@@ -14,6 +14,11 @@
                 <div class="box">
                     <form action="{{ route('register.custom') }}" method="POST">
                         @csrf
+
+{{--                        @if($_GET['token'])--}}
+{{--                            <input type="hidden" value="{{ $_GET['token'] }}" name="token">--}}
+{{--                        @endif--}}
+
                         <div class="form-group mb-3">
                             <input type="text" placeholder="Name" id="name" class="form-control @error('name') is-invalid @enderror" name="name" required autofocus value="{{ old('name') }}">
                             @if ($errors->has('name'))

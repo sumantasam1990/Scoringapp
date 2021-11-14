@@ -7,7 +7,12 @@
     <div class="row">
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 mb-4">
-            <h2 class="display-4 text-left heading_txt">Invite People Page
+            <h2 class="display-4 text-left heading_txt">
+                @hasrole('buyer')
+                    Invite Buyer Page
+                @else
+                    Invite Agent Page
+                @endhasrole
 
                 <i
                     style="text-align: center !important; font-size: 14px;"
@@ -16,7 +21,13 @@
 
             </h2>
             <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $subject->subject_name }}</h5>
-            <h2 class="display-4 text-left heading_txt mt-4">People</h2>
+            <h2 class="display-4 text-left heading_txt mt-4">
+                @hasrole('buyer')
+                    Buyers
+                @else
+                    Agents
+                @endhasrole
+            </h2>
             <hr />
 
             <div class="row">
@@ -55,21 +66,33 @@
                 @endif
             </div>
 
-            <h2 class="display-4 text-left heading_txt mt-4">Invite People</h2>
+            <h2 class="display-4 text-left heading_txt mt-4">
+                @hasrole('buyer')
+                    Invite Buyer
+                @else
+                    Invite Agent
+                @endhasrole
+
+            </h2>
             <hr />
 
             <form action="{{ route('team.store') }}" method="POST" class="mt-4">
                 @csrf
 
+                @hasrole('buyer')
+                    <input type="hidden" name="user_type" value="Buyer">
+                @else
+                    <input type="hidden" name="user_type" value="Agent">
+                @endhasrole
                 <input type="hidden" name="hd_sub" value="{{ $subject->id }}">
                 <div class="form-group mb-4">
-                    <input type="text" name="t_email" class="form-control @error('t_email') is-invalid @enderror" placeholder="Person's Email">
+                    <input type="text" name="t_email" class="form-control @error('t_email') is-invalid @enderror" placeholder="Email">
                     @error('t_email')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group mb-4">
-                    <input type="text" name="t_name" class="form-control @error('t_name') is-invalid @enderror" placeholder="Person's Full Name">
+                    <input type="text" name="t_name" class="form-control @error('t_name') is-invalid @enderror" placeholder="Full Name">
                     @error('t_name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -80,7 +103,14 @@
                     </select>
                 </div> --}}
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-dark btn-sm">Add Person</button>
+                    <button type="submit" class="btn btn-dark btn-sm">
+                        @hasrole('buyer')
+                            Add Buyer
+                        @else
+                            Add Agent
+                        @endhasrole
+
+                    </button>
                 </div>
             </form>
 

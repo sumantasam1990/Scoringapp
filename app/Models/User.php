@@ -56,6 +56,19 @@ use Overtrue\LaravelFollow\Followable;
  * @property-read int|null $scores_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $team
  * @property-read int|null $team_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|User[] $followers
+ * @property-read int|null $followers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|User[] $followings
+ * @property-read int|null $followings_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
+ * @property-read int|null $permissions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
+ * @property-read int|null $roles_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User orderByFollowersCount(string $direction = 'desc')
+ * @method static \Illuminate\Database\Eloquent\Builder|User orderByFollowersCountAsc()
+ * @method static \Illuminate\Database\Eloquent\Builder|User orderByFollowersCountDesc()
+ * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
  */
 class User extends Authenticatable implements MustVerifyEmail
 {

@@ -32,6 +32,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Applicant whereSubjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Applicant whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $important_note
+ * @method static \Illuminate\Database\Eloquent\Builder|Applicant whereImportantNote($value)
  */
 class Applicant extends Model
 {

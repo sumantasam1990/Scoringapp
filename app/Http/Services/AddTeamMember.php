@@ -4,10 +4,12 @@ namespace App\Http\Services;
 
 use App\Mail\Contactus;
 use App\Mail\RequestTeamMember;
+use App\Models\Followers;
 use App\Models\Mainsubject;
 use App\Models\Subject;
 use App\Models\Team;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,27 +17,29 @@ use Symfony\Component\HttpFoundation\Response;
 class AddTeamMember
 {
 
-    public function saveTeamMember($sub, $email, $name)
+    public function saveTeamMember($sub, $email, $name, $user_type)
     {
         $user = User::where("email", $email)->first();
 
         if($user == null) {
-            $token = Crypt::encrypt($email . '|' . $sub);
+            $usertype = $user_type;
+            $token = Crypt::encrypt($email . '|' . $sub . '|'. $usertype . '|' . \Auth::user()->id);
             $data = array(
                 'name' => $name,
-                'url' => url('/accept-invitation/' . $token),
+                'url' => url('/accept-invitation/'. $token),
+                'usertype' => $usertype
             );
 
             $subb = Subject::select("mainsubject_id")->where("id", $sub)->first();
             $mainsubID = Mainsubject::select("id")->where("id", $subb->mainsubject_id)->first();
 
-            $team = new Team;
-
-            $team->user_email = $email;
-            $team->subject_id = $sub;
-            $team->mainsubject_id = $mainsubID->id;
-
-            $team->save();
+//            $team = new Team;
+//
+//            $team->user_email = $email;
+//            $team->subject_id = $sub;
+//            $team->mainsubject_id = $mainsubID->id;
+//
+//            $team->save();
 
             $this->sendEmail($email, $data);
 
@@ -77,12 +81,26 @@ class AddTeamMember
     public function acceptTeamMember($token)
     {
         $exp = explode('|', $token);
-        $email = $exp[0];
-        $subId = $exp[1];
+//        $email = $exp[0];
+//        $subId = $exp[1];
 
-        Team::where('subject_id', '=', $subId)
-            ->where('user_email', '=', $email)
-            ->update(['status' => 1]);
+        if($exp[2] == 'Agent'){
+//              $team = new Team;
+//            $team->user_id = $user->id;
+//            $team->user_email = $request->email;
+//            $team->subject_id = $exp[1];
+//            $team->mainsubject_id = 0;
+//            $team->save();
+
+            $follower = new Followers;
+            $follower->who_follow = Auth::user()->id;
+            $follower->whom_follow = $exp[3];
+            $follower->save();
+        }
+
+//        Team::where('subject_id', '=', $subId)
+//            ->where('user_email', '=', $email)
+//            ->update(['status' => 1]);
 
         return redirect('/dashboard')
             ->with('msg','You have successfully accepted the invitation.');

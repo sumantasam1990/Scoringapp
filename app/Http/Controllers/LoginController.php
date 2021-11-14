@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Followers;
 use App\Models\Mainsubject;
+use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use App\Models\User;
@@ -60,6 +63,7 @@ class LoginController extends Controller
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6',
             'user_type' => 'required|in:Buyer,Agent'
+
         ]);
 
         $data = $request->all();
