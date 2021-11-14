@@ -1,9 +1,11 @@
 <div class="row">
 
+    <p class="fw-bold fs-4">My Follower's Buyers</p>
         @foreach ($otherSubjects as $in)
         <div class="col-12 col-xl-4 col-md-4 col-xxl-4 col-sm-12 col-xs-12 mt-3 mb-4">
             <div class="card text-dark border-success" style="border: 6px solid green !important;">
                 <div class="card-body text-center">
+                    <p class="fs-6 fw-bold text-black-50">Agent: {{ $in->name }}</p>
                 <h4 class="card-title fw-bold mb-2" style="font-size: 22px; color: green;">{{ $in->subject_name }}</h4>
 
 

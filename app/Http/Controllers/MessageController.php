@@ -25,7 +25,7 @@ class MessageController extends Controller
      */
     public function index($id, $roomid)
     {
-        $subject = Subject::select("id", "subject_name")
+        $subject = Subject::select("id", "subject_name", "user_id")
             ->where("id", "=", $id)
             ->first();
 

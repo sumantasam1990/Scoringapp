@@ -14,10 +14,11 @@
                 <div class="row">
                     <div class="col-8">
                         <h2 class="display-4 text-left heading_txt">{{ $user->name }}</h2>
+                        <h5 class="fs-6 text-black-50 text-left heading_txt">{{ $user->email }}</h5>
                         {{--            <h5 style="margin-top: -5px;" class="text-dark mt-3 mb-4">See all of your Main and Sub Subjects in one simple dashboard. Open each Subject to access it's Score Page and the numerous features associated with it.--}}
                         {{--            </h5>--}}
 
-                        <div class="mt-3 ">
+                        <div class="mt-4 ">
 
                             @unlessrole('buyer')
                             <a class="btn btn-success btn-sm" href="/create-subject">Add Buyer &nbsp;
@@ -58,15 +59,20 @@
 
 
 
-                @include('auth.followdashboard')
 
 
-            <div class="row mt-6 border-top border-1 border-dark p-2">
+
+            <div class="row mt-4 p-2">
 {{--                    <h2 class="fw-bold">Active</h2>--}}
 {{--                    <h4 class="display-5 fw-bold @if($i > 1) mt-6 border-top border-2 border-dark @endif p-4" style="color: green; ">{{ $inv->main_subject_name }}</h4>--}}
 {{--                    @php--}}
 {{--                        $invited = DB::select('select subjects.subject_name, subjects.id, teams.status, teams.user_email from subjects left join teams on (teams.subject_id=subjects.id) where teams.user_email = ? and teams.mainsubject_id = ? and subjects.status = ?', [$user->email, $inv->id, 0]);--}}
 {{--                    @endphp--}}
+                @if(count($mysubjects) > 0)
+                    @unlessrole('buyer')
+                    <p class="fw-bold fs-4">My Buyers</p>
+                    @endunlessrole
+                @endif
                     @foreach ($mysubjects as $in)
                         <div class="col-12 col-xl-4 col-md-4 col-xxl-4 col-sm-12 col-xs-12 mt-3 mb-4">
                             <div class="card text-dark border-success" style="border: 6px solid green !important;">
@@ -107,6 +113,9 @@
 
             </div>
 
+                @unlessrole('buyer')
+                @include('auth.followdashboard')
+                @endunlessrole
 {{--                Position Filled--}}
 
 {{--                <div class="row mt-6 border-top border-4 border-dark p-2">--}}
