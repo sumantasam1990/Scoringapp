@@ -82,11 +82,13 @@ The second step is to add and Applicant, and finally is to actually give one of 
                         {{-- data-bs-content="The Bulk Email List allows you to add any applicants who weren’t chosen but you would still like to easily have access to their email address in case you have future job openings. This way you can easily download multiple emails in one click and email applicants that you have already scored, a link to a new job posting." --}}
                         {{-- class="fas fa-info-circle"></i> --}}
                         {{-- </a> --}}
-                        <a href="/add-team-member/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Invite Buyer
+                        @unlessrole('buyer')
+                        <a href="/add-team-member/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Invite Agent
                             <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
                                 data-bs-content="Team Members allow you to add anyone who you would like to also score applicants. This way you can hear other people’s opinions so that you can make a more comprehensive hiring decision."
                                 class="fas fa-info-circle"></i>
                         </a>
+                        @endunlessrole
                         <a href="/rooms/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Message Room
                             <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
                                 data-bs-content="Message Rooms allows you to discuss in detail various aspects about anything associated with a Score Page. So you can discuss the criteria, applicants, scores and more. Each Score Page has it’s own set of Message Rooms. So you can create an unlimited number of Message Rooms for each detailed topic so you and your Team Members stay organized and remember what you discussed."

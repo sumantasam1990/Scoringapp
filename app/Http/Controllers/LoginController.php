@@ -98,13 +98,21 @@ class LoginController extends Controller
                 ->where('agentbuyers.buyer_email', '=', $user->email)
                 ->select('subjects.*')
                 ->get();
+
+                $otherSubjects = [];
             } else {
                 $mysubjects = Subject::with('team')
                 ->where('user_id', '=', $user->id)
                 ->get();
+
+                $otherSubjects = DB::table('subjects')->join('followers', 'subjects.user_id', '=', 'followers.who_follow')->where('followers.who_follow', '=', $user->id)->orWhere('followers.whom_follow', '=', $user->id)->select('subjects.*')->get();
+
+
+
+
             }
 
-            return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "mysubjects" => $mysubjects]);
+            return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "mysubjects" => $mysubjects, "otherSubjects" => $otherSubjects]);
         }
 
         return redirect("registration")->with('err', 'You are not allowed to access');

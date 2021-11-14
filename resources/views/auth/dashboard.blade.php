@@ -4,6 +4,8 @@
 
     @include('layouts.alert')
 
+
+
     <div class="row">
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2"></div>
         <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
@@ -55,6 +57,8 @@
                 </div>
 
 
+
+                @include('auth.followdashboard')
 
 
             <div class="row mt-6 border-top border-1 border-dark p-2">
