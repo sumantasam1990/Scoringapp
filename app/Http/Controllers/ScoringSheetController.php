@@ -6,6 +6,7 @@ use App\Http\Services\ScoreStore;
 use App\Models\Applicant;
 use App\Models\Criteria;
 use App\Models\Finalist;
+use App\Models\Followers;
 use App\Models\Maincriteria;
 use App\Models\Mainsubject;
 use App\Models\Metadata;
@@ -96,8 +97,11 @@ class ScoringSheetController extends Controller
                 '-3 (Really Really Don’t Like It)' => '-3'
         );
 
+        $agentB = Followers::where('who_follow', '=', Auth::user()->id)
+            ->select('who_follow')
+            ->get();
 
-        return view("scores.scoring_page", ["title" => "Score Page", "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "sid" => $id, 'mainsubject' => $mainsubject]);
+        return view("scores.scoring_page", ["title" => "Score Page", "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "sid" => $id, 'mainsubject' => $mainsubject, 'agentB' => $agentB]);
     }
 
     public function edit(Request $request)
@@ -231,6 +235,10 @@ class ScoringSheetController extends Controller
     public function finalists($id)
     {
 
+        $agentB = Followers::where('who_follow', '=', Auth::user()->id)
+            ->select('who_follow')
+            ->get();
+
         $subjs = Subject::where("id", $id)->first();
         $subjects = Criteria::where("subject_id", $id)->orderBy("maincriteria_id", "ASC")->get();
 
@@ -238,7 +246,8 @@ class ScoringSheetController extends Controller
             ->select('main_subject_name')->first();
 
 
-        $applicants = DB::select('SELECT d.id,d.name, finalists.`applicant_id`, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d RIGHT JOIN finalists ON (d.`id`=finalists.`applicant_id`) WHERE d.`subject_id` = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
+        $applicants = DB::select('SELECT d.id,d.name,d.email, finalists.`applicant_id`, (SELECT SUM(scores.score_number) FROM scores WHERE user_id = ? AND subject_id = ? AND applicant_id = d.id) AS total FROM applicants AS d RIGHT JOIN finalists ON (d.`id`=finalists.`applicant_id`) WHERE d.`subject_id` = ? ORDER BY total DESC', [$subjs->user_id, $id, $id]);
+
 
         $maincriterias = DB::select("SELECT maincriterias.`criteria_name`, maincriterias.`id` FROM maincriterias LEFT JOIN criterias ON (maincriterias.`id`=criterias.`maincriteria_id`) WHERE criterias.`subject_id` = ? GROUP BY maincriterias.`id`", [$id]);
 
@@ -250,7 +259,7 @@ class ScoringSheetController extends Controller
         );
 
         if(count($applicants) > 0 && count($maincriterias) > 0) {
-            return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, 'mainsubject' => $mainsubject, 'sid' => $id]);
+            return view("scores.finalist", ["title" => "Finalists", "subjects" => $subjects, "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "maincriterias" => $maincriterias, 'mainsubject' => $mainsubject, 'sid' => $id, 'agentB' => $agentB]);
 
         } else {
             return redirect('/dashboard')->with('err', 'We don\'t have any data into the finalist page.');

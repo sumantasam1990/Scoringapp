@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Followers;
 use App\Models\Mainsubject;
 use App\Models\Message;
 use App\Models\Reply;
@@ -44,12 +45,16 @@ class MessageController extends Controller
             ->join("users", "users.id", "=", "messages.user_id")
             ->where("messages.subject_id", "=", $id)
             ->where('messages.room_id', '=', $roomid)
-            ->select('messages.message_txt', 'messages.id', 'messages.user_id', 'messages.created_at', 'users.name')
+            ->select('messages.message_txt', 'messages.id', 'messages.user_id', 'messages.created_at', 'users.name', 'users.email', 'users.user_type')
             ->orderBy('messages.id', 'desc')
             ->get();
 
+        $agentB = Followers::where('who_follow', '=', Auth::user()->id)
+            ->select('who_follow')
+            ->get();
 
-        return view('message.index', ['title' => 'Message Room', 'subject' => $subject, 'teams' => $teams, 'messages' => $messages, 'roomid' => $roomid, 'roomname' => $roomname]);
+
+        return view('message.index', ['title' => 'Message Room', 'subject' => $subject, 'teams' => $teams, 'messages' => $messages, 'roomid' => $roomid, 'roomname' => $roomname, 'agentB' => $agentB]);
     }
 
     public function reply(Request $request) {

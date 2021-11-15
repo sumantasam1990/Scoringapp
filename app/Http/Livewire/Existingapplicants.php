@@ -3,7 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Models\Applicant;
+use App\Models\Followers;
 use App\Models\Subject;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Existingapplicants extends Component
@@ -39,7 +41,11 @@ class Existingapplicants extends Component
             }
         }
 
-        return view('livewire.existingapplicants', ['applicantsArray' => $this->applicantsArray]);
+        $agentB = Followers::where('who_follow', '=', Auth::user()->id)
+            ->select('who_follow')
+            ->get();
+
+        return view('livewire.existingapplicants', ['applicantsArray' => $this->applicantsArray, 'agentB' => $agentB]);
     }
 
     public function changeData()

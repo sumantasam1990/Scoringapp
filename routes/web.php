@@ -287,6 +287,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     });
 
+    Route::get('accept-invitation-buyer/{token}', function ($token) {
+
+        try {
+            (new \App\Http\Services\SubjectStore())->save(\Illuminate\Support\Facades\Crypt::decrypt($token));
+            return redirect('/dashboard');
+
+        } catch (\Throwable $th) {
+            return redirect('/dashboard')
+                ->with('err', $th->getMessage());
+        }
+
+
+    });
+
     Route::get('position-filled/{id}', function ($id) {
 
         try {

@@ -7,18 +7,19 @@ use App\Models\Applicant;
 use App\Models\Bulkemail;
 use App\Models\Criteria;
 use App\Models\Finalist;
+use App\Models\Followers;
 use App\Models\Mainsubject;
 use App\Models\Score;
 use App\Models\Subject;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ApplicantController extends Controller
 {
     public function index($id)
     {
-
         //get main subject name from subject ID
         $mainsubjectname = DB::table("mainsubjects")
             ->join("subjects", "mainsubjects.id", "=", "subjects.mainsubject_id")
@@ -83,7 +84,7 @@ class ApplicantController extends Controller
             ->select('id')
             ->count('id');
 
-       if($subject == 1) {
+//       if($subject == 1) {
            $finalist = new Finalist;
 
            $finalist->subject_id = $request->subid;
@@ -93,10 +94,10 @@ class ApplicantController extends Controller
 
            return redirect('/finalists/' . $request->subid)
                ->with('msg', 'Successfully added to the finalist page.');
-       } else {
-           return back()
-               ->with('err', 'Sorry! You don\'t have permission to add applicant to the finalist page.');
-       }
+//       } else {
+//           return back()
+//               ->with('err', 'Sorry! You don\'t have permission to add applicant to the finalist page.');
+//       }
 
     }
 

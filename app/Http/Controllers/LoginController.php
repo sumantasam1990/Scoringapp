@@ -104,6 +104,8 @@ class LoginController extends Controller
                 ->get();
 
                 $otherSubjects = [];
+                $agentB = [];
+                $agentA = [];
             } else {
                 $mysubjects = Subject::with('team')
                 ->where('user_id', '=', $user->id)
@@ -116,12 +118,18 @@ class LoginController extends Controller
                     ->orWhere('followers.whom_follow', '=', $user->id)
                     ->select('subjects.*', 'users.name')->get();
 
+                $agentB = Followers::where('who_follow', '=', $user->id)
+                    ->select('who_follow')
+                    ->get();
 
+                $agentA = Followers::where('whom_follow', '=', $user->id)
+                    ->select('whom_follow')
+                    ->get();
 
 
             }
 
-            return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "mysubjects" => $mysubjects, "otherSubjects" => $otherSubjects]);
+            return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "mysubjects" => $mysubjects, "otherSubjects" => $otherSubjects, 'agentB' => $agentB, 'agentA' => $agentA]);
         }
 
         return redirect("registration")->with('err', 'You are not allowed to access');

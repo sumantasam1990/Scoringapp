@@ -14,19 +14,28 @@
                 <div class="row">
                     <div class="col-8">
                         <h2 class="display-4 text-left heading_txt">{{ $user->name }}</h2>
-                        <h5 class="fs-6 text-black-50 text-left heading_txt">{{ $user->email }}</h5>
+                        @unlessrole('buyer')
+                        @if(count($agentB) > 0)
+                            <span class="fw-bold fs-6">Following: {{ count($agentB) }}</span>
+                        @else
+                            <span class="fw-bold fs-6">Followers: {{ count($agentA) }}</span>
+                        @endif
+                        @endunlessrole
+{{--                        <h5 class="fs-6 text-black-50 text-left heading_txt">{{ $user->email }}</h5>--}}
                         {{--            <h5 style="margin-top: -5px;" class="text-dark mt-3 mb-4">See all of your Main and Sub Subjects in one simple dashboard. Open each Subject to access it's Score Page and the numerous features associated with it.--}}
                         {{--            </h5>--}}
 
                         <div class="mt-4 ">
 
                             @unlessrole('buyer')
+                            @if(count($agentB) == 0)
                             <a class="btn btn-success btn-sm" href="/create-subject">Add Buyer &nbsp;
 
                                 <i class="fas fa-info-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Subjects are a way to organize where Applicants will be added within your Scorng account. A Subject is broken into two parts, a Main Subject and a Sub Subject. For example, the Main Subject can be something like the store or location where the new Applicant for which you’re hiring, will be working. For example the Sub Subject can be the actual position for which you’re hiring. "></i>
 
 
                             </a>
+                            @endif
                             @endunlessrole
 
 
@@ -77,7 +86,8 @@
                         <div class="col-12 col-xl-4 col-md-4 col-xxl-4 col-sm-12 col-xs-12 mt-3 mb-4">
                             <div class="card text-dark border-success" style="border: 6px solid green !important;">
                                 <div class="card-body text-center">
-                                <h4 class="card-title fw-bold mb-2" style="font-size: 22px; color: green;">{{ $in->subject_name }}</h4>
+
+                                  <h4 class="card-title fw-bold mb-2" style="font-size: 22px; color: green;">{{ $in->subject_name }}</h4>
 
                                 @unlessrole('buyer')
                                     @php
@@ -114,7 +124,9 @@
             </div>
 
                 @unlessrole('buyer')
+                @if(count($agentA) == 0)
                 @include('auth.followdashboard')
+                @endif
                 @endunlessrole
 {{--                Position Filled--}}
 

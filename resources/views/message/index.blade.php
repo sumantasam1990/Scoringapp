@@ -47,7 +47,7 @@
 
                 @foreach($messages as $message)
                     @role('buyer')
-                    @if($subject->user_id == $message->user_id)
+
                 <div class="col-12 mt-4">
                     <div class="d-flex">
                         <div class="flex-shrink-0">
@@ -55,6 +55,7 @@
                         </div>
                         <div class="flex-grow-1 ms-3">
                             <h4 class="fs-6 fw-bold">{{ $message->name }}</h4>
+
                             {{ $message->message_txt }}
                             <p class="text-black-50"><small>{{ date('F jS, Y', strtotime($message->created_at)) }}</small></p>
                         </div>
@@ -112,10 +113,13 @@
                         <div @class('col-1')></div>
                     </div>
                 </div>
-                    @endif
+
                     @endrole
 
+{{--                Agent B--}}
                     @unlessrole('buyer')
+                    @if($message->user_type == 'Agent' && count($agentB) > 0)
+                        ----------------
                     <div class="col-12 mt-4">
                         <div class="d-flex">
                             <div class="flex-shrink-0">
@@ -137,6 +141,7 @@
                                       ->get();
                         @endphp
                         @foreach($replies as $reply)
+                            @if($reply->user_type == 'Agent')
                             <div class="row">
                                 <div class="col-1"></div>
 
@@ -155,6 +160,7 @@
 
                                 <div class="col-1"></div>
                             </div>
+                            @endif
                         @endforeach
 
 
@@ -180,6 +186,77 @@
                             <div @class('col-1')></div>
                         </div>
                     </div>
+
+{{--                        Agent A--}}
+                        @elseif(count($agentB) == 0)
+
+                            <div class="col-12 mt-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <img class="img-thumbnail" style="object-fit: cover; width: 50px; height: 50px;" src="https://datingshortcut.com/wp-content/themes/datingshortcut/images/user.svg" alt="profile">
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <h4 class="fs-6 fw-bold">{{ $message->name }}</h4>
+                                        {{ $message->message_txt }}
+                                        <p class="text-black-50"><small>{{ date('F jS, Y', strtotime($message->created_at)) }}</small></p>
+                                    </div>
+                                </div>
+                                @php
+                                    $replies = DB::table('replies')
+                                              ->join('messages', 'replies.message_id', '=', 'messages.id')
+                                              ->join('users', 'users.id', '=', 'replies.user_id')
+                                              ->where('replies.subject_id', '=', $subject->id)
+                                              //->where('replies.user_id', '=', $message->user_id)
+                                              ->where('replies.message_id', '=', $message->id)
+                                              ->get();
+                                @endphp
+                                @foreach($replies as $reply)
+
+                                        <div class="row">
+                                            <div class="col-1"></div>
+
+                                            <div class="col-10 reply">
+                                                <div class="d-flex">
+                                                    <div class="flex-shrink-0">
+                                                        <img class="img-thumbnail" style="object-fit: cover; width: 50px; height: 50px;" src="https://datingshortcut.com/wp-content/themes/datingshortcut/images/user.svg" alt="profile">
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <h4 class="fs-6 fw-bold">{{ $reply->name }}</h4>
+                                                        {{ $reply->reply_txt }}
+                                                        <p class="text-black-50"><small>{{ date('F jS, Y @ h:i A', strtotime($reply->created_at)) }}</small></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-1"></div>
+                                        </div>
+
+                                @endforeach
+
+
+                                <div @class('row')>
+                                    <div @class('col-1')></div>
+                                    <div @class('col-10')>
+                                        <form action="{{ route('reply') }}" method="post"@class('d-inline')>
+                                            @csrf
+                                            <input type="hidden" name="msg_id" value="{{ $message->id }}" required>
+                                            <input type="hidden" name="sub_id" value="{{ $subject->id }}" required>
+
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <input required type="text" name="reply_msg" class="form-control" placeholder="Write your reply...">
+                                                </div>
+                                                <div class="col-4">
+                                                    <button type="submit" @class('btn btn-dark btn-sm')>Reply</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div @class('col-1')></div>
+                                </div>
+                            </div>
+                    @endif
                     @endunlessrole
 
                 @endforeach

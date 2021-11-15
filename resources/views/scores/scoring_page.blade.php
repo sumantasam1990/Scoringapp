@@ -56,6 +56,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
                         {{-- <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Add Criteria</a> --}}
                         {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
 
+                        @if(count($agentB) == 0)
                         <form action="{{ route('remove-page') }}" method="post" @class('d-inline')
                             onsubmit="return confirm('Are you sure?')">
                             @csrf
@@ -69,12 +70,15 @@ The second step is to add and Applicant, and finally is to actually give one of 
 
                             </button>
                         </form>
+                        @endif
 
+{{--                        @if(count($agentB) == 0)--}}
                         <a href="/finalists/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Finalist Page
                             <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
                                 data-bs-content="A Finalist Page is simply another Score Page but for applicants that you will be considering hiring. Think of this as applicants who have passed the initial hiring stage and now have moved one step closer to actually being chosen for the position. You can add an unlimited number of applicants to the Finalist Page. Each Score Page has it’s own dedicated Finalist Page."
                                 class="fas fa-info-circle"></i>
                         </a>
+{{--                        @endif--}}
                         {{-- <a href="/bulkemaillist/{{$subjs->id}}" class="btn btn-success btn-sm mt-2">Bulk Email List --}}
                         {{-- <i data-bs-container="body" --}}
                         {{-- data-bs-toggle="popover" --}}
@@ -83,11 +87,13 @@ The second step is to add and Applicant, and finally is to actually give one of 
                         {{-- class="fas fa-info-circle"></i> --}}
                         {{-- </a> --}}
                         @unlessrole('buyer')
+                        @if(count($agentB) == 0)
                         <a href="/add-team-member/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Invite Agent
                             <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
                                 data-bs-content="Team Members allow you to add anyone who you would like to also score applicants. This way you can hear other people’s opinions so that you can make a more comprehensive hiring decision."
                                 class="fas fa-info-circle"></i>
                         </a>
+                        @endif
                         @endunlessrole
                         <a href="/rooms/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Message Room
                             <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
@@ -347,7 +353,11 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                                 @endphp
                                                 <td style="@if ($total_sum[0]->total != '') text-align: left; @else text-align: left; @endif">
                                                     <p class="fw-bold">
-                                                        {{ $user->name }} <br>
+                                                        @if(count($agentB) == 0)
+                                                        {{ $user->name }}
+                                                        @endif
+
+                                                            <br>
 
                                                         {{-- <a style="color: #138D07 !important; font-size: 24px;" --}}
                                                         {{-- class="text-dark" --}}

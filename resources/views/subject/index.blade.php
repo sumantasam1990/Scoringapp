@@ -31,11 +31,11 @@
 {{--                        </select>--}}
 {{--                    </div>--}}
                     <div class="form-group mb-3">
-                        <input autocomplete="off" type="text" name="subject[]" class="form-control @error('subject') is-invalid @enderror" placeholder="Buyer's Name" value="{{ old('subject') }}">
+                        <input autocomplete="off" type="text" name="subject" class="form-control @error('subject') is-invalid @enderror" placeholder="Buyer's Name" value="{{ old('subject') }}">
                     </div>
 
                     <div class="form-group mb-3">
-                        <input autocomplete="off" type="email" name="mailid[]" class="form-control @error('mailid') is-invalid @enderror" placeholder="Buyer's Email" value="{{ old('mailid') }}">
+                        <input autocomplete="off" type="email" name="mailid" class="form-control @error('mailid') is-invalid @enderror" placeholder="Buyer's Email" value="{{ old('mailid') }}">
                     </div>
 
                     <hr />
@@ -43,7 +43,7 @@
                     <div id="html"></div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                        <button type="button" onclick="add_more()" class="btn btn-dark btn-md">Add Another Buyer</button>
+{{--                        <button type="button" onclick="add_more()" class="btn btn-dark btn-md">Add Another Buyer</button>--}}
                         <button type="submit" class="btn btn-dark btn-md">Submit</button>
                     </div>
                 </form>

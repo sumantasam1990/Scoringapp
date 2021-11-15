@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\SubjectStore;
+use App\Mail\AddBuyer;
+use App\Mail\RequestTeamMember;
 use App\Models\Mainsubject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 
 class SubjectController extends Controller
 {
@@ -23,14 +27,23 @@ class SubjectController extends Controller
 
         $request->validate([
             //'main' => 'required',
-            'subject' => 'required'
+            'subject' => 'required',
+            'mailid' => 'required'
         ]);
 
         try {
 
-            (new SubjectStore())->save($request->subject, $request->mailid);
+            $token = Crypt::encrypt($request->subject . '|' . $request->mailid . '|' . Auth::user()->id . '|' . Auth::user()->email);
+            $mailData = array(
+                'name' => $request->subject,
+                'url' => url('/accept-invitation-buyer/' . $token),
+            );
 
-            return redirect("/dashboard")->with("msg", "A new Buyer has been added.");
+            Mail::to($request->mailid)->queue(new AddBuyer($mailData));
+
+            //(new SubjectStore())->save($request->subject, $request->mailid);
+
+            return redirect("/dashboard")->with("msg", "We have sent an email invitation to this buyer.");
 
         } catch (\Throwable $th) {
             return $th->getMessage();

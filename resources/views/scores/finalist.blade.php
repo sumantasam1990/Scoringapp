@@ -196,7 +196,7 @@
                                                 <div style="font-size: 18px;" class="fw-bold mb-3">
                                                     <p class="fs-5 mb-2"><a
                                                             style=" text-decoration: none; color: #138D07;"
-                                                            href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->name }}
+                                                            href="/applicant/{{ $applicant->id }}/{{ $subjs->id }}"> {{ $applicant->email }}
 
                                                         </a>
 
@@ -278,7 +278,11 @@
                                                 @endphp
                                                 <td style="@if($total_sum[0]->total != '') text-align: left; @else text-align: left; @endif">
                                                     <p class="fw-bold">
-                                                        {{ $user->name }} <br>
+                                                        @if(count($agentB) == 0)
+                                                        {{ $user->name }}
+                                                        @endif
+
+                                                        <br>
 
                                                         {{--                                                            <a style="color: #138D07 !important; font-size: 24px;"--}}
                                                         {{--                                                               class="text-dark"--}}
