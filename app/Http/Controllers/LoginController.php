@@ -99,7 +99,7 @@ class LoginController extends Controller
             if($user->hasRole('buyer')) {
                 $mysubjects = DB::table('subjects')
                 ->join('agentbuyers', 'subjects.id', '=', 'agentbuyers.subject_id')
-                ->where('agentbuyers.buyer_email', '=', $user->email)
+                ->where('agentbuyers.user_id', '=', $user->id)
                 ->select('subjects.*')
                 ->get();
 
@@ -115,7 +115,7 @@ class LoginController extends Controller
                     ->join('followers', 'subjects.user_id', '=', 'followers.whom_follow')
                     ->join('users', 'users.id', '=', 'subjects.user_id')
                     ->where('followers.who_follow', '=', $user->id)
-                    ->orWhere('followers.whom_follow', '=', $user->id)
+//                    ->orWhere('followers.whom_follow', '=', $user->id)
                     ->select('subjects.*', 'users.name')->get();
 
                 $agentB = Followers::where('who_follow', '=', $user->id)

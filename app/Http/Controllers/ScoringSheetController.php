@@ -98,6 +98,7 @@ class ScoringSheetController extends Controller
         );
 
         $agentB = Followers::where('who_follow', '=', Auth::user()->id)
+            ->where('subject_id',  '=', $id)
             ->select('who_follow')
             ->get();
 

@@ -6,6 +6,7 @@ use App\Http\Services\SubjectStore;
 use App\Mail\AddBuyer;
 use App\Mail\RequestTeamMember;
 use App\Models\Mainsubject;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -28,22 +29,27 @@ class SubjectController extends Controller
         $request->validate([
             //'main' => 'required',
             'subject' => 'required',
-            'mailid' => 'required'
         ]);
 
         try {
 
-            $token = Crypt::encrypt($request->subject . '|' . $request->mailid . '|' . Auth::user()->id . '|' . Auth::user()->email);
-            $mailData = array(
-                'name' => $request->subject,
-                'url' => url('/accept-invitation-buyer/' . $token),
-            );
+            $subject = new Subject;
+            $subject->user_id = Auth::user()->id;
+            $subject->mainsubject_id = 1;
+            $subject->subject_name = $request->subject;
+            $subject->save();
 
-            Mail::to($request->mailid)->queue(new AddBuyer($mailData));
+//            $token = Crypt::encrypt($request->subject . '|' . $request->mailid . '|' . Auth::user()->id . '|' . Auth::user()->email);
+//            $mailData = array(
+//                'name' => $request->subject,
+//                'url' => url('/accept-invitation-buyer/' . $token),
+//            );
+//
+//            Mail::to($request->mailid)->queue(new AddBuyer($mailData));
 
             //(new SubjectStore())->save($request->subject, $request->mailid);
 
-            return redirect("/dashboard")->with("msg", "We have sent an email invitation to this buyer.");
+            return redirect("/dashboard")->with("msg", "Score Page added successfully.");
 
         } catch (\Throwable $th) {
             return $th->getMessage();

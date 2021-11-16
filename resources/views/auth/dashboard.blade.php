@@ -28,14 +28,14 @@
                         <div class="mt-4 ">
 
                             @unlessrole('buyer')
-                            @if(count($agentB) == 0)
-                            <a class="btn btn-success btn-sm" href="/create-subject">Add Buyer &nbsp;
+
+                            <a class="btn btn-success btn-sm" href="/create-subject">Add A Score Page &nbsp;
 
                                 <i class="fas fa-info-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Subjects are a way to organize where Applicants will be added within your Scorng account. A Subject is broken into two parts, a Main Subject and a Sub Subject. For example, the Main Subject can be something like the store or location where the new Applicant for which you’re hiring, will be working. For example the Sub Subject can be the actual position for which you’re hiring. "></i>
 
 
                             </a>
-                            @endif
+
                             @endunlessrole
 
 
@@ -95,11 +95,12 @@
                                     @endphp
 
 
-                                    @if($in->team[0]->status == 0)
-                                        <a onclick="return confirm('Are you sure?')" class="btn btn-link text-dark text-decoration-underline fw-bold" href="/accept-invitation/{{ $token }}">Accept Invitation</a>
-                                    @else
-                                        <a href="/score-page/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>
-                                    @endif
+{{--                                    @if($in->team[0]->status == 0)--}}
+{{--                                        <a onclick="return confirm('Are you sure?')" class="btn btn-link text-dark text-decoration-underline fw-bold" href="/accept-invitation/{{ $token }}">Accept Invitation</a>--}}
+{{--                                    @else--}}
+{{--                                        <a href="/score-page/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>--}}
+{{--                                    @endif--}}
+                                    <a href="/score-page/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>
                                 @endunlessrole
 
                                 @role('buyer')
@@ -124,9 +125,9 @@
             </div>
 
                 @unlessrole('buyer')
-                @if(count($agentA) == 0)
+
                 @include('auth.followdashboard')
-                @endif
+
                 @endunlessrole
 {{--                Position Filled--}}
 

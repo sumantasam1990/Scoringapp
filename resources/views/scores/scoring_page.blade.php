@@ -93,6 +93,11 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                 data-bs-content="Team Members allow you to add anyone who you would like to also score applicants. This way you can hear other people’s opinions so that you can make a more comprehensive hiring decision."
                                 class="fas fa-info-circle"></i>
                         </a>
+                            <a href="/add-team-member/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Invite Buyer
+                                <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
+                                   data-bs-content="Team Members allow you to add anyone who you would like to also score applicants. This way you can hear other people’s opinions so that you can make a more comprehensive hiring decision."
+                                   class="fas fa-info-circle"></i>
+                            </a>
                         @endif
                         @endunlessrole
                         <a href="/rooms/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Message Room
