@@ -26,6 +26,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Agentbuyer whereSubjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Agentbuyer whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $user_id Buyer user ID
+ * @method static \Illuminate\Database\Eloquent\Builder|Agentbuyer whereUserId($value)
  */
 class Agentbuyer extends Model
 {

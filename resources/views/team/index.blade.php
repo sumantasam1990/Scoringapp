@@ -62,7 +62,7 @@
                 </div>
                 @endforeach
                 @else
-                    <p>You don't have any invited buyers.</p>
+                    <p>You don't have any invited agents.</p>
                 @endif
             </div>
 
@@ -105,9 +105,9 @@
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button type="submit" class="btn btn-dark btn-sm">
                         @hasrole('buyer')
-                            Add Buyer
+                        Send Invitation
                         @else
-                            Add Agent
+                            Send Invitation
                         @endhasrole
 
                     </button>

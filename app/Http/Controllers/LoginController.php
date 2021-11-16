@@ -39,12 +39,15 @@ class LoginController extends Controller
             {
                 return redirect()->intended('admin/dashboard');
             } else {
+                return redirect()->intended('dashboard');
                 // Checking if invitation cookie is alive or not
-                if(Cookie::has('invite_agent_token') && !empty(Cookie::get('invite_agent_token'))) {
-                    return redirect()->intended('accept-invitation/' . Cookie::get('invite_agent_token'));
-                } else {
-                    return redirect()->intended('dashboard');
-                }
+//                if(Cookie::has('invite_agent_token') && !empty(Cookie::get('invite_agent_token'))) {
+//                    return redirect()->intended('accept-invitation/' . Cookie::get('invite_agent_token'));
+//                } elseif(Cookie::has('invite_buyer_token') && !empty(Cookie::get('invite_buyer_token'))) {
+//                    return redirect()->intended('accept-invitation-buyer/' . Cookie::get('invite_buyer_token'));
+//                } else {
+//                    return redirect()->intended('dashboard');
+//                }
 
             }
 
@@ -101,6 +104,18 @@ class LoginController extends Controller
     public function dashboard()
     {
         if(Auth::check()){
+
+            // Checking if agent invitation cookie is alive or not
+            if(\Illuminate\Support\Facades\Session::has('invite_agent_token') && !empty(\Illuminate\Support\Facades\Session::get('invite_agent_token'))) {
+                return redirect()->intended('accept-invitation/' . \Illuminate\Support\Facades\Session::get('invite_agent_token'));
+            }
+
+            // Checking if buyer invitation cookie is alive or not
+            if(\Illuminate\Support\Facades\Session::has('invite_buyer_token') && !empty(\Illuminate\Support\Facades\Session::get('invite_buyer_token'))) {
+                return redirect()->intended('accept-invitation-buyer/' . \Illuminate\Support\Facades\Session::get('invite_buyer_token'));
+            }
+            //----------------------------------------------
+
             $user = Auth::user();
 
             if($user->hasRole('buyer')) {

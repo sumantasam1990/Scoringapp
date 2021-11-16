@@ -72,6 +72,7 @@ Route::get('/message-room/{id}/{room}', [\App\Http\Controllers\MessageController
 Route::get('/scorecard/{id}/{appl_id}/{userid}', [ScoringSheetController::class, 'scorecard'])->middleware(['auth', 'verified']);
 Route::get('/rooms/{id}', [\App\Http\Controllers\MessageController::class, 'message_rooms'])->middleware(['auth', 'verified']);
 Route::get('/scorepage-grid/{id}/{applicantId?}', [ScoringSheetController::class, 'gridView'])->middleware(['auth', 'verified']);
+Route::get('/invite-buyer/{id}', [TeamController::class, 'invite_buyer'])->middleware(['auth', 'verified']);
 
 
 
@@ -279,7 +280,7 @@ Route::get('accept-invitation/{token}', function ($token) {
         if(Auth::check()) {
             // Checking if loggedIN user same as token user
             $exptoken = explode('|', \Illuminate\Support\Facades\Crypt::decrypt($token));
-            if($exptoken[0] === Auth::user()->email) {
+            if($exptoken[0] == Auth::user()->email) {
                 return (new \App\Http\Services\AddTeamMember())->acceptTeamMember(\Illuminate\Support\Facades\Crypt::decrypt($token));
             }
             return redirect('/dashboard')
@@ -287,11 +288,41 @@ Route::get('accept-invitation/{token}', function ($token) {
 
         } else {
             //Store token in cookie
-            \Illuminate\Support\Facades\Cookie::make('invite_agent_token', $token, '60');
+            \Illuminate\Support\Facades\Cookie::queue('invite_agent_token', $token, '43200');
             return redirect('/signup');
         }
 
 
+
+    } catch (\Throwable $th) {
+        return redirect('/dashboard')
+            ->with('err', $th->getMessage());
+    }
+
+
+});
+
+//Buyer accept invitation
+
+Route::get('accept-invitation-buyer/{token}', function ($token) {
+
+    try {
+
+        if(Auth::check()) {
+            // Checking if loggedIN user same as token user
+            $exptoken = explode('|', \Illuminate\Support\Facades\Crypt::decrypt($token));
+            if($exptoken[0] == Auth::user()->email) {
+                return (new \App\Http\Services\AddTeamMember())->acceptInvitationBuyer(\Illuminate\Support\Facades\Crypt::decrypt($token));
+            }
+            return redirect('/dashboard')
+                ->with('err', 'Please login with correct email and password to accept the invitation.');
+
+        } else {
+            //Store token in cookie
+            \Illuminate\Support\Facades\Session::put('invite_buyer_token', $token);
+
+            return redirect('/signup');
+        }
 
     } catch (\Throwable $th) {
         return redirect('/dashboard')
@@ -316,19 +347,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
 //
 //    });
 
-    Route::get('accept-invitation-buyer/{token}', function ($token) {
-
-        try {
-            (new \App\Http\Services\SubjectStore())->save(\Illuminate\Support\Facades\Crypt::decrypt($token));
-            return redirect('/dashboard');
-
-        } catch (\Throwable $th) {
-            return redirect('/dashboard')
-                ->with('err', $th->getMessage());
-        }
-
-
-    });
+//    Route::get('accept-invitation-buyer/{token}', function ($token) {
+//
+//        try {
+//            (new \App\Http\Services\SubjectStore())->save(\Illuminate\Support\Facades\Crypt::decrypt($token));
+//            return redirect('/dashboard');
+//
+//        } catch (\Throwable $th) {
+//            return redirect('/dashboard')
+//                ->with('err', $th->getMessage());
+//        }
+//
+//
+//    });
 
     Route::get('position-filled/{id}', function ($id) {
 

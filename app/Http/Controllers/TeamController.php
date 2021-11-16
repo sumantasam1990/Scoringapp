@@ -19,7 +19,17 @@ class TeamController extends Controller
 
         $teams = DB::select('SELECT users.name, teams.id, teams.status, teams.user_email FROM teams LEFT JOIN users ON (users.email=teams.user_email) WHERE teams.subject_id = ?', [$id]);
 
-        return view("team.index", ["title" => "Invite Team Members", "subject" => $subject, "teams" => $teams]);
+        return view("team.index", ["title" => "Invite Agent", "subject" => $subject, "teams" => $teams]);
+
+    }
+
+    public function invite_buyer($id)
+    {
+        $subject = Subject::find($id);
+
+        $teams = DB::select('SELECT users.name, teams.id, teams.status, teams.user_email FROM teams LEFT JOIN users ON (users.email=teams.user_email) WHERE teams.subject_id = ?', [$id]);
+
+        return view("team.buyer_invite", ["title" => "Invite Buyer", "subject" => $subject, "teams" => $teams]);
 
     }
 
