@@ -272,20 +272,49 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 
 // Accept invitations
-Route::middleware(['auth', 'verified'])->group(function () {
+// Before login
+Route::get('accept-invitation/{token}', function ($token) {
 
-    Route::get('accept-invitation/{token}', function ($token) {
-
-        try {
-            return (new \App\Http\Services\AddTeamMember())->acceptTeamMember(\Illuminate\Support\Facades\Crypt::decrypt($token));
-
-        } catch (\Throwable $th) {
+    try {
+        if(Auth::check()) {
+            // Checking if loggedIN user same as token user
+            $exptoken = explode('|', \Illuminate\Support\Facades\Crypt::decrypt($token));
+            if($exptoken[0] === Auth::user()->email) {
+                return (new \App\Http\Services\AddTeamMember())->acceptTeamMember(\Illuminate\Support\Facades\Crypt::decrypt($token));
+            }
             return redirect('/dashboard')
-                ->with('err', $th->getMessage());
+                ->with('err', 'Please login with correct email and password to accept the invitation.');
+
+        } else {
+            //Store token in cookie
+            \Illuminate\Support\Facades\Cookie::make('invite_agent_token', $token, '60');
+            return redirect('/signup');
         }
 
 
-    });
+
+    } catch (\Throwable $th) {
+        return redirect('/dashboard')
+            ->with('err', $th->getMessage());
+    }
+
+
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
+//    Route::get('accept-invitation/{token}', function ($token) {
+//
+//        try {
+//            return (new \App\Http\Services\AddTeamMember())->acceptTeamMember(\Illuminate\Support\Facades\Crypt::decrypt($token));
+//
+//        } catch (\Throwable $th) {
+//            return redirect('/dashboard')
+//                ->with('err', $th->getMessage());
+//        }
+//
+//
+//    });
 
     Route::get('accept-invitation-buyer/{token}', function ($token) {
 

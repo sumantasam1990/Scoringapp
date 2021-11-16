@@ -81,26 +81,14 @@ class AddTeamMember
     public function acceptTeamMember($token)
     {
         $exp = explode('|', $token);
-//        $email = $exp[0];
-//        $subId = $exp[1];
 
         if($exp[2] == 'Agent'){
-//              $team = new Team;
-//            $team->user_id = $user->id;
-//            $team->user_email = $request->email;
-//            $team->subject_id = $exp[1];
-//            $team->mainsubject_id = 0;
-//            $team->save();
-
             $follower = new Followers;
             $follower->who_follow = Auth::user()->id;
             $follower->whom_follow = $exp[3];
+            $follower->subject_id = $exp[1];
             $follower->save();
         }
-
-//        Team::where('subject_id', '=', $subId)
-//            ->where('user_email', '=', $email)
-//            ->update(['status' => 1]);
 
         return redirect('/dashboard')
             ->with('msg','You have successfully accepted the invitation.');

@@ -6,6 +6,7 @@ use App\Models\Followers;
 use App\Models\Mainsubject;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Session;
@@ -38,7 +39,13 @@ class LoginController extends Controller
             {
                 return redirect()->intended('admin/dashboard');
             } else {
-                return redirect()->intended('dashboard');
+                // Checking if invitation cookie is alive or not
+                if(Cookie::has('invite_agent_token') && !empty(Cookie::get('invite_agent_token'))) {
+                    return redirect()->intended('accept-invitation/' . Cookie::get('invite_agent_token'));
+                } else {
+                    return redirect()->intended('dashboard');
+                }
+
             }
 
 
