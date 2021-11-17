@@ -20,6 +20,9 @@ class LoginController extends Controller
 {
 
     public function login() {
+        if(Auth::check()){
+            return redirect('/dashboard');
+        }
         return view('auth.login', ["title" => "Login"]);
     }
 
@@ -61,6 +64,10 @@ class LoginController extends Controller
 
     public function registration()
     {
+        if(Auth::check()){
+            return redirect('/dashboard');
+        }
+
         return view('auth.register', ["title" => "Create an account"]);
     }
 

@@ -38,19 +38,19 @@
                         <img src="{{ asset('images/user.svg') }}" style="object-fit: cover; width: 100%; height: 120px;">
                         <p class="fw-bold" style="word-break: break-all;">{{ $team->name ?? $team->user_email }}</p>
 
-                        @if($team->status == 1)
-                        <p class="fw-bold text-success">
-                            Accepted
-                        </p>
-                        @elseif($team->status == 0)
-                            <p class="fw-bold text-warning">
-                            Pending
-                            </p>
-                            @else
-                            <p class="fw-bold text-danger">
-                                Rejected
-                            </p>
-                        @endif
+{{--                        @if($team->status == 1)--}}
+{{--                        <p class="fw-bold text-success">--}}
+{{--                            Accepted--}}
+{{--                        </p>--}}
+{{--                        @elseif($team->status == 0)--}}
+{{--                            <p class="fw-bold text-warning">--}}
+{{--                            Pending--}}
+{{--                            </p>--}}
+{{--                            @else--}}
+{{--                            <p class="fw-bold text-danger">--}}
+{{--                                Rejected--}}
+{{--                            </p>--}}
+{{--                        @endif--}}
 {{--                        <p class="fs-6 text-danger">--}}
 {{--                        <form action="" method="delete">--}}
 {{--                            <input type="hidden" value="{{ $team->id }}">--}}

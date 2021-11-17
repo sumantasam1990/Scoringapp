@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\SubjectStore;
 use App\Mail\AddBuyer;
+use App\Mail\AddBuyerNotify;
 use App\Mail\RequestTeamMember;
 use App\Models\Mainsubject;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class SubjectController extends Controller
@@ -38,6 +40,20 @@ class SubjectController extends Controller
             $subject->mainsubject_id = 1;
             $subject->subject_name = $request->subject;
             $subject->save();
+
+            // Send Notification to all Agent B
+            $mailData = [];
+            $toemails = DB::table('followers')
+                ->join('users', 'followers.who_follow', '=', 'users.id')
+                ->where('followers.whom_follow', '=', Auth::user()->id)
+                ->select('users.email')
+                ->get();
+
+            foreach ($toemails as $toemail) {
+                Mail::to($toemail->email)->queue(new AddBuyerNotify($mailData));
+            }
+
+
 
 //            $token = Crypt::encrypt($request->subject . '|' . $request->mailid . '|' . Auth::user()->id . '|' . Auth::user()->email);
 //            $mailData = array(

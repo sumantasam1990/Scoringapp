@@ -15,11 +15,12 @@
                     <div class="col-8">
                         <h2 class="display-4 text-left heading_txt">{{ $user->name }}</h2>
                         @unlessrole('buyer')
-                        @if(count($agentB) > 0)
+
                             <span class="fw-bold fs-6">Following: {{ count($agentB) }}</span>
-                        @else
+                            &nbsp;
+
                             <span class="fw-bold fs-6">Followers: {{ count($agentA) }}</span>
-                        @endif
+
                         @endunlessrole
 {{--                        <h5 class="fs-6 text-black-50 text-left heading_txt">{{ $user->email }}</h5>--}}
                         {{--            <h5 style="margin-top: -5px;" class="text-dark mt-3 mb-4">See all of your Main and Sub Subjects in one simple dashboard. Open each Subject to access it's Score Page and the numerous features associated with it.--}}

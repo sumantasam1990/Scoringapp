@@ -288,7 +288,7 @@ Route::get('accept-invitation/{token}', function ($token) {
 
         } else {
             //Store token in cookie
-            \Illuminate\Support\Facades\Cookie::queue('invite_agent_token', $token, '43200');
+            \Illuminate\Support\Facades\Session::put('invite_agent_token', $token);
             return redirect('/signup');
         }
 
