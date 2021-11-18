@@ -43,7 +43,7 @@ class MessageController extends Controller
             ->join("users", "users.id", "=", "messages.user_id")
             ->where("messages.subject_id", "=", $id)
             ->where('messages.room_id', '=', $roomid)
-            ->select('messages.message_txt', 'messages.id', 'messages.user_id', 'messages.created_at', 'users.name', 'users.email', 'users.user_type')
+            ->select('messages.message_txt', 'messages.id', 'messages.user_id', 'messages.created_at', 'users.name', 'users.id', 'users.email', 'users.user_type')
             ->orderBy('messages.id', 'desc')
             ->get();
 

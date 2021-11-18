@@ -48,6 +48,10 @@
                 @foreach($messages as $message)
                     @role('buyer')
 
+                    @php
+                        $agent_bm = DB::select("select count(id) as total from followers where who_follow = ? and subject_id = ?", [$message->id, $subject->id]);
+                    @endphp
+                    @if($agent_bm[0]->total == 0)
                 <div class="col-12 mt-4">
                     <div class="d-flex">
                         <div class="flex-shrink-0">
@@ -68,8 +72,14 @@
                                   //->where('replies.user_id', '=', $message->user_id)
                                   ->where('replies.message_id', '=', $message->id)
                                   ->get();
+
+                    //dd($replies);
                     @endphp
                     @foreach($replies as $reply)
+                        @php
+                            $agent_b = DB::select("select count(id) as total from followers where who_follow = ? and subject_id = ?", [$reply->id, $subject->id]);
+                        @endphp
+                    @if($agent_b[0]->total == 0)
                     <div class="row">
                         <div class="col-1"></div>
 
@@ -88,6 +98,7 @@
 
                         <div class="col-1"></div>
                     </div>
+                        @endif
                     @endforeach
 
 
@@ -113,6 +124,7 @@
                         <div @class('col-1')></div>
                     </div>
                 </div>
+                @endif
 
                     @endrole
 
