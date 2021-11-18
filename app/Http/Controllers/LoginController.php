@@ -140,12 +140,17 @@ class LoginController extends Controller
                 ->where('user_id', '=', $user->id)
                 ->get();
 
-                $otherSubjects = DB::table('subjects')
-                    ->join('followers', 'subjects.user_id', '=', 'followers.whom_follow')
-                    ->join('users', 'users.id', '=', 'subjects.user_id')
-                    ->where('followers.who_follow', '=', $user->id)
-//                    ->orWhere('followers.whom_follow', '=', $user->id)
-                    ->select('subjects.*', 'users.name')->get();
+                //getting otherfollowers
+//                $following = Followers::where('who_follow', '=', $user->id)
+//                    ->select('whom_follow')
+//                    ->get();
+
+//                $otherSubjects = DB::table('subjects')
+//                    ->join('followers', 'subjects.user_id', '=', 'followers.whom_follow')
+//                    ->join('users', 'users.id', '=', 'subjects.user_id')
+//                    ->where('followers.who_follow', '=', $user->id)
+//                    ->select('subjects.*', 'users.name', 'followers.whom_follow')
+//                    ->get();
 
                 $agentB = Followers::where('who_follow', '=', $user->id)
                     ->select('who_follow')
@@ -158,7 +163,7 @@ class LoginController extends Controller
 
             }
 
-            return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "mysubjects" => $mysubjects, "otherSubjects" => $otherSubjects, 'agentB' => $agentB, 'agentA' => $agentA]);
+            return view('auth.dashboard', ["title" => "Company Dashboard", "user" => $user, "mysubjects" => $mysubjects, 'agentB' => $agentB, 'agentA' => $agentA]);
         }
 
         return redirect("registration")->with('err', 'You are not allowed to access');

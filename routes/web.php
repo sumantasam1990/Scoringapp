@@ -381,3 +381,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
+Route::get('admingg/clear_cache', function () {
+
+    try {
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        \Illuminate\Support\Facades\Artisan::call('config:cache');
+
+        dd("Config && Cache is cleared");
+    } catch (\Throwable $th) {
+        dd($th->getMessage());
+    }
+
+
+});

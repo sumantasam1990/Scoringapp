@@ -30,8 +30,6 @@ class MessageController extends Controller
             ->where("id", "=", $id)
             ->first();
 
-
-
         $roomname = Room::select('room_name')
             ->where('id', '=', $roomid)
             ->first();
@@ -50,6 +48,7 @@ class MessageController extends Controller
             ->get();
 
         $agentB = Followers::where('who_follow', '=', Auth::user()->id)
+            ->where('subject_id', '=', $id)
             ->select('who_follow')
             ->get();
 

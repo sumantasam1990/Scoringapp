@@ -55,7 +55,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                 class="fas fa-info-circle"></i> </a>
                         {{-- <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Add Criteria</a> --}}
                         {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
-
+                        @unlessrole('buyer')
                         @if(count($agentB) == 0)
                         <form action="{{ route('remove-page') }}" method="post" @class('d-inline')
                             onsubmit="return confirm('Are you sure?')">
@@ -71,6 +71,7 @@ The second step is to add and Applicant, and finally is to actually give one of 
                             </button>
                         </form>
                         @endif
+                        @endunlessrole
 
 {{--                        @if(count($agentB) == 0)--}}
                         <a href="/finalists/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Finalist Page
