@@ -81,12 +81,14 @@ class MessageController extends Controller
             ->select('users.email', 'users.name')
             ->first();
 
-        $mailArray = [
-            'name' => $message_user_email->name,
-            'url' => url('/message-room/' . $request->sub_id . '/' . $request->msg_id)
-        ];
+        if($message_user_email != null) {
+            $mailArray = [
+                'name' => $message_user_email->name,
+                'url' => url('/message-room/' . $request->sub_id . '/' . $request->msg_id)
+            ];
 
-        $this->sendEmail($message_user_email->email, $mailArray);
+            $this->sendEmail($message_user_email->email, $mailArray);
+        }
 
         return back()
             ->with('msg', "Your reply has been successfully added.");
@@ -124,12 +126,15 @@ class MessageController extends Controller
             ->select('users.email', 'users.name')
             ->first(); // geting Agent A
 
-        $mailArray = [
-            'name' => $message_user_email->name,
-            'url' => url('/message-room/' . $request->sub_idd . '/' . $request->room_id)
-        ];
+        if(!empty($message_user_email)) {
+            $mailArray = [
+                'name' => $message_user_email->name,
+                'url' => url('/message-room/' . $request->sub_idd . '/' . $request->room_id)
+            ];
 
-        $this->sendEmail($message_user_email->email, $mailArray);
+            $this->sendEmail($message_user_email->email, $mailArray);
+        }
+
 
         return back()
             ->with('msg', "Your new message has been successfully added.");
