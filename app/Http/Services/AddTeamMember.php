@@ -59,6 +59,8 @@ class AddTeamMember
             } else {
                 $this->sendEmail($email, $data);
             }
+        } else {
+            $this->sendEmail($email, $data);
         }
 
 

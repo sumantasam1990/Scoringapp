@@ -32,7 +32,7 @@
                 <div class="card-body text-center">
 {{--                    <p class="text-black-50 fs-6 font-italic text-capitalize fw-bold">(Agent)</p>--}}
                     <p class="card-title fw-bold mb-2" style="font-size: 22px; color: green;">
-                        {{ $in->subject_name }}
+{{--                        {{ $in->subject_name }}--}}
 
                     </p>
                     @if(count($agentB) == 0)
