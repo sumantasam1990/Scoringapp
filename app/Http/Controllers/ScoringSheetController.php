@@ -102,7 +102,12 @@ class ScoringSheetController extends Controller
             ->select('who_follow')
             ->get();
 
-        return view("scores.scoring_page", ["title" => "Score Page", "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "sid" => $id, 'mainsubject' => $mainsubject, 'agentB' => $agentB]);
+        $agentA = Subject::where('id', '=', $id)
+            ->where('user_id', '=', Auth::user()->id)
+            ->select('user_id')
+            ->get();
+
+        return view("scores.scoring_page", ["title" => "Score Page", "applicants" => $applicants, "scores_array" => $scores_array, "subjs" => $subjs, "sid" => $id, 'mainsubject' => $mainsubject, 'agentB' => $agentB, 'agentA' => $agentA]);
     }
 
     public function edit(Request $request)
@@ -294,6 +299,9 @@ class ScoringSheetController extends Controller
                     ->delete();
 
                 Applicant::where("subject_id", "=", $request->subject_id)
+                    ->delete();
+
+                Subject::where('id', '=', $request->subject_id)
                     ->delete();
 
                 return redirect('dashboard')

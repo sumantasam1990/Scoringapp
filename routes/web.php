@@ -54,7 +54,6 @@ Route::post('contact/us', [\App\Http\Controllers\PagesController::class, 'sendem
 
 
 
-
 Route::get('/create-subject', [SubjectController::class, 'index'])->name('create.subject')->middleware(['auth', 'verified']);
 Route::get('/create-applicant/{id}', [ApplicantController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/create-criteria/{id}/{applid}', [CriteriaController::class, 'index'])->middleware(['auth', 'verified']);
@@ -73,6 +72,7 @@ Route::get('/scorecard/{id}/{appl_id}/{userid}', [ScoringSheetController::class,
 Route::get('/rooms/{id}', [\App\Http\Controllers\MessageController::class, 'message_rooms'])->middleware(['auth', 'verified']);
 Route::get('/scorepage-grid/{id}/{applicantId?}', [ScoringSheetController::class, 'gridView'])->middleware(['auth', 'verified']);
 Route::get('/invite-buyer/{id}', [TeamController::class, 'invite_buyer'])->middleware(['auth', 'verified']);
+Route::get('/questionnaire/{id}', [\App\Http\Controllers\Questionnaire::class, 'index'])->middleware(['auth', 'verified']);
 
 
 
@@ -95,6 +95,7 @@ Route::post('message/reply', [\App\Http\Controllers\MessageController::class, 'r
 Route::post('message/create', [\App\Http\Controllers\MessageController::class, 'create'])->name('create')->middleware(['auth', 'verified']);
 Route::post('store/roomname', [\App\Http\Controllers\MessageController::class, 'store'])->name('roomname.store')->middleware(['auth', 'verified']);
 Route::post('company/photo', [LoginController::class, 'uploadPhoto'])->name('company.photo')->middleware(['auth', 'verified']);
+Route::post('/questionnaire', [\App\Http\Controllers\Questionnaire::class, 'store'])->name('questionnaire.post')->middleware(['auth', 'verified']);
 
 
 

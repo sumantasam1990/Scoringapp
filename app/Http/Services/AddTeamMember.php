@@ -44,7 +44,24 @@ class AddTeamMember
                 return redirect('/dashboard')->with('err', 'Error! Something is wrong.');
             }
 
-            $this->sendEmail($email, $data);
+        if ($usertype == 'Agent') {
+            $userEmail = User::where('email', '=', $email)
+                ->select('id')->first();
+
+            $followers = Followers::whereIn('who_follow', [$userEmail->id])
+                ->where('whom_follow', '=', Auth::user()->id)
+                ->where('subject_id', '=', $sub)
+                ->select('id')
+                ->get();
+
+            if(count($followers) > 0) {
+                return redirect('/score-page/' . $sub)->with('err', 'You have already invited this agent.');
+            } else {
+                $this->sendEmail($email, $data);
+            }
+        }
+
+
 
             return back()
                 ->with('msg', 'We have sent an invitation email.');

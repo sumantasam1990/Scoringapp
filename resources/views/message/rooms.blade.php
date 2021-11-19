@@ -30,7 +30,7 @@
 
                         <i
                             data-bs-container="body" data-bs-toggle="popover"
-                            data-bs-placement="top" data-bs-content="This is where you create a new Message Room and then all Team Members can post messages and reply to any posted messages."
+                            data-bs-placement="top" data-bs-content="Message Rooms allows agents and buyers to discuss important details about a property. Each Score Page has its own set of Message Rooms so organization is a priority.."
                             class="fas fa-info-circle"></i>
 
                     </a>

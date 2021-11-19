@@ -13,7 +13,7 @@
                     <i
                         style="text-align: center !important; font-size: 14px;"
                         data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="top" data-bs-content="Criteria are ways to get into as much detail for the position that you’re hiring. It’s a great way to dissect for example a resume, an interview and more. There are Main Criteria and Sub Criteria. A Main Criteria could be, for example, the applicant’s job experience. A Sub Criteria, for example, could be for example, the applicant’s experience working with a particular software." class="fas fa-info-circle"></i>
+                        data-bs-placement="top" data-bs-content="Criteria are ways to get into great detail about a property so the scores represent a comprehensive overview so buyers can make the best and most informed decision about which house they love the most. Criteria are separated into Main Criteria and Sub Criteria. Main Criteria can be something like the kitchen and Sub Criteria can be something like the countertops." class="fas fa-info-circle"></i>
 
                 </h2>
 {{--                <p class="display-6 fw-bold text-center">{{ $mainsubjectname->main_subject_name }}</p>--}}
@@ -105,7 +105,11 @@
                             <button type="button" onclick="selectPhoto()" class="btn btn-dark btn-md"><i class="fas fa-camera"></i> Add Photo</button>
                             <button type="submit" class="btn btn-dark btn-md">Submit</button>
                         </div>
-                        <input style="display: none;" type="file" id="img" name="image" class="form-control">
+                        <input style="display: none;" type="file" id="imgInp" name="image" class="form-control">
+
+                        <p class="mt-4 fw-bold previe_w" style="display: none;">Preview</p>
+                        <img id="blah" class="img-fluid img-thumbnail previe_w" style="display: none;" src="#" alt="preview" />
+
                     </form>
                 </div>
             </div>
@@ -170,6 +174,14 @@
 
 <script>
     function selectPhoto() {
-        $("#img").trigger('click');
+        $("#imgInp").trigger('click');
+    }
+
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            $(".previe_w").show();
+            blah.src = URL.createObjectURL(file)
+        }
     }
 </script>

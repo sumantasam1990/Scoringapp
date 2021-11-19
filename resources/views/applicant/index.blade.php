@@ -37,12 +37,16 @@
 
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                            <button onclick="selectPhoto()" type="button" class="btn btn-dark btn-md" id="add_photo">Add
-                                Photo
+                            <button onclick="selectPhoto()" type="button" class="btn btn-dark btn-md" id="add_photo">
+                                <i class="fas fa-camera"></i> Add Photo
                             </button>
                             <button type="submit" class="btn btn-dark btn-md">Submit</button>
                         </div>
-                        <input style="display: none;" type="file" id="img" name="image" class="form-control">
+                        <input style="display: none;" type="file" id="imgInp" name="image" class="form-control">
+
+                        <p class="mt-4 fw-bold previe_w" style="display: none;">Preview</p>
+                        <img id="blah" class="img-fluid img-thumbnail previe_w" style="display: none;" src="#" alt="preview" />
+
                     </form>
                 </div>
             </div>
@@ -56,6 +60,14 @@
 
 <script>
     function selectPhoto() {
-        $("#img").trigger('click');
+        $("#imgInp").trigger('click');
+    }
+
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            $(".previe_w").show();
+            blah.src = URL.createObjectURL(file)
+        }
     }
 </script>

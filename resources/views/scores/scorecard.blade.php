@@ -11,20 +11,17 @@
             <div class="text-center">
                 <h2 class="display-4 text-center heading_txt">Scoreboard
 
-                    <i
-                        style="text-align: center !important; font-size: 14px;"
-                        data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="top" data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below. <br><br>
+                    <i style="font-size: 14px;" data-bs-container="body" data-bs-toggle="popover"
+                       data-bs-placement="top" data-bs-content="The Scoreboard is the most valuable feature of Scorng. This allows agents and buyers to easily see which property, buyers have liked the most or the least, based on how many times they’ve given each of the 6 Scores to a property. Each time a buyer adds a score, the Scoreboard for that property is updated. Best of all, each buyer can have their own Scoreboard so you can compare and contrast.
+<br><br>
+<ul>
+<li>+3 (Really Love It)</li>
+<li>+2 (Love It)</li>
+<li>+1 (Like It)</li>
 
-These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.<br><br>
-
-<p>Greatly Exceeded Expectations </p>
-<p>Exceeded Expectations </p>
-<p>Slightly Exceeded Expectations </p>
-<p>Met Expectations </p>
-<p>Slightly Failed Expectations </p>
-<p>Failed Expectations </p>
-<p>Greatly Failed Expectations</p>" class="fas fa-info-circle"></i>
+<li>-3 (Really Really Don’t Like It)</li>
+<li>-2 (Really Don’t Like It)</li>
+<li>-1 (Don’t Like It)</li></ul>" class="fas fa-info-circle"></i>
 
                 </h2>
 
@@ -46,7 +43,8 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                     <i data-bs-container="body"
                                        data-bs-toggle="popover"
                                        data-bs-placement="top"
-                                       data-bs-content="A Finalist Page is simply another Score Page but for applicants that you will be considering hiring. Think of this as applicants who have passed the initial hiring stage and now have moved one step closer to actually being chosen for the position. You can add an unlimited number of applicants to the Finalist Page. Each Score Page has it’s own dedicated Finalist Page." class="fas fa-info-circle"></i>
+                                       data-bs-content="A Finalist Page is simply another Score Page but for properties that buyers officially have considered buying. Think of these properties as ones that have “Made the cut”.
+" class="fas fa-info-circle"></i>
 
                                 </button>
                             </form>
@@ -56,7 +54,7 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                     <i data-bs-container="body"
                                        data-bs-toggle="popover"
                                        data-bs-placement="top"
-                                       data-bs-content="A Finalist Page is simply another Score Page but for applicants that you will be considering hiring. Think of this as applicants who have passed the initial hiring stage and now have moved one step closer to actually being chosen for the position. You can add an unlimited number of applicants to the Finalist Page. Each Score Page has it’s own dedicated Finalist Page." class="fas fa-info-circle"></i>
+                                       data-bs-content="A Finalist Page is simply another Score Page but for properties that buyers officially have considered buying. Think of these properties as ones that have “Made the cut”." class="fas fa-info-circle"></i>
 
 
                                 </a>
@@ -73,21 +71,22 @@ These numbers are only based on the scores given by the Main Team Member. The se
                     <tr>
                         <th class="fs-6">
                             Expectation Rating
-                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The first column has 7 numbers which represent each of the 7 scores that an Applicant can receive. Ranging from +3 to -3">
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The first column has 7 numbers which represent each of the 6 scores that a property can receive. Ranging from +3 to -3">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </th>
 {{--                        <th>{{ $applicants->total }} </th>--}}
                         <th class="fs-6">
                             Expectation Score
-                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The second column allows you to see how many times this particular applicant received one of these 7 scores.">
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The second column allows you to see how many times this particular property received one of the 6 scores.
+">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </th>
 
                         <th class="fs-6">
                             Criteria
-                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The third column allows you to see the actual criteria that the Applicant has received the score for.">
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The third column allows you to see the actual criteria that the property has received the score for.">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </th>

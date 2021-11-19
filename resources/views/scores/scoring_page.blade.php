@@ -37,9 +37,8 @@
 
                     <i style="text-align: center !important; font-size: 14px;" data-bs-container="body"
                         data-bs-toggle="popover" data-bs-placement="top"
-                        data-bs-content="This is the page where you can actually give scores to each Applicant. This first step is to add Criteria, get as detailed as possible so the score that you give each Applicant represents the most detail and in turn represents who is the most qualified Applicant to hire.<br><br>
-
-The second step is to add and Applicant, and finally is to actually give one of 7 scores to each Applicant within each Criteria." class="fas fa-info-circle"></i>
+                        data-bs-content="Score Page allows buyers to add scores to each individual criteria for a particular property that they’ve viewed online so that agents can get a sense of what the buyer likes and doesn’t like when it comes to houses. Agents and buyers can then see a comprehensive, detailed and objective overview of the feedback not only on each property but each individual aspect for each property.
+" class="fas fa-info-circle"></i>
 
                 </h5>
 
@@ -51,18 +50,18 @@ The second step is to add and Applicant, and finally is to actually give one of 
                         <a href="/create-applicant/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2"
                             id="add_app">Add
                             Property <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
-                                data-bs-content="This is how you add an applicant to your Scorng account and to a Score Page. Simply click the button and open the page to enter in their name, email address, phone number and add any files and notes associated with this Applicant. Only the Main Team Member can add an Applicant. Team Members who have been invited, cannot add an Applicant."
+                                data-bs-content="This is how Agents and Buyers can add a Property to their Scorng account and to a Score Page. On A Score Page, simply click the “Add Property” button and open the page to enter in the Property Address, the Listing Link and any notes or files that you want to add."
                                 class="fas fa-info-circle"></i> </a>
                         {{-- <a href="/create-criteria/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Add Criteria</a> --}}
                         {{-- <a href="/create-applicant" class="btn btn-success btn-sm">Delete Applicant</a> --}}
                         @unlessrole('buyer')
-                        @if(count($agentB) == 0)
+                        @if(count($agentA) > 0)
                         <form action="{{ route('remove-page') }}" method="post" @class('d-inline')
                             onsubmit="return confirm('Are you sure?')">
                             @csrf
                             <input type="hidden" name="subject_id" value="{{ $subjs->id }}" required>
 
-                            <button type="submit" @class('btn btn-success btn-sm mt-2')>Delete Page
+                            <button type="submit" @class('btn btn-success btn-sm mt-2')>Delete Score Page
 
                                 <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
                                     data-bs-content="This button simply allows you to delete this particular Score Page. Please remember that once you delete it, all of the data is permanently deleted and CANNOT be retrieved."
@@ -88,15 +87,15 @@ The second step is to add and Applicant, and finally is to actually give one of 
                         {{-- class="fas fa-info-circle"></i> --}}
                         {{-- </a> --}}
                         @unlessrole('buyer')
-                        @if(count($agentB) == 0)
-                        <a href="/add-team-member/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Invite Agent
+                        @if(count($agentA) > 0)
+                        <a href="/add-team-member/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Invite Listing Agent
                             <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
-                                data-bs-content="Team Members allow you to add anyone who you would like to also score applicants. This way you can hear other people’s opinions so that you can make a more comprehensive hiring decision."
+                                data-bs-content="This is how a buyer’s agents can invite listing agents to join their Score Pages and add properties for their buyers to add scores to."
                                 class="fas fa-info-circle"></i>
                         </a>
                             <a href="/invite-buyer/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Invite Buyer
                                 <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
-                                   data-bs-content="Team Members allow you to add anyone who you would like to also score applicants. This way you can hear other people’s opinions so that you can make a more comprehensive hiring decision."
+                                   data-bs-content="This is how a buyer’s agent can invite buyers to join their Score Page so they can add and score properties. Buyers automatically receive an email notification of the invite. "
                                    class="fas fa-info-circle"></i>
                             </a>
                         @endif
@@ -107,16 +106,12 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                 class="fas fa-info-circle"></i>
                         </a>
 
-                        {{-- <a onclick="return confirm('Are you sure?')" href="/position-filled/{{$subjs->id}}" --}}
-                        {{-- class="btn btn-dark btn-sm mt-2"> --}}
-                        {{-- Position Filled --}}
-
-                        {{-- <i data-bs-container="body" --}}
-                        {{-- data-bs-toggle="popover" --}}
-                        {{-- data-bs-placement="top" --}}
-                        {{-- data-bs-content="Position Filled" class="fas fa-info-circle"></i> --}}
-
-                        {{-- </a> --}}
+                        <a href="/questionnaire/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Questionnaire
+                            <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
+                               data-bs-content="This is the questionnaire that buyers will use to share what they’re looking for in a house. Buyers can create a criteria such as square footage or number of rooms and a priority for that criteria. This way both buyer’s agents and listing agents know exactly what a buyer is looking for in a house.
+"
+                               class="fas fa-info-circle"></i>
+                        </a>
 
 
                     </div>
@@ -199,7 +194,9 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                                     @role('buyer')
                                                     <a class="btn btn-success btn-sm"
                                                         href="/create-criteria/{{ $sid }}/{{ $applicant->id }}">Add
-                                                        Criteria</a>
+                                                        Criteria
+                                                        <i class="fas fa-info-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Criteria are ways to get into great detail about a property so the scores represent a comprehensive overview so buyers can make the best and most informed decision about which house they love the most. Criteria are separated into Main Criteria and Sub Criteria. Main Criteria can be something like the kitchen and Sub Criteria can be something like the countertops.  "></i>
+                                                    </a>
                                                         @endrole
 
                                                 </th>
@@ -320,25 +317,24 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                                         @if ($i == 1)
                                                             <i data-bs-container="body" data-bs-toggle="popover"
                                                                 data-bs-placement="top"
-                                                                data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
+                                                                data-bs-content="This is the score that adds up all of the individual scores that buyers have given a particular property based on all of the criteria that have been created."
                                                                 class="fas fa-info-circle"></i>
                                                         @else
 
                                                             <i data-bs-container="body" data-bs-toggle="popover"
                                                                 data-bs-placement="top"
-                                                                data-bs-content="Colored rectangles represent the score that was assigned by a Team Member to an Applicant within a particular criteria.
+                                                                data-bs-content="This is the score that a buyer gave the above criteria. The plus sign is what a buyer uses to add a score to the above criteria.
 
-<br><br> Scoring works as follows: <br><br>
-<p>Light Green (+1) Slightly Exceeded Expectations</p>
-<p>Green (+2) Exceeded Expectations</p>
-<p>Dark Green (+3) Greatly Exceeded Expectations.</p>
-<p>Yellow (0) Met Expectations</p>
-<p>Orange (-1) Slightly Failed Expectations</p>
-<p>Red (-2) Failed Expectations</p>
-<p>Dark Red (-3) Greatly Failed Expectations</p>
-<br>
-<h5 style='line-height: 40px; font-size: 18px;'>The plus sign is what you select to add a score to an Applicant within a particular criteria.</h5>"
-                                                                class="fas fa-info-circle"></i>
+<br><br>
+<p>Scoring works as follows:</p>
+
+<li>3 (Really Love It)</li>
+<li>2 (Love It)</li>
+<li>1 (Like It)</li>
+
+<li>-3 (Really Really Don’t Like It)</li>
+<li>-2 (Really Don’t Like It)</li>
+<li>-1 (Don’t Like It)</li>"class="fas fa-info-circle"></i>
 
                                                         @endif
                                                     </td>
@@ -383,17 +379,16 @@ The second step is to add and Applicant, and finally is to actually give one of 
                                                                     src="{{ asset('images/scoreboard.png') }}">
                                                             </a>
                                                             <i data-bs-container="body" data-bs-toggle="popover"
-                                                                data-bs-placement="top" data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>
-
-These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.
+                                                                data-bs-placement="top" data-bs-content="The Scoreboard is the most valuable feature of Scorng. This allows agents and buyers to easily see which property, buyers have liked the most or the least, based on how many times they’ve given each of the 6 Scores to a property. Each time a buyer adds a score, the Scoreboard for that property is updated. Best of all, each buyer can have their own Scoreboard so you can compare and contrast.
 <br><br>
-<p>Greatly Exceeded Expectations</p>
-<p>Exceeded Expectations</p>
-<p>Slightly Exceeded Expectations</p>
-<p>Met Expectations</p>
-<p>Slightly Failed Expectations</p>
-<p>Failed Expectations</p>
-<p>Greatly Failed Expectations</p>" class="fas fa-info-circle"></i>
+<ul>
+<li>+3 (Really Love It)</li>
+<li>+2 (Love It)</li>
+<li>+1 (Like It)</li>
+
+<li>-3 (Really Really Don’t Like It)</li>
+<li>-2 (Really Don’t Like It)</li>
+<li>-1 (Don’t Like It)</li></ul>" class="fas fa-info-circle"></i>
 
 
                                                         </span>
@@ -452,10 +447,15 @@ These numbers are only based on the scores given by the Main Team Member. The se
                                                             @if (count($results) === 0 && $user->id === auth()->user()->id)
                                                                 <a onclick="openModalCreateScore('{{ $subjects[0]->subject->id }}', '{{ $applicant->id }}', '{{ $data->title }}', '{{ $subjects[0]->subject->subject_name }}', '{{ $applicant->name }}', '{{ $data->id }}')"
                                                                     class="btn btn-link text-center"
-                                                                    style="color: #138D07; font-weight: bold; font-size: 20px; text-decoration: none;"
+                                                                    style="color: #138D07; font-weight: bold; font-size: 30px; text-decoration: none;"
                                                                     href="javascript:void(0)"><i
                                                                         class="fas fa-plus"></i>
 
+
+                                                                    <i style="font-size: 15px;" data-bs-container="body"
+                                                                       data-bs-toggle="popover"
+                                                                       data-bs-placement="top"
+                                                                       data-bs-content="Give a score to a property. Choose from one of 6 scores. You can always change the score by clicking on the score itself." class="fas fa-info-circle"></i>
 
                                                                 </a>
 
@@ -581,7 +581,14 @@ These numbers are only based on the scores given by the Main Team Member. The se
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="display-6 text-center heading_txt" id="staticBackdropLabel">Create A Score</h5>
+                <h5 class="display-6 text-center heading_txt" id="staticBackdropLabel">Create A Score
+
+                    <i style="font-size: 15px;" data-bs-container="body"
+                       data-bs-toggle="popover"
+                       data-bs-placement="top"
+                       data-bs-content="Give a score to a property. Choose from one of 6 scores. You can always change the score by clicking on the score itself." class="fas fa-info-circle"></i>
+
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -589,16 +596,16 @@ These numbers are only based on the scores given by the Main Team Member. The se
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
-                            <span class="fw-bold">Buyer's Name</span>
-                            <input style="border: none;" readonly type="text" id="sub_name">
+{{--                            <span class="fw-bold">Buyer's Name</span>--}}
+                            <input style="border: none;" readonly type="hidden" id="sub_name">
                         </div>
                         <div class="col">
-                            <span class="fw-bold">Property Address</span>
-                            <input style="border: none;" readonly type="text" id="appli_name">
+{{--                            <span class="fw-bold">Property Address</span>--}}
+                            <input style="border: none;" readonly type="hidden" id="appli_name">
                         </div>
                         <div class="col">
-                            <span class="fw-bold">Criteria Name</span>
-                            <input style="border: none;" readonly type="text" id="crit">
+{{--                            <span class="fw-bold">Criteria Name</span>--}}
+                            <input style="border: none;" readonly type="hidden" id="crit">
                         </div>
                     </div>
                 </div>

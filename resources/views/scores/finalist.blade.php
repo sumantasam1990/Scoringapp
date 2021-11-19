@@ -37,7 +37,8 @@
                         <i
                             style="text-align: center !important; font-size: 14px;"
                             data-bs-container="body" data-bs-toggle="popover"
-                            data-bs-placement="top" data-bs-content="This is the page where you can actually give scores to each Applicant. This first step is to add Criteria, get as detailed as possible so the score that you give each Applicant represents the most detail and in turn represents who is the most qualified Applicant to hire.<br>The second step is to add and Applicant, and finally is to actually give one of 7 scores to each Applicant within each Criteria." class="fas fa-info-circle"></i>
+                            data-bs-placement="top" data-bs-content="Score Page allows buyers to add scores to each individual criteria for a particular property that they’ve viewed online so that agents can get a sense of what the buyer likes and doesn’t like when it comes to houses. Agents and buyers can then see a comprehensive, detailed and objective overview of the feedback not only on each property but each individual aspect for each property.
+" class="fas fa-info-circle"></i>
 
                     </a>
 {{--                    <a href="/bulkemaillist/{{ $subjs->id }}" class="btn btn-success btn-sm">Bulk Email List--}}
@@ -238,26 +239,24 @@
                                                         <i
                                                             data-bs-container="body" data-bs-toggle="popover"
                                                             data-bs-placement="top"
-                                                            data-bs-content="This is the score that adds up all of the individual scores that you have given a particular applicant based on all of the criteria that have been created."
+                                                            data-bs-content="This is the score that adds up all of the individual scores that buyers have given a particular property based on all of the criteria that have been created."
                                                             class="fas fa-info-circle"></i>
                                                     @else
 
-                                                        <i data-bs-container="body"
-                                                           data-bs-toggle="popover"
+                                                        <i data-bs-container="body" data-bs-toggle="popover"
                                                            data-bs-placement="top"
-                                                           data-bs-content="Colored rectangles represent the score that was assigned by a Team Member to an Applicant within a particular criteria.
+                                                           data-bs-content="This is the score that a buyer gave the above criteria. The plus sign is what a buyer uses to add a score to the above criteria.
 
-<br><br> Scoring works as follows: <br><br>
-<p>Light Green (+1) Slightly Exceeded Expectations</p>
-<p>Green (+2) Exceeded Expectations</p>
-<p>Dark Green (+3) Greatly Exceeded Expectations.</p>
-<p>Yellow (0) Met Expectations</p>
-<p>Orange (-1) Slightly Failed Expectations</p>
-<p>Red (-2) Failed Expectations</p>
-<p>Dark Red (-3) Greatly Failed Expectations</p>
-<br>
-<h5 style='line-height: 40px; font-size: 18px;'>The plus sign is what you select to add a score to an Applicant within a particular criteria.</h5>"
-                                                           class="fas fa-info-circle"></i>
+<br><br>
+<p>Scoring works as follows:</p>
+
+<li>3 (Really Love It)</li>
+<li>2 (Love It)</li>
+<li>1 (Like It)</li>
+
+<li>-3 (Really Really Don’t Like It)</li>
+<li>-2 (Really Don’t Like It)</li>
+<li>-1 (Don’t Like It)</li>"class="fas fa-info-circle"></i>
 
                                                     @endif
                                                 </td>
@@ -300,20 +299,17 @@
                                                             <img style="width: 30px; height: 30px;"
                                                                  src="{{ asset('images/scoreboard.png') }}">
                                                             </a>
-                                                                                                                        <i data-bs-container="body"
-                                                                                                                           data-bs-toggle="popover"
-                                                                                                                           data-bs-placement="top"
-                                                                                                                           data-bs-content="This is the most important feature of Scorng. The Scoreboard allows you to see and measure how well an Applicant did based on how many times they received a particular score based on the following 7 scores below.<br>
-
-These numbers are only based on the scores given by the Main Team Member. The second column allows you to see how many times this particular applicant received one of these 7 scores. The third column allows you to see the actual criteria that the Applicant has received the score for.
+                                                                                                                        <i data-bs-container="body" data-bs-toggle="popover"
+                                                                                                                           data-bs-placement="top" data-bs-content="The Scoreboard is the most valuable feature of Scorng. This allows agents and buyers to easily see which property, buyers have liked the most or the least, based on how many times they’ve given each of the 6 Scores to a property. Each time a buyer adds a score, the Scoreboard for that property is updated. Best of all, each buyer can have their own Scoreboard so you can compare and contrast.
 <br><br>
-<p>Greatly Exceeded Expectations</p>
-<p>Exceeded Expectations</p>
-<p>Slightly Exceeded Expectations</p>
-<p>Met Expectations</p>
-<p>Slightly Failed Expectations</p>
-<p>Failed Expectations</p>
-<p>Greatly Failed Expectations</p>" class="fas fa-info-circle"></i>
+<ul>
+<li>+3 (Really Love It)</li>
+<li>+2 (Love It)</li>
+<li>+1 (Like It)</li>
+
+<li>-3 (Really Really Don’t Like It)</li>
+<li>-2 (Really Don’t Like It)</li>
+<li>-1 (Don’t Like It)</li></ul>" class="fas fa-info-circle"></i>
 
 
                                                         </span>
@@ -363,18 +359,22 @@ These numbers are only based on the scores given by the Main Team Member. The se
 
                                                             @endphp
 
-                                                            @if (count($results) === 0 && $user->id === auth()->user()->id)
-                                                                <a onclick="openModalCreateScore('{{$subjects[0]->subject->id}}', '{{$applicant->id}}', '{{$data->title}}', '{{$subjects[0]->subject->subject_name}}', '{{$applicant->name}}', '{{$data->id}}')"
-                                                                   class="btn btn-link text-center"
-                                                                   style="color: #138D07; font-weight: bold; font-size: 20px; text-decoration: none;"
-                                                                   href="javascript:void(0)"><i
-                                                                        class="fas fa-plus"></i>
+{{--                                                            @if (count($results) === 0 && $user->id === auth()->user()->id)--}}
+{{--                                                                <a onclick="openModalCreateScore('{{$subjects[0]->subject->id}}', '{{$applicant->id}}', '{{$data->title}}', '{{$subjects[0]->subject->subject_name}}', '{{$applicant->name}}', '{{$data->id}}')"--}}
+{{--                                                                   class="btn btn-link text-center"--}}
+{{--                                                                   style="color: #138D07; font-weight: bold; font-size: 20px; text-decoration: none;"--}}
+{{--                                                                   href="javascript:void(0)"><i--}}
+{{--                                                                        class="fas fa-plus"></i>--}}
 
 
-                                                                </a>
+{{--                                                                    <i style="font-size: 15px;" data-bs-container="body"--}}
+{{--                                                                       data-bs-toggle="popover"--}}
+{{--                                                                       data-bs-placement="top"--}}
+{{--                                                                       data-bs-content="Give a score to a property. Choose from one of 6 scores. You can always change the score by clicking on the score itself." class="fas fa-info-circle"></i>--}}
+{{--                                                                </a>--}}
 
 
-                                                            @endif
+{{--                                                            @endif--}}
 
                                                             @foreach ($results as $result)
 

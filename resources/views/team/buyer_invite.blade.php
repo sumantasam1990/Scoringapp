@@ -15,7 +15,7 @@
                     <i
                         style="text-align: center !important; font-size: 14px;"
                         data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="top" data-bs-content="Team Members allow you to add anyone who you would like to also score applicants. This way you can hear other people’s opinions so that you can make a more comprehensive hiring decision. " class="fas fa-info-circle"></i>
+                        data-bs-placement="top" data-bs-content="This is how a buyer’s agent can invite buyers to join their Score Page so they can add and score properties. Buyers automatically receive an email notification of the invite. " class="fas fa-info-circle"></i>
 
             </h2>
             <h5 style="margin-top: -5px;" class="display-7 text-left heading_txt">{{ $subject->subject_name }}</h5>
