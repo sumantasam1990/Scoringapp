@@ -131,7 +131,7 @@
 {{--                Agent B--}}
                     @unlessrole('buyer')
                     @if($message->user_type == 'Agent' && count($agentB) > 0)
-                        ----------------
+
                     <div class="col-12 mt-4">
                         <div class="d-flex">
                             <div class="flex-shrink-0">

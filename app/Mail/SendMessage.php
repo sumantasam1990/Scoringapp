@@ -30,7 +30,7 @@ class SendMessage extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject('New Message posted')
+        return $this->subject('A new message has been posted to a Scorng Score Page that you’re associated with.')
             ->markdown('Email.sendMessage')
             ->with('mailData', $this->mailData);
     }

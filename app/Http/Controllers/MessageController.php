@@ -86,7 +86,7 @@ class MessageController extends Controller
             'url' => url('/message-room/' . $request->sub_id . '/' . $request->msg_id)
         ];
 
-        //$this->sendEmail($message_user_email->email, $mailArray);
+        $this->sendEmail($message_user_email->email, $mailArray);
 
         return back()
             ->with('msg', "Your reply has been successfully added.");
@@ -115,6 +115,21 @@ class MessageController extends Controller
         $create->user_id = $user->id;
 
         $create->save();
+
+        //send email
+        $message_user_email = DB::table('followers')
+            ->join('users', 'users.id', '=', 'followers.whom_follow')
+            ->where('followers.who_follow', '=', $user->id)
+            ->where('followers.subject_id', '=', $request->sub_idd)
+            ->select('users.email', 'users.name')
+            ->first(); // geting Agent A
+
+        $mailArray = [
+            'name' => $message_user_email->name,
+            'url' => url('/message-room/' . $request->sub_idd . '/' . $request->room_id)
+        ];
+
+        $this->sendEmail($message_user_email->email, $mailArray);
 
         return back()
             ->with('msg', "Your new message has been successfully added.");

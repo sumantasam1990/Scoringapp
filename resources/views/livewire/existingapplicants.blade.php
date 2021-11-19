@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-group mb-4">
-        <textarea required name="important_note"
+        <textarea name="important_note"
                class="form-control @error('important_note') is-invalid @enderror" value="{{ old('important_note') ? old('important_note') : '' }}"
                placeholder="Important Note...(Optional)" rows="4"></textarea>
     </div>

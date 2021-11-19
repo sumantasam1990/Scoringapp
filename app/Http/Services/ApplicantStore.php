@@ -5,8 +5,10 @@ namespace App\Http\Services;
 use App\Mail\AddNewApplicant;
 use App\Mail\Contactus;
 use App\Models\Applicant;
+use App\Models\Subject;
 use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -37,17 +39,53 @@ class ApplicantStore
             $applicant->save();
 
             // send email to all users to same subject
-            $emails = Team::whereSubjectId($sub)
-                ->whereNotIn('user_email', [$user->email])
-                ->select('user_email')
+            $emails = DB::table('teams')
+                ->join('users', 'users.email', '=', 'teams.user_email')
+                ->where('teams.subject_id', '=', $sub)
+                ->whereNotIn('teams.user_email', [$user->email])
+                ->select('users.name', 'users.email')
+                ->get();
+
+            $emailAgentsB = DB::table('followers')
+                ->join('users', 'users.id', '=', 'followers.who_follow')
+                ->where('followers.subject_id', '=', $sub)
+                ->where('followers.whom_follow', '=', $user->id)
+                ->whereNotIn('followers.who_follow', [$user->id])
+                ->select('users.name', 'users.email')
+                ->get();
+
+            $emailAgentsA = DB::table('subjects')
+                ->join('users', 'users.id', '=', 'subjects.user_id')
+                ->where('subjects.id', '=', $sub)
+                ->whereNotIn('subjects.user_id', [$user->id])
+                ->select('users.name', 'users.email')
                 ->get();
 
             foreach ($emails as $email) {
                 $mailData = [
-                    'appl_name' => $name
+                    'name' => $email->name,
+                    'url' => url('/score-page/' . $sub)
                 ];
 
-                $this->sendEmail($email->user_email, $mailData);
+                $this->sendEmail($email->email, $mailData);
+            }
+
+            foreach ($emailAgentsB as $email) {
+                $mailData = [
+                    'name' => $email->name,
+                    'url' => url('/score-page/' . $sub)
+                ];
+
+                $this->sendEmail($email->email, $mailData);
+            }
+
+            foreach ($emailAgentsA as $email) {
+                $mailData = [
+                    'name' => $email->name,
+                    'url' => url('/score-page/' . $sub)
+                ];
+
+                $this->sendEmail($email->email, $mailData);
             }
 
             return redirect('/score-page/' . $sub)
@@ -59,12 +97,6 @@ class ApplicantStore
     }
 
     private function sendEmail($email, $mailData) {
-
         Mail::to($email)->queue(new AddNewApplicant($mailData));
-
-//        return response()->json([
-//            'message' => 'Email has been sent.'
-//        ], Response::HTTP_OK);
-
     }
 }

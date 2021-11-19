@@ -41,7 +41,7 @@ class ApplicantController extends Controller
             //'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'phone' => 'required|url',
             'sub_id' => 'required',
-            'important_note' => 'required'
+            //'important_note' => 'required'
         ]);
 
         return (new ApplicantStore())->save($request->sub_id, $request->name, $request->email, $request->phone, $request->image, $request->important_note);
