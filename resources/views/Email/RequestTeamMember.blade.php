@@ -1,7 +1,10 @@
 @component('mail::message')
-# Hi {{ $mailData['name'] }},
+# Hello {{ $mailData['name'] }},
 
-You have a new invitation to add as {{ $mailData['usertype'] }}.
+You have been invited to join Scorng as a {{ $mailData['usertype'] }} {{ $mailData['invited'] }}.
+Please click Accept Invitation below to create your account.
+
+Please email us at hello@scorng.com if you have any questions.
 
 @component('mail::button', ['url' => $mailData['url']])
 Accept Invitation

@@ -30,13 +30,15 @@ class AddTeamMember
                 $data = array(
                     'name' => $name,
                     'url' => url('/accept-invitation/'. $token),
-                    'usertype' => $usertype
+                    'usertype' => $usertype,
+                    'invited' => Auth::user()->name
                 );
             } elseif($usertype == 'Buyer') {
                 $data = array(
                     'name' => $name,
                     'url' => url('/accept-invitation-buyer/'. $token),
-                    'usertype' => $usertype
+                    'usertype' => $usertype,
+                    'invited' => Auth::user()->name
                 );
             } else {
                 return redirect('/dashboard')->with('err', 'Error! Something is wrong.');

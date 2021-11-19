@@ -44,10 +44,8 @@
             <hr />
 
             <div class="row">
-
                 @foreach($messages as $message)
                     @role('buyer')
-
                     @php
                         $agent_bm = DB::select("select count(id) as total from followers where who_follow = ? and subject_id = ?", [$message->id, $subject->id]);
                     @endphp
@@ -174,7 +172,6 @@
                             </div>
                             @endif
                         @endforeach
-
 
                         <div @class('row')>
                             <div @class('col-1')></div>
