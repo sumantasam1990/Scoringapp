@@ -6,7 +6,7 @@
         <div class="col-md-10 mx-auto">
             <div class="text-center mt-4">
                 <h1 class="display-4 fw-bolder">Help buyers find their favorite house, based on their super detailed feedback.</h1>
-                <p class="fw-bold mt-3 fs-5 text-center subheading">A scoring system that tremendously benefits buyers, buyer's agents and listing agents.</p>
+                <p class="fw-bold mt-3 fs-6 text-center subheading">A scoring system that tremendously benefits buyers, buyer's agents and listing agents.</p>
                 <a class="btn btn-info btn-lg mt-4" href="/signup">Buyer's Agent Sign Up For 7 Day Free Trial</a>
                 <p class="mt-3">No credit card required.</p>
             </div>
@@ -57,7 +57,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto text-center">
-                <h4 class="fw-bold display-5">Benefits For Buyer's Agents</h4>
+                <h4 class="fw-bold display-6" style="font-size: 35px !important;">Benefits For Buyer's Agents</h4>
                 <p>Tremendous benefits to help buyer's agents save tons of time,  find the house that their buyers will love and also enable listing agents to post properties that buyers will love.</p>
                 <a style="color: #0CABA8;" class="btn btn-light btn-lg fw-bold mt-4" href="{{ route('buyeragentbenefit') }}">The Benefits For Buyer's Agents</a>
                 <a style="color: #0CABA8;" class="btn btn-light btn-lg fw-bold mt-4" href="{{ route('howitworkbuyeragent') }}">How It Works For Buyer's Agents</a>

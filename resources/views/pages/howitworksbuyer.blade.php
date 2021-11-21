@@ -14,8 +14,8 @@
                 </div>
                 <div class="col-md-12 text-center mt-4">
                     <div class="circle-number">2</div>
-                    <h4 class="mt-3 display-6 fw-bold">Invite Listing Agents</h4>
-                    <p>In your Dashboard, simply click "Invite Listing Agent". Add their name, and email to send the invite.</p>
+                    <h4 class="mt-3 display-6 fw-bold">Invite buyers and listing agents</h4>
+                    <p>In your Dashboard, simply click "Invite Listing Agent" or “Invite Buyer”. Add their name, and email to send the invite.</p>
                 </div>
                 <div class="col-md-12 text-center mt-6">
                     <div class="circle-number">3</div>

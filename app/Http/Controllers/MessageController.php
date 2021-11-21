@@ -132,21 +132,35 @@ class MessageController extends Controller
 
         //send email
         $message_user_email = DB::table('followers')
-            ->join('users', 'users.id', '=', 'followers.whom_follow')
-            ->where('followers.who_follow', '=', $user->id)
-            ->where('followers.subject_id', '=', $request->sub_idd)
+            ->join('users', 'users.id', '=', 'followers.who_follow')
+            ->where('followers.whom_follow', '=', $user->id)
             ->select('users.email', 'users.name')
-            ->first(); // geting Agent A
+            ->get(); //getting Agent A
 
-        if(!empty($message_user_email)) {
+        $teams = DB::table('teams')
+            ->join('teams', 'teams.user_email', '=', 'users.email')
+            ->where('teams.subject_id', '=', $request->sub_idd)
+            ->where('teams.user_id', '=', $user->id)
+            ->select('users.name', 'users.email')
+            ->get(); // getting buyers
+
+        foreach ($message_user_email as $userE) {
             $mailArray = [
-                'name' => $message_user_email->name,
+                'name' => $userE->name,
                 'url' => url('/message-room/' . $request->sub_idd . '/' . $request->room_id)
             ];
 
-            $this->sendEmail($message_user_email->email, $mailArray);
+            $this->sendEmail($userE->email, $mailArray);
         }
 
+        foreach ($teams as $team) {
+            $mailArray = [
+                'name' => $team->name,
+                'url' => url('/message-room/' . $request->sub_idd . '/' . $request->room_id)
+            ];
+
+            $this->sendEmail($team->email, $mailArray);
+        }
 
         return back()
             ->with('msg', "Your new message has been successfully added.");
@@ -156,7 +170,7 @@ class MessageController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
