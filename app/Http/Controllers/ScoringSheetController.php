@@ -320,7 +320,7 @@ class ScoringSheetController extends Controller
     public function scorecard($id, $appl_id, $userid)
     {
         try {
-            $subject = Subject::select('user_id', 'id')
+            $subject = Subject::select('user_id', 'id', 'subject_name')
                 ->where('id', '=', $id)->first();
 
             $applicants = DB::select("SELECT d.id,d.name,d.email,d.phone,d.photo, (SELECT SUM(scores.score_number)
@@ -339,7 +339,12 @@ join scores s on c.id = s.criteria_id join maincriterias m on c.maincriteria_id 
 where s.subject_id = ? and s.criteria_id in (select id from criterias where subject_id = ?)
 and s.applicant_id = ? and s.user_id = ?', [$id, $id, $appl_id, $userid]);
 
-            return view('scores.scorecard', ['title' => 'Scorecard', 'applicants' => $applicants[0], 'scorecards' => $scorecards, 'subject' => $subject, 'userid' => $userid]);
+            $agentA = Subject::where('id', '=', $id)
+                ->where('user_id', '=', Auth::user()->id)
+                ->select('user_id')
+                ->get();
+
+            return view('scores.scorecard', ['title' => 'Scorecard', 'applicants' => $applicants[0], 'scorecards' => $scorecards, 'subject' => $subject, 'userid' => $userid, 'agentA' => $agentA]);
         } catch (\Throwable $th) {
             return abort('404');
         }

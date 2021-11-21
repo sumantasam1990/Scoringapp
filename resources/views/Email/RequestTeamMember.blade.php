@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hello {{ $mailData['name'] }},
 
-You have been invited to join Scorng as a {{ $mailData['usertype'] }} {{ $mailData['invited'] }}.
+You have been invited to join Scorng by {{ $mailData['invited'] }}.
 Please click Accept Invitation below to create your account.
 
 Please email us at hello@scorng.com if you have any questions.

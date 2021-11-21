@@ -30,11 +30,11 @@ class RequestTeamMember extends Mailable implements ShouldQueue
     public function build()
     {
         if($this->mailData['usertype'] == 'Buyer') {
-            return $this->subject('You’ve been invited to join Scorng as a buyer ' . $this->mailData['invited'])
+            return $this->subject('You’ve been invited to join Scorng by ' . $this->mailData['invited'])
                 ->markdown('Email.RequestTeamMember')
                 ->with('mailData', $this->mailData);
         } else {
-            return $this->subject('You’ve been invited to join Scorng as a listing agent by ' . $this->mailData['invited'])
+            return $this->subject('You’ve been invited to join Scorng by ' . $this->mailData['invited'])
                 ->markdown('Email.RequestTeamMember')
                 ->with('mailData', $this->mailData);
         }

@@ -8,12 +8,12 @@
         <div class="col-xxl-3 col-xl-3 col-lg-2 col-md-2"></div>
         <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
             <div class="">
-            <h2 class="display-4 text-center heading_txt">Add A Score Page
+            <h2 class="display-4 text-center heading_txt">Create Score Page
 
                 <i
                     style="text-align: center !important; font-size: 14px;"
                     data-bs-container="body" data-bs-toggle="popover"
-                    data-bs-placement="top" data-bs-content="Subjects are a way to organize where Applicants will be added within your Scorng account. A Subject is broken into two parts, a Main Subject and a Sub Subject. For example, the Main Subject can be something like the store or location where the new Applicant for which you’re hiring, will be working. For example the Sub Subject can be the actual position for which you’re hiring." class="fas fa-info-circle"></i>
+                    data-bs-placement="top" data-bs-content="Score Page allows buyers to add scores to each individual criteria for a particular property that they’ve viewed online so that agents can get a sense of what the buyer likes and doesn’t like when it comes to houses. Agents and buyers can then see a comprehensive, detailed and objective overview of the feedback not only on each property but each individual aspect for each property." class="fas fa-info-circle"></i>
 
             </h2>
             <div class="box mt-6">
@@ -31,7 +31,7 @@
 {{--                        </select>--}}
 {{--                    </div>--}}
                     <div class="form-group mb-3">
-                        <input autocomplete="off" type="text" name="subject" class="form-control @error('subject') is-invalid @enderror" placeholder="Score Page Title" value="{{ old('subject') }}">
+                        <input autocomplete="off" type="text" name="subject" class="form-control @error('subject') is-invalid @enderror" placeholder="Name this Score Page. (i.e. the buyer’s name)." value="{{ old('subject') }}">
                     </div>
 
 {{--                    <div class="form-group mb-3">--}}

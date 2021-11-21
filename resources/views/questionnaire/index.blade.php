@@ -47,7 +47,13 @@
                             <input type="text" name="criteria" class="form-control" placeholder="Enter A Criteria (i.e. the desired square footage that you're looking for in a house)">
                         </div>
                         <div class="form-group mt-4">
-                            <input type="text" name="priority" class="form-control" placeholder="Choose The Priority For The Above Criteria">
+{{--                            <input type="text" name="priority" class="form-control" placeholder="Choose The Priority For The Above Criteria">--}}
+                            <select class="form-control" name="priority">
+                                <option disabled selected>Choose The Priority For The Above Criteria</option>
+                                <option>Super Important</option>
+                                <option>Important</option>
+                                <option>Somewhat Important</option>
+                            </select>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
 {{--                            <button type="button" onclick="selectPhoto()" class="btn btn-dark btn-md"> Add Another Criteria</button>--}}

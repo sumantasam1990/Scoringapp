@@ -88,7 +88,7 @@
                         {{-- </a> --}}
                         @unlessrole('buyer')
                         @if(count($agentA) > 0)
-                        <a href="/add-team-member/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Invite Listing Agent
+                        <a href="{{ route('inviteagent', $subjs->id) }}" class="btn btn-success btn-sm mt-2">Invite Listing Agent
                             <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
                                 data-bs-content="This is how a buyer’s agents can invite listing agents to join their Score Pages and add properties for their buyers to add scores to."
                                 class="fas fa-info-circle"></i>

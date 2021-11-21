@@ -26,7 +26,7 @@ class MessageController extends Controller
      */
     public function index($id, $roomid)
     {
-        $subject = Subject::select("id", "subject_name", "user_id")
+        $subject = Subject::with('user')
             ->where("id", "=", $id)
             ->first();
 
@@ -39,11 +39,18 @@ class MessageController extends Controller
             ->select('users.name', 'teams.created_at')
             ->where('teams.subject_id', '=', $id)->get();
 
+        $followers = DB::table('followers')
+            ->join('users', 'followers.who_follow', '=', 'users.id')
+            ->where('followers.subject_id', '=', $id)
+            ->select('users.id', 'users.name')
+            ->get();
+
+
         $messages = DB::table('messages')
             ->join("users", "users.id", "=", "messages.user_id")
             ->where("messages.subject_id", "=", $id)
             ->where('messages.room_id', '=', $roomid)
-            ->select('messages.message_txt', 'messages.id', 'messages.user_id', 'messages.created_at', 'users.name', 'users.id', 'users.email', 'users.user_type')
+            ->select('messages.message_txt', 'messages.id as mid', 'messages.user_id', 'messages.created_at', 'users.name', 'users.id', 'users.email', 'users.user_type')
             ->orderBy('messages.id', 'desc')
             ->get();
 
@@ -52,8 +59,13 @@ class MessageController extends Controller
             ->select('who_follow')
             ->get();
 
+        $agentA = Subject::where('id', '=', $id)
+            ->where('user_id', '=', Auth::user()->id)
+            ->select('user_id')
+            ->get();
 
-        return view('message.index', ['title' => 'Message Room', 'subject' => $subject, 'teams' => $teams, 'messages' => $messages, 'roomid' => $roomid, 'roomname' => $roomname, 'agentB' => $agentB]);
+
+        return view('message.index', ['title' => 'Message Room', 'subject' => $subject, 'teams' => $teams, 'messages' => $messages, 'roomid' => $roomid, 'roomname' => $roomname, 'agentB' => $agentB, 'agentA' => $agentA, 'followers' => $followers]);
     }
 
     public function reply(Request $request) {

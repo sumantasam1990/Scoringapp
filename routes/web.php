@@ -54,14 +54,14 @@ Route::post('contact/us', [\App\Http\Controllers\PagesController::class, 'sendem
 
 
 
-Route::get('/create-subject', [SubjectController::class, 'index'])->name('create.subject')->middleware(['auth', 'verified']);
+Route::get('/create-score-page', [SubjectController::class, 'index'])->name('create.score.page')->middleware(['auth', 'verified']);
 Route::get('/create-applicant/{id}', [ApplicantController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/create-criteria/{id}/{applid}', [CriteriaController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/create-score-page/{id}', [ScoringSheetController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/score-page/{id}', [ScoringSheetController::class, 'scoring'])->middleware(['auth', 'verified', 'scorePage']);
 Route::get('dashboard', [LoginController::class, 'dashboard'])->middleware(['auth', 'verified']);
 Route::get('/delete/score/{id}', [ScoringSheetController::class, 'delete'])->middleware(['auth', 'verified']);
-Route::get('/add-team-member/{id}', [TeamController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/invite-listing-agent/{id}', [TeamController::class, 'index'])->name('inviteagent')->middleware(['auth', 'verified']);
 Route::get('remove/note/{id}', [ScoringSheetController::class, 'remove_note'])->middleware(['auth', 'verified']);
 Route::get('remove/file/{id}', [ScoringSheetController::class, 'remove_file'])->middleware(['auth', 'verified']);
 Route::get('finalists/{id}', [ScoringSheetController::class, 'finalists'])->middleware(['auth', 'verified']);

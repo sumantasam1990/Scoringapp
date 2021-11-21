@@ -30,7 +30,7 @@
 
                             @unlessrole('buyer')
 
-                            <a class="btn btn-success btn-sm" href="/create-subject">Add A Score Page &nbsp;
+                            <a class="btn btn-success btn-sm" href="{{ route('create.score.page') }}">Create A Score Page &nbsp;
 
                                 <i class="fas fa-info-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="This is how a buyer’s agent creates a Score Page and assigns a buyer to a Score Page. After a Score Page is created, a buyer’s agent can then add properties and invite buyers to add properties and score properties.  "></i>
 

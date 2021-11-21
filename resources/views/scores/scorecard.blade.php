@@ -27,12 +27,27 @@
 
 
 
+
+
                 <table class="table mt-6 scorecard-header-table table-bordered">
+
+                    <tr style="border: none">
+                        <th style="border: none !important;">
+                            <h5 class="text-left fw-bold">{{ $applicants->email }}</h5>
+                        </th>
+                        @if(count($agentA) > 0)
+                        <th style="border: none !important;">
+                            <h5 class="text-left fw-bold">{{ $subject->subject_name }}</h5>
+                        </th>
+                        @endif
+                    </tr>
                     <tr style="border: none">
                         <th colspan="4" style="border: none !important;">
                             @php
                                 $chkfinalist = DB::select("select count(*) as total from finalists where subject_id = ? and applicant_id = ?", [$subject->id, $applicants->id]);
                             @endphp
+
+                            @role('buyer')
                             @if ($chkfinalist[0]->total == 0)
                             <form onsubmit="return confirm('Are you sure?')" action="{{ route("finalist.store") }}" method="post" style="display: inline;">
                                 @csrf
@@ -43,8 +58,7 @@
                                     <i data-bs-container="body"
                                        data-bs-toggle="popover"
                                        data-bs-placement="top"
-                                       data-bs-content="A Finalist Page is simply another Score Page but for properties that buyers officially have considered buying. Think of these properties as ones that have “Made the cut”.
-" class="fas fa-info-circle"></i>
+                                       data-bs-content="A Finalist Page is simply another Score Page but for properties that buyers officially have considered buying. Think of these properties as ones that have “Made the cut”." class="fas fa-info-circle"></i>
 
                                 </button>
                             </form>
@@ -59,6 +73,7 @@
 
                                 </a>
                             @endif
+                            @endrole
 
                             <a class="btn btn-success btn-sm"
                                href="/applicant/{{ $applicants->id }}/{{ $subject->id }}">Open Property Profile</a> &nbsp;
@@ -70,14 +85,14 @@
                     </tr>
                     <tr>
                         <th class="fs-6">
-                            Expectation Rating
-                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The first column has 7 numbers which represent each of the 6 scores that a property can receive. Ranging from +3 to -3">
+                            Score Rating
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The first column has 6 numbers which represent each of the 6 scores that a property can receive. Ranging from +3 to -3">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </th>
 {{--                        <th>{{ $applicants->total }} </th>--}}
                         <th class="fs-6">
-                            Expectation Score
+                            Buyer’s Scores
                             <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The second column allows you to see how many times this particular property received one of the 6 scores.
 ">
                                 <i class="fas fa-info-circle"></i>
