@@ -51,6 +51,12 @@ Route::get('/refund', [\App\Http\Controllers\PagesController::class, 'refund']);
 Route::get('/security', [\App\Http\Controllers\PagesController::class, 'security']);
 Route::get('/contact', [\App\Http\Controllers\PagesController::class, 'contact']);
 Route::post('contact/us', [\App\Http\Controllers\PagesController::class, 'sendemailToContact'])->name('contact.us');
+Route::get('/buyer-agent-benefit', [\App\Http\Controllers\PagesController::class, 'buyer_agent_benefit'])->name('buyeragentbenefit');
+Route::get('/buyer-how-it-works', [\App\Http\Controllers\PagesController::class, 'buyer_how_it_works_agent'])->name('howitworkbuyeragent');
+Route::get('/listing-agent-benefit', [\App\Http\Controllers\PagesController::class, 'agent_listing_benefit'])->name('listingagentbenefit');
+Route::get('/listing-agent-how-it-works', [\App\Http\Controllers\PagesController::class, 'agent_how_it_works'])->name('listingagenthowitworks');
+Route::get('/buyer-benefits', [\App\Http\Controllers\PagesController::class, 'buyer_benefit'])->name('buyerbenefits');
+Route::get('/how-it-works-buyer', [\App\Http\Controllers\PagesController::class, 'buyer_how_it_works'])->name('howitworksbuyer');
 
 
 

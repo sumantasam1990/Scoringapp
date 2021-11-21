@@ -40,8 +40,8 @@
                 </div>
                 <div class="col-md-12 text-center mt-6">
                     <div class="circle-number">7</div>
-                    <h4 class="mt-3 display-6 fw-bold">Buyer Profile</h4>
-                    <p>Agents can add important notes and files to Buyer's Profiles.</p>
+                    <h4 class="mt-3 display-6 fw-bold">Inviting</h4>
+                    <p>Buyer agents can invite as many buyers and listing agents as needed. Buyers can also add other buyers.</p>
                 </div>
                 <div class="col-md-12 text-center mt-6">
                     <div class="circle-number">8</div>

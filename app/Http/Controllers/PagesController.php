@@ -140,4 +140,34 @@ class PagesController extends Controller
             'message' => 'Email has been sent.'
         ], Response::HTTP_OK);
     }
+
+    public function buyer_agent_benefit()
+    {
+        return view('pages.buyeAgentBenifit', ['title' => 'Buyers Agent Benefit']);
+    }
+
+    public function buyer_how_it_works_agent()
+    {
+        return view('pages.howitworksbuyer', ['title' => 'How It Works For Buyers Agent']);
+    }
+
+    public function agent_listing_benefit()
+    {
+        return view('pages.agentlistingbenefit', ['title' => 'Listing Agent Benefit']);
+    }
+
+    public function agent_how_it_works()
+    {
+        return view('pages.listingagenthowitworks', ['title' => 'How It Works For Listing Agents']);
+    }
+
+    public function buyer_benefit()
+    {
+        return view('pages.buyerbenefits', ['title' => 'Buyer Benefits']);
+    }
+
+    public function buyer_how_it_works()
+    {
+        return view('pages.buyerhowitworks', ['title' => 'How It Works For Buyers']);
+    }
 }

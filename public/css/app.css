@@ -11098,7 +11098,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
 }
 
 .cta-red {
-  background: #FF3F3F !important;
+  background: #008AFC !important;
   padding: 40px;
   color: #fff;
 }
@@ -11136,7 +11136,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
   padding-top: 50px;
   padding-bottom: 50px;
   font-size: 22px;
-  min-height: 300px;
+  min-height: 660px;
 }
 
 .box-black-howitworks {

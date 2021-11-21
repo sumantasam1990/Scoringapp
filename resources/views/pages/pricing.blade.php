@@ -5,71 +5,49 @@
         <div class="col-12 text-center">
             <h1 class="display-4 fw-bold">One Simple Price</h1>
             <h5>Month-to-Month. No long term commitment</h5>
-            <div class="row ">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-4 mt-4">
-{{--                            <div class="box-black-pricing text-center">--}}
-{{--                                <h4 class="display-4 fw-bold">$29</h4>--}}
-{{--                                <p class="m-0 fw-bold">Annually</p>--}}
-{{--                                <div class="m-0">--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Applicants</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Email Lists</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>--}}
-{{--                                </div>--}}
-
-{{--                                <p @class('mt-4')><a class="btn btn-dark" href="/registration">Sign Up Now</a></p>--}}
-{{--                            </div>--}}
-
-
+            <div class="row mt-6">
+                <div class="col-md-1"></div>
+                <div class="col-md-5  mb-3">
+                    <div class="box-black text-center">
+                        <h2 class="fw-bold">BUYER'S AGENT</h2>
+                        <h4 class="display-4 fw-bold">$29</h4>
+                        <p class="fw-bold">Monthly</p>
+                        <div class="m-0">
+                            <p class="m-2 fw-bold fs-6">Send Unlimited Invites</p>
+                            <p class="m-2 fw-bold fs-6">Add & View Unlimited Properties</p>
+                            <p class="m-2 fw-bold fs-6">View Unlimited Scoreboards</p>
+                            <p class="m-2 fw-bold fs-6">View Unlimited Score Pages</p>
+                            <p class="m-2 fw-bold fs-6">Post/View Unlimited Messages</p>
+                            <p class="m-2 fw-bold fs-6">Post & View Unlimited Files & Notes</p>
+                            <p class="m-2 fw-bold fs-6">View Unlimited Criteria</p>
                         </div>
-                        <div class="col-md-4 mt-4">
-                            <div class="box-black-pricing text-center">
-                                <h4 class="display-4 fw-bold">$9</h4>
-                                <p class="m-0 fw-bold">Monthly</p>
-                                <div class="m-0">
-                                    <p class="m-2 fw-bold fs-6">Unlimited People</p>
-                                    <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>
-                                    <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>
-                                    <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>
-                                    <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>
-                                    <p class="m-2 fw-bold fs-6">Unlimited Files & Notes</p>
-                                    <p class="m-2 fw-bold fs-6">Unlimited Finalist Pages</p>
-                                </div>
-
-                                <p @class('mt-4')><a class="btn btn-dark" href="/signup">Sign Up Now</a></p>
-                            </div>
-
-
-                        </div>
-                        <div class="col-md-4 mt-4">
-{{--                            <div class="box-black-pricing text-center">--}}
-{{--                                <h4 style="font-size: 45px;" class=" fw-bold">Contact <br /> Sales</h4>--}}
-
-{{--                                <div class="m-0">--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Applicants</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Criteria</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Scoreboards</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Score Pages</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Email Lists</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Message Rooms</p>--}}
-{{--                                    <p class="m-2 fw-bold fs-6">Unlimited Team Members</p>--}}
-{{--                                </div>--}}
-
-{{--                                <p @class('mt-4')><a class="btn btn-dark" href="/registration">Sign Up Now</a></p>--}}
-{{--                            </div>--}}
-
-
-                        </div>
+                        <a class="btn btn-dark mt-4" href="/signup">Sign Up For 7 Day Free Trial</a>
                     </div>
                 </div>
 
-                <div class="col-md-2"></div>
+
+
+                <div class="col-md-5 mb-3">
+                    <div class="box-black text-center">
+                        <h2 class="fw-bold">LISTING AGENT</h2>
+                        <h4 class="display-4 fw-bold">$29</h4>
+                        <p class="fw-bold">Monthly</p>
+                        <div class="m-0">
+                            <p class="m-2 fw-bold fs-6">Receive Unlimited Invites</p>
+                            <p class="m-2 fw-bold fs-6">Add & View Unlimited Properties</p>
+                            <p class="m-2 fw-bold fs-6">View Unlimited Scoreboards</p>
+                            <p class="m-2 fw-bold fs-6">View Unlimited Score Pages</p>
+                            <p class="m-2 fw-bold fs-6">Post/View Unlimited Messages</p>
+                            <p class="m-2 fw-bold fs-6">Post & View Unlimited Files & Notes</p>
+                            <p class="m-2 fw-bold fs-6">View Unlimited Criteria</p>
+                        </div>
+
+                        <p class="fw-bold fs-6 mt-4 mx-auto" style="width: 250px;">Listing agents must receive an invite from a buyer's agent to sign up. </p>
+                        <p class="fw-bold fs-6">7 day free trial</p>
+
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
             </div>
         </div>
     </div>
