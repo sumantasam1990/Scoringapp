@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PagesController extends Controller
 {
     public function index() {
-        return view('pages.index', ['title' => 'Scorng']);
+        return view('pages.index', ['title' => 'Welcome to Scorng']);
     }
 
     public function howitworks()
