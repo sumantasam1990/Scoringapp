@@ -388,7 +388,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::get('admingg/clear_cache', function () {
+Route::get('adminggvtv6t6vv6r/clear_cache', function () {
 
     try {
         \Illuminate\Support\Facades\Artisan::call('cache:clear');
