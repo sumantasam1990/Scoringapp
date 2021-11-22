@@ -12,7 +12,8 @@
                 <h2 class="display-4 text-center heading_txt">Scoreboard
 
                     <i style="font-size: 14px;" data-bs-container="body" data-bs-toggle="popover"
-                       data-bs-placement="top" data-bs-content="The Scoreboard is the most valuable feature of Scorng. This allows agents and buyers to easily see which property, buyers have liked the most or the least, based on how many times they’ve given each of the 6 Scores to a property. Each time a buyer adds a score, the Scoreboard for that property is updated. Best of all, each buyer can have their own Scoreboard so you can compare and contrast.
+                       data-bs-placement="top" data-bs-content="The Scoreboard allows agents and buyers to easily see which property, buyers have liked the most or the least, based on how many times they’ve given each of the 6 scores to a property. Each time a buyer adds a score, the Scoreboard for that property is updated. Best of all, each buyer can have their own Scoreboard so you can compare and contrast.
+
 <br><br>
 <ul>
 <li>+3 (Really Love It)</li>
@@ -86,7 +87,7 @@
                     <tr>
                         <th class="fs-6">
                             Score Rating
-                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The first column has 6 numbers which represent each of the 6 scores that a property can receive. Ranging from +3 to -3">
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="The first column has 7 numbers which represent each of the 6 scores that a property can receive. Ranging from +3 to -3">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </th>

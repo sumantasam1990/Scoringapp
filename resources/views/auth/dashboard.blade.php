@@ -32,7 +32,12 @@
 
                             <a class="btn btn-success btn-sm" href="{{ route('create.score.page') }}">Create A Score Page &nbsp;
 
-                                <i class="fas fa-info-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="This is how a buyer’s agent creates a Score Page and assigns a buyer to a Score Page. After a Score Page is created, a buyer’s agent can then add properties and invite buyers to add properties and score properties.  "></i>
+                                <i class="fas fa-info-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Click here to actually create a new Score Page. A Score Page is the first important step for a buyer’s agent when using Scorng. Create a Score Page and then invite your buyers to add properties that they like, add criteria and score those criteria based on each property.
+
+Each Score Page will be only associated with one buyer or one set of buyers (husband and wife). The best name to give to a Score Page is the buyer’s name.
+
+Both buyer’s and listing agent can also then add properties, message each other and view the criteria and scores that buyers have added.
+"></i>
 
 
                             </a>

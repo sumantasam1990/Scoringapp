@@ -42,6 +42,7 @@ class ApplicantController extends Controller
             'phone' => 'required|url',
             'sub_id' => 'required',
             //'important_note' => 'required'
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:1024'
         ]);
 
         return (new ApplicantStore())->save($request->sub_id, $request->name, $request->email, $request->phone, $request->image, $request->important_note);

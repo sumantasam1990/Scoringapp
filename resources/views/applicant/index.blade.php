@@ -22,6 +22,15 @@
 {{--                <p style="margin-top: -1px;" class="fs-4 text-center heading_txt">{{$subjects->subject_name}}</p>--}}
                 <p style="margin-top: -1px;" class="fs-4 text-center heading_txt">Add the property's address the below</p>
                 <div class="box mt-4">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{{ route('applicant.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-4">

@@ -13,7 +13,7 @@
                     <i
                         style="text-align: center !important; font-size: 14px;"
                         data-bs-container="body" data-bs-toggle="popover"
-                        data-bs-placement="top" data-bs-content="Criteria are ways to get into great detail about a property so the scores represent a comprehensive overview so buyers can make the best and most informed decision about which house they love the most. Criteria are separated into Main Criteria and Sub Criteria. Main Criteria can be something like the kitchen and Sub Criteria can be something like the countertops." class="fas fa-info-circle"></i>
+                        data-bs-placement="top" data-bs-content="Criteria are ways to get into great detail about a property so the scores represent a comprehensive overview so buyers can make the best and most informed decision about which house they love the most. Criteria are separated into Main Criteria and Sub Criteria. For example, the Main Criteria can be something like the kitchen and the Sub Criteria can be something like the countertops." class="fas fa-info-circle"></i>
 
                 </h2>
 {{--                <p class="display-6 fw-bold text-center">{{ $mainsubjectname->main_subject_name }}</p>--}}
@@ -23,6 +23,15 @@
 
 
                 <div class="box mt-4">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{{ route('criteria.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="applicant_id" value="{{ $applid }}">

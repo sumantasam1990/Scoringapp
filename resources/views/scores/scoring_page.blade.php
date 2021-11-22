@@ -95,7 +95,7 @@
                         </a>
                             <a href="/invite-buyer/{{ $subjs->id }}" class="btn btn-success btn-sm mt-2">Invite Buyer
                                 <i data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
-                                   data-bs-content="This is how a buyer’s agent can invite buyers to join their Score Page so they can add and score properties. Buyers automatically receive an email notification of the invite. "
+                                   data-bs-content="This is how a buyer’s agent can invite buyers to join their Score Page so they can add criteria and score properties based on those criteria. Buyers automatically receive an email notification of the invite."
                                    class="fas fa-info-circle"></i>
                             </a>
                         @endif
@@ -195,7 +195,7 @@
                                                     <a class="btn btn-success btn-sm"
                                                         href="/create-criteria/{{ $sid }}/{{ $applicant->id }}">Add
                                                         Criteria
-                                                        <i class="fas fa-info-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Criteria are ways to get into great detail about a property so the scores represent a comprehensive overview so buyers can make the best and most informed decision about which house they love the most. Criteria are separated into Main Criteria and Sub Criteria. Main Criteria can be something like the kitchen and Sub Criteria can be something like the countertops.  "></i>
+                                                        <i class="fas fa-info-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Criteria are ways to get into great detail about a property so the scores represent a comprehensive overview so buyers can make the best and most informed decision about which house they love the most. Criteria are separated into Main Criteria and Sub Criteria. For example, the Main Criteria can be something like the kitchen and the Sub Criteria can be something like the countertops."></i>
                                                     </a>
                                                         @endrole
 
@@ -379,7 +379,8 @@
                                                                     src="{{ asset('images/scoreboard.png') }}">
                                                             </a>
                                                             <i data-bs-container="body" data-bs-toggle="popover"
-                                                                data-bs-placement="top" data-bs-content="The Scoreboard is the most valuable feature of Scorng. This allows agents and buyers to easily see which property, buyers have liked the most or the least, based on how many times they’ve given each of the 6 Scores to a property. Each time a buyer adds a score, the Scoreboard for that property is updated. Best of all, each buyer can have their own Scoreboard so you can compare and contrast.
+                                                                data-bs-placement="top" data-bs-content="The Scoreboard allows agents and buyers to easily see which property, buyers have liked the most or the least, based on how many times they’ve given each of the 6 scores to a property. Each time a buyer adds a score, the Scoreboard for that property is updated. Best of all, each buyer can have their own Scoreboard so you can compare and contrast.
+
 <br><br>
 <ul>
 <li>+3 (Really Love It)</li>
@@ -455,7 +456,7 @@
                                                                     <i style="font-size: 15px;" data-bs-container="body"
                                                                        data-bs-toggle="popover"
                                                                        data-bs-placement="top"
-                                                                       data-bs-content="Give a score to a property. Choose from one of 6 scores. You can always change the score by clicking on the score itself." class="fas fa-info-circle"></i>
+                                                                       data-bs-content="Click here to actually give a score to a property. Choose from one of 6 scores. You can always change the score by clicking on the score itself." class="fas fa-info-circle"></i>
 
                                                                 </a>
 
@@ -468,7 +469,7 @@
                                                                 <span
                                                                     onclick="editScoreModal('{{ $result->id }}', {{ $user->id }})"
                                                                     class="fw-bold fs-2">{{ $result->score_number }}
-                                                                    <i class="bi bi-pencil-square"></i></span>
+                                                                    <i style="font-size: 16px !important; cursor: pointer;" class="bi bi-pencil-square"></i></span>
 
                                                                 {{-- @if ($result->score_number == 1) --}}
                                                                 {{-- <label --}}

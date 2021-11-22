@@ -46,7 +46,8 @@ class CriteriaController extends Controller
             'priority' => 'required',
             'subject'  => 'required',
             'main'     => 'required',
-            'applicant_id' => 'required|exists:applicants,id'
+            'applicant_id' => 'required|exists:applicants,id',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:1024'
 
         ]);
 
