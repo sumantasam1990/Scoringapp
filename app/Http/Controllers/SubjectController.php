@@ -7,6 +7,7 @@ use App\Mail\AddBuyer;
 use App\Mail\AddBuyerNotify;
 use App\Mail\RequestTeamMember;
 use App\Models\Mainsubject;
+use App\Models\State;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,9 @@ class SubjectController extends Controller
 
         $mainsubjects = Mainsubject::where("user_id", $user->id)->get();
 
-        return view("subject.index", ['mainsubjects' => $mainsubjects]);
+        $states = State::all();
+
+        return view("subject.index", ['mainsubjects' => $mainsubjects, 'states' => $states]);
 
     }
 
