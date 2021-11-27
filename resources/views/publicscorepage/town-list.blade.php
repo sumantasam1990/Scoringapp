@@ -21,7 +21,7 @@
 
             <ul class="list-group mt-4">
                 @foreach($towns as $town)
-                    <a class="list-group-item list-group-item-action" href=""> {{ $town->name }}</a>
+                    <a class="list-group-item list-group-item-action" href="{{ route('follow.scorepage', $town->id) }}"> {{ $town->name }}</a>
                 @endforeach
             </ul>
 

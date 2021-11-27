@@ -82,6 +82,8 @@ Route::get('/questionnaire/{id}', [\App\Http\Controllers\Questionnaire::class, '
 Route::get('/state-dashboard', [\App\Http\Controllers\Publicscorepage::class, 'state_dash'])->middleware(['auth', 'verified'])->name('state.dashboard');
 Route::get('/metro-dashboard/{id}', [\App\Http\Controllers\Publicscorepage::class, 'metro_dash'])->middleware(['auth', 'verified'])->name('metro.dashboard');
 Route::get('/town-dashboard/{id}', [\App\Http\Controllers\Publicscorepage::class, 'town_dash'])->middleware(['auth', 'verified'])->name('town.dashboard');
+Route::get('/follow-score-pages/{id}', [\App\Http\Controllers\Publicscorepage::class, 'follow_scorePages'])->middleware(['auth', 'verified'])->name('follow.scorepage');
+
 
 
 

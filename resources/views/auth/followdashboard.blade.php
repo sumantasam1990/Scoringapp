@@ -1,10 +1,5 @@
 <div class="row">
 
-{{--    <p class="fw-bold fs-4">--}}
-{{--        My Follower's Buyers--}}
-
-{{--    </p>--}}
-
     @php
     $agentAs = \Illuminate\Support\Facades\DB::table('followers')
                 ->join('users', 'users.id', '=', 'followers.whom_follow')

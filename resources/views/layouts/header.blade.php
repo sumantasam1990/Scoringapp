@@ -30,27 +30,34 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
 
-                  <li class="nav-item">
-                    <a class="nav-link" href="/howitworks">How It Works</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/features">Features</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/pricing">Pricing</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/faq">FAQ</a>
-                  </li>
+                    @if (Auth::check())
+                        <li class="nav-item">
+                            <a class="nav-link dashboard-border" href="/dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link dashboard-border" href="{{ route('state.dashboard') }}">Location Pages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/faq">FAQ</a>
+                        </li>
 
-                  <li class="nav-item">
-                      @if (Auth::check())
-                        <a class="nav-link dashboard-border" href="/dashboard">Dashboard</a>
-                      @else
-                          <a class="nav-link" href="/about">About us</a>
-                      @endif
-                  </li>
-
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/howitworks">How It Works</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/features">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pricing">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/faq">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">About us</a>
+                        </li>
+                    @endif
 
                   @if (Auth::check())
                     <li class="nav-item dropdown">

@@ -140,17 +140,6 @@ class LoginController extends Controller
                 ->where('user_id', '=', $user->id)
                 ->get();
 
-                //getting otherfollowers
-//                $following = Followers::where('who_follow', '=', $user->id)
-//                    ->select('whom_follow')
-//                    ->get();
-
-//                $otherSubjects = DB::table('subjects')
-//                    ->join('followers', 'subjects.user_id', '=', 'followers.whom_follow')
-//                    ->join('users', 'users.id', '=', 'subjects.user_id')
-//                    ->where('followers.who_follow', '=', $user->id)
-//                    ->select('subjects.*', 'users.name', 'followers.whom_follow')
-//                    ->get();
 
                 $agentB = Followers::where('who_follow', '=', $user->id)
                     ->select('who_follow')

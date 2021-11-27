@@ -100,12 +100,6 @@ Both buyer’s and listing agent can also then add properties, message each othe
                                         $token = Crypt::encrypt($in->user_email . '|' . $in->id);
                                     @endphp
 
-
-{{--                                    @if($in->team[0]->status == 0)--}}
-{{--                                        <a onclick="return confirm('Are you sure?')" class="btn btn-link text-dark text-decoration-underline fw-bold" href="/accept-invitation/{{ $token }}">Accept Invitation</a>--}}
-{{--                                    @else--}}
-{{--                                        <a href="/score-page/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>--}}
-{{--                                    @endif--}}
                                     <a href="/score-page/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>
                                 @endunlessrole
 
