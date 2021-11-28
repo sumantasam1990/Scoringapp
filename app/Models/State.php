@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|State whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|State whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $code
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereCode($value)
  */
 class State extends Model
 {

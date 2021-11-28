@@ -37,6 +37,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $maincriteria_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $team
  * @property-read int|null $team_count
+ * @property int|null $town_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject whereTownId($value)
  */
 class Subject extends Model
 {

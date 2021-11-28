@@ -17,12 +17,17 @@
                 @foreach($agents as $agent)
                     <div class="row">
                         <div class="col-8 fw-bold fs-4">{{ $agent->name }} </div>
-                        <div class="col-4"><a class="ml-5 btn btn-dark btn-sm" href="">Follow</a> </div>
+                        <div class="col-4">
+
+                            @livewire('followunfollow', ['agentID' => $agent->id])
+
+                        </div>
                     </div>
 
 
                     @php
-                        $otherSubjects = \App\Models\Subject::whereUserId($agent->id)->select('subject_name', 'id')->get();
+                        $otherSubjects = \App\Models\Subject::whereUserId($agent->id)
+                                        ->select('subject_name', 'id')->get();
                     @endphp
 
                     @foreach ($otherSubjects as $in)

@@ -10996,6 +10996,19 @@ button:focus,
   color: #414141 !important;
 }
 
+.btn-outline-dark {
+  background-color: transparent !important;
+  border: 4px solid #414141;
+  font-weight: bold;
+  color: #414141 !important;
+}
+
+.btn-outline-dark:hover {
+  background-color: #414141 !important;
+  border: 4px solid #414141;
+  color: #fff !important;
+}
+
 .btn-success {
   background-color: #138D07 !important;
   border: 4px solid #138D07;
