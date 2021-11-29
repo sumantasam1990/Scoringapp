@@ -16,7 +16,7 @@
                 {{--                    data-bs-placement="top" data-bs-content="" class="fas fa-info-circle"></i>--}}
 
             </h2>
-            <p>Choose the metro area where your buyer is looking to buy or where your buyer is selling their house.</p>
+            <p>Choose the metro/counties area where your buyer is looking to buy or where your buyer is selling their house.</p>
 
             <ul class="list-group mt-4">
                 @foreach($metros as $metro)

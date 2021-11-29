@@ -41,12 +41,20 @@ Both buyer’s and listing agent can also then add properties, message each othe
 
 
                             </a>
+                            @unlessrole('buyer')
+                            <a class="btn btn-success btn-sm" href="{{ route('state.dashboard') }}">Location Pages &nbsp;
+
+
+
+
+                            </a>
+                            @endunlessrole
 
                             @endunlessrole
 
 
                             <a onclick="selectPhoto()" class="btn btn-dark btn-sm" href="#"> &nbsp;
-                                <i class="fas fa-camera-retro"></i>&nbsp; Add Photo
+                                <i class="fas fa-camera-retro"></i>&nbsp; Add Profile Photo
 
                                 <i class="fas fa-info-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Upload your company/your own personal photo. "></i>
 

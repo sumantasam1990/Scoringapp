@@ -34,32 +34,13 @@
                         <input autocomplete="off" type="text" name="subject" class="form-control @error('subject') is-invalid @enderror" placeholder="Name this Score Page. (i.e. the buyer’s name)." value="{{ old('subject') }}">
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group mb-3">
-                                <select class="form-control @error('state') is-invalid @enderror" name="state">
-                                    <option disabled selected>Choose State</option>
-                                    @foreach($states as $state)
-                                        <option value="{{ $state->id }}">{{ $state->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group mb-3">
-                                <select class="form-control @error('metro') is-invalid @enderror" name="metro">
-                                    <option disabled selected>Choose Metro</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group mb-3">
-                                <select class="form-control @error('town') is-invalid @enderror" name="town">
-                                    <option disabled selected>Choose Town</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+
+
+
+                        @livewire('metrotowndropdown')
+
+
+
 
 {{--                    <div class="form-group mb-3">--}}
 {{--                        <input autocomplete="off" type="email" name="mailid" class="form-control @error('mailid') is-invalid @enderror" placeholder="Buyer's Email" value="{{ old('mailid') }}">--}}

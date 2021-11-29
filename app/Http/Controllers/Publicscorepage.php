@@ -53,6 +53,7 @@ class Publicscorepage extends Controller
 //            ->get();
 
         $location_user_ids = Location::where('town_id', '=', $id)
+            ->whereNotIn('user_id', [$user->id])
             ->select('user_id')
             ->get();
 

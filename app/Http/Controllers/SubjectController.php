@@ -6,6 +6,7 @@ use App\Http\Services\SubjectStore;
 use App\Mail\AddBuyer;
 use App\Mail\AddBuyerNotify;
 use App\Mail\RequestTeamMember;
+use App\Models\Location;
 use App\Models\Mainsubject;
 use App\Models\State;
 use App\Models\Subject;
@@ -23,9 +24,7 @@ class SubjectController extends Controller
 
         $mainsubjects = Mainsubject::where("user_id", $user->id)->get();
 
-        $states = State::all();
-
-        return view("subject.index", ['mainsubjects' => $mainsubjects, 'states' => $states]);
+        return view("subject.index", ['mainsubjects' => $mainsubjects]);
 
     }
 
@@ -34,15 +33,23 @@ class SubjectController extends Controller
         $request->validate([
             //'main' => 'required',
             'subject' => 'required',
+            'state' => 'required',
+            'metro' => 'required',
+            'town' => 'required'
         ]);
 
         try {
-
             $subject = new Subject;
             $subject->user_id = Auth::user()->id;
             $subject->mainsubject_id = 1;
             $subject->subject_name = $request->subject;
             $subject->save();
+
+            $locations = new Location;
+            $locations->user_id = Auth::user()->id;
+            $locations->town_id = $request->town;
+            $locations->subject_id = $subject->id;
+            $locations->save();
 
             // Send Notification to all Agent B
             $mailData = [];

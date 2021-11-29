@@ -34,9 +34,7 @@
                         <li class="nav-item">
                             <a class="nav-link dashboard-border" href="/dashboard">Dashboard</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link dashboard-border" href="{{ route('state.dashboard') }}">Location Pages</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="/faq">FAQ</a>
                         </li>
