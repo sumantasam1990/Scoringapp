@@ -107,6 +107,8 @@ Route::post('message/create', [\App\Http\Controllers\MessageController::class, '
 Route::post('store/roomname', [\App\Http\Controllers\MessageController::class, 'store'])->name('roomname.store')->middleware(['auth', 'verified']);
 Route::post('company/photo', [LoginController::class, 'uploadPhoto'])->name('company.photo')->middleware(['auth', 'verified']);
 Route::post('/questionnaire', [\App\Http\Controllers\Questionnaire::class, 'store'])->name('questionnaire.post')->middleware(['auth', 'verified']);
+Route::post('/metro-save', [\App\Http\Controllers\Publicscorepage::class, 'metro_store'])->name('metro.store')->middleware(['auth', 'verified']);
+Route::post('/town-save', [\App\Http\Controllers\Publicscorepage::class, 'town_store'])->name('town.store')->middleware(['auth', 'verified']);
 
 
 

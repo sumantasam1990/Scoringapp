@@ -98,10 +98,87 @@
   </div>
 
 
+<!-------- Metro Modal -------->
+<div class="modal fade" id="metro_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="display-6 text-center heading_txt" id="edit_score_heading">Add Metro/Counties</h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('metro.store') }}" method="post">
+                    @csrf
+
+                    <div class="box">
+                        <div class="form-group">
+                            <input type="text" class="form-control" required name="metro_name"
+                                   placeholder="Name Of Metro/Counties Area">
+                            <p class="mt-3 fw-bold text-black-50">** Do not try to add duplicate name</p>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <button type="submit" class="btn btn-dark">Submit</button>
+                        </div>
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-------- Town Modal -------->
+<div class="modal fade" id="town_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="display-6 text-center heading_txt" id="edit_score_heading">Add Town/Neighborhood</h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('town.store') }}" method="post">
+                    @csrf
+
+                    <div class="box">
+                        <div class="form-group">
+                            <input type="text" class="form-control" required name="town_name"
+                                   placeholder="Name Of Town/Neighborhood">
+                            <p class="mt-3 fw-bold text-black-50">** Do not try to add duplicate name</p>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <button type="submit" class="btn btn-dark">Submit</button>
+                        </div>
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    function openMainSubjectModal(str) {
-        if (str == "add_new_criteria7") {
-            $("#main_subject_modal").modal("show");
+    function openMetroModal(str) {
+        if (str == "add_new_metro") {
+            $("#metro_modal").modal("show");
+        }
+
+    }
+
+    function openTownModal(str) {
+        if (str == "add_new_town") {
+            $("#town_modal").modal("show");
         }
 
     }
@@ -118,3 +195,5 @@
          <hr />`);
     }
 </script>
+
+

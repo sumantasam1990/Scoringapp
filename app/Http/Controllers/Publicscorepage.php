@@ -73,4 +73,11 @@ class Publicscorepage extends Controller
 
         return view('publicscorepage.follow-score-page', ['town' => $town, 'title' => $title, "agents" => $agents]);
     }
+
+    public function metro_store(Request $request)
+    {
+        $metro = new Metro;
+        $metro->name = $request->metro_name;
+        $metro->state_id = 9;
+    }
 }
