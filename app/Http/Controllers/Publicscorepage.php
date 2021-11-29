@@ -60,16 +60,16 @@ class Publicscorepage extends Controller
             $arr[] = $location_user_id->user_id;
         }
 
-        $agents = User::whereIn('id', $arr)->select('id', 'name')->get();
+        $agents = User::whereIn('id', $arr)->select('id', 'name', 'photo')->get();
 
-        $agentB = Followers::where('who_follow', '=', $user->id)
-            ->select('who_follow')
-            ->get();
+//        $agentB = Followers::where('who_follow', '=', $user->id)
+//            ->select('who_follow')
+//            ->get();
+//
+//        $agentA = Followers::where('whom_follow', '=', $user->id)
+//            ->select('whom_follow')
+//            ->get();
 
-        $agentA = Followers::where('whom_follow', '=', $user->id)
-            ->select('whom_follow')
-            ->get();
-
-        return view('publicscorepage.follow-score-page', ['town' => $town, 'title' => $title, "agents" => $agents, 'agentB' => $agentB, 'agentA' => $agentA]);
+        return view('publicscorepage.follow-score-page', ['town' => $town, 'title' => $title, "agents" => $agents]);
     }
 }

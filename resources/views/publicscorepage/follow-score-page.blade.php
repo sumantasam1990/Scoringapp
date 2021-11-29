@@ -16,8 +16,16 @@
 
                 @foreach($agents as $agent)
                     <div class="row">
-                        <div class="col-8 fw-bold fs-4">{{ $agent->name }} </div>
-                        <div class="col-4">
+
+                        <div class="col-6 fw-bold fs-4" style="float: left;">
+                            @if($agent->photo == null)
+                                <img src="{{ asset('images/user.svg') }}" style="height: 50px; width: 50px; object-fit: cover; border-radius: 4px;">
+                            @else
+                                <img src="{{ asset('uploads/' . $agent->photo) }}" style="height: 50px; width: 50px; object-fit: cover; border-radius: 4px;">
+                            @endif
+                            <span style="margin-left: 20px; margin-top: 30px;">{{ $agent->name }}</span>
+                        </div>
+                        <div class="col-6">
 
                             @livewire('followunfollow', ['agentID' => $agent->id])
 
@@ -26,8 +34,11 @@
 
 
                     @php
-                        $otherSubjects = \App\Models\Subject::whereUserId($agent->id)
-                                        ->select('subject_name', 'id')->get();
+                        $otherSubjects = \Illuminate\Support\Facades\DB::table('subjects')->join('locations', 'subjects.id', '=', 'locations.subject_id')
+                                        ->where('subjects.user_id', '=', $agent->id)
+                                        ->where('locations.town_id', '=', $town->id)
+                                        ->select('subjects.id', 'subjects.subject_name')
+                                        ->get();
                     @endphp
 
                     @foreach ($otherSubjects as $in)
@@ -39,9 +50,9 @@
                                         {{--                        {{ $in->subject_name }}--}}
 
                                     </p>
-                                    @if(count($agentB) == 0)
-                                        <h4 class="card-title fw-bold mb-2" style="font-size: 22px; color: green;">{{ $in->subject_name }}</h4>
-                                    @endif
+{{--                                    @if(count($agentB) == 0)--}}
+{{--                                        <h4 class="card-title fw-bold mb-2" style="font-size: 22px; color: green;">{{ $in->subject_name }}</h4>--}}
+{{--                                    @endif--}}
 
 
                                     <a href="/score-page/{{$in->id}}" class="btn btn-success btn-sm">Score Page</a>

@@ -1,4 +1,4 @@
-<div>
+<div style="margin-top: 10px;">
     @if($follow)
     <a class="ml-5 btn btn-dark btn-sm" wire:click="follow_now" wire:model="agentID">Follow</a>
     @else
