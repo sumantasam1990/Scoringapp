@@ -24,6 +24,7 @@ class Metrotowndropdown extends Component
     public function changeState()
     {
         $this->metroData = Metro::where('state_id', '=', $this->state)->get();
+        $this->townData = [];
     }
 
     public function changeMetro()
