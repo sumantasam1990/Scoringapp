@@ -34,7 +34,12 @@
                         <li class="nav-item">
                             <a class="nav-link dashboard-border" href="/dashboard">Dashboard</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="/howitworks">How It Works</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/features">Features</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/faq">FAQ</a>
                         </li>
