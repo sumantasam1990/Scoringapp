@@ -26,7 +26,7 @@
                         {{--            <h5 style="margin-top: -5px;" class="text-dark mt-3 mb-4">See all of your Main and Sub Subjects in one simple dashboard. Open each Subject to access it's Score Page and the numerous features associated with it.--}}
                         {{--            </h5>--}}
 
-                        <div class="mt-4 ">
+                        <div class="mt-4">
 
                             @unlessrole('buyer')
 
@@ -43,8 +43,6 @@ Both buyer’s and listing agent can also then add properties, message each othe
                             </a>
                             @unlessrole('buyer')
                             <a class="btn btn-success btn-sm" href="{{ route('state.dashboard') }}">Location Pages &nbsp;
-
-
 
 
                             </a>
