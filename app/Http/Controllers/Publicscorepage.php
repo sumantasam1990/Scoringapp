@@ -74,10 +74,33 @@ class Publicscorepage extends Controller
         return view('publicscorepage.follow-score-page', ['town' => $town, 'title' => $title, "agents" => $agents]);
     }
 
-    public function metro_store(Request $request)
+    public function metro_store(Request $request): \Illuminate\Http\RedirectResponse
     {
+        $request->validate([
+            'metro_name' => 'required',
+            'state' => 'required'
+        ]);
+
         $metro = new Metro;
         $metro->name = $request->metro_name;
-        $metro->state_id = 9;
+        $metro->state_id = $request->state;
+        $metro->save();
+
+        return back()->with('msg', 'Metro name successfully added. Now you can choose your metro name.');
+    }
+
+    public function town_store(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $request->validate([
+            'town_name' => 'required',
+            'metro' => 'required'
+        ]);
+
+        $town = new Town;
+        $town->name = $request->town_name;
+        $town->metro_id = $request->metro;
+        $town->save();
+
+        return back()->with('msg', 'Town/Counties name successfully added. Now you can choose your town/counties name.');
     }
 }

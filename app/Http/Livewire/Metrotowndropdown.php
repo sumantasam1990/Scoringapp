@@ -10,6 +10,7 @@ use Livewire\Component;
 class Metrotowndropdown extends Component
 {
     public $state;
+    public $state_hd;
     public $metro;
     public $town;
     public $metroData = [];
@@ -25,6 +26,7 @@ class Metrotowndropdown extends Component
     {
         $this->metroData = Metro::where('state_id', '=', $this->state)->get();
         $this->townData = [];
+        $this->state_hd = $this->state;
     }
 
     public function changeMetro()

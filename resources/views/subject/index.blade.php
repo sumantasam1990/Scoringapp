@@ -19,17 +19,10 @@
             <div class="box mt-6">
                 <form action="{{ route('subject.store') }}" method="post">
                     @csrf
-{{--                    <div class="form-group mb-3">--}}
-{{--                        <select name="main[]" class="form-control @error('main') is-invalid @enderror" onchange="openMainSubjectModal(this.value)">--}}
-{{--                            <option selected disabled value="">Choose The Main Client</option>--}}
-{{--                            @foreach ($mainsubjects as $main)--}}
-{{--                               <option {{ (old("main") == $main->id ? "selected" : "") }} value="{{$main->id}}">{{$main->main_subject_name}}</option>--}}
-{{--                            @endforeach--}}
-{{--                            <optgroup>--}}
-{{--                                <option style="background-color: green; color: #fff;" value="add_new_criteria7">Add New Main Client</option>--}}
-{{--                            </optgroup>--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
+
+                    @livewire('metrotowndropdown')
+
+
                     <div class="form-group mb-3">
                         <input autocomplete="off" type="text" name="subject" class="form-control @error('subject') is-invalid @enderror" placeholder="Name this Score Page. (i.e. the buyer’s name)." value="{{ old('subject') }}">
                     </div>
@@ -37,7 +30,7 @@
 
 
 
-                        @livewire('metrotowndropdown')
+
 
 
 
@@ -111,7 +104,7 @@
             <div class="modal-body">
                 <form action="{{ route('metro.store') }}" method="post">
                     @csrf
-
+                    <input type="hidden" name="state" value="" id="state_hd">
                     <div class="box">
                         <div class="form-group">
                             <input type="text" class="form-control" required name="metro_name"
@@ -147,7 +140,7 @@
             <div class="modal-body">
                 <form action="{{ route('town.store') }}" method="post">
                     @csrf
-
+                    <input type="hidden" name="metro" value="" id="metro_hd">
                     <div class="box">
                         <div class="form-group">
                             <input type="text" class="form-control" required name="town_name"
@@ -171,13 +164,16 @@
 <script>
     function openMetroModal(str) {
         if (str == "add_new_metro") {
+            $("#state_hd").val($("#hd_state").val());
             $("#metro_modal").modal("show");
+
         }
 
     }
 
     function openTownModal(str) {
         if (str == "add_new_town") {
+            $("#metro_hd").val($("#hd_metro").val());
             $("#town_modal").modal("show");
         }
 
