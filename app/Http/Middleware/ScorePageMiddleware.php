@@ -35,18 +35,5 @@ class ScorePageMiddleware
             return abort('403');
         }
 
-
-        // $team = Team::where('subject_id', '=', $request->id)
-        //     ->where('user_email', '=', Auth::user()->email)
-        //     ->select('status')->first();
-//        $team = Team::where('subject_id', '=', $request->id)
-//            ->select('status')->first();
-//
-//        if($team != null && $team->status == 1) {
-//            return $next($request);
-//        } else {
-//            return abort('403');
-//        }
-
     }
 }
