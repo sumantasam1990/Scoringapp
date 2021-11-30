@@ -53,17 +53,17 @@ class ApplicantController extends Controller
     {
         // checking if logged in user is follower or not
 
-        $userSubject = Subject::whereId($subid)
-            ->select('user_id')
-            ->first();
-
-        $followers = Followers::where('who_follow', '=', Auth::user()->id)
-            ->where('whom_follow', '=', $userSubject->user_id)
-            ->count('id');
-
-        if($followers == 0) {
-            return abort('403');
-        }
+//        $userSubject = Subject::whereId($subid)
+//            ->select('user_id')
+//            ->first();
+//
+//        $followers = Followers::where('who_follow', '=', Auth::user()->id)
+//            ->where('whom_follow', '=', $userSubject->user_id)
+//            ->count('id');
+//
+//        if($followers == 0) {
+//            return abort('403');
+//        }
 
         //-------------------------------
 
