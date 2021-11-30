@@ -51,6 +51,21 @@ class ApplicantController extends Controller
 
     public function viewApplicant($id, $subid)
     {
+        // checking if logged in user is follower or not
+
+        $userSubject = Subject::whereId($subid)
+            ->select('user_id')
+            ->first();
+
+        $followers = Followers::where('who_follow', '=', Auth::user()->id)
+            ->where('whom_follow', '=', $userSubject->user_id)
+            ->count('id');
+
+        if($followers == 0) {
+            return abort('403');
+        }
+
+        //-------------------------------
 
         $subjs = Subject::where("id", $subid)->first();
         $subjects = Criteria::where("subject_id", $subid)->orderBy("maincriteria_id", "ASC")->get();

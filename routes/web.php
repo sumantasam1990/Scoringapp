@@ -61,24 +61,24 @@ Route::get('/how-it-works-buyer', [\App\Http\Controllers\PagesController::class,
 
 
 Route::get('/create-score-page', [SubjectController::class, 'index'])->name('create.score.page')->middleware(['auth', 'verified']);
-Route::get('/create-applicant/{id}', [ApplicantController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/create-applicant/{id}', [ApplicantController::class, 'index'])->middleware(['auth', 'verified', 'scorePage']);
 Route::get('/create-criteria/{id}/{applid}', [CriteriaController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('/create-score-page/{id}', [ScoringSheetController::class, 'index'])->middleware(['auth', 'verified']);
-Route::get('/score-page/{id}', [ScoringSheetController::class, 'scoring'])->middleware(['auth', 'verified', 'scorePage']);
+Route::get('/score-page/{id}', [ScoringSheetController::class, 'scoring'])->middleware(['auth', 'verified']);
 Route::get('dashboard', [LoginController::class, 'dashboard'])->middleware(['auth', 'verified']);
 Route::get('/delete/score/{id}', [ScoringSheetController::class, 'delete'])->middleware(['auth', 'verified']);
 Route::get('/invite-listing-agent/{id}', [TeamController::class, 'index'])->name('inviteagent')->middleware(['auth', 'verified']);
 Route::get('remove/note/{id}', [ScoringSheetController::class, 'remove_note'])->middleware(['auth', 'verified']);
 Route::get('remove/file/{id}', [ScoringSheetController::class, 'remove_file'])->middleware(['auth', 'verified']);
-Route::get('finalists/{id}', [ScoringSheetController::class, 'finalists'])->middleware(['auth', 'verified']);
+Route::get('finalists/{id}', [ScoringSheetController::class, 'finalists'])->middleware(['auth', 'verified', 'scorePage']);
 Route::get('applicant/{id}/{subid}', [ApplicantController::class, 'viewApplicant'])->middleware(['auth', 'verified']);
 Route::get('/bulkemaillist/{id}', [ApplicantController::class, 'bulkEmails'])->middleware(['auth', 'verified']);
-Route::get('/message-room/{id}/{room}', [\App\Http\Controllers\MessageController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/message-room/{id}/{room}', [\App\Http\Controllers\MessageController::class, 'index'])->middleware(['auth', 'verified', 'scorePage']);
 Route::get('/scorecard/{id}/{appl_id}/{userid}', [ScoringSheetController::class, 'scorecard'])->middleware(['auth', 'verified']);
-Route::get('/rooms/{id}', [\App\Http\Controllers\MessageController::class, 'message_rooms'])->middleware(['auth', 'verified']);
+Route::get('/rooms/{id}', [\App\Http\Controllers\MessageController::class, 'message_rooms'])->middleware(['auth', 'verified', 'scorePage']);
 Route::get('/scorepage-grid/{id}/{applicantId?}', [ScoringSheetController::class, 'gridView'])->middleware(['auth', 'verified']);
 Route::get('/invite-buyer/{id}', [TeamController::class, 'invite_buyer'])->middleware(['auth', 'verified']);
-Route::get('/questionnaire/{id}', [\App\Http\Controllers\Questionnaire::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/questionnaire/{id}', [\App\Http\Controllers\Questionnaire::class, 'index'])->middleware(['auth', 'verified', 'scorePage']);
 Route::get('/state-dashboard', [\App\Http\Controllers\Publicscorepage::class, 'state_dash'])->middleware(['auth', 'verified'])->name('state.dashboard');
 Route::get('/metro-dashboard/{id}', [\App\Http\Controllers\Publicscorepage::class, 'metro_dash'])->middleware(['auth', 'verified'])->name('metro.dashboard');
 Route::get('/town-dashboard/{id}', [\App\Http\Controllers\Publicscorepage::class, 'town_dash'])->middleware(['auth', 'verified'])->name('town.dashboard');

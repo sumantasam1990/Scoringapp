@@ -48,6 +48,11 @@
                     <h4 class="mt-3 display-6 fw-bold">Criteria</h4>
                     <p>Get as detailed as possible with an unlimited number of Criteria so you can get a comprehensive overview of a property so both Agent and Buyer can pick the best possible property.</p>
                 </div>
+                <div class="col-md-12 text-center mt-6">
+                    <div class="circle-number">9</div>
+                    <h4 class="mt-3 display-6 fw-bold">Location Pages</h4>
+                    <p>Location Pages are essentially a public directly of Score Pages that buyer's agents have created. They are organized by state, metro area/counties and neighborhood/towns. This way any agent can see every Score Page within the metro area/county or neighborhood/town they work in and are able to view buyer's scores and add any properties they are selling that share a similar criteria that has been scored high. Agents don't have to wait for another agent to invite them on Scorng, they will always be able to see every single Score Page that has been added by every single agent. </p>
+                </div>
             </div>
         </div>
         <div class="col-md-2"></div>
