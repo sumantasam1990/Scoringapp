@@ -1,4 +1,4 @@
-@include('layouts.header', ['title' => 'Subject'])
+@include('layouts.header', ['title' => 'Create a score page'])
 
 <div class="container mt-6">
 
@@ -19,6 +19,10 @@
             <div class="box mt-6">
                 <form action="{{ route('subject.store') }}" method="post">
                     @csrf
+
+                    <h5 class="fw-bold mb-4">
+                        Choose the location(s) where your buyer is looking to buy a house in.
+                    </h5>
 
                     @livewire('metrotowndropdown')
 

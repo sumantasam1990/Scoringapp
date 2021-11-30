@@ -24,6 +24,9 @@ class CriteriaController extends Controller
             ->where('applicant_id', $applid)
             ->get();
 
+//        $maincriterias = Maincriteria::where('user_id', Auth::user()->id)
+//            ->get();
+
         $subjects = Subject::where("id", $id)
         ->first();
 

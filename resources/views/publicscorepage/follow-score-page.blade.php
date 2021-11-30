@@ -13,7 +13,7 @@
             <h2 class="display-4 text-left heading_txt">{{ $town->name }}</h2>
 
             <div class="row mt-6">
-
+                @if(count($agents) > 0)
                 @foreach($agents as $agent)
                     <div class="row">
 
@@ -40,6 +40,7 @@
                                         ->select('subjects.id', 'subjects.subject_name')
                                         ->get();
                     @endphp
+
 
                     @foreach ($otherSubjects as $in)
                         <div class="col-12 col-xl-4 col-md-4 col-xxl-4 col-sm-12 col-xs-12 mt-3 mb-4">
@@ -68,7 +69,12 @@
                         </div>
                     @endforeach
 
+
                 @endforeach
+
+                    @else
+                        <p>No Score Pages have been added yet. Please check back again soon.</p>
+                    @endif
 
             </div>
 
