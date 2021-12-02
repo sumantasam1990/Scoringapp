@@ -121,7 +121,7 @@ class PagesController extends Controller
         ];
 
         try {
-            $this->sendEmail('sumantasam1990@gmail.com', $mailData);
+            $this->sendEmail('hello@scorng.com', $mailData);
             return back()
                 ->with('msg', 'Your email has been sent successfully.');
         } catch (\Throwable $th) {
