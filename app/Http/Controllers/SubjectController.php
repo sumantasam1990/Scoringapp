@@ -35,7 +35,11 @@ class SubjectController extends Controller
             'subject' => 'required',
             'state' => 'required',
             'metro' => 'required',
-            'town' => 'required'
+            'town' => 'required',
+            'add_location' => 'required'
+        ],
+        [
+            'add_location.required' => 'You should add your location or locations.',
         ]);
 
         try {
@@ -45,11 +49,18 @@ class SubjectController extends Controller
             $subject->subject_name = $request->subject;
             $subject->save();
 
-            $locations = new Location;
-            $locations->user_id = Auth::user()->id;
-            $locations->town_id = $request->town;
-            $locations->subject_id = $subject->id;
-            $locations->save();
+            // multiple locations
+            // String to array
+            $exp = explode(',', $request->add_location);
+
+
+            foreach ($exp as $t) {
+                $locations = new Location;
+                $locations->user_id = Auth::user()->id;
+                $locations->town_id = $t;
+                $locations->subject_id = $subject->id;
+                $locations->save();
+            }
 
             // Send Notification to all Agent B
             $mailData = [];

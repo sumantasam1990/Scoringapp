@@ -27,8 +27,13 @@
                     @livewire('metrotowndropdown')
 
 
+
+
                     <div class="form-group mb-3">
                         <input autocomplete="off" type="text" name="subject" class="form-control @error('subject') is-invalid @enderror" placeholder="Name this Score Page. (i.e. the buyer’s name)." value="{{ old('subject') }}">
+                        @error('subject')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
 
