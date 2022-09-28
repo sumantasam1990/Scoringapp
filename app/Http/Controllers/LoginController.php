@@ -43,18 +43,7 @@ class LoginController extends Controller
                 return redirect()->intended('admin/dashboard');
             } else {
                 return redirect()->intended('dashboard');
-                // Checking if invitation cookie is alive or not
-//                if(Cookie::has('invite_agent_token') && !empty(Cookie::get('invite_agent_token'))) {
-//                    return redirect()->intended('accept-invitation/' . Cookie::get('invite_agent_token'));
-//                } elseif(Cookie::has('invite_buyer_token') && !empty(Cookie::get('invite_buyer_token'))) {
-//                    return redirect()->intended('accept-invitation-buyer/' . Cookie::get('invite_buyer_token'));
-//                } else {
-//                    return redirect()->intended('dashboard');
-//                }
-
             }
-
-
         }
 
         return back()->withErrors([
